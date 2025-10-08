@@ -16,6 +16,35 @@
       document.body.classList.add('intro-active');
     });
   </script>
+  <script>
+    // Forzar que, al recargar, la página comience desde arriba
+    (function () {
+      // Evita que el navegador restaure la posición de scroll automáticamente
+      if ('scrollRestoration' in history) {
+        history.scrollRestoration = 'manual'; // MDN: History.scrollRestoration
+      }
+
+      // Si se recarga estando en una ancla (ej. #ceremonia), limpiamos el hash
+      if (location.hash) {
+        history.replaceState(null, '', location.pathname + location.search);
+      }
+
+      // Asegura el scroll al tope en distintos escenarios
+      window.addEventListener('load', function () {
+        window.scrollTo(0, 0);
+      });
+      window.addEventListener('pageshow', function (e) {
+        // Cuando la página viene del bfcache (navegadores móviles/safari)
+        if (e.persisted) {
+          window.scrollTo(0, 0);
+        }
+      });
+      window.addEventListener('beforeunload', function () {
+        // Algunos navegadores respetan esto durante el refresh
+        window.scrollTo(0, 0);
+      });
+    })();
+  </script>
   <style>
     :root {
       /* Paleta pastel inspirada en acuarela */
