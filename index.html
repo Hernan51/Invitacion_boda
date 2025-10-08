@@ -1,0 +1,1127 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Boda Karen & Sergio — 11 • 07 • 2026</title>
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;600&display=swap"
+    rel="stylesheet">
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.body.classList.add('intro-active');
+    });
+  </script>
+  <style>
+    :root {
+      /* Paleta pastel inspirada en acuarela */
+      --bg-cream: #fff8ef;
+      --pastel-rose: #ffd6e0;
+      --pastel-peach: #ffe5b4;
+      --pastel-mint: #caffbf;
+      --pastel-sky: #a0c4ff;
+      --pastel-lav: #e6d6ff;
+      --ink: #4b4b4b;
+      --ink-soft: #6a6a6a;
+      --card: #ffffffcc;
+      --shadow: 0 10px 30px rgba(0, 0, 0, .08);
+    }
+
+    * {
+      box-sizing: border-box
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(1200px 800px at -10% -10%, var(--pastel-rose) 0%, transparent 60%),
+        radial-gradient(1200px 900px at 110% 0%, var(--pastel-sky) 0%, transparent 60%),
+        radial-gradient(900px 700px at 100% 110%, var(--pastel-mint) 0%, transparent 60%),
+        radial-gradient(900px 700px at 0% 110%, var(--pastel-peach) 0%, transparent 60%),
+        var(--bg-cream);
+      font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none
+    }
+
+    img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 14px
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 28px 20px 80px;
+      opacity: 1;
+      /* visible por defecto */
+      transition: opacity .6s ease;
+      /* desvanecimiento al mostrar */
+    }
+
+    body.intro-active .wrap {
+      opacity: 0;
+    }
+
+    /* HERO */
+    header.hero {
+      text-align: center;
+      padding: 64px 20px 32px;
+    }
+
+    .names {
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(48px, 8vw, 84px);
+      line-height: 1.05;
+      color: #3e3e3e;
+      text-shadow: 0 2px 0 #ffffffa0;
+    }
+
+    .amp {
+      opacity: .7
+    }
+
+    .date {
+      margin-top: 10px;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      letter-spacing: .2em;
+      font-size: clamp(14px, 2.5vw, 18px);
+      color: #555;
+    }
+
+    .tagline {
+      margin-top: 10px;
+      color: #6b6b6b;
+      font-size: 16px;
+    }
+
+    /* Contador */
+    .countdown {
+      margin: 26px auto 0;
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .cd-box {
+      background: var(--card);
+      backdrop-filter: blur(4px);
+      border: 1px solid #ffffffaa;
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      padding: 16px 18px;
+      min-width: 96px;
+    }
+
+    .cd-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .cd-lbl {
+      font-size: 12px;
+      opacity: .75;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    /* Secciones */
+    section {
+      margin-top: 44px
+    }
+
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(4px);
+      border: 1px solid #ffffffaa;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
+
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: clamp(22px, 3.8vw, 30px);
+      margin: 0 0 14px 0;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 18px;
+    }
+
+    @media (min-width: 760px) {
+      .grid-2 {
+        grid-template-columns: 1.1fr 1fr
+      }
+
+      .grid-3 {
+        grid-template-columns: repeat(3, 1fr)
+      }
+    }
+
+    .pill {
+      display: inline-block;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: #ffffff;
+      border: 1px dashed #e9e4ff;
+      font-size: 13px;
+    }
+
+    .btn {
+      display: inline-block;
+      margin-top: 10px;
+      padding: 12px 18px;
+      border-radius: 12px;
+      border: 0;
+      background: linear-gradient(135deg, var(--pastel-lav), var(--pastel-sky));
+      color: #2c2c2c;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      transition: transform .15s ease, box-shadow .15s ease, opacity .2s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .12)
+    }
+
+    .btn:active {
+      transform: translateY(0) scale(.98)
+    }
+
+    /* Add to Calendar block */
+    .add-to-cal {
+      margin-top: 14px;
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      flex-wrap: wrap;
+    }
+    .btn-ghost {
+      background: transparent;
+      border: 2px dashed rgba(0,0,0,.15);
+      color: #3e3e3e;
+    }
+    .btn-ghost:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(0,0,0,.08);
+    }
+    @media (max-width: 580px) {
+      .add-to-cal { gap: 8px; }
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      color: #666;
+      font-size: 14px;
+      margin-top: 56px;
+    }
+
+    /* Mini detalles */
+    .watermark {
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .fade-image {
+      position: relative;
+      display: inline-block;
+      width: 100%;
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .fade-image img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 16px;
+    }
+
+    .fade-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: 16px;
+      background: radial-gradient(circle, rgba(255, 255, 255, 0) 75%, rgba(255, 248, 239, 1) 100%);
+      pointer-events: none;
+    }
+
+    .list {
+      margin: 0;
+      padding-left: 18px;
+    }
+
+    /* Sección apilada: imagen arriba, info abajo */
+    .section-stack {
+      display: grid;
+      gap: 18px;
+      margin-top: 44px;
+      /* mantiene consistencia con otras secciones */
+    }
+
+    /* Animación “reveal” en scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .8s ease, transform .8s ease;
+      will-change: opacity, transform;
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: none;
+    }
+
+    /* Intro con campanas */
+    body.intro-active {
+      overflow: hidden;
+    }
+
+    #intro {
+      position: fixed;
+      inset: 0;
+      background:
+        linear-gradient(180deg, rgba(255, 248, 239, .98), rgba(255, 248, 239, .92)),
+        radial-gradient(1100px 800px at 12% 0%, var(--pastel-rose) 0%, transparent 60%),
+        radial-gradient(1100px 900px at 88% 100%, var(--pastel-sky) 0%, transparent 60%),
+        var(--bg-cream);
+      z-index: 9999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    #intro .stage {
+      position: relative;
+      width: min(900px, 86vw);
+      height: min(420px, 60vh);
+    }
+
+    #intro .bell {
+      position: absolute;
+      top: 4%;
+      width: min(160px, 28vw);
+      height: auto;
+      transform-origin: 50% 10%;
+      animation: swing 1.2s ease-in-out infinite;
+      filter: drop-shadow(0 8px 20px rgba(0, 0, 0, .12));
+    }
+
+    #intro .bell.left {
+      left: 6%;
+    }
+
+    #intro .bell.right {
+      right: 6%;
+      animation-delay: .2s;
+    }
+
+    #intro .headline {
+      position: absolute;
+      inset: auto 0 8% 0;
+      text-align: center;
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(42px, 10vw, 90px);
+      color: #3e3e3e;
+      text-shadow: 0 2px 0 #ffffffa0;
+      opacity: 0;
+      transform: translateY(10px) scale(.98);
+      animation: headlineIn .9s ease forwards 1.2s;
+    }
+
+    #intro .insta {
+      position: absolute;
+      left: 50%;
+      top: 17%;
+      /* ⬆️ súbela (antes 52%). Prueba 38–45% a tu gusto */
+      transform: translate(-50%, -50%);
+      width: min(320px, 52vw);
+      aspect-ratio: 1 / 1;
+      border-radius: 50%;
+      /* ⭕ hace el contenedor circular */
+      overflow: hidden;
+      /* recorta la imagen al círculo */
+      background: #fff;
+      border: 1px solid #ffffffaa;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, .12);
+      z-index: 1;
+    }
+
+    #intro .insta img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* elevar el titular por encima de la foto */
+    #intro .headline {
+      z-index: 2;
+    }
+
+    @keyframes swing {
+      0% {
+        transform: rotate(-16deg);
+      }
+
+      50% {
+        transform: rotate(16deg);
+      }
+
+      100% {
+        transform: rotate(-16deg);
+      }
+    }
+
+    @keyframes headlineIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    @keyframes fadeOut {
+      to {
+        opacity: 0;
+        visibility: hidden;
+      }
+    }
+
+    /* cuando la página esté lista, mostramos el contenido */
+    body.page-ready .wrap {
+      opacity: 1;
+    }
+
+    /* al cerrar la intro */
+    #intro.out {
+      animation: fadeOut .7s ease forwards;
+    }
+
+    /* Topbar con logo + hamburguesa */
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .topbar-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 12px 16px;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #3e3e3e;
+    }
+
+    .logo img {
+      width: 40px;
+      height: 40px;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+
+    .logo span {
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+      font-size: 18px;
+    }
+
+    .hamburger {
+      width: 44px;
+      height: 36px;
+      border: 0;
+      background: transparent;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .hamburger .bar {
+      position: absolute;
+      left: 8px;
+      right: 8px;
+      height: 2px;
+      background: #3e3e3e;
+      transition: transform .25s ease, opacity .25s ease;
+    }
+
+    .hamburger .bar:nth-child(1) {
+      top: 10px;
+    }
+
+    .hamburger .bar:nth-child(2) {
+      top: 17px;
+    }
+
+    .hamburger .bar:nth-child(3) {
+      top: 24px;
+    }
+
+    .hamburger.active .bar:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .hamburger.active .bar:nth-child(2) {
+      opacity: 0;
+    }
+
+    .hamburger.active .bar:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* Overlay del índice */
+    #menuOverlay {
+      position: fixed;
+      inset: 0;
+      z-index: 1500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(255, 248, 239, .94);
+      backdrop-filter: blur(4px);
+    }
+
+    #menuOverlay.open {
+      display: flex;
+      animation: fadeIn .25s ease both;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    .menu {
+      text-align: center;
+    }
+
+    .menu a {
+      display: block;
+      margin: 10px 0;
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      color: #3e3e3e;
+      text-decoration: none;
+    }
+
+    .menu a small {
+      display: block;
+      font-family: 'Poppins', sans-serif;
+      font-size: 12px;
+      color: #6a6a6a;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    /* ===== Ajustes para móvil ===== */
+    @media (max-width: 580px) {
+
+      /* Layout general */
+      .wrap {
+        padding: 20px 14px 64px;
+      }
+
+      header.hero {
+        padding: 44px 10px 18px;
+      }
+
+      /* Topbar más compacta */
+      .topbar-inner {
+        padding: 10px 12px;
+      }
+
+      .logo img {
+        width: 34px;
+        height: 34px;
+      }
+
+      .logo span {
+        font-size: 16px;
+      }
+
+      /* Intro */
+      #intro .stage {
+        width: 94vw;
+        height: 68vh;
+        /* más alto para respirar en móvil */
+      }
+
+      #intro .bell {
+        top: 2%;
+        width: 25vw;
+        /* campanas más pequeñas */
+        filter: drop-shadow(0 6px 16px rgba(0, 0, 0, .12));
+      }
+
+      #intro .bell.left {
+        left: 2%;
+      }
+
+      #intro .bell.right {
+        right: 2%;
+      }
+
+      #intro .insta {
+        width: min(260px, 64vw);
+        /* foto circular más chica en móvil */
+        top: 47%;
+        /* un poco más abajo para no chocar con la barra del sistema */
+      }
+
+      #intro .headline {
+        inset: auto 0 6% 0;
+        /* sube el título un poco */
+        font-size: clamp(36px, 14vw, 64px);
+      }
+
+      /* Títulos y tipografías */
+      .names {
+        font-size: clamp(40px, 9vw, 72px);
+      }
+
+      .date {
+        letter-spacing: .16em;
+        font-size: 14px;
+      }
+
+      .tagline {
+        font-size: 14px;
+      }
+
+      /* Contador */
+      .countdown {
+        gap: 8px;
+      }
+
+      .cd-box {
+        padding: 12px 12px;
+        min-width: 78px;
+      }
+
+      .cd-num {
+        font-size: 24px;
+      }
+
+      .cd-lbl {
+        font-size: 11px;
+        letter-spacing: .1em;
+      }
+
+      /* Grids y tarjetas */
+      .grid {
+        gap: 14px;
+      }
+
+      .card {
+        padding: 16px;
+      }
+
+      .section-title {
+        font-size: clamp(20px, 5.2vw, 26px);
+      }
+
+      .btn {
+        padding: 12px 16px;
+        font-size: 14px;
+      }
+
+      /* Menú overlay */
+      .menu a {
+        font-size: 22px;
+        margin: 8px 0;
+      }
+
+      .menu a small {
+        font-size: 11px;
+      }
+
+      /* Imágenes con fade y marca de agua */
+      .fade-image,
+      .watermark {
+        border-radius: 14px;
+      }
+
+      .fade-image img {
+        border-radius: 14px;
+      }
+
+      /* Lista del itinerario un poco más aireada */
+      #itinerario .list li {
+        margin-bottom: 6px;
+      }
+    }
+
+    :root {
+      /* ...lo que ya tienes... */
+      --liverpool: #e1007a;
+      /* Magenta Liverpool */
+    }
+
+    /* Botón Liverpool: empieza transparente y se “pinta” */
+    .btn-liverpool {
+      position: relative;
+      overflow: hidden;
+      background: none !important;
+      /* quita el gradiente general del .btn */
+      border: 2px solid var(--liverpool);
+      color: var(--liverpool);
+      padding: 12px 18px;
+      /* asegura padding igual al .btn */
+      transition: color .3s ease, box-shadow .15s ease, transform .15s ease;
+    }
+
+    .btn-liverpool::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--liverpool);
+      transform: translateX(-100%);
+      transition: transform .6s ease;
+      z-index: 0;
+    }
+
+    .btn-liverpool span {
+      position: relative;
+      z-index: 1;
+      /* texto por encima del “pintado” */
+    }
+
+    /* Cuando se active la animación de primera vez */
+    .btn-liverpool.paint {
+      border-color: var(--liverpool);
+      color: #fff;
+    }
+
+    .btn-liverpool.paint::before {
+      transform: translateX(0);
+    }
+
+    /* Hover/press siguen funcionando bonito */
+    .btn-liverpool:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 36px rgba(0, 0, 0, .12);
+    }
+
+    .btn-liverpool:active {
+      transform: translateY(0) scale(.98);
+    }
+  </style>
+</head>
+
+<body>
+  <div id="intro" aria-hidden="true">
+    <div class="stage">
+      <!-- Campana izquierda -->
+      <svg class="bell left" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Campana">
+        <path fill="#f6c453" d="M32 8c-9 0-16 7-16 16v8c0 2-1 4-3 5l-3 2h44l-3-2c-2-1-3-3-3-5v-8c0-9-7-16-16-16z" />
+        <path fill="#e3a72b" d="M10 39h44v4H10z" />
+        <circle cx="32" cy="50" r="5" fill="#d38d1f" />
+      </svg>
+      <!-- Campana derecha -->
+      <svg class="bell right" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Campana">
+        <path fill="#f6c453" d="M32 8c-9 0-16 7-16 16v8c0 2-1 4-3 5l-3 2h44l-3-2c-2-1-3-3-3-5v-8c0-9-7-16-16-16z" />
+        <path fill="#e3a72b" d="M10 39h44v4H10z" />
+        <circle cx="32" cy="50" r="5" fill="#d38d1f" />
+      </svg>
+
+      <!-- Imagen/Link de Instagram al centro -->
+      <a class="insta">
+        <img src="img/Intro_imagen.jpeg" alt="Nuestra foto de Instagram">
+      </a>
+
+      <div class="headline">¡Nos casamos!</div>
+    </div>
+  </div>
+
+  <!-- Topbar: logo + hamburguesa -->
+  <div class="topbar">
+    <div class="topbar-inner">
+      <a href="#home" class="logo" aria-label="Inicio">
+        <img src="img/logo.jpg" alt="Logo">
+        <span>Karen & Sergio</span>
+      </a>
+      <button class="hamburger" id="hamburger" aria-label="Abrir menú" aria-controls="menuOverlay"
+        aria-expanded="false">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Overlay / Índice de la página -->
+  <div id="menuOverlay" role="dialog" aria-modal="true">
+    <nav class="menu">
+      <a href="#home">Inicio <small>Hero</small></a>
+      <a href="#ceremonia">Ceremonia <small>Templo</small></a>
+      <a href="#recepcion">Recepción <small>Fiesta</small></a>
+      <a href="#info">Información <small>Regalos / Confirmación</small></a>
+      <a href="#itinerario">Itinerario</a>
+    </nav>
+  </div>
+
+  <div class="wrap">
+    <header class="hero" id="home">
+      <h1 class="names">Karen <span class="amp">&</span> Sergio</h1>
+      <div class="date">Sábado · 11 · Julio · 2026</div>
+      <p class="tagline">Con alegría, invitamos a celebrar el comienzo de nuestra vida juntos.</p>
+      <!-- Contador a la fecha -->
+      <div class="countdown" id="countdown">
+        <div class="cd-box">
+          <div class="cd-num" id="d">–</div>
+          <div class="cd-lbl">Días</div>
+        </div>
+        <div class="cd-box">
+          <div class="cd-num" id="h">–</div>
+          <div class="cd-lbl">Horas</div>
+        </div>
+        <div class="cd-box">
+          <div class="cd-num" id="m">–</div>
+          <div class="cd-lbl">Min</div>
+        </div>
+        <div class="cd-box">
+          <div class="cd-num" id="s">–</div>
+          <div class="cd-lbl">Seg</div>
+        </div>
+      </div>
+      <div class="add-to-cal" id="addToCal">
+        <button class="btn" id="addToCalBtn" type="button" aria-label="Agregar al calendario">Agregar al calendario</button>
+      </div>
+    </header>
+
+    <!-- Ceremonia -->
+    <section class="section-stack" id="ceremonia">
+      <div class="watermark reveal fade-image">
+        <img src="img/iglesia.jpeg" alt="Ilustración tipo acuarela de catedral">
+      </div>
+
+      <div class="card reveal">
+        <h2 class="section-title">Ceremonia Religiosa</h2>
+        <p><strong>Hora:</strong> <em>por definir</em></p>
+        <p><strong>Lugar:</strong> Templo de San Antonio de Padua — <a href="#" target="_blank" rel="noopener">Ver
+            mapa</a></p>
+        <p>Nos encantará contar con tu presencia en la ceremonia donde daremos el “sí”.</p>
+      </div>
+    </section>
+
+    <!-- Recepción -->
+    <section class="section-stack" id="recepcion">
+      <div class="watermark reveal fade-image">
+        <img src="img/salon.jpeg" alt="Ilustración tipo acuarela del salón">
+      </div>
+
+      <div class="card reveal">
+        <h2 class="section-title">Recepción</h2>
+        <p><strong>Hora:</strong> <em>por definir</em></p>
+        <p><strong>Lugar:</strong> Salón / Jardín — <a href="#" target="_blank" rel="noopener">Ver mapa</a></p>
+        <p>Después de la ceremonia, celebraremos con cena, música y mucho amor.</p>
+      </div>
+    </section>
+
+    <!-- Info útil -->
+    <section class="grid grid-3" id="info">
+      <div class="card">
+        <h3 class="section-title" style="font-size:22px">Código de vestimenta</h3>
+        <p>Formal de día. Tonos neutros o pasteles son bienvenidos.</p>
+      </div>
+      <div class="card">
+        <h3 class="section-title" style="font-size:22px">Mesa de regalos</h3>
+        <p>Puedes ver nuestras opciones aquí:</p>
+        <a id="btnLiverpool" class="btn btn-liverpool"
+          href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51755634" target="_blank" rel="noopener">
+          <span>Liverpool</span>
+        </a>
+      </div>
+      <div class="card">
+        <h3 class="section-title" style="font-size:22px">Confirmación</h3>
+        <p>Ayúdanos confirmando tu asistencia.</p>
+        <a class="btn"
+          href="https://wa.me/?text=Confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Karen%20y%20Sergio%20el%2011%20de%20julio%20de%202026"
+          target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+      </div>
+    </section>
+
+    <!-- Itinerario (opcional) -->
+    <section class="card" id="itinerario">
+      <h2 class="section-title">Itinerario</h2>
+      <ul class="list">
+        <li><strong>16:00</strong> — Recepción de invitados (ceremonia)</li>
+        <li><strong>17:00</strong> — Ceremonia religiosa</li>
+        <li><strong>19:30</strong> — Coctel de bienvenida (recepción)</li>
+        <li><strong>20:30</strong> — Cena y celebración</li>
+      </ul>
+      <p style="margin-top:10px; font-size:13px; color:#777">*Horarios a ajustar — coloca los definitivos cuando
+        los tengan.</p>
+    </section>
+
+    <footer>
+      “El amor todo lo puede.” — ¡Nos vemos el 11/07/2026!
+    </footer>
+  </div>
+
+  <script>
+    // Botón "Agregar al calendario" (universal .ics + enlace a Google Calendar)
+    (function () {
+      const btn = document.getElementById('addToCalBtn');
+      const gcal = document.getElementById('gcalLink');
+      if (!btn || !gcal) return;
+
+      // Datos del evento (all-day para compatibilidad amplia)
+      const title = 'Boda de Karen & Sergio';
+      const description = 'Con alegría, invitamos a celebrar el comienzo de nuestra vida juntos.\nMás detalles en la invitación.';
+      const location = 'Por definir';
+      const startDate = '20260711'; // YYYYMMDD
+      const endDate   = '20260712'; // no inclusivo (evento de día completo)
+
+      // Construir link para Google Calendar
+      const gcalBase = 'https://calendar.google.com/calendar/render?action=TEMPLATE';
+      const params = new URLSearchParams({
+        text: title,
+        details: description,
+        location: location,
+        dates: `${startDate}/${endDate}`
+      });
+      gcal.href = `${gcalBase}&${params.toString()}`;
+
+      // Helper: fecha actual UTC para DTSTAMP
+      const pad = (n) => String(n).padStart(2, '0');
+      const now = new Date();
+      const dtstamp = `${now.getUTCFullYear()}${pad(now.getUTCMonth()+1)}${pad(now.getUTCDate())}T${pad(now.getUTCHours())}${pad(now.getUTCMinutes())}${pad(now.getUTCSeconds())}Z`;
+
+      // Generar archivo ICS y descargar
+      function downloadICS() {
+        const uid = `boda-karen-sergio-${startDate}@invitacion.local`;
+        const lines = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//Karen & Sergio//Boda//ES',
+          'CALSCALE:GREGORIAN',
+          'METHOD:PUBLISH',
+          'BEGIN:VEVENT',
+          `UID:${uid}`,
+          `DTSTAMP:${dtstamp}`,
+          `DTSTART;VALUE=DATE:${startDate}`,
+          `DTEND;VALUE=DATE:${endDate}`,
+          `SUMMARY:${title}`,
+          `DESCRIPTION:${description.replace(/\n/g,'\\n')}`,
+          `LOCATION:${location}`,
+          'END:VEVENT',
+          'END:VCALENDAR'
+        ];
+        const ics = lines.join('\r\n');
+        const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'Boda-Karen-Sergio-2026.ics';
+        document.body.appendChild(a);
+        a.click();
+        a.remove();
+        URL.revokeObjectURL(url);
+      }
+
+      btn.addEventListener('click', downloadICS);
+    })();
+  </script>
+  <script>
+    // Contador al 11 de julio de 2026
+    (function () {
+      const target = new Date('2026-07-11T00:00:00');
+      const d = document.getElementById('d');
+      const h = document.getElementById('h');
+      const m = document.getElementById('m');
+      const s = document.getElementById('s');
+
+      function tick() {
+        const now = new Date();
+        let diff = target - now;
+        if (diff < 0) diff = 0;
+
+        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+        const mins = Math.floor((diff / (1000 * 60)) % 60);
+        const secs = Math.floor((diff / 1000) % 60);
+
+        d.textContent = days.toString();
+        h.textContent = hours.toString().padStart(2, '0');
+        m.textContent = mins.toString().padStart(2, '0');
+        s.textContent = secs.toString().padStart(2, '0');
+      }
+      tick();
+      setInterval(tick, 1000);
+    })();
+  </script>
+
+  <script>
+    // Revelar elementos .reveal al entrar al viewport
+    (function () {
+      const opts = { threshold: 0.15 };
+      const io = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('show');
+            io.unobserve(e.target); // sólo una vez
+          }
+        });
+      }, opts);
+
+      document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    })();
+  </script>
+
+  <script>
+    (function () {
+      const body = document.body;
+      const intro = document.getElementById('intro');
+
+      const revealContent = () => {
+        body.classList.add('page-ready');
+        body.classList.remove('intro-active');
+        if (intro) {
+          intro.classList.add('out');
+          setTimeout(() => intro && intro.remove(), 800);
+        }
+      };
+
+      try {
+        if (intro) {
+          body.classList.add('intro-active');
+
+          // Failsafe principal: mostrar contenido tras AUTO_TIME si algo falla
+          const AUTO_TIME = 4200; // ms
+          let finished = false;
+          const safeTimer = setTimeout(() => { if (!finished) { finished = true; revealContent(); } }, AUTO_TIME);
+
+          const finish = () => {
+            if (finished) return; finished = true;
+            clearTimeout(safeTimer);
+            revealContent();
+          };
+
+          // Permitir "skip" con click o teclas comunes
+          intro.addEventListener('click', finish, { once: true });
+          document.addEventListener('keydown', (e) => {
+            if (['Escape', 'Enter', ' '].includes(e.key)) finish();
+          }, { once: true });
+
+          // Failsafe adicional tras la carga completa
+          window.addEventListener('load', () => {
+            setTimeout(() => { if (!finished) finish(); }, AUTO_TIME + 1200);
+          });
+        } else {
+          // Si por alguna razón no existe el contenedor de intro, mostramos el contenido de inmediato
+          body.classList.add('page-ready');
+        }
+      } catch (err) {
+        // Ante cualquier error JS, mostramos el contenido para evitar pantalla en blanco
+        body.classList.add('page-ready');
+        console && console.warn && console.warn('Intro desactivada por error:', err);
+      }
+    })();
+  </script>
+  <script>
+    (function () {
+      const btn = document.getElementById('hamburger');
+      const overlay = document.getElementById('menuOverlay');
+      const toggle = () => {
+        const open = overlay.classList.toggle('open');
+        btn.classList.toggle('active', open);
+        btn.setAttribute('aria-expanded', String(open));
+        document.body.style.overflow = open ? 'hidden' : '';
+      };
+      btn.addEventListener('click', toggle);
+      overlay.addEventListener('click', (e) => { if (e.target === overlay) toggle(); });
+      overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle()));
+    })();
+
+    (function () {
+      const btn = document.getElementById('btnLiverpool');
+      if (!btn) return;
+
+      // Evitar doble inicialización
+      if (btn.dataset.paintInit === '1') return;
+      btn.dataset.paintInit = '1';
+
+      let observer = null;
+
+      const cleanup = () => { if (observer) { observer.disconnect(); observer = null; } };
+
+      const activate = () => {
+        if (btn.classList.contains('paint')) return;
+        // Pequeño delay para que el usuario perciba el barrido
+        requestAnimationFrame(() => setTimeout(() => btn.classList.add('paint'), 80));
+        cleanup();
+        window.removeEventListener('pagehide', cleanup);
+      };
+
+      // Respeto a usuarios con "reduced motion"
+      const prefersReduced = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReduced) {
+        btn.style.transition = 'none';
+      }
+
+      const startObserver = () => {
+        // Dispara cuando el botón entra por primera vez al viewport
+        observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) activate();
+          });
+        }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.25 });
+        observer.observe(btn);
+      };
+
+      // Esperar a que la intro se cierre (cuando body tenga la clase page-ready)
+      const waitForReady = () => {
+        if (document.body.classList.contains('page-ready')) {
+          startObserver();
+          clearInterval(poller);
+        }
+      };
+      const poller = setInterval(waitForReady, 50);
+      waitForReady();
+
+      // Limpieza al abandonar la página
+      window.addEventListener('pagehide', cleanup);
+    })();
+  </script>
+</body>
+
+</html>
