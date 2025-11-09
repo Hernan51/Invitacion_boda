@@ -1,119 +1,100 @@
+// server.js
 import 'dotenv/config';
-import fs from 'node:fs';
-import path from 'node:path';
 import express from 'express';
-import morgan from 'morgan';
+import cors from 'cors';
+import { Pool } from 'pg';
 import ExcelJS from 'exceljs';
 
-const PORT = process.env.PORT || 3000;
-const ROOT = process.cwd();
-const DATA_DIR = path.join(ROOT, 'data');
-const XLSX_FILE = path.join(DATA_DIR, 'pases.xlsx');
-const SHEET_NAME = 'Pases';
-
-fs.mkdirSync(DATA_DIR, { recursive: true });
-
-/** Crea el archivo y hoja si no existen, con encabezados */
-async function ensureWorkbook() {
-  const wb = new ExcelJS.Workbook();
-  if (fs.existsSync(XLSX_FILE)) {
-    await wb.xlsx.readFile(XLSX_FILE);
-    let ws = wb.getWorksheet(SHEET_NAME);
-    if (!ws) {
-      ws = wb.addWorksheet(SHEET_NAME);
-      ws.addRow(['timestamp', 'para', 'pases', 'id', 'link', 'user']);
-    }
-    return { wb, ws: wb.getWorksheet(SHEET_NAME) };
-  } else {
-    const ws = wb.addWorksheet(SHEET_NAME);
-    ws.addRow(['timestamp', 'para', 'pases', 'id', 'link', 'user']);
-    await wb.xlsx.writeFile(XLSX_FILE);
-    return { wb, ws };
-  }
-}
-
-/** Lee todas las filas como objetos */
-async function readAll() {
-  const { wb } = await ensureWorkbook();
-  const ws = wb.getWorksheet(SHEET_NAME);
-  const rows = [];
-  ws.eachRow((row, rowNumber) => {
-    if (rowNumber === 1) return; // encabezados
-    const [timestamp, para, pases, id, link, user] = row.values.slice(1);
-    if (
-      (timestamp ?? '') === '' &&
-      (para ?? '') === '' &&
-      (pases ?? '') === '' &&
-      (id ?? '') === '' &&
-      (link ?? '') === '' &&
-      (user ?? '') === ''
-    ) return;
-    rows.push({ timestamp, para, pases, id, link, user });
-  });
-  // Más recientes primero
-  rows.sort((a, b) => String(b.timestamp).localeCompare(String(a.timestamp)));
-  return rows;
-}
-
-/** Cola simple para serializar escrituras (evita corrupción) */
-let lastWrite = Promise.resolve();
-function enqueueWrite(fn) {
-  lastWrite = lastWrite.then(fn).catch(() => {}).then(() => {});
-  return lastWrite;
-}
-
-/** Agrega una fila y guarda */
-async function appendRow({ timestamp, para, pases, id, link, user }) {
-  const { wb } = await ensureWorkbook();
-  const ws = wb.getWorksheet(SHEET_NAME);
-  ws.addRow([timestamp, para, pases, id, link, user]);
-  await wb.xlsx.writeFile(XLSX_FILE);
-}
-
-/* ================== Express ================== */
 const app = express();
-app.use(morgan('dev'));
-app.use(express.json({ limit: '1mb' }));
-app.use(express.static(path.join(ROOT, 'public'))); // sirve admin.html/index.html
+app.use(cors());
+app.use(express.json());
 
-app.get('/api/health', (_req, res) => res.json({ ok: true }));
+const pool = new Pool({
+  connectionString: process.env.DATABASE_URL,
+  ssl: { rejectUnauthorized: false }, // requerido por Supabase
+});
 
-app.get('/api/pases', async (_req, res) => {
+// crea tabla si no existe (una vez por arranque)
+let ensured = false;
+async function ensureTable() {
+  if (ensured) return;
+  await pool.query(`
+    CREATE TABLE IF NOT EXISTS pases (
+      id SERIAL PRIMARY KEY,
+      created_at TIMESTAMPTZ DEFAULT NOW(),
+      para TEXT NOT NULL,
+      pases INT NOT NULL,
+      ref_id TEXT NOT NULL,
+      link TEXT NOT NULL,
+      usuario TEXT
+    );
+  `);
+  ensured = true;
+}
+
+// GET /api/pases  -> lista registros
+app.get('/api/pases', async (req, res) => {
   try {
-    const data = await readAll();
-    res.json({ ok: true, data });
+    await ensureTable();
+    const { rows } = await pool.query(`
+      SELECT created_at AS "timestamp", para, pases, ref_id AS id, link, usuario AS "user"
+      FROM pases
+      ORDER BY created_at DESC
+    `);
+    res.json({ ok: true, data: rows });
   } catch (e) {
     console.error(e);
-    res.status(500).json({ ok: false, error: 'read_error' });
+    res.status(500).json({ ok: false, error: 'server_error' });
   }
 });
 
+// POST /api/pases  -> inserta registro
 app.post('/api/pases', async (req, res) => {
-  const { para, pases, id, link, user } = req.body || {};
-  if (!para || !link || !pases) {
-    return res.status(400).json({ ok: false, error: 'bad_request' });
-  }
   try {
-    await enqueueWrite(() =>
-      appendRow({
-        timestamp: new Date().toISOString(),
-        para: String(para),
-        pases: Number(pases),
-        id: id ? String(id) : '',
-        link: String(link),
-        user: user ? String(user) : ''
-      })
+    await ensureTable();
+    const { para, pases, id, link, user } = req.body || {};
+    if (!para || !id || !link || !Number.isInteger(Number(pases))) {
+      return res.status(400).json({ ok: false, error: 'bad_request' });
+    }
+    await pool.query(
+      `INSERT INTO pases (para, pases, ref_id, link, usuario) VALUES ($1,$2,$3,$4,$5)`,
+      [para, Number(pases), id, link, user || null]
     );
     res.json({ ok: true });
   } catch (e) {
     console.error(e);
-    res.status(500).json({ ok: false, error: 'write_error' });
+    res.status(500).json({ ok: false, error: 'server_error' });
   }
 });
 
-app.use('/api', (_req, res) => res.status(404).json({ ok: false, error: 'not_found' }));
+// GET /api/export-excel  -> descarga Excel con los registros
+app.get('/api/export-excel', async (req, res) => {
+  try {
+    await ensureTable();
+    const { rows } = await pool.query(`
+      SELECT created_at AS "timestamp", para, pases, ref_id AS id, link, usuario AS "user"
+      FROM pases
+      ORDER BY created_at DESC
+    `);
 
+    const wb = new ExcelJS.Workbook();
+    const ws = wb.addWorksheet('Pases');
+    ws.addRow(['timestamp','para','pases','id','link','user']);
+    rows.forEach(r => ws.addRow([
+      r.timestamp, r.para, r.pases, r.id, r.link, r.user || ''
+    ]));
+
+    res.setHeader('Content-Type','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    res.setHeader('Content-Disposition','attachment; filename="pases.xlsx"');
+    await wb.xlsx.write(res);
+    res.end();
+  } catch (e) {
+    console.error(e);
+    res.status(500).json({ ok: false, error: 'export_error' });
+  }
+});
+
+const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
   console.log(`Servidor escuchando en http://localhost:${PORT}`);
-  console.log(`Archivo Excel: ${XLSX_FILE}`);
 });
