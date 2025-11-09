@@ -1,0 +1,25 @@
+{
+  "name": "invitacion_boda",
+  "version": "1.0.0",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Hernan51/Invitacion_boda.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Hernan51/Invitacion_boda/issues"
+  },
+  "homepage": "https://github.com/Hernan51/Invitacion_boda#readme",
+  "description": "",
+  "dependencies": {
+    "dotenv": "^17.2.3",
+    "exceljs": "^4.4.0",
+    "express": "^5.1.0",
+    "morgan": "^1.10.1"
+  }
+}
