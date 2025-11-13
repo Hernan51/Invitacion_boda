@@ -597,3 +597,20 @@
     gap: 32px;
   }
 }
+
+/* ===== CENTRAR CÓDIGO DE VESTIMENTA Y CONFIRMACIÓN ===== */
+
+#info.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);   /* 2 columnas iguales */
+  justify-items: center;                   /* centra contenido */
+  column-gap: 60px;                        /* separación uniforme */
+  max-width: 700px;                        /* ancho equilibrado */
+  margin: 0 auto;                          /* centrar el bloque completo */
+}
+
+#info .card {
+  text-align: center;
+  width: 100%;
+  max-width: 280px;                        /* ancho idéntico */
+}
