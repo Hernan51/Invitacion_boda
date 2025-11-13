@@ -655,3 +655,42 @@
   0%, 100% { transform: translate(-50%, 0); }
   50%      { transform: translate(-50%, -6px); }
 }
+
+.gift-options {
+  display: flex;
+  justify-content: center;   /* Centra horizontalmente */
+  align-items: flex-start;    /* Alinea arriba */
+  gap: 60px;                  /* Espacio entre opciones */
+  margin-top: 20px;
+}
+
+.gift-option {
+  text-align: center;
+}
+
+.gift-icon img {
+  width: 150px;   /* Ajusta según tu diseño */
+  height: auto;
+}
+
+.gift-btn {
+  margin-top: 10px;
+  display: inline-block;
+}
+
+.gift-options {
+  display: flex;
+  justify-content: center;
+  gap: 80px;            /* separacion horizontal */
+}
+
+.gift-option {
+  text-align: center;
+}
+
+/* MISMA ALTURA PARA TODAS LAS IMÁGENES */
+.gift-icon img {
+  height: 140px;        /* ajusta el valor a tu gusto */
+  width: auto;
+  display: block;
+}
