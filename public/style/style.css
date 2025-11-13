@@ -624,14 +624,14 @@
 .scroll-hint {
   position: absolute;
   left: 50%;
-  bottom: -1.5rem;
+  bottom: -4.5rem;
   transform: translateX(-50%);
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0.15rem;
   font-family: 'Poppins', system-ui, sans-serif;
-  font-size: 0.9rem;
+  font-size: 20px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
   color: rgba(0, 0, 0, 0.6);
