@@ -244,40 +244,56 @@
   </div>
 
   <script>
+
     // Tarjeta de pases por query (?n=Nombre&p=3)
     (function () {
       const qs = new URLSearchParams(location.search);
       const name = qs.get('n');
-      const passes = parseInt(qs.get('p'), 10);
-      if (!name || !passes) return;
+      const passesRaw = qs.get('p');
+      const passes = parseInt(passesRaw, 10);
+
+      // Si no hay pases o nombre -> modo normal, no hacemos nada
+      if (!name || !passesRaw || isNaN(passes)) return;
+
+      // Activamos "modo pase"
+      document.body.classList.add('mode-pass');
+
       const host = document.getElementById('inviteMount');
       const wrap = document.createElement('div');
       wrap.className = 'invite-card';
       wrap.innerHTML = `
-        <div class="invite-head">
-          <img class="invite-photo" src="img/kys.jpeg" alt="Pareja" />
-          <div class="invite-names">
-            <div class="big">KAREN & SERGIO</div>
-            <div class="date">11 JULIO 2026</div>
-          </div>
+      <div class="invite-head">
+        <img class="invite-photo" src="img/kys.jpeg" alt="Pareja" />
+        <div class="invite-names">
+          <div class="big">KAREN & SERGIO</div>
+          <div class="date">11 JULIO 2026</div>
         </div>
-        <div class="invite-body">
-          <div class="envelope-box"><img src="img/sobre.jpeg" alt="Sobre"></div>
-          <div class="reserve">HEMOS RESERVADO PARA USTEDES</div>
-          <div class="dots" id="dots"></div>
-          <div class="who" id="whoname"></div>
-        </div>
-        <div class="scroll-hint" id="scrollHint">
-          <span class="hint-text">Desliza hacia abajo</span>
-          <span class="hint-arrow">▼</span>
-        </div>`;
+      </div>
+      <div class="invite-body">
+        <div class="envelope-box"><img src="img/sobre.jpeg" alt="Sobre"></div>
+        <div class="reserve">HEMOS RESERVADO PARA USTEDES</div>
+        <div class="dots" id="dots"></div>
+        <div class="who" id="whoname"></div>
+      </div>
+      <div class="scroll-hint" id="scrollHint">
+        <span class="hint-text">Desliza hacia abajo</span>
+        <span class="hint-arrow">▼</span>
+      </div>
+    `;
 
       host.appendChild(wrap);
+
       const scrollHint = wrap.querySelector('#scrollHint');
+
+      // Al hacer scroll, escondemos el hint y mostramos el contenido principal
+      let mainShown = false;
       window.addEventListener('scroll', () => {
-        if (!scrollHint) return;
-        if (window.scrollY > 40) {
+        if (scrollHint && window.scrollY > 40) {
           scrollHint.classList.add('hide');
+        }
+        if (!mainShown && window.scrollY > 5) {
+          mainShown = true;
+          document.body.classList.add('show-main'); // activa CSS para mostrar .wrap
         }
       });
 

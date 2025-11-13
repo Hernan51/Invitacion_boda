@@ -694,3 +694,27 @@
   width: auto;
   display: block;
 }
+
+/* MODO PASE: solo se ve la tarjeta hasta que el usuario desliza */
+body.mode-pass .wrap {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+
+/* Cuando el usuario ya deslizó, mostramos todo */
+body.mode-pass.show-main .wrap {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+body.mode-pass .topbar {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.8s ease;
+}
+body.mode-pass.show-main .topbar {
+  opacity: 1;
+  pointer-events: auto;
+}
+
