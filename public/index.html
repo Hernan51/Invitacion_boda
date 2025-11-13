@@ -85,8 +85,10 @@
       </div>
 
       <!-- (opcional) deja tu contador y botón aquí -->
-      <div class="countdown" id="countdown">“De nadie seré, sólo de ti. Hasta que mis huesos se vuelvan cenizas y mi corazón deje de latir.”
-<br>-PABLO NERUDA</div>
+      <div class="countdown" id="countdown">“De nadie seré, sólo de ti. Hasta que mis huesos se vuelvan cenizas y mi
+        corazón deje de latir.”
+        <br>-PABLO NERUDA
+      </div>
       <div class="add-to-cal"><button class="btn" id="addToCalBtn">Agregar al calendario</button></div>
     </header>
 
@@ -109,13 +111,13 @@
         <div class="cd-lbl">Seg</div>
       </div>
     </div>
-    
+
     </header>
 
     <!-- Ceremonia -->
     <section class="section-stack" id="ceremonia">
       <div class="watermark reveal fade-image">
-        <img src="img/iglesia.jpeg" alt="Ilustración tipo acuarela de catedral">
+        <img src="img/templo.jpeg" alt="Ilustración tipo acuarela de catedral" style="height: 800px; ">
       </div>
       <div class="card reveal">
         <h2 class="section-title">Ceremonia Religiosa</h2>
@@ -129,7 +131,7 @@
     <!-- Recepción -->
     <section class="section-stack" id="recepcion">
       <div class="watermark reveal fade-image">
-        <img src="img/salon.jpeg" alt="Ilustración tipo acuarela del salón">
+        <img src="img/salon_v2.jpeg" alt="Ilustración tipo acuarela del salón">
       </div>
       <div class="card reveal">
         <h2 class="section-title">Recepción</h2>
@@ -145,13 +147,7 @@
         <h3 class="section-title" style="font-size:22px">Código de vestimenta</h3>
         <p>Formal de día. Tonos neutros o pasteles son bienvenidos.</p>
       </div>
-      <div class="card">
-        <h3 class="section-title" style="font-size:22px">Mesa de regalos</h3>
-        <p>Puedes ver nuestras opciones aquí:</p>
-        <a id="btnLiverpool" class="btn btn-liverpool"
-          href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51755634" target="_blank"
-          rel="noopener"><span>Liverpool</span></a>
-      </div>
+
       <div class="card">
         <h3 class="section-title" style="font-size:22px">Confirmación</h3>
         <p>Ayúdanos confirmando tu asistencia.</p>
@@ -161,22 +157,90 @@
       </div>
     </section>
 
-    <!-- Itinerario -->
-    <section class="card" id="itinerario">
-      <h2 class="section-title">Itinerario</h2>
-      <ul class="list">
-        <li><strong>16:00</strong> — Recepción de invitados (ceremonia)</li>
-        <li><strong>17:00</strong> — Ceremonia religiosa</li>
-        <li><strong>19:30</strong> — Coctel de bienvenida (recepción)</li>
-        <li><strong>20:30</strong> — Cena y celebración</li>
-      </ul>
-      <p style="margin-top:10px; font-size:13px; color:#777">*Horarios a ajustar — coloca los definitivos cuando los
-        tengan.</p>
+
+    <!-- Itinerario + sugerencia de regalo -->
+    <section id="itinerario" class="itinerary-section">
+      <h2 class="section-title">Itinerario de nuestra boda</h2>
+
+      <div class="itinerary-rows">
+        <div class="itinerary-row first">
+          <div class="itinerary-icon">⛪</div>
+          <div class="itinerary-line"><span class="itinerary-dot"></span></div>
+          <div class="itinerary-text">
+            <div class="it-label">CEREMONIA RELIGIOSA</div>
+            <div class="it-time">18:00 hrs</div>
+          </div>
+        </div>
+
+        <div class="itinerary-row">
+          <div class="itinerary-icon">🎉</div>
+          <div class="itinerary-line"><span class="itinerary-dot"></span></div>
+          <div class="itinerary-text">
+            <div class="it-label">RECEPCIÓN</div>
+            <div class="it-time">19:30 hrs</div>
+          </div>
+        </div>
+
+        <div class="itinerary-row">
+          <div class="itinerary-icon">🍽️</div>
+          <div class="itinerary-line"><span class="itinerary-dot"></span></div>
+          <div class="itinerary-text">
+            <div class="it-label">CENA</div>
+            <div class="it-time">20:00 hrs</div>
+          </div>
+        </div>
+
+        <div class="itinerary-row">
+          <div class="itinerary-icon">🎷</div>
+          <div class="itinerary-line"><span class="itinerary-dot"></span></div>
+          <div class="itinerary-text">
+            <div class="it-label">DISFRUTA LA BODA</div>
+            <div class="it-time">Durante la noche</div>
+          </div>
+        </div>
+
+        <div class="itinerary-row last">
+          <div class="itinerary-icon">🚗</div>
+          <div class="itinerary-line"><span class="itinerary-dot"></span></div>
+          <div class="itinerary-text">
+            <div class="it-label">FIN DEL EVENTO</div>
+            <div class="it-time">02:00 hrs</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Sugerencia de regalo -->
+      <div class="itinerary-gift">
+        <h3 class="gift-title">Sugerencia de regalo</h3>
+        <p class="gift-text">
+          Nuestro mejor regalo será disfrutar contigo de este día tan especial.<br>
+          Cualquier detalle de tu parte será bienvenido con mucho cariño. Nuestras sugerencias:
+        </p>
+
+        <div class="gift-options">
+          <div class="gift-option">
+            <div class="gift-icon">✉️</div>
+            <div class="gift-label">Lluvia de sobres</div>
+          </div>
+
+          
+
+            <div class="gift-option">
+              <div class="gift-icon">🎁</div>
+              <div class="gift-label">Mesa de regalos</div>
+              <a id="btnLiverpool" class="btn btn-liverpool gift-btn"
+                href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51755634" target="_blank" rel="noopener">
+                <span>Liverpool</span>
+              </a>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </section>
 
-    <footer>
-      “El amor todo lo puede.” — ¡Nos vemos el 11/07/2026!
-    </footer>
+
+    
   </div>
 
   <script>

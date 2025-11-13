@@ -19,12 +19,7 @@
       margin: 0;
       padding: 0;
       color: var(--ink);
-      background:
-        radial-gradient(1200px 800px at -10% -10%, var(--pastel-rose) 0%, transparent 60%),
-        radial-gradient(1200px 900px at 110% 0%, var(--pastel-sky) 0%, transparent 60%),
-        radial-gradient(900px 700px at 100% 110%, var(--pastel-mint) 0%, transparent 60%),
-        radial-gradient(900px 700px at 0% 110%, var(--pastel-peach) 0%, transparent 60%),
-        var(--bg-cream);
+      background-color: #fff9f2;
       font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       line-height: 1.6;
     }
@@ -43,7 +38,7 @@
     .tagline { margin-top: 10px; color: #6b6b6b; font-size: 16px; }
 
     /* Contador */
-    .countdown { margin: 26px auto 0; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .countdown { margin: 26px auto 0; display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; text-align: center; }
     .cd-box { background: var(--card); backdrop-filter: blur(4px); border: 1px solid #ffffffaa; border-radius: 14px; box-shadow: var(--shadow); padding: 16px 18px; min-width: 96px; }
     .cd-num { font-family: 'Playfair Display', serif; font-size: 28px; font-weight: 600; }
     .cd-lbl { font-size: 12px; opacity: .75; letter-spacing: .12em; text-transform: uppercase; }
@@ -161,7 +156,7 @@
 .hero-date .side{
   font-family: 'Playfair Display', serif;
   letter-spacing: .22em;
-  font-size: clamp(14px, 2.5vw, 18px);
+  font-size: clamp(18px, 2.5vw, 18px);
   color: #6a5f59;
   text-align: center;
   opacity: .95;
@@ -198,8 +193,8 @@
   box-shadow: 0 0 1px rgba(0,0,0,.12);
 }
 /* izquierda y derecha, alineadas al centro del gap */
-.hero-date .center::before { left: calc(-1 * var(--date-gap) / 2); }
-.hero-date .center::after  { right: calc(-1 * var(--date-gap) / 2); }
+.hero-date .center::before { left: calc(-3 * var(--date-gap) / 2); }
+.hero-date .center::after  { right: calc(-3 * var(--date-gap) / 2); }
 
 .hero-date .center .month{
   font-family: 'Playfair Display', serif;
@@ -231,3 +226,374 @@
   }
 }
 
+
+/* ===== CEREMONIA / RECEPCIÓN SIN RECUADRO Y CENTRADO ===== */
+
+.section-stack {
+  display: flex;
+  flex-direction: column;
+  align-items: center;   /* centra horizontal */
+  text-align: center;    /* centra el texto */
+  padding: 4rem 1.5rem;
+}
+
+/* Solo las tarjetas dentro de section-stack (ceremonia y recepción) */
+.section-stack .card {
+  background: transparent;  /* sin recuadro */
+  border: none;
+  box-shadow: none;
+  border-radius: 0;
+  max-width: 520px;
+  margin: 0 auto;
+  padding: 0;               /* si quieres un poco de aire, pon 1rem */
+}
+
+.section-stack .section-title {
+  margin-bottom: 0.75rem;
+}
+
+.section-stack p {
+  margin: 0.25rem 0;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .section-stack {
+    padding: 3rem 1.25rem;
+  }
+
+  .section-stack .card {
+    max-width: 100%;
+  }
+
+  .section-stack .watermark img {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ===== QUITAR RECUADROS DE: Código de vestimenta, Mesa de regalos, Confirmación e Itinerario ===== */
+
+/* Quita fondo, borde y sombra de las tarjetas del grid */
+#info .card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  padding: 0 !important;
+  text-align: center;
+}
+
+/* Itinerario sin recuadro */
+#itinerario.card {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  backdrop-filter: none !important;
+  padding: 0 !important;
+  text-align: center;
+  max-width: 520px;
+  margin: 0 auto;
+}
+
+/* Ajusta textos para mejor balance */
+#info .section-title,
+#itinerario .section-title {
+  margin-bottom: 10px;
+}
+
+#info p,
+#itinerario p {
+  margin: 6px 0;
+}
+
+/* La lista del itinerario centrada y sin sangría */
+#itinerario .list {
+  padding-left: 0 !important;
+  list-style: none;
+  margin: 10px 0;
+  text-align: center;
+}
+
+#itinerario .list li {
+  margin: 6px 0;
+}
+
+/* ===== ESPACIADO ENTRE BLOQUES SIN RECUADRO ===== */
+
+/* Cada bloque dentro de #info */
+#info .card {
+  margin: 40px auto !important;     /* separación vertical elegante */
+  padding: 0 !important;
+  text-align: center;
+}
+
+/* Títulos con un poco más de aire */
+#info .section-title {
+  margin-bottom: 14px;
+}
+
+/* Espaciado del bloque de itinerario */
+#itinerario {
+  margin-top: 60px !important;      /* distancia desde el bloque anterior */
+  margin-bottom: 40px !important;
+  text-align: center;
+}
+
+#itinerario .list li {
+  margin: 10px 0;                   /* espacio entre líneas del itinerario */
+}
+
+/* Ajuste para móviles (menos espacio pero limpio) */
+@media (max-width: 580px) {
+  #info .card {
+    margin: 32px auto !important;
+  }
+  #itinerario {
+    margin-top: 48px !important;
+  }
+}
+
+/* ===== ITINERARIO VERTICAL TIPO TARJETA / POSTAL ===== */
+
+.itinerary-section {
+  margin-top: 60px;
+  padding: 40px 16px 20px;
+  text-align: center;
+}
+
+.itinerary-section .section-title {
+  margin-bottom: 26px;
+}
+
+/* Contenedor de filas */
+.itinerary-rows {
+  max-width: 720px;
+  margin: 0 auto;
+  display: grid;
+  row-gap: 28px;
+  justify-content: center;
+}
+
+/* Cada fila: icono | línea | texto */
+.itinerary-row {
+  display: grid;
+  grid-template-columns: 40px 24px 1fr;
+  column-gap: 14px;
+  align-items: flex-start;
+  text-align: left;
+}
+
+.itinerary-icon {
+  font-size: 26px;
+  display: flex;
+  justify-content: center;
+  margin-top: 2px;
+}
+
+/* Columna central: línea + puntito */
+.itinerary-line {
+  position: relative;
+  display: flex;
+  justify-content: center;
+}
+
+.itinerary-line::before {
+  content: "";
+  position: absolute;
+  top: -28px;
+  bottom: -28px;
+  width: 2px;
+  background: rgba(0,0,0,.15);
+}
+
+.itinerary-row.first .itinerary-line::before {
+  top: 50%;
+}
+
+.itinerary-row.last .itinerary-line::before {
+  bottom: 50%;
+}
+
+.itinerary-dot {
+  position: relative;
+  z-index: 1;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 2px solid rgba(0,0,0,.35);
+  background: #fff;
+}
+
+/* Texto de la derecha */
+.itinerary-text {
+  font-size: 14px;
+}
+
+.it-label {
+  font-family: 'Playfair Display', serif;
+  font-size: 12px;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  margin-bottom: 4px;
+}
+
+.it-time {
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
+  font-size: 16px;
+}
+
+/* ===== SUGERENCIA DE REGALO ===== */
+
+.itinerary-gift {
+  max-width: 720px;
+  margin: 40px auto 0;
+  text-align: center;
+}
+
+.gift-title {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+.gift-text {
+  font-size: 13px;
+  color: #666;
+  margin: 0 0 18px;
+}
+
+.gift-options {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+}
+
+.gift-option {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  font-size: 14px;
+}
+
+.gift-icon {
+  font-size: 22px;
+}
+
+.gift-label {
+  font-size: 13px;
+  text-transform: uppercase;
+  letter-spacing: .16em;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .itinerary-section {
+    padding-top: 32px;
+  }
+
+  .itinerary-row {
+    grid-template-columns: 34px 20px 1fr;
+    column-gap: 10px;
+  }
+
+  .itinerary-line::before {
+    top: -22px;
+    bottom: -22px;
+  }
+
+  .it-label {
+    letter-spacing: .16em;
+    font-size: 11px;
+  }
+
+  .it-time {
+    font-size: 15px;
+  }
+
+  .gift-options {
+    gap: 24px;
+  }
+}
+
+
+/* ===== ALINEAR CORRECTAMENTE LLUVIA DE SOBRES Y LIVERPOOL ===== */
+
+.gift-options {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 60px;              /* separación más elegante */
+  flex-wrap: wrap;
+  margin-top: 30px;
+}
+
+.gift-option {
+  width: 140px;           /* MISMO ANCHO PARA AMBAS OPCIONES */
+  text-align: center;
+}
+
+.gift-icon {
+  font-size: 32px;
+  margin-bottom: 6px;
+}
+
+.gift-label {
+  font-size: 14px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  margin-top: 6px;
+}
+
+/* Que el botón Liverpool NO sobresalga de su columna */
+.gift-option .btn-liverpool {
+  display: block;
+  width: 100%;
+  margin-top: 10px;
+  text-align: center;
+}
+
+.gift-options {
+  display: flex;
+  justify-content: center;
+  gap: 60px;
+  flex-wrap: wrap;
+  margin-top: 28px;
+}
+
+.gift-option {
+  width: 150px;                  /* mismo ancho para ambas */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.gift-icon {
+  font-size: 30px;
+  margin-bottom: 6px;
+}
+
+.gift-label {
+  font-size: 13px;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+}
+
+/* botón de Liverpool centrado, debajo del texto */
+.gift-btn {
+  margin-top: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+@media (max-width: 600px) {
+  .gift-options {
+    gap: 32px;
+  }
+}
