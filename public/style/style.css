@@ -131,7 +131,7 @@
     .invite-names .big { font-family: 'Poppins', sans-serif; font-weight: 300; font-size: clamp(20px, 4vw, 26px); color:white; }
     .invite-names .date { margin-top: 6px; font-size: 12px; opacity: .8; color:white; }
     .invite-body { padding: 22px; display: grid; place-items: center }
-    .envelope-box { width: min(520px, 92%); aspect-ratio: 16/9; background: #5270c1; border-radius: 12px; position: relative; box-shadow: inset 0 10px 20px rgba(0,0,0,.15) }
+    .envelope-box { width: min(520px, 92%); aspect-ratio: 16/9; border-radius: 12px; position: relative; box-shadow: inset 0 10px 20px rgba(0,0,0,.15) }
     .envelope-seal { position: absolute; left: 50%; top: 54%; transform: translate(-50%, -50%); width: 64px; height: 64px; border-radius: 50%; background: #5270c1; box-shadow: inset 0 6px 10px rgba(255,255,255,.5), inset 0 -8px 14px rgba(0,0,0,.28), 0 6px 16px rgba(0,0,0,.25); display: grid; place-items: center; color: #fff; font-weight: 700; font-family: 'Playfair Display', serif }
     .reserve { margin: 14px 0 6px 0; text-align: center; font-size: 13px; color: #666; letter-spacing: .12em }
     .dots { display: flex; gap: 10px; justify-content: center; margin: 6px 0 2px }
@@ -378,17 +378,17 @@
 /* Cada fila: icono | línea | texto */
 .itinerary-row {
   display: grid;
-  grid-template-columns: 40px 24px 1fr;
+  grid-template-columns: 67px 24px 1fr;
   column-gap: 14px;
   align-items: flex-start;
   text-align: left;
 }
 
 .itinerary-icon {
-  font-size: 26px;
+  font-size: 46px;
   display: flex;
   justify-content: center;
-  margin-top: 2px;
+  margin-top: -18px;
 }
 
 /* Columna central: línea + puntito */
@@ -498,7 +498,7 @@
   }
 
   .itinerary-row {
-    grid-template-columns: 34px 20px 1fr;
+    grid-template-columns: 67px 20px 1fr;
     column-gap: 10px;
   }
 
@@ -613,4 +613,45 @@
   text-align: center;
   width: 100%;
   max-width: 280px;                        /* ancho idéntico */
+}
+
+/* Indicador "desliza hacia abajo" */
+.invite-card {
+  position: relative;
+  overflow: visible;
+}
+
+.scroll-hint {
+  position: absolute;
+  left: 50%;
+  bottom: -1.5rem;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.15rem;
+  font-family: 'Poppins', system-ui, sans-serif;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.6);
+  animation: hint-bounce 1.3s ease-in-out infinite;
+  pointer-events: none;
+  opacity: 1;
+  transition: opacity .4s ease, transform .4s ease;
+}
+
+.scroll-hint .hint-arrow {
+  font-size: 1.1rem;
+}
+
+.scroll-hint.hide {
+  opacity: 0;
+  transform: translate(-50%, 8px);
+}
+
+/* Animación de rebote suave */
+@keyframes hint-bounce {
+  0%, 100% { transform: translate(-50%, 0); }
+  50%      { transform: translate(-50%, -6px); }
 }

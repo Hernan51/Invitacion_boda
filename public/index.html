@@ -117,7 +117,7 @@
     <!-- Ceremonia -->
     <section class="section-stack" id="ceremonia">
       <div class="watermark reveal fade-image">
-        <img src="img/templo.jpeg" alt="Ilustración tipo acuarela de catedral" style="height: 800px; ">
+        <img src="img/templo.png" alt="Ilustración tipo acuarela de catedral" style="height: 600px; ">
       </div>
       <div class="card reveal">
         <h2 class="section-title">Ceremonia Religiosa</h2>
@@ -131,7 +131,7 @@
     <!-- Recepción -->
     <section class="section-stack" id="recepcion">
       <div class="watermark reveal fade-image">
-        <img src="img/salon_v2.jpeg" alt="Ilustración tipo acuarela del salón">
+        <img src="img/salon.png" alt="Ilustración tipo acuarela del salón">
       </div>
       <div class="card reveal">
         <h2 class="section-title">Recepción</h2>
@@ -164,7 +164,7 @@
 
       <div class="itinerary-rows">
         <div class="itinerary-row first">
-          <div class="itinerary-icon">⛪</div>
+          <div class="itinerary-icon"><img src="img/iglesia.png" alt=""></div>
           <div class="itinerary-line"><span class="itinerary-dot"></span></div>
           <div class="itinerary-text">
             <div class="it-label">CEREMONIA RELIGIOSA</div>
@@ -182,7 +182,7 @@
         </div>
 
         <div class="itinerary-row">
-          <div class="itinerary-icon">🍽️</div>
+          <div class="itinerary-icon"><img src="img/platos.png" style="width: 72px;height: auto;"></div>
           <div class="itinerary-line"><span class="itinerary-dot"></span></div>
           <div class="itinerary-text">
             <div class="it-label">CENA</div>
@@ -191,7 +191,7 @@
         </div>
 
         <div class="itinerary-row">
-          <div class="itinerary-icon">🎷</div>
+          <div class="itinerary-icon"><img src="img/baile.png" style="width: 90px;height: auto;"></div>
           <div class="itinerary-line"><span class="itinerary-dot"></span></div>
           <div class="itinerary-text">
             <div class="it-label">DISFRUTA LA BODA</div>
@@ -200,7 +200,7 @@
         </div>
 
         <div class="itinerary-row last">
-          <div class="itinerary-icon">🚗</div>
+          <div class="itinerary-icon"><img src="img/carro.png" style="width: 85px;height: auto;"></div>
           <div class="itinerary-line"><span class="itinerary-dot"></span></div>
           <div class="itinerary-text">
             <div class="it-label">FIN DEL EVENTO</div>
@@ -223,24 +223,24 @@
             <div class="gift-label">Lluvia de sobres</div>
           </div>
 
-          
 
-            <div class="gift-option">
-              <div class="gift-icon">🎁</div>
-              <div class="gift-label">Mesa de regalos</div>
-              <a id="btnLiverpool" class="btn btn-liverpool gift-btn"
-                href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51755634" target="_blank" rel="noopener">
-                <span>Liverpool</span>
-              </a>
-            </div>
+
+          <div class="gift-option">
+            <div class="gift-icon">🎁</div>
+            <div class="gift-label">Mesa de regalos</div>
+            <a id="btnLiverpool" class="btn btn-liverpool gift-btn"
+              href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51755634" target="_blank" rel="noopener">
+              <span>Liverpool</span>
+            </a>
           </div>
-
         </div>
+
       </div>
-    </section>
+  </div>
+  </section>
 
 
-    
+
   </div>
 
   <script>
@@ -262,12 +262,25 @@
           </div>
         </div>
         <div class="invite-body">
-          <div class="envelope-box"><div class="envelope-seal">KS</div></div>
+          <div class="envelope-box"><img src="img/sobre.jpeg" alt="Sobre"></div>
           <div class="reserve">HEMOS RESERVADO PARA USTEDES</div>
           <div class="dots" id="dots"></div>
           <div class="who" id="whoname"></div>
+        </div>
+        <div class="scroll-hint" id="scrollHint">
+          <span class="hint-text">Desliza hacia abajo</span>
+          <span class="hint-arrow">▼</span>
         </div>`;
+
       host.appendChild(wrap);
+      const scrollHint = wrap.querySelector('#scrollHint');
+      window.addEventListener('scroll', () => {
+        if (!scrollHint) return;
+        if (window.scrollY > 40) {
+          scrollHint.classList.add('hide');
+        }
+      });
+
       const total = Math.max(5, passes);
       const dots = wrap.querySelector('#dots');
       for (let i = 1; i <= total; i++) {
