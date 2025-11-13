@@ -639,6 +639,7 @@
   pointer-events: none;
   opacity: 1;
   transition: opacity .4s ease, transform .4s ease;
+  width: 100%;
 }
 
 .scroll-hint .hint-arrow {
