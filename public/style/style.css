@@ -1,3 +1,273 @@
+/* ————— TARJETA PRINCIPAL ————— */
+.hotel-board-wrapper {
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+  background: #1c1c1c;
+}
+
+.hotel-board {
+  background: #f7f1e6;
+  padding: 40px 45px 30px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.hotel-board-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: 32px;
+  margin: 0 0 10px;
+}
+
+.hotel-board-title {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 3px;
+  font-size: 24px;
+  margin-bottom: 25px;
+}
+
+/* ————— LISTA ————— */
+.hotel-board-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.hotel-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 2px;
+  font-size: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  cursor: pointer;
+}
+
+.hotel-plus {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+/* Rotación del + */
+.hotel-row.open .hotel-plus {
+  transform: rotate(45deg);
+}
+
+/* ————— PANEL DESPLEGABLE ————— */
+.hotel-desc {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 5px;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  margin-bottom: 10px;
+}
+
+.hotel-desc.open {
+  max-height: 350px;
+  opacity: 1;
+  padding-top: 10px;
+}
+
+/* ————— BOTÓN BONITO ————— */
+.hotel-map-btn {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 18px;
+  background: #d0bfa7;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 2px;
+  font-size: 12px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.25s ease, transform 0.2s ease;
+}
+
+.hotel-map-btn:hover {
+  background: #b39e87;
+  transform: translateY(-2px);
+}
+
+.hotel-map-btn:active {
+  transform: translateY(0);
+}
+
+
+/* Panel oculto */
+.hotel-desc {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 5px;
+  transition: max-height 0.4s ease, opacity 0.3s ease;
+  font-family: 'Cinzel', serif;
+  font-size: 12px;
+  line-height: 1.5;
+  border-bottom: 1px solid rgba(0,0,0,0.15);
+  margin-bottom: 10px;
+}
+
+.hotel-desc a {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.hotel-desc.open {
+  max-height: 300px; /* suficiente para texto */
+  opacity: 1;
+  padding-top: 10px;
+}
+
+/* Rotar el símbolo + cuando se abre */
+.hotel-row.open .hotel-plus {
+  transform: rotate(45deg);
+  transition: transform 0.3s ease;
+}
+
+
+.hotel-info {
+  margin-top: 25px;
+  padding-top: 15px;
+  border-top: 1px solid rgba(0,0,0,0.25);
+  text-align: left;
+  font-family: 'Cinzel', serif;
+  font-size: 13px;
+}
+
+.hotel-info h3 {
+  margin: 0 0 4px;
+  letter-spacing: 2px;
+  font-size: 14px;
+}
+
+.hotel-info p {
+  margin: 0;
+  line-height: 1.4;
+}
+
+.hotel-info a {
+  display: inline-block;
+  margin-top: 8px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-size: 11px;
+  text-decoration: none;
+  border-bottom: 1px solid currentColor;
+}
+
+.hotel-info.hidden {
+  display: none;
+}
+
+.hotel-info.show {
+  display: block;
+}
+
+
+
+/* Contenedor que centra todo en la página */
+.hotel-board-wrapper {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: #1c1c1c; /* fondo oscuro para que destaque la tarjeta */
+}
+
+/* Tarjeta tipo letrero */
+.hotel-board {
+  background: #f7f1e6;
+  padding: 40px 45px 30px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+/* “Recomendaciones” en letra cursiva */
+.hotel-board-script {
+  font-family: 'Great Vibes', cursive;
+  font-size: 32px;
+  margin: 0 0 10px;
+}
+
+/* Título HOTELES */
+.hotel-board-title {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 3px;
+  font-size: 24px;
+  margin: 0 0 25px;
+}
+
+/* Lista de hoteles */
+.hotel-board-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 25px;
+}
+
+/* Cada fila */
+.hotel-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Cinzel', serif;
+  font-size: 14px;
+  letter-spacing: 2px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+}
+
+.hotel-plus {
+  font-size: 18px;
+}
+
+/* Texto de “Más recomendaciones” */
+.hotel-board-more {
+  font-family: 'Cinzel', serif;
+  letter-spacing: 3px;
+  font-size: 14px;
+  margin: 20px 0 10px;
+}
+
+/* Centrar el botón dentro de la tarjeta */
+.add-to-cal {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+/* Estilo base del botón (ajusta a tu diseño) */
+.btn {
+  padding: 10px 20px;
+  border: none;
+  background: #c0a58a;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  cursor: pointer;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+
+
 .center-img {
   display: flex !important;
   justify-content: center !important;
@@ -197,12 +467,12 @@ section {
 }
 
 .add-to-cal {
-  margin-top: 14px;
-  display: inline-flex;
-  gap: 10px;
+  display: flex;
+  justify-content: center;
   align-items: center;
-  flex-wrap: wrap;
+  width: 100%; /* Asegura que ocupe todo el espacio disponible */
 }
+
 
 .btn-ghost {
   background: transparent;
@@ -264,7 +534,23 @@ footer {
   position: sticky;
   top: 0;
   z-index: 1000;
+  background: transparent;  
+  transition: background 0.3s ease;
 }
+
+.topbar.light {
+  background: #f7f1e6; /* color claro tipo la tarjeta */
+  color: #5a5449;      /* color de texto bonito */
+}
+
+.topbar.light .logo span {
+  color: #5a5449;
+}
+
+.topbar.light .bar {
+  background-color: #5a5449;
+}
+
 
 .topbar-inner {
   display: flex;

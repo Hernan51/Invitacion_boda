@@ -92,10 +92,11 @@
         corazón deje de latir.”
         <br>-PABLO NERUDA
       </div>
-      <div class="add-to-cal"><button class="btn" id="addToCalBtn">Agregar al calendario</button></div>
+
     </header>
 
     <!-- Contador -->
+    <h3 style="text-align: center;">Let the countdown begin!</h3>
     <div class="countdown" id="countdown">
       <div class="cd-box">
         <div class="cd-num" id="d">–</div>
@@ -115,13 +116,18 @@
       </div>
     </div>
 
+    <div class="add-to-cal" style="margin-top: 2%;">
+      <button class="btn" id="addToCalBtn">Agregar al calendario</button>
+    </div>
+
     </header>
 
     <!-- Ceremonia -->
     <section class="section-stack" id="ceremonia">
-        <div class="watermark reveal fade-image center-img">
-          <img src="img/templo.jpeg">
-        </div>
+      <div class="watermark reveal fade-image center-img">
+        <img src="img/templo.jpeg
+          ">
+      </div>
       <div class="card reveal">
         <h2 class="section-title">Ceremonia Religiosa</h2>
         <p><strong>Hora:</strong> <em>por definir</em></p>
@@ -242,9 +248,116 @@
   </div>
   </section>
 
+  <!-- Fuentes elegantes (opcional) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&display=swap"
+    rel="stylesheet">
+
+  <section class="hotel-board-wrapper">
+  <div class="hotel-board">
+    <p class="hotel-board-script">Recomendaciones</p>
+    <h2 class="hotel-board-title">HOTELES</h2>
+
+    <ul class="hotel-board-list">
+
+      <!-- LAS TROJES -->
+      <li>
+        <div class="hotel-row" data-hotel="las-trojes">
+          <span>HOTEL LAS TROJES</span>
+          <span class="hotel-plus">+</span>
+        </div>
+        <div class="hotel-desc">
+          <p><strong>Dirección:</strong> Blvd. Luis Donaldo Colosio 792.</p>
+          <p>Hotel con excelente ubicación, alberca, jardines y cerca de plazas comerciales.</p>
+          <a class="hotel-map-btn"
+            href="https://www.google.com/maps/search/?api=1&query=Hotel+Las+Trojes+Aguascalientes"
+            target="_blank">Ver en Google Maps</a>
+        </div>
+      </li>
+
+      <!-- HILTON -->
+      <li>
+        <div class="hotel-row" data-hotel="hilton">
+          <span>HILTON GARDEN INN</span>
+          <span class="hotel-plus">+</span>
+        </div>
+        <div class="hotel-desc">
+          <p><strong>Dirección:</strong> Blvd. Luis Donaldo Colosio 404.</p>
+          <p>Moderno, cómodo y muy cercano a restaurantes y centros comerciales.</p>
+          <a class="hotel-map-btn"
+            href="https://www.google.com/maps/search/?api=1&query=Hilton+Garden+Inn+Aguascalientes"
+            target="_blank">Ver en Google Maps</a>
+        </div>
+      </li>
+
+      <!-- MARRIOTT -->
+      <li>
+        <div class="hotel-row" data-hotel="marriott">
+          <span>MARRIOTT AGUASCALIENTES</span>
+          <span class="hotel-plus">+</span>
+        </div>
+        <div class="hotel-desc">
+          <p><strong>Dirección:</strong> Av. Colosio 333, Zona Norte.</p>
+          <p>Hotel de lujo con excelentes amenidades, restaurantes y ubicación privilegiada.</p>
+          <a class="hotel-map-btn"
+            href="https://www.google.com/maps/search/?api=1&query=Marriott+Aguascalientes"
+            target="_blank">Ver en Google Maps</a>
+        </div>
+      </li>
+
+    </ul>
+
+  </div>
+</section>
+
+
+
 
 
   </div>
+
+  <script>
+    const rows = document.querySelectorAll(".hotel-row");
+
+    rows.forEach(row => {
+      row.addEventListener("click", () => {
+
+        const desc = row.nextElementSibling;
+
+        // Cerrar otros
+        document.querySelectorAll(".hotel-desc.open").forEach(openDesc => {
+          if (openDesc !== desc) {
+            openDesc.classList.remove("open");
+            openDesc.previousElementSibling.classList.remove("open");
+          }
+        });
+
+        // Alternar este
+        desc.classList.toggle("open");
+        row.classList.toggle("open");
+      });
+    });
+  </script>
+
+
+  <script>
+    const topbar = document.querySelector('.topbar');
+    const hotelSection = document.querySelector('.hotel-board-wrapper');
+
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          topbar.classList.add('light');
+        } else {
+          topbar.classList.remove('light');
+        }
+      });
+    }, {
+      threshold: 0.3
+    });
+
+    observer.observe(hotelSection);
+  </script>
+
 
   <script>
 
