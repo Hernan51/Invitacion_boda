@@ -269,6 +269,13 @@
   opacity: 0.9;
 }
 
+@media (max-width: 580px) {
+    .btn {
+        padding: 8px 13px;
+        font-size: 14px;
+    }
+}
+
 
 .center-img {
   display: flex !important;
@@ -950,8 +957,8 @@ footer {
   /* “SÁBADO” y “JULIO” más pequeños y centrados */
   .hero-date .side,
   .hero-date .month {
-    font-size: 13px;
-    letter-spacing: .18em;
+    font-size: 33px;
+    /*letter-spacing: .18em;*/
     padding: 0;
   }
 
@@ -963,7 +970,7 @@ footer {
 
   .hero-date .center .year {
     font-size: 13px;
-    letter-spacing: .24em;
+    /*letter-spacing: .24em;*/
   }
 }
 
@@ -1027,8 +1034,19 @@ footer {
   margin-bottom: 6px;
 }
 
+@media (max-width: 600px) {
+  .month {
+    font-family: 'BONA NOVA SC', serif;
+    letter-spacing: .36em;
+    font-size: clamp(35px, 2.6vw, 32px);
+    color: #7d6d67;
+    margin-bottom: 6px;
+    }
+  
+}
+
 .hero-date .center .day {
-  font-family: 'Playfair Display', serif;
+  
   font-weight: 600;
   font-size: clamp(72px, 12vw, 126px);
   /* grande */
@@ -1178,7 +1196,7 @@ footer {
 /* Ajuste para móviles (menos espacio pero limpio) */
 @media (max-width: 580px) {
   #info .card {
-    margin: 32px auto !important;
+    margin: 0px auto !important;
   }
 
   #itinerario {
@@ -1263,7 +1281,7 @@ footer {
 }
 
 .it-label {
-  font-family: 'Playfair Display', serif;
+  font-family: 'Sacramento', cursive;
   font-size: 12px;
   letter-spacing: .22em;
   text-transform: uppercase;
@@ -1645,4 +1663,11 @@ body, p, .hotel-desc, .itinerary-text {
     max-width: 100%;
     text-align: center;
   }
+}
+
+.sacramento{
+  font-family: "Sacramento", cursive;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 50px;
 }
