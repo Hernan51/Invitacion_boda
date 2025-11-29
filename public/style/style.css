@@ -1,3 +1,5 @@
+
+
 /* ————— TARJETA PRINCIPAL ————— */
 .hotel-board-wrapper {
   padding: 100px 0;
@@ -335,7 +337,7 @@ html {
 /* HERO */
 header.hero {
   text-align: center;
-  padding: 64px 20px 32px;
+  padding: 14px 20px 32px;
 }
 
 .names {
@@ -376,18 +378,19 @@ header.hero {
 }
 
 .cd-box {
-  background: var(--card);
+  /*background: var(--card);
   backdrop-filter: blur(4px);
-  border: 1px solid #ffffffaa;
+  border: 1px solid #ffffff00;
   border-radius: 14px;
-  box-shadow: var(--shadow);
+  box-shadow: var(--shadow);*/
   padding: 16px 18px;
   min-width: 96px;
 }
 
+
 .cd-num {
   font-family: 'Playfair Display', serif;
-  font-size: 28px;
+  font-size: 38px;
   font-weight: 600;
 }
 
@@ -450,8 +453,9 @@ section {
   padding: 12px 18px;
   border-radius: 12px;
   border: 0;
-  background: linear-gradient(135deg, var(--pastel-lav), var(--pastel-sky));
-  color: #2c2c2c;
+  background: #2f3b5c;
+  color: #ffffff;
+
   font-weight: 600;
   box-shadow: var(--shadow);
   transition: transform .15s ease, box-shadow .15s ease, opacity .2s ease;
@@ -576,8 +580,8 @@ footer {
 }
 
 .logo span {
-  font-family: 'Playfair Display', serif;
-  font-weight: 600;
+  font-family: 'Bona Nova SC', serif;
+  font-weight: 400;
   font-size: 18px;
 }
 
@@ -925,12 +929,50 @@ footer {
   gap: var(--date-gap);
   max-width: 880px;
 }
+/* Versión móvil: fecha apilada y sin desbordar */
+@media (max-width: 600px) {
+  .hero-date {
+    --date-gap: 24px;
+    margin: 24px auto 6px;
+    display: grid;
+    grid-template-columns: 1fr;      /* una sola columna */
+    row-gap: 10px;                   /* espacio entre líneas */
+    justify-items: center;           /* centrar todo */
+    text-align: center;
+  }
+
+  /* Ocultar barras laterales en móvil */
+  .hero-date .center::before,
+  .hero-date .center::after {
+    content: none !important;
+  }
+
+  /* “SÁBADO” y “JULIO” más pequeños y centrados */
+  .hero-date .side,
+  .hero-date .month {
+    font-size: 13px;
+    letter-spacing: .18em;
+    padding: 0;
+  }
+
+  /* Día y año ajustados para que no ocupen tanto */
+  .hero-date .center .day {
+    font-size: 48px;
+    margin-bottom: 10px;
+  }
+
+  .hero-date .center .year {
+    font-size: 13px;
+    letter-spacing: .24em;
+  }
+}
+
 
 /* Lados (texto) */
 .hero-date .side {
-  font-family: 'Playfair Display', serif;
+  
   letter-spacing: .22em;
-  font-size: clamp(18px, 2.5vw, 18px);
+  font-size: clamp(38px, 2.5vw, 18px);
   color: #6a5f59;
   text-align: center;
   opacity: .95;
@@ -977,10 +1019,10 @@ footer {
   right: calc(-3 * var(--date-gap) / 2);
 }
 
-.hero-date .center .month {
+.month {
   font-family: 'Playfair Display', serif;
   letter-spacing: .36em;
-  font-size: clamp(15px, 2.6vw, 22px);
+  font-size: clamp(35px, 2.6vw, 32px);
   color: #7d6d67;
   margin-bottom: 6px;
 }
@@ -990,13 +1032,13 @@ footer {
   font-weight: 600;
   font-size: clamp(72px, 12vw, 126px);
   /* grande */
-  color: #6e5a52;
-  margin-bottom: 4px;
+  color: #2f3b5c;
+  margin-bottom: 30px;
 }
 
 .hero-date .center .year {
   letter-spacing: .36em;
-  font-size: clamp(13px, 2.3vw, 16px);
+  font-size: clamp(43px, 2.3vw, 16px);
   color: #7d6d67;
 }
 
@@ -1006,16 +1048,7 @@ footer {
   content: none !important;
 }
 
-@media (max-width: 520px) {
-  .hero-date {
-    --date-gap: clamp(20px, 8vw, 28px);
-  }
 
-  .hero-date .center::before,
-  .hero-date .center::after {
-    height: clamp(96px, 30vw, 140px);
-  }
-}
 
 
 /* ===== CEREMONIA / RECEPCIÓN SIN RECUADRO Y CENTRADO ===== */
@@ -1539,4 +1572,77 @@ body.mode-pass .topbar {
 body.mode-pass.show-main .topbar {
   opacity: 1;
   pointer-events: auto;
+}
+
+/* 1. Nombres de los Novios y Frases "Script" (Romántico) */
+.names, 
+.names-alt, 
+.hotel-board-script, 
+.gift-text,
+.countdown h3 { /* Si tienes texto introductorio */
+   font-family: "Sacramento", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Ajuste específico para que los nombres se vean grandes y lujosos */
+.names-alt {
+    font-size: clamp(50px, 10vw, 90px); /* Hacemos la letra más grande */
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: #4b4b4b; /* Color gris oscuro elegante (o usa #d4af37 para dorado) */
+}
+
+/* 2. Títulos de Sección y Subtítulos (Editorial / Elegante) */
+.section-title, 
+.hotel-board-title, 
+.hero-date, 
+.menu a {
+    font-family: 'Bona Nova SC', serif;
+    text-transform: uppercase; /* Mayúsculas para elegancia */
+    letter-spacing: 4px;       /* Espaciado amplio = Lujo */
+    font-weight: 600;
+}
+
+/* 3. Fechas y textos de énfasis */
+
+
+/* 4. Cuerpo de texto (Legibilidad) - Mantenemos Poppins pero más ligero */
+body, p, .hotel-desc, .itinerary-text {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 300; /* Light se ve más limpio */
+}
+
+.dancing-script {
+  font-family: "Bona Nova SC", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+/* Desktop / tablet: 2 columnas */
+@media (min-width: 760px) {
+  #info.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    column-gap: 60px;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+}
+
+/* Móvil: 1 sola columna, todo apilado */
+@media (max-width: 759px) {
+  #info.grid {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+    row-gap: 24px;
+    max-width: 100%;
+  }
+
+  #info .card {
+    max-width: 100%;
+    text-align: center;
+  }
 }
