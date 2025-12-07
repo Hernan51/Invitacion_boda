@@ -10,7 +10,7 @@
 
 .hotel-board {
   background: #f7f1e6;
-  padding: 40px 45px 30px;
+  padding: 0px 45px 30px;
   max-width: 420px;
   width: 100%;
   text-align: center;
@@ -94,6 +94,7 @@
   text-decoration: none;
   border-radius: 4px;
   transition: background 0.25s ease, transform 0.2s ease;
+  margin-bottom: 15px;
 }
 
 .hotel-map-btn:hover {
@@ -193,7 +194,7 @@
 /* Tarjeta tipo letrero */
 .hotel-board {
   background: #f7f1e6;
-  padding: 40px 45px 30px;
+  padding: 0px 45px 30px;
   max-width: 420px;
   width: 100%;
   text-align: center;
@@ -1670,4 +1671,44 @@ body, p, .hotel-desc, .itinerary-text {
   font-weight: 400;
   font-style: normal;
   font-size: 50px;
+}
+
+/* Por defecto (móvil): solo se ve el año debajo del día */
+.year-desktop {
+  display: none;
+}
+
+/* Escritorio / tablet: el año pasa a la derecha */
+@media (min-width: 768px) {
+  .year-mobile {
+    display: none;          /* oculta el año bajo el día */
+  }
+
+  .year-desktop {
+    display: block;         /* muestra el año en la tercera columna */
+    text-align: center;
+  }
+
+  .year-desktop .year {
+    letter-spacing: .36em;
+    color: #7d6d67;         /* mismo estilo que ya usas */
+  }
+}
+
+/* Desktop / tablet: 2 columnas más anchas */
+@media (min-width: 760px) {
+  #info.grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    column-gap: 80px;      /* un poco más de espacio entre columnas */
+    max-width: 1000px;     /* o simplemente elimina esta línea */
+    margin: 0 auto;
+  }
+
+  #info .card {
+    text-align: center;
+    width: 100%;
+    max-width: none;       /* <-- aquí quitamos el límite de 280px */
+  }
 }
