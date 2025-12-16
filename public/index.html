@@ -142,22 +142,30 @@
     </header>
 
     <!-- Ceremonia -->
-    <section class="section-stack" id="ceremonia">
-      <div class="watermark reveal fade-image center-img">
-        <img src="img/templo.jpeg">
-      </div>
-      <div class="card reveal" style="font-size: 20px;">
-        <h2 class=" sacramento">Ceremonia Religiosa</h2>
-        <p class="dancing-script"><strong></strong> <em>6:00 PM</em></p>
-        <p class="dancing-script"><strong></strong> Templo de San Antonio de Padua</p>
+    <section class="stack-section" id="ceremonia">
 
-        <p class="dancing-script" style="font-size: 14px;">Nos encantará contar con tu presencia en la ceremonia donde
-          daremos el “sí”.</p>
+  <!-- Imagen fija -->
+  <div class="stack-bg">
+    <img src="img/templo.jpeg" alt="">
+  </div>
 
-        <div class="btn"><a class="dancing-script" href="#" target="_blank" rel="noopener">Ver
-            mapa</a></div>
+  <!-- Texto que pasa por encima -->
+  <div class="stack-content">
+    <div class="ceremonia-text">
+      <h2 class="sacramento">Ceremonia Religiosa</h2>
+      <p class="dancing-script"><em>6:00 PM</em></p>
+      <p class="dancing-script">Templo de San Antonio de Padua</p>
+      <p class="dancing-script small">
+        Nos encantará contar con tu presencia en la ceremonia donde daremos el “sí”.
+      </p>
+      <div class="btn">
+        <a class="dancing-script" href="#" target="_blank">Ver mapa</a>
       </div>
-    </section>
+    </div>
+  </div>
+
+</section>
+
 
     <!-- Recepción -->
     <section class="section-stack" id="recepcion">
@@ -365,6 +373,29 @@
   </div>
 
   <script>
+  const section = document.querySelector('#ceremonia');
+  const bgImage = section.querySelector('.stack-bg img');
+
+  window.addEventListener('scroll', () => {
+    const rect = section.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+
+    // Progreso del scroll dentro de la sección (0 → 1)
+    let progress = 1 - rect.bottom / (windowHeight + rect.height);
+    progress = Math.min(Math.max(progress, 0), 1);
+
+    // Brillo: de 1 a 0.85 (ajusta si quieres)
+    const brightness = 1 - (progress * 0.55);
+
+    bgImage.style.filter = `brightness(${brightness})`;
+  });
+</script>
+
+
+  
+  <script>
+
+    
     const rows = document.querySelectorAll(".hotel-row");
 
     rows.forEach(row => {
@@ -406,6 +437,27 @@
 
     observer.observe(hotelSection);
   </script>
+
+  <script>
+  document.querySelectorAll('.section-stack').forEach(section => {
+    const img = section.querySelector('.watermark img');
+
+    if (!img) return;
+
+    window.addEventListener('scroll', () => {
+      const rect = section.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+
+      let progress = 1 - rect.bottom / (windowHeight + rect.height);
+      progress = Math.min(Math.max(progress, 0), 1);
+
+      // Brillo de 1 → 0.85 (muy sutil)
+      const brightness = 1 - (progress * 0.15);
+
+      img.style.filter = `brightness(${brightness})`;
+    });
+  });
+</script>
 
 
   <script>
