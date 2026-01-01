@@ -1856,3 +1856,31 @@ body, p, .hotel-desc, .itinerary-text {
   position: relative;
   z-index: 2;
 }
+
+/* Estilo general para ambas ramas */
+.decoracion-rama {
+  position: absolute; /* O 'fixed' si quieres que te sigan al bajar la página */
+  left: -30px;        /* Ajusta este número para que se vea más o menos rama */
+  width: 180px;       /* El ancho que desees para la imagen */
+  height: auto;
+  opacity: 0.7;       /* Para que sea sutil */
+  z-index: 10;        /* Por debajo de la topbar pero por encima del fondo */
+  pointer-events: none; /* Evita que la imagen bloquee clics en botones */
+  filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.05)); /* Opcional: sombra suave */
+}
+
+/* Posición de la primera rama */
+.rama-superior {
+  top: 120px; /* Ajusta la distancia desde arriba */
+}
+
+/* Posición de la segunda rama */
+.rama-inferior {
+  top: 450px; /* Ajusta la distancia para que quede debajo de la primera */
+}
+
+/* Opcional: Si quieres que la topbar siempre esté por encima */
+.topbar {
+  z-index: 100;
+  position: relative;
+}
