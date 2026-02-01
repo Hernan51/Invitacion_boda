@@ -1916,3 +1916,11 @@ body, p, .hotel-desc, .itinerary-text {
 
 .carousel-btn.prev { left: 5px; }
 .carousel-btn.next { right: 5px; }
+
+.servicios{
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+  background: #1c1c1c;
+  margin-top: 0px;
+}

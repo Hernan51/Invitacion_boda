@@ -412,38 +412,65 @@
             <span class="hotel-plus">+</span>
           </div>
           <div class="hotel-desc">
-            
-              <div class="hotel-carousel">
-                <button class="carousel-btn prev">‹</button>
 
-                <div class="carousel-track">
-                  <img
-                    src="https://cache.marriott.com/is/image/marriotts7prod/agumc-pool-3826:Pano-Hor?wid=1600&fit=constrain"
-                    alt="Hotel Marriott Aguascalientes">
-                  <img
-                    src="https://cache.marriott.com/content/dam/marriott-renditions/AGUMC/agumc-lobby-3813-hor-pano.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1600px:*"
-                    alt="Hotel Marriott Aguascalientes">
-                  <img
-                    src="https://cache.marriott.com/content/dam/marriott-renditions/AGUMC/agumc-junior-3779-hor-pano.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1600px:*"
-                    alt="Hotel Marriott Aguascalientes">
-                  <img
-                    src="https://cache.marriott.com/content/dam/marriott-renditions/AGUMC/agumc-guestroom-2805-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1140px:*"
-                    alt="Hotel Marriott Aguascalientes">
-                </div>
+            <div class="hotel-carousel">
+              <button class="carousel-btn prev">‹</button>
 
-                <button class="carousel-btn next">›</button>
+              <div class="carousel-track">
+                <img
+                  src="https://cache.marriott.com/is/image/marriotts7prod/agumc-pool-3826:Pano-Hor?wid=1600&fit=constrain"
+                  alt="Hotel Marriott Aguascalientes">
+                <img
+                  src="https://cache.marriott.com/content/dam/marriott-renditions/AGUMC/agumc-lobby-3813-hor-pano.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1600px:*"
+                  alt="Hotel Marriott Aguascalientes">
+                <img
+                  src="https://cache.marriott.com/content/dam/marriott-renditions/AGUMC/agumc-junior-3779-hor-pano.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1600px:*"
+                  alt="Hotel Marriott Aguascalientes">
+                <img
+                  src="https://cache.marriott.com/content/dam/marriott-renditions/AGUMC/agumc-guestroom-2805-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1140px:*"
+                  alt="Hotel Marriott Aguascalientes">
               </div>
-              <p><strong>Dirección:</strong> Av. Colosio 333, Zona Norte.</p>
-              <p>Hotel de lujo con excelentes amenidades, restaurantes y ubicación privilegiada.</p>
-              <a class="hotel-map-btn" href="https://www.google.com/maps/search/?api=1&query=Marriott+Aguascalientes"
-                target="_blank">Ver en Google Maps</a>
+
+              <button class="carousel-btn next">›</button>
             </div>
+            <p><strong>Dirección:</strong> Av. Colosio 333, Zona Norte.</p>
+            <p>Hotel de lujo con excelentes amenidades, restaurantes y ubicación privilegiada.</p>
+            <a class="hotel-map-btn" href="https://www.google.com/maps/search/?api=1&query=Marriott+Aguascalientes"
+              target="_blank">Ver en Google Maps</a>
+          </div>
         </li>
 
       </ul>
 
     </div>
+
   </section>
+
+
+  <section class="servicios">
+    <div class="hotel-board">
+      <p class="sacramento">SOS</p>
+      <h2 class="dancing-script">SERVICIOS</h2>
+
+      <!-- AQUÍ SE INYECTA TODO DESDE EL CSV -->
+      <ul class="hotel-board-list" id="servicesList"></ul>
+
+    </div>
+  </section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -752,6 +779,136 @@
       observer.observe(btn);
     })();
   </script>
+
+  <script>
+    const CSV_PATH = 'SOS_SERVICIOS_BODA_KYS.csv';
+
+
+    fetch(CSV_PATH)
+      .then(res => res.text())
+      .then(text => {
+        
+        parseCSV(text);
+      })
+      .catch(err => console.error('❌ Error cargando CSV:', err));
+
+    function parseCSV(text) {
+      const lines = text
+        .split('\n')
+        .map(l => l.trim())
+        .filter(l => l && !l.match(/^,+$/)); // elimina ,,,,
+
+
+      const data = {};
+      let currentCategory = null;
+
+      lines.forEach((line, index) => {
+        const cols = splitCSV(line);
+
+
+        // DETECTAR CATEGORÍA (encabezado)
+        if (
+          cols.length >= 2 &&
+          cols[1].toLowerCase() === 'instagram'
+        ) {
+          currentCategory = cols[0].trim();
+          data[currentCategory] = [];
+          return;
+        }
+
+        // DETECTAR SERVICIO
+        if (
+          currentCategory &&
+          cols[0] &&
+          (cols[2]?.includes('52') || cols[1])
+        ) {
+          data[currentCategory].push({
+            nombre: cols[0],
+            instagram: cols[1] || '',
+            whatsapp: cols[2] || '',
+            domicilio: cols[3] || '',
+            link: cols[4] || ''
+          });
+
+        }
+      });
+
+      renderServicios(data);
+    }
+
+    /* Parser CSV con soporte para comillas */
+    function splitCSV(line) {
+      const result = [];
+      let current = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < line.length; i++) {
+        const char = line[i];
+
+        if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+          result.push(current.trim());
+          current = '';
+        } else {
+          current += char;
+        }
+      }
+
+      result.push(current.trim());
+      return result;
+    }
+
+    function renderServicios(data) {
+      const list = document.getElementById('servicesList');
+      list.innerHTML = '';
+
+      Object.entries(data).forEach(([categoria, servicios]) => {
+        if (!servicios.length) return;
+
+        const li = document.createElement('li');
+        li.innerHTML = `
+      <div class="hotel-row">
+        <span>${categoria.toUpperCase()}</span>
+        <span class="hotel-plus">+</span>
+      </div>
+      <div class="hotel-desc" style="overflow-y: auto;overflow-x: hidden;padding-right: 8px; "></div>
+    `;
+
+        const desc = li.querySelector('.hotel-desc');
+
+        servicios.forEach((s, i) => {
+          desc.innerHTML += `
+        <p><strong>${s.nombre}</strong></p>
+        ${s.instagram ? `<p>Instagram: @${s.instagram}</p>` : ''}
+        ${s.whatsapp ? `<p>WhatsApp: ${formatPhone(s.whatsapp)}</p>` : ''}
+        ${s.domicilio ? `<p>${s.domicilio}</p>` : ''}
+        ${s.link ? `<a class="hotel-map-btn" href="${s.link}" target="_blank">Ver perfil</a>` : ''}
+        ${i < servicios.length - 1 ? '<hr>' : ''}
+      `;
+        });
+
+        list.appendChild(li);
+      });
+
+      activarAcordeon();
+    }
+
+    function activarAcordeon() {
+      document.querySelectorAll('.hotel-row').forEach(row => {
+        row.addEventListener('click', () => {
+          row.classList.toggle('open');
+          row.nextElementSibling.classList.toggle('open');
+        });
+      });
+    }
+
+    function formatPhone(phone) {
+      return phone.replace(/\s+/g, ' ').trim();
+    }
+  </script>
+
+
 </body>
 
 </html>
