@@ -459,23 +459,6 @@
   </section>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   </div>
 
   <script>
@@ -787,7 +770,7 @@
     fetch(CSV_PATH)
       .then(res => res.text())
       .then(text => {
-        
+
         parseCSV(text);
       })
       .catch(err => console.error('❌ Error cargando CSV:', err));
@@ -868,20 +851,35 @@
 
         const li = document.createElement('li');
         li.innerHTML = `
-      <div class="hotel-row">
-        <span>${categoria.toUpperCase()}</span>
-        <span class="hotel-plus">+</span>
-      </div>
-      <div class="hotel-desc" style="overflow-y: auto;overflow-x: hidden;padding-right: 8px; "></div>
+          <div class="service-row">
+            <span>${categoria.toUpperCase()}</span>
+            <span class="service-plus">+</span>
+          </div>
+          <div class="service-desc"></div>
+
     `;
 
-        const desc = li.querySelector('.hotel-desc');
+        const desc = li.querySelector('.service-desc');
 
         servicios.forEach((s, i) => {
           desc.innerHTML += `
         <p><strong>${s.nombre}</strong></p>
         ${s.instagram ? `<p>Instagram: @${s.instagram}</p>` : ''}
-        ${s.whatsapp ? `<p>WhatsApp: ${formatPhone(s.whatsapp)}</p>` : ''}
+        ${s.whatsapp ? `
+  <p>
+    WhatsApp:
+    <a
+  class="whatsapp-link"
+  href="https://wa.me/${formatWhatsAppLink(s.whatsapp)}"
+  target="_blank"
+  rel="noopener"
+>
+  ${formatPhone(s.whatsapp)}
+</a>
+
+  </p>
+` : ''}
+
         ${s.domicilio ? `<p>${s.domicilio}</p>` : ''}
         ${s.link ? `<a class="hotel-map-btn" href="${s.link}" target="_blank">Ver perfil</a>` : ''}
         ${i < servicios.length - 1 ? '<hr>' : ''}
@@ -891,21 +889,41 @@
         list.appendChild(li);
       });
 
-      activarAcordeon();
+      activarServiciosAcordeon();
     }
 
-    function activarAcordeon() {
-      document.querySelectorAll('.hotel-row').forEach(row => {
-        row.addEventListener('click', () => {
+    function activarServiciosAcordeon() {
+      const serviceRows = document.querySelectorAll('.service-row');
+
+      serviceRows.forEach(row => {
+        row.onclick = () => {
+          const desc = row.nextElementSibling;
+
+          // 🔒 Cerrar otros servicios abiertos
+          document.querySelectorAll('.service-desc.open').forEach(openDesc => {
+            if (openDesc !== desc) {
+              openDesc.classList.remove('open');
+              openDesc.previousElementSibling.classList.remove('open');
+            }
+          });
+
+          // 🔁 Toggle del actual
           row.classList.toggle('open');
-          row.nextElementSibling.classList.toggle('open');
-        });
+          desc.classList.toggle('open');
+        };
       });
     }
+
+
 
     function formatPhone(phone) {
       return phone.replace(/\s+/g, ' ').trim();
     }
+
+    function formatWhatsAppLink(phone) {
+      return phone.replace(/\D/g, '');
+    }
+
   </script>
 
 

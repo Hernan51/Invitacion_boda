@@ -1,3 +1,128 @@
+.service-desc {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height .4s ease;
+}
+
+.service-desc.open {
+  max-height: 600px;
+}
+
+.service-row.open .service-plus {
+  transform: rotate(45deg);
+}
+
+
+.servicios {
+  padding: 100px 0;
+  display: flex;
+  justify-content: center;
+  background: #1c1c1c;
+}
+
+.servicios .hotel-board {
+  background: #f7f1e6;
+  padding: 0px 45px 30px;
+  max-width: 420px;
+  width: 100%;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  border-radius: 4px;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.service-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 2px;
+  font-size: 14px;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(0,0,0,0.25);
+  cursor: pointer;
+}
+
+.service-plus {
+  font-size: 18px;
+  transition: transform 0.3s ease;
+}
+
+.service-row.open .service-plus {
+  transform: rotate(45deg);
+}
+
+/* ===== SCROLL INTERNO SOLO PARA SERVICIOS ===== */
+
+/* Panel de servicios cerrado */
+.service-desc {
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  padding: 0 5px;
+  transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+}
+
+/* Panel de servicios abierto */
+.service-desc.open {
+  max-height: 55vh;      /* altura máxima del panel */
+  overflow-y: auto;     /* 🔥 scroll vertical */
+  opacity: 1;
+  padding-top: 10px;
+  padding-right: 6px;   /* espacio para scrollbar */
+}
+
+.service-desc::-webkit-scrollbar {
+  width: 6px;
+}
+
+.service-desc::-webkit-scrollbar-thumb {
+  background: rgba(0,0,0,0.25);
+  border-radius: 6px;
+}
+
+.service-desc::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+
+.service-desc a {
+  display: inline-block;
+  margin-top: 12px;
+  padding: 8px 18px;
+  background: #d0bfa7;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 2px;
+  font-size: 12px;
+  text-decoration: none;
+  border-radius: 4px;
+  transition: background 0.25s ease, transform 0.2s ease;
+  margin-bottom: 15px;
+}
+
+.service-desc a:hover {
+  background: #b39e87;
+  transform: translateY(-2px);
+}
+
+
+/* Link de WhatsApp dentro de servicios */
+.service-desc a.whatsapp-link {
+  color: #2f3b5c;              /* mismo tono elegante */
+  font-weight: 500;
+  text-decoration: none;       /* sin subrayado feo */
+  border-bottom: 1px solid rgba(47, 59, 92, 0.4);
+  transition: color 0.2s ease, border-color 0.2s ease;
+}
+
+/* Hover sutil */
+.service-desc a.whatsapp-link:hover {
+  color: #1f2a44;
+  border-bottom-color: #1f2a44;
+}
+
+
 
 
 /* ————— TARJETA PRINCIPAL ————— */
@@ -1923,4 +2048,24 @@ body, p, .hotel-desc, .itinerary-text {
   justify-content: center;
   background: #1c1c1c;
   margin-top: 0px;
+}
+
+/* ===== FIX LINK WHATSAPP (NO BOTÓN) ===== */
+.service-desc a.whatsapp-link {
+  display: inline;              /* quita estilo de botón */
+  padding: 0;
+  margin: 0;
+  background: none;
+  border-radius: 0;
+  box-shadow: none;
+
+  color: #2f3b5c;
+  font-weight: 500;
+  text-decoration: underline;
+}
+
+/* Hover sutil */
+.service-desc a.whatsapp-link:hover {
+  color: #1f2a44;
+  background: none;
 }
