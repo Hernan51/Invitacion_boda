@@ -1,56 +1,4 @@
-.service-desc {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height .4s ease;
-}
-
-.service-desc.open {
-  max-height: 600px;
-}
-
-.service-row.open .service-plus {
-  transform: rotate(45deg);
-}
-
-
-.servicios {
-  padding: 100px 0;
-  display: flex;
-  justify-content: center;
-  background: #1c1c1c;
-}
-
-.servicios .hotel-board {
-  background: #f7f1e6;
-  padding: 0px 45px 30px;
-  max-width: 420px;
-  width: 100%;
-  text-align: center;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
-  border-radius: 4px;
-  border: 1px solid rgba(0,0,0,0.05);
-}
-
-.service-row {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  font-family: 'Cinzel', serif;
-  letter-spacing: 2px;
-  font-size: 14px;
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.25);
-  cursor: pointer;
-}
-
-.service-plus {
-  font-size: 18px;
-  transition: transform 0.3s ease;
-}
-
-.service-row.open .service-plus {
-  transform: rotate(45deg);
-}
+.service-desc { max-height: 0; }
 
 /* ===== SCROLL INTERNO SOLO PARA SERVICIOS ===== */
 
@@ -890,7 +838,7 @@ footer {
   }
 
   .cd-num {
-    font-size: 24px;
+    font-size: 44px;
   }
 
   .cd-lbl {
@@ -1318,7 +1266,7 @@ footer {
 /* Ajuste para móviles (menos espacio pero limpio) */
 @media (max-width: 580px) {
   #info .card {
-    margin: 0px auto !important;
+    margin: 25px auto !important;
   }
 
   #itinerario {
@@ -2068,4 +2016,169 @@ body, p, .hotel-desc, .itinerary-text {
 .service-desc a.whatsapp-link:hover {
   color: #1f2a44;
   background: none;
+}
+
+
+/* ===== DRESS CODE - imagen con badge similar al mockup ===== */
+.dress-code {
+  position: relative;
+  width: 100%;
+  display: block;
+}
+.dress-code img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 12px;
+  object-fit: cover;
+}
+.dress-top {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -25%; /* un poco más arriba para no tapar la imagen */
+  background: #ffffff;
+  color: #3e3e3e;
+  padding: 16px 22px;
+  font-family: 'Playfair Display', 'Cinzel', serif;
+  font-size: 16px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
+  border-radius: 40px; /* base redondeada */
+  z-index: 40;
+  text-align: center;
+  max-width: min(92%, 480px);
+  width: auto;
+}
+/* Removed decorative cloud circles per user request */
+.dress-badge {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  background: #4b4b4b;
+  color: #fff;
+  padding: 14px 20px;
+  border-radius: 12px;
+  font-family: 'Cinzel', serif;
+  font-size: 20px;
+  line-height: 1.05;
+  text-align: center;
+  letter-spacing: 0.12em;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+}
+
+.dress-badge-wrap {
+  position: absolute;
+  left: 50%;
+  top: 70%;
+  transform: translate(-50%, -50%);
+  width: 320px; /* aumentado para mayor visibilidad */
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 6;
+}
+.dress-badge-svg {
+  width: 320px;
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 16px 28px rgba(0,0,0,0.32));
+}
+
+.dress-badge-svg path {
+  stroke: rgba(0,0,0,0.18);
+  stroke-width: 1.6;
+}
+.dress-badge-svg text {
+  paint-order: stroke;
+  stroke: rgba(0,0,0,0.55);
+  stroke-width: 0.9;
+}
+.dt-title {
+  font-weight: 700;
+  font-size: 18px;
+}
+.dt-sub {
+  margin-top: 6px;
+  font-size: 16px;
+  line-height: 1.2;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+@media (max-width: 600px) {
+  .dress-badge {
+    font-size: 14px;
+    padding: 10px 14px;
+    border-radius: 10px;
+  }
+
+  .dress-top {
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -14%;
+    font-size: 14px;
+    padding: 10px 14px;
+    max-width: 86%;
+    border-radius: 36px;
+  }
+
+  /* Mantener la altura y el espacio similar en móvil */
+  #info .card {
+    max-width: 100%;
+    padding: 6px 8px;
+  }
+  .dress-badge-wrap {
+    width: 200px;
+    top: 68%;
+  }
+  .dress-badge-svg { width: 200px; }
+  /* hide any leftover badge elements on small screens */
+  .dress-badge-wrap, .dress-badge, .dress-badge-svg { display: none !important; }
+}
+
+/* ===== BADGE CSS (reemplaza SVG) ===== */
+.dress-badge-wrap, .dress-badge, .dress-badge-svg { display: none !important; } /* badge removed */
+.dress-badge {
+  width: 100%;
+  max-width: 340px;
+  background: linear-gradient(180deg, #525252 0%, #3f3f3f 100%);
+  color: #fff;
+  padding: 28px 22px;
+  border-radius: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  z-index: 6;
+}
+
+
+
+.badge-text {
+  font-family: 'Cinzel', 'Playfair Display', serif;
+  font-size: 34px;
+  line-height: 0.95;
+  text-align: center;
+  letter-spacing: 0.06em;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+}
+
+@media (max-width: 600px) {
+  .dress-badge { max-width: 220px; padding: 18px 12px; border-radius: 18px; }
+  .badge-text { font-size: 20px; }
+  .dress-badge::before, .dress-badge::after { width: 32px; height: 14px; left: -12px; right: -12px; }
+}
+
+/* Ajustes para pantallas anchas: bajar la tarjeta para que no tape la ilustración */
+@media (min-width: 1100px) {
+  .dress-top {
+    bottom: -25%; /* coloca la tarjeta ligeramente por debajo de la imagen */
+    max-width: 420px;
+    padding: 18px 26px;
+  }
 }
