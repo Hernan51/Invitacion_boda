@@ -49,6 +49,61 @@
   margin-bottom: 15px;
 }
 
+/* Imagen representativa por categoría (encabezado de cada grupo) */
+.service-row-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: 'Cinzel', serif;
+  letter-spacing: 1px;
+}
+
+/* Miniatura junto al título de la categoría (visible siempre) */
+.service-row-left .service-thumb {
+  width: 40px;
+  height: 40px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #f0ebe3;
+  flex: 0 0 40px;
+}
+
+/* Fila de categoría: texto a la izquierda, + a la derecha */
+.service-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 10px 0;
+}
+
+.service-plus {
+  font-size: 20px;
+  line-height: 1;
+  display: inline-block;
+  width: auto;
+  flex: 0 0 auto;
+}
+
+/* Imagen representativa que aparece dentro del panel desplegable (oculta por defecto) */
+.service-category-header-img {
+  width: 100%;
+  max-height: 220px;
+  object-fit: cover;
+  border-radius: 6px;
+  background: #f0ebe3;
+  display: none; /* no ocupa espacio cuando el panel está cerrado */
+  margin-bottom: 10px;
+}
+
+.service-desc.open .service-category-header-img {
+  display: block;
+}
+
+@media (max-width: 600px) {
+  .service-category-header-img { max-height: 270px; }
+}
+
 .service-desc a:hover {
   background: #b39e87;
   transform: translateY(-2px);
@@ -1245,6 +1300,21 @@ footer {
   text-align: center;
 }
 
+/* Aviso: en escritorio ocupa todo el ancho del grid y centra su contenido */
+.aviso-card {
+  display: block;
+}
+@media (min-width: 760px) {
+  /* en pantallas >=760px hacemos que el aviso ocupe las 3 columnas del grid */
+  #info.grid .aviso-card {
+    grid-column: 1 / -1;
+    justify-self: center;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
 /* Títulos con un poco más de aire */
 #info .section-title {
   margin-bottom: 14px;
@@ -2026,17 +2096,24 @@ body, p, .hotel-desc, .itinerary-text {
   display: block;
 }
 .dress-code img {
-  width: 100%;
+  width: 35%;
+  max-width: 320px;
+  max-height: 220px;
   height: auto;
   display: block;
+  margin: 0 auto;
   border-radius: 12px;
   object-fit: cover;
+}
+
+@media (max-width: 600px) {
+  .dress-code img { width: 60%; }
 }
 .dress-top {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: -25%; /* un poco más arriba para no tapar la imagen */
+  bottom: 0%; /* un poco más arriba para no tapar la imagen */
   background: #ffffff;
   color: #3e3e3e;
   padding: 16px 22px;

@@ -161,7 +161,7 @@
             Nos encantará contar con tu presencia en la ceremonia donde daremos el “sí”.
           </p>
           <div class="btn">
-            <a class="dancing-script" href="#" target="_blank">Ver mapa</a>
+            <a class="dancing-script" href="https://maps.app.goo.gl/nRPCP749WYJBKyQR7" target="_blank">Ver mapa</a>
           </div>
         </div>
       </div>
@@ -184,7 +184,7 @@
             Después de la ceremonia, celebraremos con cena, música y mucho amor.
           </p>
           <div class="btn">
-            <a class="dancing-script" href="#" target="_blank" rel="noopener">Ver mapa</a>
+            <a class="dancing-script" href="https://maps.app.goo.gl/Ygj4LrfqH4SjpTNBA" target="_blank" rel="noopener">Ver mapa</a>
           </div>
         </div>
       </div>
@@ -197,6 +197,7 @@
         <h3 class="sacramento">Código de vestimenta</h3>
           <div class="dress-code">
             <img src="img/dress_code.png" alt="Dress code" />
+            <br><br><br><br><br>
 
             <!-- pequeña tarjeta blanca superior con detalle -->
             <div class="dress-top">
@@ -216,9 +217,9 @@
           href="https://wa.me/?text=Confirmo%20mi%20asistencia%20a%20la%20boda%20de%20Karen%20y%20Sergio%20el%2011%20de%20julio%20de%202026"
           target="_blank" rel="noopener">Confirmar por WhatsApp</a>
       </div>
-      <div class="card">
+      <div class="card aviso-card">
         <h3 class="sacramento">Aviso</h3>
-        <p class="dancing-script" style="font-size: 17px; max-width:480px; margin:0 auto;">Nos encantaría que nos acompañen en esta noche de celebración diseñada especialmente para adultos. Agradecemos su comprensión.</p>
+        <p class="dancing-script" style="font-size: 19px;">Nos encantaría que nos acompañen en esta noche de celebración diseñada especialmente para adultos. Agradecemos su comprensión.</p>
       </div>
     </section>
 
@@ -870,6 +871,8 @@
       return result;
     }
 
+    // Rutas de imágenes insertadas directamente en el HTML (sin usar un objeto/array)
+    // Coloca los archivos en `public/img/` con estos nombres si deseas imágenes específicas.
     function renderServicios(data) {
       const list = document.getElementById('servicesList');
       list.innerHTML = '';
@@ -877,41 +880,57 @@
       Object.entries(data).forEach(([categoria, servicios]) => {
         if (!servicios.length) return;
 
+        const catKey = (categoria || '').trim().toLowerCase();
+
+        let imageTag =  categoria ;
+        let thumbTag = '';
+
+        // Mapear categorías del CSV a imágenes existentes (comprobaciones por subcadena)
+        if (catKey.includes('maquill') || catKey.includes('peinad')) {
+          imageTag = '<img src="img/belleza.png" alt="Maquillaje y peinado" class="service-category-header-img" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+          thumbTag = '<img src="img/belleza.png" alt="Maquillaje" class="service-thumb" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+        } else if (catKey.includes('barber') || catKey.includes('barber shop') || catKey.includes('barbería')) {
+          imageTag = '<img src="img/barberia.png" alt="Barbería" class="service-category-header-img" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+          thumbTag = '<img src="img/barberia.png" alt="Barbería" class="service-thumb" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+        } else if (catKey.includes('vestid') || catKey.includes('renta de vestidos')) {
+          imageTag = '<img src="img/vestidos.png" alt="Renta de vestidos" class="service-category-header-img" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+          thumbTag = '<img src="img/vestidos.png" alt="Vestidos" class="service-thumb" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+        } else if (catKey.includes('traje')) {
+          imageTag = '<img src="img/trajes.png" alt="Renta de trajes" class="service-category-header-img" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+          thumbTag = '<img src="img/trajes.png" alt="Trajes" class="service-thumb" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+        } else if (catKey.includes('centro') || catKey.includes('comercial')) {
+          imageTag = '<img src="img/centros.png" alt="Centros comerciales" class="service-category-header-img" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+          thumbTag = '<img src="img/centros.png" alt="Centros comerciales" class="service-thumb" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+        }
+
         const li = document.createElement('li');
         li.innerHTML = `
           <div class="service-row">
-            <span>${categoria.toUpperCase()}</span>
+            <div class="service-row-left">
+              <span>${categoria.toUpperCase()}</span>
+            </div>
             <span class="service-plus">+</span>
           </div>
-          <div class="service-desc"></div>
-
-    `;
+          <div class="service-desc">
+            ${imageTag}
+          </div>
+        `;
 
         const desc = li.querySelector('.service-desc');
 
         servicios.forEach((s, i) => {
           desc.innerHTML += `
-        <p><strong>${s.nombre}</strong></p>
-        ${s.instagram ? `<p>Instagram: @${s.instagram}</p>` : ''}
-        ${s.whatsapp ? `
-  <p>
-    WhatsApp:
-    <a
-  class="whatsapp-link"
-  href="https://wa.me/${formatWhatsAppLink(s.whatsapp)}"
-  target="_blank"
-  rel="noopener"
->
-  ${formatPhone(s.whatsapp)}
-</a>
-
-  </p>
-` : ''}
-
-        ${s.domicilio ? `<p>${s.domicilio}</p>` : ''}
-        ${s.link ? `<a class="hotel-map-btn" href="${s.link}" target="_blank">Ver perfil</a>` : ''}
-        ${i < servicios.length - 1 ? '<hr>' : ''}
-      `;
+            <div class="service-item">
+              <div class="service-item-info">
+                <p><strong>${s.nombre}</strong></p>
+                ${s.instagram ? `<p>Instagram: @${s.instagram}</p>` : ''}
+                ${s.whatsapp ? `<p>WhatsApp: <a class="whatsapp-link" href="https://wa.me/${formatWhatsAppLink(s.whatsapp)}" target="_blank" rel="noopener">${formatPhone(s.whatsapp)}</a></p>` : ''}
+                ${s.domicilio ? `<p>${s.domicilio}</p>` : ''}
+                ${s.link ? `<a class="hotel-map-btn" href="${s.link}" target="_blank">Ver perfil</a>` : ''}
+              </div>
+            </div>
+            ${i < servicios.length - 1 ? '<hr>' : ''}
+          `;
         });
 
         list.appendChild(li);
