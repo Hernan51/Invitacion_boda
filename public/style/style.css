@@ -1,4 +1,6 @@
-.service-desc { max-height: 0; }
+.service-desc {
+  max-height: 0;
+}
 
 /* ===== SCROLL INTERNO SOLO PARA SERVICIOS ===== */
 
@@ -13,11 +15,14 @@
 
 /* Panel de servicios abierto */
 .service-desc.open {
-  max-height: 55vh;      /* altura máxima del panel */
-  overflow-y: auto;     /* 🔥 scroll vertical */
+  max-height: 55vh;
+  /* altura máxima del panel */
+  overflow-y: auto;
+  /* 🔥 scroll vertical */
   opacity: 1;
   padding-top: 10px;
-  padding-right: 6px;   /* espacio para scrollbar */
+  padding-right: 6px;
+  /* espacio para scrollbar */
 }
 
 .service-desc::-webkit-scrollbar {
@@ -25,7 +30,7 @@
 }
 
 .service-desc::-webkit-scrollbar-thumb {
-  background: rgba(0,0,0,0.25);
+  background: rgba(0, 0, 0, 0.25);
   border-radius: 6px;
 }
 
@@ -91,8 +96,9 @@
   max-height: 220px;
   object-fit: cover;
   border-radius: 6px;
-  background: #f0ebe3;
-  display: none; /* no ocupa espacio cuando el panel está cerrado */
+  background: #f0ebe300;
+  display: none;
+  /* no ocupa espacio cuando el panel está cerrado */
   margin-bottom: 10px;
 }
 
@@ -101,7 +107,12 @@
 }
 
 @media (max-width: 600px) {
-  .service-category-header-img { max-height: 270px; }
+  .service-category-header-img {
+    max-height: 200px;
+    max-width: 200px;
+    margin: 0 auto;
+  }
+
 }
 
 .service-desc a:hover {
@@ -112,9 +123,11 @@
 
 /* Link de WhatsApp dentro de servicios */
 .service-desc a.whatsapp-link {
-  color: #2f3b5c;              /* mismo tono elegante */
+  color: #2f3b5c;
+  /* mismo tono elegante */
   font-weight: 500;
-  text-decoration: none;       /* sin subrayado feo */
+  text-decoration: none;
+  /* sin subrayado feo */
   border-bottom: 1px solid rgba(47, 59, 92, 0.4);
   transition: color 0.2s ease, border-color 0.2s ease;
 }
@@ -142,9 +155,9 @@
   max-width: 420px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 .hotel-board-script {
@@ -175,7 +188,7 @@
   letter-spacing: 2px;
   font-size: 14px;
   padding: 12px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
   cursor: pointer;
 }
 
@@ -185,6 +198,15 @@
 }
 
 /* Rotación del + */
+
+/* estilos para que el carrusel acepte vídeos junto a imágenes */
+.hotel-carousel .carousel-track img,
+.hotel-carousel .carousel-track video {
+  width: 100%;
+  display: block;
+}
+
+
 .hotel-row.open .hotel-plus {
   transform: rotate(45deg);
 }
@@ -199,7 +221,7 @@
   font-family: 'Cinzel', serif;
   font-size: 12px;
   line-height: 1.5;
-  border-bottom: 1px solid rgba(0,0,0,0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   margin-bottom: 10px;
 }
 
@@ -245,7 +267,7 @@
   font-family: 'Cinzel', serif;
   font-size: 12px;
   line-height: 1.5;
-  border-bottom: 1px solid rgba(0,0,0,0.15);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.15);
   margin-bottom: 10px;
 }
 
@@ -269,7 +291,7 @@
 .hotel-info {
   margin-top: 25px;
   padding-top: 15px;
-  border-top: 1px solid rgba(0,0,0,0.25);
+  border-top: 1px solid rgba(0, 0, 0, 0.25);
   text-align: left;
   font-family: 'Cinzel', serif;
   font-size: 13px;
@@ -312,7 +334,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #1c1c1c; /* fondo oscuro para que destaque la tarjeta */
+  background: #1c1c1c;
+  /* fondo oscuro para que destaque la tarjeta */
 }
 
 /* Tarjeta tipo letrero */
@@ -322,9 +345,9 @@
   max-width: 420px;
   width: 100%;
   text-align: center;
-  box-shadow: 0 15px 40px rgba(0,0,0,0.25);
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
   border-radius: 4px;
-  border: 1px solid rgba(0,0,0,0.05);
+  border: 1px solid rgba(0, 0, 0, 0.05);
 }
 
 /* “Recomendaciones” en letra cursiva */
@@ -358,7 +381,7 @@
   font-size: 14px;
   letter-spacing: 2px;
   padding: 12px 0;
-  border-bottom: 1px solid rgba(0,0,0,0.25);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 .hotel-plus {
@@ -390,15 +413,16 @@
   letter-spacing: 2px;
   cursor: pointer;
 }
+
 .btn:hover {
   opacity: 0.9;
 }
 
 @media (max-width: 580px) {
-    .btn {
-        padding: 8px 13px;
-        font-size: 14px;
-    }
+  .btn {
+    padding: 8px 13px;
+    font-size: 14px;
+  }
 }
 
 
@@ -606,7 +630,8 @@ section {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%; /* Asegura que ocupe todo el espacio disponible */
+  width: 100%;
+  /* Asegura que ocupe todo el espacio disponible */
 }
 
 
@@ -670,13 +695,15 @@ footer {
   position: sticky;
   top: 0;
   z-index: 1000;
-  background: transparent;  
+  background: transparent;
   transition: background 0.3s ease;
 }
 
 .topbar.light {
-  background: #f7f1e6; /* color claro tipo la tarjeta */
-  color: #5a5449;      /* color de texto bonito */
+  background: #f7f1e6;
+  /* color claro tipo la tarjeta */
+  color: #5a5449;
+  /* color de texto bonito */
 }
 
 .topbar.light .logo span {
@@ -1061,15 +1088,19 @@ footer {
   gap: var(--date-gap);
   max-width: 880px;
 }
+
 /* Versión móvil: fecha apilada y sin desbordar */
 @media (max-width: 600px) {
   .hero-date {
     --date-gap: 24px;
     margin: 24px auto 6px;
     display: grid;
-    grid-template-columns: 1fr;      /* una sola columna */
-    row-gap: 10px;                   /* espacio entre líneas */
-    justify-items: center;           /* centrar todo */
+    grid-template-columns: 1fr;
+    /* una sola columna */
+    row-gap: 10px;
+    /* espacio entre líneas */
+    justify-items: center;
+    /* centrar todo */
     text-align: center;
   }
 
@@ -1102,7 +1133,7 @@ footer {
 
 /* Lados (texto) */
 .hero-date .side {
-  
+
   letter-spacing: .22em;
   font-size: clamp(38px, 2.5vw, 18px);
   color: #6a5f59;
@@ -1166,12 +1197,12 @@ footer {
     font-size: clamp(35px, 2.6vw, 32px);
     color: #7d6d67;
     margin-bottom: 6px;
-    }
-  
+  }
+
 }
 
 .hero-date .center .day {
-  
+
   font-weight: 600;
   font-size: clamp(72px, 12vw, 126px);
   /* grande */
@@ -1304,7 +1335,9 @@ footer {
 .aviso-card {
   display: block;
 }
+
 @media (min-width: 760px) {
+
   /* en pantallas >=760px hacemos que el aviso ocupe las 3 columnas del grid */
   #info.grid .aviso-card {
     grid-column: 1 / -1;
@@ -1733,42 +1766,51 @@ body.mode-pass.show-main .topbar {
 }
 
 /* 1. Nombres de los Novios y Frases "Script" (Romántico) */
-.names, 
-.names-alt, 
-.hotel-board-script, 
+.names,
+.names-alt,
+.hotel-board-script,
 .gift-text,
-.countdown h3 { /* Si tienes texto introductorio */
-   font-family: "Sacramento", cursive;
+.countdown h3 {
+  /* Si tienes texto introductorio */
+  font-family: "Sacramento", cursive;
   font-weight: 400;
   font-style: normal;
 }
 
 /* Ajuste específico para que los nombres se vean grandes y lujosos */
 .names-alt {
-    font-size: clamp(50px, 10vw, 90px); /* Hacemos la letra más grande */
-    line-height: 1.2;
-    margin-bottom: 20px;
-    color: #4b4b4b; /* Color gris oscuro elegante (o usa #d4af37 para dorado) */
+  font-size: clamp(50px, 10vw, 90px);
+  /* Hacemos la letra más grande */
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: #4b4b4b;
+  /* Color gris oscuro elegante (o usa #d4af37 para dorado) */
 }
 
 /* 2. Títulos de Sección y Subtítulos (Editorial / Elegante) */
-.section-title, 
-.hotel-board-title, 
-.hero-date, 
+.section-title,
+.hotel-board-title,
+.hero-date,
 .menu a {
-    font-family: 'Bona Nova SC', serif;
-    text-transform: uppercase; /* Mayúsculas para elegancia */
-    letter-spacing: 4px;       /* Espaciado amplio = Lujo */
-    font-weight: 600;
+  font-family: 'Bona Nova SC', serif;
+  text-transform: uppercase;
+  /* Mayúsculas para elegancia */
+  letter-spacing: 4px;
+  /* Espaciado amplio = Lujo */
+  font-weight: 600;
 }
 
 /* 3. Fechas y textos de énfasis */
 
 
 /* 4. Cuerpo de texto (Legibilidad) - Mantenemos Poppins pero más ligero */
-body, p, .hotel-desc, .itinerary-text {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300; /* Light se ve más limpio */
+body,
+p,
+.hotel-desc,
+.itinerary-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  /* Light se ve más limpio */
 }
 
 .dancing-script {
@@ -1805,7 +1847,7 @@ body, p, .hotel-desc, .itinerary-text {
   }
 }
 
-.sacramento{
+.sacramento {
   font-family: "Sacramento", cursive;
   font-weight: 400;
   font-style: normal;
@@ -1820,17 +1862,20 @@ body, p, .hotel-desc, .itinerary-text {
 /* Escritorio / tablet: el año pasa a la derecha */
 @media (min-width: 768px) {
   .year-mobile {
-    display: none;          /* oculta el año bajo el día */
+    display: none;
+    /* oculta el año bajo el día */
   }
 
   .year-desktop {
-    display: block;         /* muestra el año en la tercera columna */
+    display: block;
+    /* muestra el año en la tercera columna */
     text-align: center;
   }
 
   .year-desktop .year {
     letter-spacing: .36em;
-    color: #7d6d67;         /* mismo estilo que ya usas */
+    color: #7d6d67;
+    /* mismo estilo que ya usas */
   }
 }
 
@@ -1840,15 +1885,18 @@ body, p, .hotel-desc, .itinerary-text {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     justify-items: center;
-    column-gap: 80px;      /* un poco más de espacio entre columnas */
-    max-width: 1000px;     /* o simplemente elimina esta línea */
+    column-gap: 80px;
+    /* un poco más de espacio entre columnas */
+    max-width: 1000px;
+    /* o simplemente elimina esta línea */
     margin: 0 auto;
   }
 
   #info .card {
     text-align: center;
     width: 100%;
-    max-width: none;       /* <-- aquí quitamos el límite de 280px */
+    max-width: none;
+    /* <-- aquí quitamos el límite de 280px */
   }
 }
 
@@ -1866,18 +1914,20 @@ body, p, .hotel-desc, .itinerary-text {
   display: block;
   fill: #fff;
   stroke: rgba(0, 0, 0, .35);
-  stroke-width: 6;            /* ajustado al viewBox 100x85 */
+  stroke-width: 6;
+  /* ajustado al viewBox 100x85 */
   stroke-linejoin: round;
   stroke-linecap: round;
 }
 
-.stack-section{
+.stack-section {
   position: relative;
-  height: 200vh; /* clave: scroll largo */
+  height: 200vh;
+  /* clave: scroll largo */
 }
 
 /* FOTO FIJA */
-.stack-bg{
+.stack-bg {
   position: sticky;
   top: 0;
   height: 100vh;
@@ -1885,15 +1935,15 @@ body, p, .hotel-desc, .itinerary-text {
   overflow: hidden;
 }
 
-.stack-bg img{
+.stack-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  
+
 }
 
 /* CONTENIDO QUE SE DESLIZA */
-.stack-content{
+.stack-content {
   position: relative;
   z-index: 2;
   height: 100vh;
@@ -1903,30 +1953,31 @@ body, p, .hotel-desc, .itinerary-text {
 }
 
 /* TARJETA */
-.card{
-  background: rgba(255,255,255,0.92);
+.card {
+  background: rgba(255, 255, 255, 0.92);
   backdrop-filter: blur(6px);
   padding: 28px 22px;
   border-radius: 18px;
   max-width: 520px;
-  box-shadow: 0 20px 60px rgba(0,0,0,0.25);
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
 }
 
 /* Sección con scroll */
-.stack-section{
+.stack-section {
   position: relative;
-  height: 200vh; /* para que el texto se desplace */
+  height: 200vh;
+  /* para que el texto se desplace */
 }
 
 /* Imagen fija */
-.stack-bg{
+.stack-bg {
   position: sticky;
   top: 0;
   height: 100vh;
   z-index: 1;
 }
 
-.stack-bg img{
+.stack-bg img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1934,7 +1985,7 @@ body, p, .hotel-desc, .itinerary-text {
 }
 
 /* Contenido encima */
-.stack-content{
+.stack-content {
   position: relative;
   z-index: 2;
   height: 100vh;
@@ -1944,7 +1995,7 @@ body, p, .hotel-desc, .itinerary-text {
 }
 
 /* TEXTO SIN FONDO */
-.ceremonia-text{
+.ceremonia-text {
   text-align: center;
   padding: 0 18px;
 }
@@ -1952,31 +2003,31 @@ body, p, .hotel-desc, .itinerary-text {
 /* CONTORNO DEL TEXTO */
 .ceremonia-text h2,
 .ceremonia-text p,
-.ceremonia-text a{
+.ceremonia-text a {
   color: white;
- border-color: black;
+  border-color: black;
   text-shadow: 2px 2px 6px rgb(0, 0, 0);
 }
 
 
 
 /* Botón */
-.btn a{
+.btn a {
   display: inline-block;
-  
+
   padding: 10px 20px;
-  
+
   border-radius: 30px;
   text-decoration: none;
 }
 
 
-.section-stack{
+.section-stack {
   position: relative;
   height: 200vh;
 }
 
-.section-stack .watermark{
+.section-stack .watermark {
   position: sticky;
   top: 0;
   height: 100vh;
@@ -1984,38 +2035,47 @@ body, p, .hotel-desc, .itinerary-text {
   overflow: hidden;
 }
 
-.section-stack .watermark img{
+.section-stack .watermark img {
   width: 100%;
   height: 100%;
   object-fit: cover;
   transition: filter 0.1s linear;
 }
 
-.section-stack .card{
+.section-stack .card {
   position: relative;
   z-index: 2;
 }
 
 /* Estilo general para ambas ramas */
 .decoracion-rama {
-  position: absolute; /* O 'fixed' si quieres que te sigan al bajar la página */
-  left: -30px;        /* Ajusta este número para que se vea más o menos rama */
-  width: 180px;       /* El ancho que desees para la imagen */
+  position: absolute;
+  /* O 'fixed' si quieres que te sigan al bajar la página */
+  left: -30px;
+  /* Ajusta este número para que se vea más o menos rama */
+  width: 180px;
+  /* El ancho que desees para la imagen */
   height: auto;
-  opacity: 0.7;       /* Para que sea sutil */
-  z-index: 10;        /* Por debajo de la topbar pero por encima del fondo */
-  pointer-events: none; /* Evita que la imagen bloquee clics en botones */
-  filter: drop-shadow(2px 2px 5px rgba(0,0,0,0.05)); /* Opcional: sombra suave */
+  opacity: 0.7;
+  /* Para que sea sutil */
+  z-index: 10;
+  /* Por debajo de la topbar pero por encima del fondo */
+  pointer-events: none;
+  /* Evita que la imagen bloquee clics en botones */
+  filter: drop-shadow(2px 2px 5px rgba(0, 0, 0, 0.05));
+  /* Opcional: sombra suave */
 }
 
 /* Posición de la primera rama */
 .rama-superior {
-  top: 120px; /* Ajusta la distancia desde arriba */
+  top: 120px;
+  /* Ajusta la distancia desde arriba */
 }
 
 /* Posición de la segunda rama */
 .rama-inferior {
-  top: 450px; /* Ajusta la distancia para que quede debajo de la primera */
+  top: 450px;
+  /* Ajusta la distancia para que quede debajo de la primera */
 }
 
 /* Opcional: Si quieres que la topbar siempre esté por encima */
@@ -2048,7 +2108,7 @@ body, p, .hotel-desc, .itinerary-text {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   border: none;
   font-size: 22px;
@@ -2057,10 +2117,15 @@ body, p, .hotel-desc, .itinerary-text {
   z-index: 2;
 }
 
-.carousel-btn.prev { left: 5px; }
-.carousel-btn.next { right: 5px; }
+.carousel-btn.prev {
+  left: 5px;
+}
 
-.servicios{
+.carousel-btn.next {
+  right: 5px;
+}
+
+.servicios {
   padding: 100px 0;
   display: flex;
   justify-content: center;
@@ -2070,7 +2135,8 @@ body, p, .hotel-desc, .itinerary-text {
 
 /* ===== FIX LINK WHATSAPP (NO BOTÓN) ===== */
 .service-desc a.whatsapp-link {
-  display: inline;              /* quita estilo de botón */
+  display: inline;
+  /* quita estilo de botón */
   padding: 0;
   margin: 0;
   background: none;
@@ -2095,6 +2161,7 @@ body, p, .hotel-desc, .itinerary-text {
   width: 100%;
   display: block;
 }
+
 .dress-code img {
   width: 35%;
   max-width: 320px;
@@ -2107,13 +2174,17 @@ body, p, .hotel-desc, .itinerary-text {
 }
 
 @media (max-width: 600px) {
-  .dress-code img { width: 60%; }
+  .dress-code img {
+    width: 60%;
+  }
 }
+
 .dress-top {
   position: absolute;
   left: 50%;
   transform: translateX(-50%);
-  bottom: 0%; /* un poco más arriba para no tapar la imagen */
+  bottom: 0%;
+  /* un poco más arriba para no tapar la imagen */
   background: #ffffff;
   color: #3e3e3e;
   padding: 16px 22px;
@@ -2121,13 +2192,15 @@ body, p, .hotel-desc, .itinerary-text {
   font-size: 16px;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  box-shadow: 0 12px 28px rgba(0,0,0,0.12);
-  border-radius: 40px; /* base redondeada */
+  box-shadow: 0 12px 28px rgba(0, 0, 0, 0.12);
+  border-radius: 40px;
+  /* base redondeada */
   z-index: 40;
   text-align: center;
   max-width: min(92%, 480px);
   width: auto;
 }
+
 /* Removed decorative cloud circles per user request */
 .dress-badge {
   position: absolute;
@@ -2143,7 +2216,7 @@ body, p, .hotel-desc, .itinerary-text {
   line-height: 1.05;
   text-align: center;
   letter-spacing: 0.12em;
-  box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.25);
 }
 
 .dress-badge-wrap {
@@ -2151,33 +2224,38 @@ body, p, .hotel-desc, .itinerary-text {
   left: 50%;
   top: 70%;
   transform: translate(-50%, -50%);
-  width: 320px; /* aumentado para mayor visibilidad */
+  width: 320px;
+  /* aumentado para mayor visibilidad */
   height: auto;
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 6;
 }
+
 .dress-badge-svg {
   width: 320px;
   height: auto;
   display: block;
-  filter: drop-shadow(0 16px 28px rgba(0,0,0,0.32));
+  filter: drop-shadow(0 16px 28px rgba(0, 0, 0, 0.32));
 }
 
 .dress-badge-svg path {
-  stroke: rgba(0,0,0,0.18);
+  stroke: rgba(0, 0, 0, 0.18);
   stroke-width: 1.6;
 }
+
 .dress-badge-svg text {
   paint-order: stroke;
-  stroke: rgba(0,0,0,0.55);
+  stroke: rgba(0, 0, 0, 0.55);
   stroke-width: 0.9;
 }
+
 .dt-title {
   font-weight: 700;
   font-size: 18px;
 }
+
 .dt-sub {
   margin-top: 6px;
   font-size: 16px;
@@ -2208,17 +2286,32 @@ body, p, .hotel-desc, .itinerary-text {
     max-width: 100%;
     padding: 6px 8px;
   }
+
   .dress-badge-wrap {
     width: 200px;
     top: 68%;
   }
-  .dress-badge-svg { width: 200px; }
+
+  .dress-badge-svg {
+    width: 200px;
+  }
+
   /* hide any leftover badge elements on small screens */
-  .dress-badge-wrap, .dress-badge, .dress-badge-svg { display: none !important; }
+  .dress-badge-wrap,
+  .dress-badge,
+  .dress-badge-svg {
+    display: none !important;
+  }
 }
 
 /* ===== BADGE CSS (reemplaza SVG) ===== */
-.dress-badge-wrap, .dress-badge, .dress-badge-svg { display: none !important; } /* badge removed */
+.dress-badge-wrap,
+.dress-badge,
+.dress-badge-svg {
+  display: none !important;
+}
+
+/* badge removed */
 .dress-badge {
   width: 100%;
   max-width: 340px;
@@ -2230,7 +2323,7 @@ body, p, .hotel-desc, .itinerary-text {
   align-items: center;
   justify-content: center;
   position: relative;
-  box-shadow: 0 20px 50px rgba(0,0,0,0.35);
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.35);
   z-index: 6;
 }
 
@@ -2242,19 +2335,34 @@ body, p, .hotel-desc, .itinerary-text {
   line-height: 0.95;
   text-align: center;
   letter-spacing: 0.06em;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.5);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
 @media (max-width: 600px) {
-  .dress-badge { max-width: 220px; padding: 18px 12px; border-radius: 18px; }
-  .badge-text { font-size: 20px; }
-  .dress-badge::before, .dress-badge::after { width: 32px; height: 14px; left: -12px; right: -12px; }
+  .dress-badge {
+    max-width: 220px;
+    padding: 18px 12px;
+    border-radius: 18px;
+  }
+
+  .badge-text {
+    font-size: 20px;
+  }
+
+  .dress-badge::before,
+  .dress-badge::after {
+    width: 32px;
+    height: 14px;
+    left: -12px;
+    right: -12px;
+  }
 }
 
 /* Ajustes para pantallas anchas: bajar la tarjeta para que no tape la ilustración */
 @media (min-width: 1100px) {
   .dress-top {
-    bottom: -25%; /* coloca la tarjeta ligeramente por debajo de la imagen */
+    bottom: -25%;
+    /* coloca la tarjeta ligeramente por debajo de la imagen */
     max-width: 420px;
     padding: 18px 26px;
   }

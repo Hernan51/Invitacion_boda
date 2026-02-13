@@ -148,7 +148,11 @@
 
       <!-- Imagen fija -->
       <div class="stack-bg">
-        <img src="img/templo.jpeg" alt="">
+        <!-- responsive hero image: mobile versus desktop -->
+        <picture>
+          <source media="(min-width: 768px)" srcset="img/iglesia_horizontal.JPEG">
+          <img src="img/templo.jpeg" alt="">
+        </picture>
       </div>
 
       <!-- Texto que pasa por encima -->
@@ -172,7 +176,11 @@
     <section class="stack-section" id="recepcion">
 
       <div class="stack-bg">
-        <img src="img/salon_v2.png" alt="Ilustración tipo acuarela del salón">
+        <!-- responsive hero image: mobile versus desktop -->
+        <picture>
+          <source media="(min-width: 768px)" srcset="img/salon_horizontal.JPEG">
+          <img src="img/salon_vertical.JPEG" alt="Ilustración tipo acuarela del salón">
+        </picture>
       </div>
 
       <div class="stack-content">
@@ -469,6 +477,38 @@
           </div>
         </li>
 
+      <!-- Vive Place -->
+        <li>
+          <div class="hotel-row" data-hotel="vive-place">
+            <span>Vive Place</span>
+            <span class="hotel-plus">+</span>
+          </div>
+          <div class="hotel-desc">
+
+            <div class="hotel-carousel">
+              <button class="carousel-btn prev">‹</button>
+
+              <div class="carousel-track">
+                <!-- ejemplo con dos vídeos en lugar de imágenes -->
+                <video src="videos/sencilla.mp4" autoplay muted loop playsinline></video>
+                <video src="videos/doble.mp4" autoplay muted loop playsinline></video>
+              </div>
+
+              <button class="carousel-btn next">›</button>
+            </div>
+            <p><strong>Dirección:</strong> Avenida Independencia esquina Montes Himalaya Fraccionamiento Jardines De La Concepción ll, 20120 Aguascalientes, Ags.</p>
+            <p>Nuestro hotel ofrece a sus huéspedes múltiples comodidades: una confortable recepción con ascensor, café y/o té de cortesía, recepción abierta las 24 horas.</p>
+            <a class="hotel-map-btn" href="https://maps.app.goo.gl/tdzKgss4BrP3jr3B9?g_st=iw"
+              target="_blank">Ver en Google Maps</a>
+          </div>
+        </li>
+
+      </ul>
+
+    </div>
+
+
+
       </ul>
 
     </div>
@@ -567,7 +607,7 @@
   <script>
     document.querySelectorAll('.hotel-carousel').forEach(carousel => {
       const track = carousel.querySelector('.carousel-track');
-      const images = track.querySelectorAll('img');
+      const items = track.querySelectorAll('img, video');
       const prev = carousel.querySelector('.prev');
       const next = carousel.querySelector('.next');
 
@@ -575,17 +615,29 @@
 
       function updateCarousel() {
         track.style.transform = `translateX(-${index * 100}%)`;
+        // pause all videos
+        items.forEach(el => {
+          if (el.tagName === 'VIDEO') el.pause();
+        });
+        const current = items[index];
+        if (current && current.tagName === 'VIDEO') {
+          // try to play; may be muted so autoplay works
+          current.play().catch(() => {});
+        }
       }
 
       next.addEventListener('click', () => {
-        index = (index + 1) % images.length;
+        index = (index + 1) % items.length;
         updateCarousel();
       });
 
       prev.addEventListener('click', () => {
-        index = (index - 1 + images.length) % images.length;
+        index = (index - 1 + items.length) % items.length;
         updateCarousel();
       });
+
+      // initialize in case the first is video
+      updateCarousel();
     });
   </script>
 
