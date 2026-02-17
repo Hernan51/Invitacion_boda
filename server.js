@@ -88,6 +88,22 @@ app.get('/api/pases', async (_req, res) => {
   }
 });
 
+// lista de imágenes para carrusel (lectura directa de la carpeta)
+app.get('/api/carousel', (req, res) => {
+  const dir = path.join(ROOT, 'public', 'img', 'Carrusel');
+  fs.readdir(dir, (err, files) => {
+    if (err) {
+      console.error('Error leyendo carrusel:', err);
+      return res.status(500).json({ ok: false, error: 'read_error' });
+    }
+    const images = files
+      .filter(f => f.match(/\.(jpe?g|png|gif)$/i))
+      .map(f => `/img/Carrusel/${encodeURIComponent(f)}`);
+
+    res.json({ ok: true, images });
+  });
+});
+
 app.post('/api/pases', async (req, res) => {
   const { para, pases, id, link, user } = req.body || {};
   if (!para || !link || !pases) {

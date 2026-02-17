@@ -79,6 +79,7 @@
 
   <div id="inviteMount"></div>
 
+
   <div class="wrap">
     <header class="hero" id="home">
       <div class="hero-invite">
@@ -359,6 +360,9 @@
       </div>
   </div>
   </section>
+
+  <!-- Carrusel automático de imágenes -->
+  <div id="autoCarousel" class="auto-carousel" aria-label="Galería de fotos"></div>
 
   <!-- Fuentes elegantes (opcional) -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&display=swap"
@@ -826,6 +830,166 @@
       btn.addEventListener('click', toggle);
       overlay.addEventListener('click', (e) => { if (e.target === overlay) toggle(); });
       overlay.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggle()));
+    })();
+  </script>
+
+  <script>
+    // Carrusel: auto-scroll por imagen en móviles y drag-scroll siempre
+    (function () {
+      const container = document.getElementById('autoCarousel');
+      if (!container) return;
+
+      const imageNames = [
+        "Preboda Karen & Sergio - Luis Houdin HD (1013 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1036 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1054 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1062 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1068 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1075 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1089 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1098 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1126 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1133 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1147 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1149 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1156 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1170 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin HD (1173 de 175).jpg"
+      ];
+      const images = imageNames.map(name => `img/Carrusel/${encodeURIComponent(name)}`);
+      if (!images.length) return;
+
+      const track = document.createElement('div');
+      track.className = 'carousel-track';
+      images.forEach(src => {
+        const img = document.createElement('img');
+        img.src = src;
+        img.alt = '';
+        track.appendChild(img);
+      });
+      container.appendChild(track);
+
+      // Drag-scroll con mouse/touch
+      let isDown = false;
+      let startX;
+      let scrollLeft;
+
+      container.addEventListener('mousedown', (e) => {
+        isDown = true;
+        container.classList.add('dragging');
+        startX = e.pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+        e.preventDefault();
+      });
+      container.addEventListener('mouseleave', () => {
+        isDown = false;
+        container.classList.remove('dragging');
+      });
+      container.addEventListener('mouseup', () => {
+        isDown = false;
+        container.classList.remove('dragging');
+      });
+      container.addEventListener('mousemove', (e) => {
+        if (!isDown) return;
+        e.preventDefault();
+        const x = e.pageX - container.offsetLeft;
+        const walk = (x - startX) * 1.2;
+        container.scrollLeft = scrollLeft - walk;
+      });
+
+      // Touch
+      container.addEventListener('touchstart', (e) => {
+        isDown = true;
+        startX = e.touches[0].pageX - container.offsetLeft;
+        scrollLeft = container.scrollLeft;
+      });
+      container.addEventListener('touchend', () => {
+        isDown = false;
+      });
+      container.addEventListener('touchmove', (e) => {
+        if (!isDown) return;
+        const x = e.touches[0].pageX - container.offsetLeft;
+        const walk = (x - startX) * 1.2;
+        container.scrollLeft = scrollLeft - walk;
+      });
+
+      // Auto-scroll: en móvil, snap por imagen; en desktop, scroll suave
+      let autoScrollActive = true;
+      let autoScrollId;
+      let currentIndex = 0;
+
+      function isMobile() {
+        return window.innerWidth <= 600;
+      }
+
+      function scrollToImage(idx) {
+        const imgs = track.querySelectorAll('img');
+        if (!imgs[idx]) return;
+        let left = 0;
+        if (isMobile()) {
+          left = idx * container.offsetWidth;
+        } else {
+          left = imgs[idx].offsetLeft;
+        }
+        // Forzar scrollLeft directamente para móviles (algunos navegadores no animan bien el scrollTo)
+        if (isMobile()) {
+          container.scrollLeft = left;
+        } else {
+          container.scrollTo({ left, behavior: 'smooth' });
+        }
+      }
+
+      function autoScroll() {
+        if (!autoScrollActive) return;
+        if (isMobile()) {
+          // Snap por imagen
+          currentIndex = (currentIndex + 1) % images.length;
+          scrollToImage(currentIndex);
+          autoScrollId = setTimeout(autoScroll, 2600);
+        } else {
+          // Scroll suave
+          container.scrollLeft += 0.5;
+          if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 1) {
+            container.scrollLeft = 0;
+          }
+          autoScrollId = requestAnimationFrame(autoScroll);
+        }
+      }
+
+      function pauseAutoScroll() {
+        autoScrollActive = false;
+        if (autoScrollId) {
+          clearTimeout(autoScrollId);
+          cancelAnimationFrame(autoScrollId);
+        }
+      }
+      function resumeAutoScroll() {
+        if (!autoScrollActive) {
+          autoScrollActive = true;
+          autoScroll();
+        }
+      }
+
+      // Pausa mientras se arrastra o toca
+      container.addEventListener('mousedown', pauseAutoScroll);
+      container.addEventListener('touchstart', pauseAutoScroll);
+      // Reanuda cuando termina la interacción
+      container.addEventListener('mouseup', () => setTimeout(resumeAutoScroll, 1200));
+      container.addEventListener('mouseleave', () => setTimeout(resumeAutoScroll, 1200));
+      container.addEventListener('touchend', () => setTimeout(resumeAutoScroll, 1200));
+
+      // Reiniciar auto-scroll al cambiar tamaño de pantalla
+      window.addEventListener('resize', () => {
+        pauseAutoScroll();
+        setTimeout(() => {
+          currentIndex = 0;
+          container.scrollLeft = 0;
+          resumeAutoScroll();
+        }, 400);
+      });
+
+      // Iniciar auto-scroll
+      autoScroll();
     })();
   </script>
 
