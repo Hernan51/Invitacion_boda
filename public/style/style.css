@@ -819,7 +819,7 @@ body {
   color: var(--ink);
   background-color: #fff9f2;
   font-family: 'Poppins', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-  
+  line-height: 1.6;
 }
 
 a {
