@@ -362,7 +362,7 @@
   </section>
 
   <!-- Carrusel automático de imágenes -->
-  <div id="autoCarousel" class="auto-carousel" aria-label="Galería de fotos"></div>
+  <div id="photoGallery" class="photo-gallery" aria-label="Galería de fotos"></div>
 
   <!-- Fuentes elegantes (opcional) -->
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&display=swap"
@@ -834,162 +834,99 @@
   </script>
 
   <script>
-    // Carrusel: auto-scroll por imagen en móviles y drag-scroll siempre
+    // Galería de fotos responsive con lightbox (solo imágenes WEB nuevas)
     (function () {
-      const container = document.getElementById('autoCarousel');
-      if (!container) return;
-
+      const gallery = document.getElementById('photoGallery');
       const imageNames = [
-        "Preboda Karen & Sergio - Luis Houdin HD (1013 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1036 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1054 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1062 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1068 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1075 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1089 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1098 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1126 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1133 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1147 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1149 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1156 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1170 de 175).jpg",
-        "Preboda Karen & Sergio - Luis Houdin HD (1173 de 175).jpg"
+        "Preboda Karen & Sergio - Luis Houdin WEB (1013 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1036 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1037 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1054 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1060 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1061 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1062 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1068 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1077 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1089 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1097 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1098 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1109 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1114 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1117 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1122 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1126 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1127 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1133 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1137 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1140 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1147 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1148 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1149 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1150 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1156 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1158 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1164 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1166 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1167 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1169 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1170 de 175).jpg",
+        "Preboda Karen & Sergio - Luis Houdin WEB (1173 de 175).jpg"
       ];
-      const images = imageNames.map(name => `img/Carrusel/${encodeURIComponent(name)}`);
-      if (!images.length) return;
-
-      const track = document.createElement('div');
-      track.className = 'carousel-track';
-      images.forEach(src => {
+      imageNames.forEach((name, idx) => {
         const img = document.createElement('img');
-        img.src = src;
+        img.src = `img/Carrusel/${encodeURIComponent(name)}`;
         img.alt = '';
-        track.appendChild(img);
-      });
-      container.appendChild(track);
-
-      // Drag-scroll con mouse/touch
-      let isDown = false;
-      let startX;
-      let scrollLeft;
-
-      container.addEventListener('mousedown', (e) => {
-        isDown = true;
-        container.classList.add('dragging');
-        startX = e.pageX - container.offsetLeft;
-        scrollLeft = container.scrollLeft;
-        e.preventDefault();
-      });
-      container.addEventListener('mouseleave', () => {
-        isDown = false;
-        container.classList.remove('dragging');
-      });
-      container.addEventListener('mouseup', () => {
-        isDown = false;
-        container.classList.remove('dragging');
-      });
-      container.addEventListener('mousemove', (e) => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - container.offsetLeft;
-        const walk = (x - startX) * 1.2;
-        container.scrollLeft = scrollLeft - walk;
+        img.className = 'gallery-thumb';
+        img.tabIndex = 0;
+        img.addEventListener('click', () => openLightbox(idx));
+        img.addEventListener('keydown', e => { if (e.key === 'Enter') openLightbox(idx); });
+        gallery.appendChild(img);
       });
 
-      // Touch
-      container.addEventListener('touchstart', (e) => {
-        isDown = true;
-        startX = e.touches[0].pageX - container.offsetLeft;
-        scrollLeft = container.scrollLeft;
-      });
-      container.addEventListener('touchend', () => {
-        isDown = false;
-      });
-      container.addEventListener('touchmove', (e) => {
-        if (!isDown) return;
-        const x = e.touches[0].pageX - container.offsetLeft;
-        const walk = (x - startX) * 1.2;
-        container.scrollLeft = scrollLeft - walk;
-      });
-
-      // Auto-scroll: en móvil, snap por imagen; en desktop, scroll suave
-      let autoScrollActive = true;
-      let autoScrollId;
-      let currentIndex = 0;
-
-      function isMobile() {
-        return window.innerWidth <= 600;
+      // Lightbox simple
+      let lightbox, lightboxImg, closeBtn, prevBtn, nextBtn;
+      function openLightbox(idx) {
+        if (!lightbox) createLightbox();
+        showImage(idx);
+        lightbox.style.display = 'flex';
       }
-
-      function scrollToImage(idx) {
-        const imgs = track.querySelectorAll('img');
-        if (!imgs[idx]) return;
-        let left = 0;
-        if (isMobile()) {
-          left = idx * container.offsetWidth;
-        } else {
-          left = imgs[idx].offsetLeft;
-        }
-        // Forzar scrollLeft directamente para móviles (algunos navegadores no animan bien el scrollTo)
-        if (isMobile()) {
-          container.scrollLeft = left;
-        } else {
-          container.scrollTo({ left, behavior: 'smooth' });
-        }
+      function createLightbox() {
+        lightbox = document.createElement('div');
+        lightbox.className = 'lightbox';
+        lightbox.tabIndex = 0;
+        lightbox.innerHTML = `
+          <button class="lightbox-close" aria-label="Cerrar">×</button>
+          <button class="lightbox-prev" aria-label="Anterior">‹</button>
+          <img class="lightbox-img" src="" alt="">
+          <button class="lightbox-next" aria-label="Siguiente">›</button>
+        `;
+        document.body.appendChild(lightbox);
+        lightboxImg = lightbox.querySelector('.lightbox-img');
+        closeBtn = lightbox.querySelector('.lightbox-close');
+        prevBtn = lightbox.querySelector('.lightbox-prev');
+        nextBtn = lightbox.querySelector('.lightbox-next');
+        closeBtn.onclick = () => lightbox.style.display = 'none';
+        prevBtn.onclick = () => showImage(currentIdx - 1);
+        nextBtn.onclick = () => showImage(currentIdx + 1);
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.style.display = 'none'; });
+        lightbox.addEventListener('keydown', e => {
+          if (e.key === 'Escape') lightbox.style.display = 'none';
+          if (e.key === 'ArrowLeft') showImage(currentIdx - 1);
+          if (e.key === 'ArrowRight') showImage(currentIdx + 1);
+        });
       }
-
-      function autoScroll() {
-        if (!autoScrollActive) return;
-        if (isMobile()) {
-          // Snap por imagen
-          currentIndex = (currentIndex + 1) % images.length;
-          scrollToImage(currentIndex);
-          autoScrollId = setTimeout(autoScroll, 2600);
-        } else {
-          // Scroll suave
-          container.scrollLeft += 0.5;
-          if (container.scrollLeft + container.clientWidth >= container.scrollWidth - 1) {
-            container.scrollLeft = 0;
-          }
-          autoScrollId = requestAnimationFrame(autoScroll);
-        }
+      let currentIdx = 0;
+      function showImage(idx) {
+        if (idx < 0) idx = 0;
+        if (idx > imageNames.length - 1) idx = imageNames.length - 1;
+        currentIdx = idx;
+        lightboxImg.src = `img/Carrusel/${encodeURIComponent(imageNames[idx])}`;
+        lightboxImg.style.width = 'auto';
+        lightboxImg.style.height = 'auto';
+        lightboxImg.style.maxWidth = '98vw';
+        lightboxImg.style.maxHeight = '90vh';
+        lightboxImg.style.objectFit = 'contain';
       }
-
-      function pauseAutoScroll() {
-        autoScrollActive = false;
-        if (autoScrollId) {
-          clearTimeout(autoScrollId);
-          cancelAnimationFrame(autoScrollId);
-        }
-      }
-      function resumeAutoScroll() {
-        if (!autoScrollActive) {
-          autoScrollActive = true;
-          autoScroll();
-        }
-      }
-
-      // Pausa mientras se arrastra o toca
-      container.addEventListener('mousedown', pauseAutoScroll);
-      container.addEventListener('touchstart', pauseAutoScroll);
-      // Reanuda cuando termina la interacción
-      container.addEventListener('mouseup', () => setTimeout(resumeAutoScroll, 1200));
-      container.addEventListener('mouseleave', () => setTimeout(resumeAutoScroll, 1200));
-      container.addEventListener('touchend', () => setTimeout(resumeAutoScroll, 1200));
-
-      // Reiniciar auto-scroll al cambiar tamaño de pantalla
-      window.addEventListener('resize', () => {
-        pauseAutoScroll();
-        setTimeout(() => {
-          currentIndex = 0;
-          container.scrollLeft = 0;
-          resumeAutoScroll();
-        }, 400);
-      });
-
-      // Iniciar auto-scroll
-      autoScroll();
     })();
   </script>
 
