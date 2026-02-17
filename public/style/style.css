@@ -7,27 +7,38 @@
   margin: 8px auto 0 auto;
   border-radius: 18px;
   overflow: hidden;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.13);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.13);
 }
+
 .main-image-blur img {
   display: block;
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
-  
+
 .main-image-gradient {
   position: absolute;
-  left: 0; right: 0; top: 0;
+  left: 0;
+  right: 0;
+  top: -1px;
+  /* Sube un píxel para cubrir cualquier borde */
   height: 60%;
-  background: linear-gradient(to bottom, rgba(255,249,242,1) 0%, rgba(255,249,242,0.96) 30%, rgba(255,249,242,0.80) 60%, rgba(255,249,242,0) 100%);
+  /* Cambiamos el inicio para que sea más suave y evitar bordes duros */
+  background: linear-gradient(to bottom,
+      rgba(255, 249, 242, 1) 0%,
+      rgba(255, 249, 242, 0.96) 20%,
+      rgba(255, 249, 242, 0) 100%);
   pointer-events: none;
+  z-index: 1;
+  /* Asegura que esté sobre la imagen */
 }
 
 /* Contador sobre la imagen principal */
 .main-image-with-counter {
   position: relative;
 }
+
 .main-image-counter {
   position: absolute;
   top: 0;
@@ -42,10 +53,12 @@
   padding-top: 32px;
   pointer-events: none;
 }
+
 .main-image-counter h3,
 .main-image-counter .countdown {
   pointer-events: auto;
 }
+
 .main-image-counter .countdown {
   background: none;
   border-radius: 0;
@@ -55,32 +68,39 @@
   display: flex;
   gap: 18px;
 }
+
 .main-image-counter .cd-box {
   text-align: center;
 }
+
 .main-image-counter .cd-num {
   font-size: 2.2em;
   font-weight: bold;
   color: #2f3b5c;
 }
+
 @media (max-width: 600px) {
   .main-image-counter .cd-num {
     font-size: 2.0em;
   }
 }
+
 .main-image-counter .cd-lbl {
   font-size: 0.9em;
   color: #555;
 }
+
 @media (max-width: 600px) {
   .main-image-counter {
     padding-top: 12px;
   }
+
   .main-image-counter .countdown {
     padding: 6px 8px 2px 8px;
     gap: 8px;
   }
 }
+
 @media (max-width: 900px) {
   .main-image-blur {
     max-width: 100vw;
@@ -94,12 +114,25 @@
     margin-top: 50px;
     aspect-ratio: unset;
     box-shadow: none;
+    background-color: #fff9f2;
+    /* Asegura que el fondo coincida con el cuerpo */
+    overflow: hidden;
   }
+
   .main-image-blur img {
+    display: block;
+    width: 100%;
     height: auto;
+    vertical-align: middle;
+    /* Quita el espacio inferior de línea base */
     border-radius: 0;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    transform: translateZ(0);
+    /* Fuerza renderizado por hardware */
   }
 }
+
 /* Galería de fotos responsive */
 .photo-gallery {
   display: grid;
@@ -110,20 +143,22 @@
   margin: 0 auto 32px auto;
   padding: 12px 0 0 0;
 }
+
 .gallery-thumb {
   width: 100%;
   height: 160px;
   object-fit: cover;
   border-radius: 10px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.10);
   cursor: pointer;
   transition: transform 0.18s, box-shadow 0.18s;
   background: #fff;
 }
+
 .gallery-thumb:focus,
 .gallery-thumb:hover {
   transform: scale(1.04);
-  box-shadow: 0 4px 18px rgba(0,0,0,0.18);
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.18);
   outline: 2px solid #d0bfa7;
 }
 
@@ -132,8 +167,11 @@
   display: none;
   position: fixed;
   z-index: 10000;
-  top: 0; left: 0; right: 0; bottom: 0;
-  background: rgba(0,0,0,0.92);
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.92);
   align-items: center;
   justify-content: center;
   flex-direction: row;
@@ -141,19 +179,24 @@
   width: 100vw;
   height: 100vh;
 }
+
 .lightbox {
   display: flex;
 }
+
 .lightbox-img {
   max-width: 92vw;
   max-height: 80vh;
   border-radius: 10px;
-  box-shadow: 0 4px 32px rgba(0,0,0,0.25);
+  box-shadow: 0 4px 32px rgba(0, 0, 0, 0.25);
   background: #fff;
 }
-.lightbox-close, .lightbox-prev, .lightbox-next {
+
+.lightbox-close,
+.lightbox-prev,
+.lightbox-next {
   position: absolute;
-  background: rgba(0,0,0,0.45);
+  background: rgba(0, 0, 0, 0.45);
   color: #fff;
   border: none;
   font-size: 2.2em;
@@ -163,59 +206,75 @@
   cursor: pointer;
   opacity: 0.85;
   transition: background 0.2s, opacity 0.2s;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
   outline: none;
   z-index: 2;
 }
+
 .lightbox-close {
   top: 24px;
   right: 24px;
   font-size: 2.5em;
 }
+
 .lightbox-prev {
   left: 24px;
   top: 50%;
   transform: translateY(-50%);
 }
+
 .lightbox-next {
   right: 24px;
   top: 50%;
   transform: translateY(-50%);
 }
-.lightbox-close:active, .lightbox-prev:active, .lightbox-next:active {
-  background: rgba(0,0,0,0.7);
+
+.lightbox-close:active,
+.lightbox-prev:active,
+.lightbox-next:active {
+  background: rgba(0, 0, 0, 0.7);
   opacity: 1;
 }
+
 @media (max-width: 600px) {
   .photo-gallery {
     grid-template-columns: repeat(2, 1fr);
     gap: 8px;
   }
+
   .gallery-thumb {
     height: 28vw;
     min-height: 90px;
     max-height: 32vw;
   }
+
   .lightbox-img {
     max-width: 98vw;
     max-height: 60vh;
   }
-  .lightbox-close, .lightbox-prev, .lightbox-next {
+
+  .lightbox-close,
+  .lightbox-prev,
+  .lightbox-next {
     width: 38px;
     height: 38px;
     font-size: 1.7em;
   }
+
   .lightbox-close {
     top: 10px;
     right: 10px;
   }
+
   .lightbox-prev {
     left: 6px;
   }
+
   .lightbox-next {
     right: 6px;
   }
 }
+
 @media (max-width: 600px) {
   .auto-carousel .carousel-arrow {
     display: block;
@@ -223,7 +282,7 @@
     top: 50%;
     transform: translateY(-50%);
     z-index: 2;
-    background: rgba(0,0,0,0.45);
+    background: rgba(0, 0, 0, 0.45);
     color: #fff;
     border: none;
     font-size: 2.2em;
@@ -233,37 +292,44 @@
     cursor: pointer;
     opacity: 0.85;
     transition: background 0.2s, opacity 0.2s;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
     outline: none;
   }
+
   .auto-carousel .carousel-arrow.left {
     left: 8px;
   }
+
   .auto-carousel .carousel-arrow.right {
     right: 8px;
   }
+
   .auto-carousel .carousel-arrow:active {
-    background: rgba(0,0,0,0.7);
+    background: rgba(0, 0, 0, 0.7);
     opacity: 1;
   }
 }
+
 @media (max-width: 600px) {
   .auto-carousel {
     height: 60vw;
     min-height: 220px;
     max-height: 80vw;
   }
+
   .auto-carousel .carousel-track {
     gap: 0;
     width: 100vw;
     height: 100%;
     overflow: visible;
   }
+
   .auto-carousel {
     overflow-x: scroll;
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
   }
+
   .auto-carousel img {
     width: 100vw;
     min-width: 100vw;
@@ -276,14 +342,17 @@
     background: #000;
     scroll-snap-align: center;
   }
+
   /* Oculta el resto de imágenes fuera del viewport */
   .auto-carousel .carousel-track {
     scroll-snap-type: x mandatory;
   }
+
   .auto-carousel img {
     scroll-snap-align: center;
   }
 }
+
 /* Solo para las imágenes del carrusel automático */
 .auto-carousel {
   position: relative;
@@ -311,11 +380,12 @@
   object-fit: cover;
   margin: 0 10px;
   display: block;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.10);
   border-radius: 12px;
   background: #fff;
   transition: box-shadow 0.2s;
 }
+
 .service-desc {
   max-height: 0;
 }
@@ -621,21 +691,26 @@
   position: relative;
   overflow: hidden;
   width: 100%;
-  height: 350px; /* puedes ajustar la altura aquí */
+  height: 350px;
+  /* puedes ajustar la altura aquí */
   background: #000;
   display: flex;
   align-items: center;
 }
+
 .auto-carousel .carousel-track {
   display: flex;
   align-items: center;
   height: 100%;
-  gap: 6px; /* Espacio reducido entre imágenes */
+  gap: 6px;
+  /* Espacio reducido entre imágenes */
 }
+
 .auto-carousel img {
   display: block;
   height: 100%;
-  width: 120px; /* Aún menos ancho */
+  width: 120px;
+  /* Aún menos ancho */
   max-width: 40vw;
   object-fit: cover;
   margin-right: 0;
@@ -646,6 +721,7 @@
 .auto-carousel::-webkit-scrollbar {
   display: none;
 }
+
 .auto-carousel {
   -ms-overflow-style: none;
   scrollbar-width: none;
