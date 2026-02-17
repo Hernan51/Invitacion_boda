@@ -111,36 +111,44 @@
 
       <!-- (opcional) deja tu contador y botón aquí -->
       <div class="countdown dancing-script" id="countdown" style="font-size: 20px;">“Dios juntó nuestras manos y nos señaló el camino. <br>
+
         Nosotros uniremos nuestras vidas y lo recorreremos con fé y amor. ”
-        
       </div>
 
-    </header>
+      <!-- Texto de cuenta regresiva arriba de la imagen -->
+  <h3 style="text-align: center; margin: 18px 0 8px 0;" class="sacramento">¡Qué comience la cuenta regresiva!</h3>
 
-    <!-- Contador -->
-    <h3 style="text-align: center;" class="sacramento">¡Qué comience la cuenta regresiva!</h3>
-    <div class="countdown" id="countdown">
-      <div class="cd-box">
-        <div class="cd-num" id="d">–</div>
-        <div class="cd-lbl">Días</div>
-      </div>
-      <div class="cd-box">
-        <div class="cd-num" id="h">–</div>
-        <div class="cd-lbl">Horas</div>
-      </div>
-      <div class="cd-box">
-        <div class="cd-num" id="m">–</div>
-        <div class="cd-lbl">Min</div>
-      </div>
-      <div class="cd-box">
-        <div class="cd-num" id="s">–</div>
-        <div class="cd-lbl">Seg</div>
-      </div>
-    </div>
 
-    <div class="add-to-cal" style="margin-top: 2%;">
-      <button class="btn dancing-script" id="addToCalBtn">Agregar al calendario</button>
-    </div>
+      <div class="main-image-blur main-image-with-counter">
+        <picture>
+          <source media="(min-width: 768px)" srcset="img/main_full_width.jpg">
+          <img src="img/main.jpg" alt="Karen y Sergio" />
+        </picture>
+        <div class="main-image-gradient"></div>
+        <div class="main-image-counter">
+          <div class="countdown" id="main-countdown">
+            <div class="cd-box">
+              <div class="cd-num" id="d2">–</div>
+              <div class="cd-lbl">Días</div>
+            </div>
+            <div class="cd-box">
+              <div class="cd-num" id="h2">–</div>
+              <div class="cd-lbl">Horas</div>
+            </div>
+            <div class="cd-box">
+              <div class="cd-num" id="m2">–</div>
+              <div class="cd-lbl">Min</div>
+            </div>
+            <div class="cd-box">
+              <div class="cd-num" id="s2">–</div>
+              <div class="cd-lbl">Seg</div>
+            </div>
+          </div>
+          <div class="add-to-cal" style="margin-top: 18px; text-align: center;">
+            <button class="btn dancing-script" id="addToCalBtn">Agregar al calendario</button>
+          </div>
+        </div>
+      </div>
 
     </header>
 
@@ -783,13 +791,13 @@
   </script>
 
   <script>
-    // Contador al 11 de julio de 2026
+    // Contador al 11 de julio de 2026 (ahora sobre la imagen)
     (function () {
       const target = new Date('2026-07-11T00:00:00');
-      const d = document.getElementById('d');
-      const h = document.getElementById('h');
-      const m = document.getElementById('m');
-      const s = document.getElementById('s');
+      const d = document.getElementById('d2');
+      const h = document.getElementById('h2');
+      const m = document.getElementById('m2');
+      const s = document.getElementById('s2');
       function tick() {
         const now = new Date();
         let diff = target - now; if (diff < 0) diff = 0;
