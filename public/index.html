@@ -110,13 +110,14 @@
       </div>
 
       <!-- (opcional) deja tu contador y botón aquí -->
-      <div class="countdown dancing-script" id="countdown" style="font-size: 20px;">“Dios juntó nuestras manos y nos señaló el camino. <br>
+      <div class="countdown dancing-script" id="countdown" style="font-size: 20px;">“Dios juntó nuestras manos y nos
+        señaló el camino. <br>
 
         Nosotros uniremos nuestras vidas y lo recorreremos con fé y amor. ”
       </div>
 
       <!-- Texto de cuenta regresiva arriba de la imagen -->
-  <h3 style="text-align: center; margin: 18px 0 8px 0;" class="sacramento">¡Qué comience la cuenta regresiva!</h3>
+      <h3 style="text-align: center; margin: 18px 0 8px 0;" class="sacramento">¡Qué comience la cuenta regresiva!</h3>
 
 
       <div class="main-image-blur main-image-with-counter">
@@ -201,7 +202,8 @@
             Después de la ceremonia, celebraremos con cena, música y mucho amor.
           </p>
           <div class="btn">
-            <a class="dancing-script" href="https://maps.app.goo.gl/Ygj4LrfqH4SjpTNBA" target="_blank" rel="noopener">Ver mapa</a>
+            <a class="dancing-script" href="https://maps.app.goo.gl/Ygj4LrfqH4SjpTNBA" target="_blank"
+              rel="noopener">Ver mapa</a>
           </div>
         </div>
       </div>
@@ -212,18 +214,18 @@
     <section class="grid grid-3" id="info">
       <div class="card">
         <h3 class="sacramento">Código de vestimenta</h3>
-          <div class="dress-code">
-            <img src="img/dress_code.png" alt="Dress code" />
-            <br><br><br><br><br>
+        <div class="dress-code">
+          <img src="img/dress_code.png" alt="Dress code" />
+          <br><br><br><br><br>
 
-            <!-- pequeña tarjeta blanca superior con detalle -->
-            <div class="dress-top">
-              <div class="dt-title">FORMAL DE NOCHE.</div>
-              <div class="dt-sub">Caballeros con traje, damas con vestido largo</div>
-            </div>
-
-            <!-- badge eliminado por petición -->
+          <!-- pequeña tarjeta blanca superior con detalle -->
+          <div class="dress-top">
+            <div class="dt-title">FORMAL DE NOCHE.</div>
+            <div class="dt-sub">Caballeros con traje, damas con vestido largo</div>
           </div>
+
+          <!-- badge eliminado por petición -->
+        </div>
       </div>
 
       <div class="card">
@@ -236,7 +238,8 @@
       </div>
       <div class="card aviso-card">
         <h3 class="sacramento">Aviso</h3>
-        <p class="dancing-script" style="font-size: 19px;">Nos encantaría que nos acompañen en esta noche de celebración diseñada especialmente para adultos. Agradecemos su comprensión.</p>
+        <p class="dancing-script" style="font-size: 19px;">Nos encantaría que nos acompañen en esta noche de celebración
+          diseñada especialmente para adultos. Agradecemos su comprensión.</p>
       </div>
     </section>
 
@@ -318,7 +321,7 @@
             </div>
           </div>
           <div class="itinerary-text">
-            
+
             <div class="it-time">Disfruta la fiesta</div>
           </div>
         </div>
@@ -369,7 +372,7 @@
   </div>
   </section>
 
-  <!-- Carrusel automático de imágenes -->
+  <!-- Galeria automático de imágenes -->
   <div id="photoGallery" class="photo-gallery" aria-label="Galería de fotos"></div>
 
   <!-- Fuentes elegantes (opcional) -->
@@ -489,7 +492,7 @@
           </div>
         </li>
 
-      <!-- Vive Place -->
+        <!-- Vive Place -->
         <li>
           <div class="hotel-row" data-hotel="vive-place">
             <span>Vive Place</span>
@@ -508,10 +511,12 @@
 
               <button class="carousel-btn next">›</button>
             </div>
-            <p><strong>Dirección:</strong> Avenida Independencia esquina Montes Himalaya Fraccionamiento Jardines De La Concepción ll, 20120 Aguascalientes, Ags.</p>
-            <p>Nuestro hotel ofrece a sus huéspedes múltiples comodidades: una confortable recepción con ascensor, café y/o té de cortesía, recepción abierta las 24 horas.</p>
-            <a class="hotel-map-btn" href="https://maps.app.goo.gl/tdzKgss4BrP3jr3B9?g_st=iw"
-              target="_blank">Ver en Google Maps</a>
+            <p><strong>Dirección:</strong> Avenida Independencia esquina Montes Himalaya Fraccionamiento Jardines De La
+              Concepción ll, 20120 Aguascalientes, Ags.</p>
+            <p>Nuestro hotel ofrece a sus huéspedes múltiples comodidades: una confortable recepción con ascensor, café
+              y/o té de cortesía, recepción abierta las 24 horas.</p>
+            <a class="hotel-map-btn" href="https://maps.app.goo.gl/tdzKgss4BrP3jr3B9?g_st=iw" target="_blank">Ver en
+              Google Maps</a>
           </div>
         </li>
 
@@ -521,7 +526,7 @@
 
 
 
-      </ul>
+    </ul>
 
     </div>
 
@@ -634,7 +639,7 @@
         const current = items[index];
         if (current && current.tagName === 'VIDEO') {
           // try to play; may be muted so autoplay works
-          current.play().catch(() => {});
+          current.play().catch(() => { });
         }
       }
 
@@ -880,6 +885,7 @@
         "Preboda Karen & Sergio - Luis Houdin WEB (1170 de 175).jpg",
         "Preboda Karen & Sergio - Luis Houdin WEB (1173 de 175).jpg"
       ];
+
       imageNames.forEach((name, idx) => {
         const img = document.createElement('img');
         img.src = `img/Carrusel/${encodeURIComponent(name)}`;
@@ -891,46 +897,82 @@
         gallery.appendChild(img);
       });
 
-      // Lightbox simple
       let lightbox, lightboxImg, closeBtn, prevBtn, nextBtn;
+      let currentIdx = 0;
+      let touchStartX = 0;
+      let touchEndX = 0;
+
       function openLightbox(idx) {
         if (!lightbox) createLightbox();
         showImage(idx);
         lightbox.style.display = 'flex';
+        lightbox.focus(); // Enfocar para que las flechas funcionen de inmediato
       }
+
       function createLightbox() {
         lightbox = document.createElement('div');
         lightbox.className = 'lightbox';
         lightbox.tabIndex = 0;
         lightbox.innerHTML = `
-          <button class="lightbox-close" aria-label="Cerrar">×</button>
-          <button class="lightbox-prev" aria-label="Anterior">‹</button>
-          <img class="lightbox-img" src="" alt="">
-          <button class="lightbox-next" aria-label="Siguiente">›</button>
-        `;
+      <button class="lightbox-close" aria-label="Cerrar">×</button>
+      <button class="lightbox-prev" aria-label="Anterior">‹</button>
+      <img class="lightbox-img" src="" alt="">
+      <button class="lightbox-next" aria-label="Siguiente">›</button>
+    `;
         document.body.appendChild(lightbox);
+
         lightboxImg = lightbox.querySelector('.lightbox-img');
         closeBtn = lightbox.querySelector('.lightbox-close');
         prevBtn = lightbox.querySelector('.lightbox-prev');
         nextBtn = lightbox.querySelector('.lightbox-next');
+
         closeBtn.onclick = () => lightbox.style.display = 'none';
-        prevBtn.onclick = () => showImage(currentIdx - 1);
-        nextBtn.onclick = () => showImage(currentIdx + 1);
-        lightbox.addEventListener('click', e => { if (e.target === lightbox) lightbox.style.display = 'none'; });
-        lightbox.addEventListener('keydown', e => {
-          if (e.key === 'Escape') lightbox.style.display = 'none';
-          if (e.key === 'ArrowLeft') showImage(currentIdx - 1);
-          if (e.key === 'ArrowRight') showImage(currentIdx + 1);
+        prevBtn.onclick = (e) => { e.stopPropagation(); showImage(currentIdx - 1); };
+        nextBtn.onclick = (e) => { e.stopPropagation(); showImage(currentIdx + 1); };
+
+        // Cerrar al hacer clic fuera
+        lightbox.addEventListener('click', e => {
+          if (e.target === lightbox) lightbox.style.display = 'none';
         });
+
+        // --- SOPORTE TECLADO (PC) ---
+        // Usamos window para asegurar que detecte las teclas aunque el foco cambie
+        window.addEventListener('keydown', e => {
+          if (lightbox.style.display === 'flex') {
+            if (e.key === 'Escape') lightbox.style.display = 'none';
+            if (e.key === 'ArrowLeft') showImage(currentIdx - 1);
+            if (e.key === 'ArrowRight') showImage(currentIdx + 1);
+          }
+        });
+
+        // --- SOPORTE TÁCTIL (MÓVIL) ---
+        lightbox.addEventListener('touchstart', e => {
+          touchStartX = e.changedTouches[0].screenX;
+        }, { passive: true });
+
+        lightbox.addEventListener('touchend', e => {
+          touchEndX = e.changedTouches[0].screenX;
+          handleSwipe();
+        }, { passive: true });
       }
-      let currentIdx = 0;
+
+      function handleSwipe() {
+        const swipeThreshold = 50; // Sensibilidad mínima
+        if (touchEndX < touchStartX - swipeThreshold) {
+          showImage(currentIdx + 1); // Deslizar izquierda -> Siguiente
+        }
+        if (touchEndX > touchStartX + swipeThreshold) {
+          showImage(currentIdx - 1); // Deslizar derecha -> Anterior
+        }
+      }
+
       function showImage(idx) {
         if (idx < 0) idx = 0;
         if (idx > imageNames.length - 1) idx = imageNames.length - 1;
         currentIdx = idx;
         lightboxImg.src = `img/Carrusel/${encodeURIComponent(imageNames[idx])}`;
-        lightboxImg.style.width = 'auto';
-        lightboxImg.style.height = 'auto';
+
+        // Estilos para asegurar que se vea bien
         lightboxImg.style.maxWidth = '98vw';
         lightboxImg.style.maxHeight = '90vh';
         lightboxImg.style.objectFit = 'contain';
@@ -1043,7 +1085,7 @@
 
         const catKey = (categoria || '').trim().toLowerCase();
 
-        let imageTag =  categoria ;
+        let imageTag = categoria;
         let thumbTag = '';
 
         // Mapear categorías del CSV a imágenes existentes (comprobaciones por subcadena)
