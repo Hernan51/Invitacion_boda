@@ -181,24 +181,32 @@
 }
 
 .lightbox {
-  display: flex;
-  backdrop-filter: blur(8px); 
-  -webkit-backdrop-filter: blur(8px);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7);
+  /* Desenfoque de fondo */
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  /* Evita gestos extraños en móvil */
+  touch-action: none;
 }
 
 .lightbox-img {
   max-width: 92vw;
   max-height: 80vh;
   border-radius: 10px;
-  
-  /* Quitamos el fondo blanco */
-  background: transparent; 
-  
-  /* Sombra más profunda para que la foto "flote" sobre el blur */
-  box-shadow: 0 10px 50px rgba(0, 0, 0, 0.5); 
-  
+  background: transparent;
+  /* Sin fondo blanco */
   object-fit: contain;
-  user-select: none;
+  /* Transición suave para el cambio de imagen */
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
 .lightbox-close,

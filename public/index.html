@@ -906,7 +906,13 @@
         if (!lightbox) createLightbox();
         showImage(idx);
         lightbox.style.display = 'flex';
-        lightbox.focus(); // Enfocar para que las flechas funcionen de inmediato
+        document.body.style.overflow = 'hidden'; // Bloquea el scroll de la página
+        lightbox.focus();
+      }
+
+      function closeGallery() {
+        lightbox.style.display = 'none';
+        document.body.style.overflow = ''; // Devuelve el scroll
       }
 
       function createLightbox() {
@@ -926,26 +932,22 @@
         prevBtn = lightbox.querySelector('.lightbox-prev');
         nextBtn = lightbox.querySelector('.lightbox-next');
 
-        closeBtn.onclick = () => lightbox.style.display = 'none';
+        closeBtn.onclick = closeGallery;
         prevBtn.onclick = (e) => { e.stopPropagation(); showImage(currentIdx - 1); };
         nextBtn.onclick = (e) => { e.stopPropagation(); showImage(currentIdx + 1); };
 
-        // Cerrar al hacer clic fuera
         lightbox.addEventListener('click', e => {
-          if (e.target === lightbox) lightbox.style.display = 'none';
+          if (e.target === lightbox) closeGallery();
         });
 
-        // --- SOPORTE TECLADO (PC) ---
-        // Usamos window para asegurar que detecte las teclas aunque el foco cambie
         window.addEventListener('keydown', e => {
           if (lightbox.style.display === 'flex') {
-            if (e.key === 'Escape') lightbox.style.display = 'none';
+            if (e.key === 'Escape') closeGallery();
             if (e.key === 'ArrowLeft') showImage(currentIdx - 1);
             if (e.key === 'ArrowRight') showImage(currentIdx + 1);
           }
         });
 
-        // --- SOPORTE TÁCTIL (MÓVIL) ---
         lightbox.addEventListener('touchstart', e => {
           touchStartX = e.changedTouches[0].screenX;
         }, { passive: true });
@@ -957,25 +959,41 @@
       }
 
       function handleSwipe() {
-        const swipeThreshold = 50; // Sensibilidad mínima
-        if (touchEndX < touchStartX - swipeThreshold) {
-          showImage(currentIdx + 1); // Deslizar izquierda -> Siguiente
-        }
-        if (touchEndX > touchStartX + swipeThreshold) {
-          showImage(currentIdx - 1); // Deslizar derecha -> Anterior
-        }
+        const swipeThreshold = 50;
+        if (touchEndX < touchStartX - swipeThreshold) showImage(currentIdx + 1);
+        if (touchEndX > touchStartX + swipeThreshold) showImage(currentIdx - 1);
       }
 
       function showImage(idx) {
         if (idx < 0) idx = 0;
         if (idx > imageNames.length - 1) idx = imageNames.length - 1;
-        currentIdx = idx;
-        lightboxImg.src = `img/Carrusel/${encodeURIComponent(imageNames[idx])}`;
 
-        // Estilos para asegurar que se vea bien
-        lightboxImg.style.maxWidth = '98vw';
-        lightboxImg.style.maxHeight = '90vh';
-        lightboxImg.style.objectFit = 'contain';
+        const newSrc = `img/Carrusel/${encodeURIComponent(imageNames[idx])}`;
+
+        // Si es la primera vez que se abre (está vacío), cargar sin animación para evitar errores
+        if (!lightboxImg.src || lightboxImg.getAttribute('src') === "") {
+          currentIdx = idx;
+          lightboxImg.src = newSrc;
+          lightboxImg.style.opacity = '1';
+          lightboxImg.style.transform = 'scale(1)';
+          return;
+        }
+
+        if (currentIdx === idx) return;
+
+        // Animación de salida para cambios entre fotos
+        lightboxImg.style.opacity = '0';
+        lightboxImg.style.transform = 'scale(0.95)';
+
+        setTimeout(() => {
+          currentIdx = idx;
+          lightboxImg.src = newSrc;
+
+          lightboxImg.onload = () => {
+            lightboxImg.style.opacity = '1';
+            lightboxImg.style.transform = 'scale(1)';
+          };
+        }, 150);
       }
     })();
   </script>
