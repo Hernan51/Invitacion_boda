@@ -203,6 +203,19 @@
       border-top: 2px solid rgba(255, 255, 255, 0.2);
     }
 
+    .insp-bottom-logo {
+      background: #2f2f2f;
+      display: flex;
+      justify-content: center;
+      padding: 0 0 24px;
+    }
+
+    .insp-bottom-logo img {
+      width: 126px;
+      height: auto;
+      border-radius: 0;
+    }
+
     @media (max-width: 860px) {
       .insp-page {
         padding: 0;
@@ -246,7 +259,7 @@
       }
 
       .insp-body {
-        padding: 38px 18px 44px;
+        padding: 38px 0 44px;
       }
 
       .insp-intro p {
@@ -264,12 +277,14 @@
       }
 
       .insp-gallery {
-        grid-template-columns: 1fr;
-        gap: 10px;
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 0;
+        margin: 0 -14px;
       }
 
       .insp-photo {
-        aspect-ratio: 4 / 5;
+        aspect-ratio: 1 / 2.05;
       }
     }
   </style>
@@ -328,6 +343,9 @@
       </div>
 
       <div class="insp-footer"></div>
+      <div class="insp-bottom-logo">
+        <img src="img/logo.png" alt="Logo Karen y Sergio" />
+      </div>
     </section>
   </main>
 </body>
