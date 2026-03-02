@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Inspiracion Boda | Karen & Sergio</title>
+
+  <link rel="stylesheet" href="style/style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&family=Sacramento&display=swap"
+    rel="stylesheet" />
+
+  <style>
+    .insp-page {
+      min-height: 100vh;
+      padding: 34px 14px 48px;
+      background:
+        linear-gradient(rgba(255, 249, 242, 0.82), rgba(255, 249, 242, 0.82)),
+        url("img/kys.jpeg") center/cover no-repeat fixed;
+    }
+
+    .insp-shell {
+      max-width: 920px;
+      margin: 0 auto;
+      border: 1px solid rgba(120, 108, 96, 0.22);
+      box-shadow: 0 20px 50px rgba(18, 13, 10, 0.16);
+      background: #f0e8df;
+    }
+
+    .insp-hero {
+      position: relative;
+      min-height: 520px;
+      padding: 24px 28px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      color: #fff;
+      overflow: hidden;
+    }
+
+    .insp-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: url("img/main_full_width.jpg") center/cover no-repeat;
+      transform: scale(1.03);
+    }
+
+    .insp-hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(100deg, rgba(22, 18, 14, 0.42) 8%, rgba(22, 18, 14, 0.15) 68%);
+    }
+
+    .insp-nav,
+    .insp-copy {
+      position: relative;
+      z-index: 1;
+    }
+
+    .insp-nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      font-family: 'Bona Nova SC', serif;
+      font-size: 12px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+    }
+
+    .insp-brand {
+      font-size: 11px;
+      opacity: 0.95;
+      white-space: nowrap;
+    }
+
+    .insp-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+    }
+
+    .insp-copy {
+      max-width: 420px;
+      margin-top: 110px;
+      font-family: 'Bona Nova SC', serif;
+    }
+
+    .insp-couple {
+      margin: 0;
+      line-height: 1.05;
+      color: #fff;
+      text-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+    }
+
+    .insp-couple.names-alt {
+      margin-bottom: 0;
+      font-size: clamp(54px, 8vw, 94px);
+      color: #fff;
+      font-family: 'Bona Nova SC', serif;
+    }
+
+    .insp-body {
+      background: #efe8df;
+      padding: 54px 38px 58px;
+    }
+
+    .insp-intro {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 34px;
+      color: #4e4540;
+    }
+
+    .insp-intro h2 {
+      margin: 0 0 10px;
+      font-size: clamp(27px, 3.1vw, 38px);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      font-family: 'Playfair Display', serif;
+      font-weight: 600;
+    }
+
+    .insp-intro p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    .insp-benefits {
+      margin: 0 auto 44px;
+      display: grid;
+      grid-template-columns: repeat(4, minmax(120px, 1fr));
+      gap: 18px;
+      text-align: center;
+    }
+
+    .insp-benefit img {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      margin: 0 auto 9px;
+      border-radius: 0;
+      opacity: 0.75;
+    }
+
+    .insp-benefit span {
+      display: block;
+      font-size: 12px;
+      line-height: 1.45;
+      color: #625650;
+    }
+
+    .insp-note {
+      margin: 0 0 18px;
+      text-align: center;
+      font-size: 30px;
+      color: #7d7168;
+    }
+
+    .insp-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .insp-photo {
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      background: #ddd4cb;
+      border-radius: 6px;
+    }
+
+    .insp-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 0;
+      transition: transform .35s ease;
+    }
+
+    .insp-photo:hover img {
+      transform: scale(1.04);
+    }
+
+    .insp-footer {
+      background: #2f2f2f;
+      min-height: 86px;
+      border-top: 2px solid rgba(255, 255, 255, 0.2);
+    }
+
+    @media (max-width: 860px) {
+      .insp-page {
+        padding: 0;
+        background: #f7f1e8;
+      }
+
+      .insp-shell {
+        border: none;
+        box-shadow: none;
+      }
+
+      .insp-hero {
+        min-height: 470px;
+        padding: 20px 18px 28px;
+      }
+
+      .insp-hero::before {
+        background-image: url("img/main_mobile.jpg");
+        background-position: center;
+      }
+
+      .insp-nav {
+        font-size: 11px;
+        letter-spacing: .1em;
+      }
+
+      .insp-brand {
+        font-size: 10px;
+      }
+
+      .insp-links {
+        gap: 10px;
+      }
+
+      .insp-copy {
+        margin-top: 86px;
+      }
+
+      .insp-couple.names-alt {
+        font-size: clamp(48px, 13vw, 74px);
+      }
+
+      .insp-body {
+        padding: 38px 18px 44px;
+      }
+
+      .insp-intro p {
+        font-size: 13px;
+      }
+
+      .insp-benefits {
+        grid-template-columns: repeat(2, minmax(120px, 1fr));
+        gap: 16px 10px;
+        margin-bottom: 30px;
+      }
+
+      .insp-note {
+        font-size: 26px;
+      }
+
+      .insp-gallery {
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      .insp-photo {
+        aspect-ratio: 4 / 5;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="insp-page">
+    <section class="insp-shell">
+      <header class="insp-hero">
+        <div class="insp-nav">
+          <div class="insp-brand">Karen & Sergio</div>
+          <nav class="insp-links" aria-label="Menu principal">
+            <a href="#">Inicio</a>
+            <a href="#">Nuestra historia</a>
+            <a href="#">Galeria</a>
+            <a href="#">Contacto</a>
+          </nav>
+        </div>
+
+        <div class="insp-copy">
+          <h1 class="names-alt insp-couple">
+            <span class="first">Karen</span>
+            <span class="amp-alt">&</span>
+            <span class="last">Sergio</span>
+          </h1>
+        </div>
+      </header>
+
+      <div class="insp-body">
+        <div class="insp-intro">
+          <h2>SÁBADO 11 DE JULIO</h2>
+          
+        </div>
+
+        <div class="insp-benefits">
+          <article class="insp-benefit">
+            <img src="img/carro_v2.png" alt="Traslados" />
+            <span>Logistica y tiempos bien coordinados</span>
+          </article>
+          <article class="insp-benefit">
+            <img src="img/platos.png" alt="Banquete" />
+            <span>Planeacion clara del presupuesto</span>
+          </article>
+          <article class="insp-benefit">
+            <img src="img/flores.png" alt="Decoracion" />
+            <span>Estilo visual para su gran dia</span>
+          </article>
+          <article class="insp-benefit">
+            <img src="img/copa.png" alt="Celebracion" />
+            <span>Una celebracion para disfrutar</span>
+          </article>
+        </div>
+
+
+        <div class="insp-gallery">
+          <figure class="insp-photo">
+            <img src="img/main.jpg" alt="Novios en exterior" />
+          </figure>
+          <figure class="insp-photo">
+            <img src="img/portada_boda.jpg" alt="Novios durante su sesion" />
+          </figure>
+          <figure class="insp-photo">
+            <img src="img/main_full_width.jpg" alt="Novios abrazados" />
+          </figure>
+        </div>
+      </div>
+
+      <div class="insp-footer"></div>
+    </section>
+  </main>
+</body>
+
+</html>
