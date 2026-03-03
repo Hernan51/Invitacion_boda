@@ -57,7 +57,8 @@
     }
 
     .insp-nav,
-    .insp-copy {
+    .insp-copy,
+    .insp-copy-row {
       position: relative;
       z-index: 1;
     }
@@ -94,9 +95,16 @@
       justify-content: flex-end;
     }
 
+    .insp-copy-row {
+      margin-top: 110px;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 28px;
+    }
+
     .insp-copy {
       max-width: 420px;
-      margin-top: 110px;
       font-family: 'Bona Nova SC', serif;
     }
 
@@ -112,6 +120,31 @@
       font-size: clamp(54px, 8vw, 94px);
       color: #fff;
       font-family: 'Bona Nova SC', serif;
+    }
+
+    .insp-hero-date {
+      text-align: right;
+      color: #fff;
+      text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
+      font-family: 'Playfair Display', serif;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      padding-bottom: 8px;
+      min-width: 220px;
+    }
+
+    .insp-hero-date .day {
+      display: block;
+      font-size: clamp(18px, 2.4vw, 28px);
+      font-weight: 700;
+    }
+
+    .insp-hero-date .year {
+      display: block;
+      margin-top: 4px;
+      font-size: clamp(42px, 6vw, 72px);
+      font-weight: 700;
+      line-height: 1;
     }
 
     .insp-body {
@@ -139,6 +172,17 @@
       margin: 0;
       font-size: 14px;
       line-height: 1.7;
+    }
+
+    .insp-blessing {
+      margin: 0 auto 18px;
+      max-width: 760px;
+      text-align: center;
+      color: #5c5049;
+      font-size: clamp(16px, 2.1vw, 22px);
+      line-height: 1.7;
+      font-family: 'Playfair Display', serif;
+      padding: 0 10px;
     }
 
     .insp-benefits {
@@ -172,7 +216,76 @@
       color: #7d7168;
     }
 
+    .insp-countdown-hero {
+      position: relative;
+      margin: 0 0 18px;
+      min-height: 300px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      overflow: hidden;
+      color: #f6f3ef;
+      background: url("img/Carrusel/Preboda Karen & Sergio - Luis Houdin WEB (1150 de 175).jpg") center/cover no-repeat;
+    }
+
+    .insp-countdown-hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(15, 15, 15, 0.52);
+    }
+
+    .insp-countdown-title,
+    .insp-countdown-grid {
+      position: relative;
+      z-index: 1;
+    }
+
+    .insp-countdown-title {
+      margin: 0 0 22px;
+      font-family: 'Playfair Display', serif;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      font-size: clamp(12px, 1.6vw, 17px);
+      font-weight: 400;
+      color: rgba(246, 243, 239, 0.88);
+    }
+
+    .insp-countdown-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(80px, 1fr));
+      gap: clamp(12px, 4vw, 44px);
+      width: min(92%, 700px);
+    }
+
+    .insp-cd-item {
+      margin: 0;
+    }
+
+    .insp-cd-value {
+      display: block;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(34px, 5.4vw, 60px);
+      font-weight: 400;
+      line-height: 1.02;
+      letter-spacing: .04em;
+      color: #ffffff;
+    }
+
+    .insp-cd-label {
+      display: block;
+      margin-top: 8px;
+      font-family: 'Bona Nova SC', serif;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      font-size: clamp(10px, 1.1vw, 14px);
+      color: rgba(246, 243, 239, 0.92);
+    }
+
     .insp-carousel {
+      --insp-gap: 4px;
       position: relative;
       margin-top: 8px;
       background: transparent;
@@ -187,15 +300,15 @@
     .insp-track {
       display: flex;
       align-items: stretch;
-      gap: 0 !important;
+      gap: var(--insp-gap) !important;
       line-height: 0;
       will-change: transform;
     }
 
     .insp-slide {
       display: block;
-      flex: 0 0 calc(100% / 3) !important;
-      width: calc(100% / 3);
+      flex: 0 0 calc((100% - (2 * var(--insp-gap))) / 3);
+      width: auto;
       aspect-ratio: 3 / 4;
       overflow: hidden;
       border-right: 0;
@@ -214,6 +327,7 @@
       max-width: none !important;
       height: 100% !important;
       object-fit: cover !important;
+      object-position: 46% center !important;
       display: block;
       margin: 0 !important;
       padding: 0 !important;
@@ -348,12 +462,25 @@
         gap: 10px;
       }
 
-      .insp-copy {
+      .insp-copy-row {
         margin-top: 86px;
+        gap: 16px;
       }
 
       .insp-couple.names-alt {
         font-size: clamp(48px, 13vw, 74px);
+      }
+
+      .insp-hero-date {
+        min-width: 172px;
+      }
+
+      .insp-hero-date .day {
+        font-size: clamp(16px, 2.8vw, 22px);
+      }
+
+      .insp-hero-date .year {
+        font-size: clamp(34px, 7vw, 52px);
       }
 
       .insp-body {
@@ -374,6 +501,14 @@
         font-size: 26px;
       }
 
+      .insp-countdown-hero {
+        min-height: 270px;
+      }
+
+      .insp-countdown-grid {
+        gap: 18px;
+      }
+
       .insp-slide {
         flex-basis: 50%;
         aspect-ratio: 2.8 / 4.2;
@@ -387,8 +522,34 @@
     }
 
     @media (max-width: 560px) {
+      .insp-carousel {
+        --insp-gap: 6px;
+      }
+
+      .insp-copy-row {
+        margin-top: 72px;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+
+      .insp-hero-date {
+        text-align: left;
+        min-width: 0;
+        padding-bottom: 0;
+      }
+
+      .insp-countdown-hero {
+        min-height: 250px;
+      }
+
+      .insp-countdown-grid {
+        grid-template-columns: repeat(2, minmax(92px, 1fr));
+        gap: 16px 24px;
+      }
+
       .insp-slide {
-        flex-basis: 78%;
+        flex: 0 0 calc((100% - var(--insp-gap)) / 2);
       }
 
       .insp-arrow {
@@ -424,27 +585,48 @@
           </nav>
         </div>
 
-        <div class="insp-copy">
-          <h1 class="names-alt insp-couple">
-            <span class="first">Karen</span>
-            <span class="amp-alt">&</span>
-            <span class="last">Sergio</span>
-          </h1>
+        <div class="insp-copy-row">
+          <div class="insp-copy">
+            <h1 class="names-alt insp-couple">
+              <span class="first">Karen</span>
+              <span class="amp-alt">&</span>
+              <span class="last">Sergio</span>
+            </h1>
+          </div>
+          <div class="insp-hero-date" aria-label="Fecha de la boda">
+            <span class="day">Sabado 11 de Julio</span>
+            <span class="year">2026</span>
+          </div>
         </div>
       </header>
 
       <div class="insp-body">
-        <div class="insp-intro">
-          <h2>SÁBADO 11 DE JULIO</h2>
-          <h2>2026</h2>
-          
-        </div>
+        <p class="countdown dancing-script" style="font-size: 20px;">
+          “Dios juntó nuestras manos y nos señaló el camino.<br>
+          Nosotros uniremos nuestras vidas y lo recorreremos con fé y amor.”
+        </p><br>
 
-        <div class="countdown dancing-script" id="countdown" style="font-size: 20px;">“Dios juntó nuestras manos y nos
-        señaló el camino. <br>
-
-        Nosotros uniremos nuestras vidas y lo recorreremos con fé y amor. ”
-      </div>
+        <section class="insp-countdown-hero" aria-label="Cuenta regresiva para la boda">
+          <h3 class="insp-countdown-title">Cuenta regresiva</h3>
+          <div class="insp-countdown-grid" id="inspCountdown">
+            <p class="insp-cd-item">
+              <span class="insp-cd-value" data-unit="days">000</span>
+              <span class="insp-cd-label">Dias</span>
+            </p>
+            <p class="insp-cd-item">
+              <span class="insp-cd-value" data-unit="hours">00</span>
+              <span class="insp-cd-label">Horas</span>
+            </p>
+            <p class="insp-cd-item">
+              <span class="insp-cd-value" data-unit="minutes">00</span>
+              <span class="insp-cd-label">Minutos</span>
+            </p>
+            <p class="insp-cd-item">
+              <span class="insp-cd-value" data-unit="seconds">00</span>
+              <span class="insp-cd-label">Segundos</span>
+            </p>
+          </div>
+        </section>
 
 
         <section class="insp-carousel" aria-label="Carrusel de fotos">
@@ -509,6 +691,23 @@
       const lightbox = document.getElementById('inspLightbox');
       const lightboxImg = document.getElementById('inspLightboxImg');
       const lightboxClose = lightbox.querySelector('.insp-lightbox-close');
+      const countdown = document.getElementById('inspCountdown');
+      const dateTarget = new Date('2026-07-11T00:00:00');
+
+      function updateCountdown() {
+        if (!countdown) return;
+        const now = new Date();
+        const diff = dateTarget - now;
+        const safeDiff = Math.max(diff, 0);
+        const days = Math.floor(safeDiff / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((safeDiff / (1000 * 60 * 60)) % 24);
+        const minutes = Math.floor((safeDiff / (1000 * 60)) % 60);
+        const seconds = Math.floor((safeDiff / 1000) % 60);
+        countdown.querySelector('[data-unit="days"]').textContent = String(days).padStart(3, '0');
+        countdown.querySelector('[data-unit="hours"]').textContent = String(hours).padStart(2, '0');
+        countdown.querySelector('[data-unit="minutes"]').textContent = String(minutes).padStart(2, '0');
+        countdown.querySelector('[data-unit="seconds"]').textContent = String(seconds).padStart(2, '0');
+      }
 
       for (let i = total - cloneCount; i < total; i += 1) {
         track.insertBefore(originalSlides[i].cloneNode(true), track.firstChild);
@@ -520,14 +719,17 @@
       let index = cloneCount;
       let autoplayId = null;
 
-      function getSlideWidth() {
+      function getSlideStep() {
         const firstSlide = track.children[0];
-        return firstSlide ? firstSlide.getBoundingClientRect().width : 0;
+        if (!firstSlide) return 0;
+        const style = window.getComputedStyle(track);
+        const gap = parseFloat(style.gap || style.columnGap || '0') || 0;
+        return firstSlide.getBoundingClientRect().width + gap;
       }
 
       function move(animate) {
         track.style.transition = animate ? 'transform 0.62s ease' : 'none';
-        track.style.transform = `translateX(${-index * getSlideWidth()}px)`;
+        track.style.transform = `translateX(${-index * getSlideStep()}px)`;
       }
 
       function next() {
@@ -611,6 +813,8 @@
       });
 
       move(false);
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
       startAutoplay();
     })();
   </script>
