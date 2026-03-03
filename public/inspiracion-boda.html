@@ -172,29 +172,127 @@
       color: #7d7168;
     }
 
-    .insp-gallery {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 14px;
+    .insp-carousel {
+      position: relative;
+      margin-top: 8px;
+      background: transparent;
+      overflow: hidden;
+      user-select: none;
     }
 
-    .insp-photo {
+    .insp-viewport {
+      overflow: hidden;
+    }
+
+    .insp-track {
+      display: flex;
+      align-items: stretch;
+      gap: 0 !important;
+      line-height: 0;
+      will-change: transform;
+    }
+
+    .insp-slide {
+      display: block;
+      flex: 0 0 calc(100% / 3) !important;
+      width: calc(100% / 3);
       aspect-ratio: 3 / 4;
       overflow: hidden;
-      background: #ddd4cb;
-      border-radius: 6px;
+      border-right: 0;
+      margin: 0 !important;
+      padding: 0 !important;
+      min-width: 0;
     }
 
-    .insp-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      border-radius: 0;
-      transition: transform .35s ease;
+    .insp-slide:last-child {
+      border-right: 0;
     }
 
-    .insp-photo:hover img {
-      transform: scale(1.04);
+    .insp-slide img {
+      width: 100% !important;
+      min-width: 100%;
+      max-width: none !important;
+      height: 100% !important;
+      object-fit: cover !important;
+      display: block;
+      margin: 0 !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
+      cursor: zoom-in;
+    }
+
+    .insp-arrow {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 2;
+      width: 46px;
+      height: 46px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.28);
+      color: #fff;
+      font-size: 34px;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
+      transition: background 0.2s ease;
+    }
+
+    .insp-arrow:hover {
+      background: rgba(255, 255, 255, 0.45);
+    }
+
+    .insp-arrow.prev {
+      left: 14px;
+      padding-bottom: 3px;
+    }
+
+    .insp-arrow.next {
+      right: 14px;
+      padding-bottom: 3px;
+    }
+
+    .insp-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      background: rgba(0, 0, 0, 0.82);
+      padding: 20px;
+    }
+
+    .insp-lightbox.open {
+      display: flex;
+    }
+
+    .insp-lightbox img {
+      max-width: min(94vw, 980px);
+      max-height: 90vh;
+      width: auto !important;
+      height: auto !important;
+      border-radius: 0 !important;
+      box-shadow: 0 16px 50px rgba(0, 0, 0, 0.45);
+    }
+
+    .insp-lightbox-close {
+      position: absolute;
+      top: 16px;
+      right: 18px;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.2);
+      color: #fff;
+      font-size: 30px;
+      line-height: 1;
+      display: grid;
+      place-items: center;
+      cursor: pointer;
     }
 
     .insp-footer {
@@ -276,15 +374,35 @@
         font-size: 26px;
       }
 
-      .insp-gallery {
-        display: grid;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 0;
-        margin: 0 -14px;
+      .insp-slide {
+        flex-basis: 50%;
+        aspect-ratio: 2.8 / 4.2;
       }
 
-      .insp-photo {
-        aspect-ratio: 1 / 2.05;
+      .insp-arrow {
+        width: 40px;
+        height: 40px;
+        font-size: 30px;
+      }
+    }
+
+    @media (max-width: 560px) {
+      .insp-slide {
+        flex-basis: 78%;
+      }
+
+      .insp-arrow {
+        width: 36px;
+        height: 36px;
+        font-size: 27px;
+      }
+
+      .insp-arrow.prev {
+        left: 10px;
+      }
+
+      .insp-arrow.next {
+        right: 10px;
       }
     }
   </style>
@@ -329,16 +447,45 @@
       </div>
 
 
-        <div class="insp-gallery">
-          <figure class="insp-photo">
-            <img src="img/main.jpg" alt="Novios en exterior" />
-          </figure>
-          <figure class="insp-photo">
-            <img src="img/portada_boda.jpg" alt="Novios durante su sesion" />
-          </figure>
-          <figure class="insp-photo">
-            <img src="img/main_full_width.jpg" alt="Novios abrazados" />
-          </figure>
+        <section class="insp-carousel" aria-label="Carrusel de fotos">
+          <button class="insp-arrow prev" type="button" aria-label="Foto anterior">&#8249;</button>
+          <div class="insp-viewport">
+            <div class="insp-track" id="inspTrack">
+              <figure class="insp-slide">
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1013%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+              </figure>
+              <figure class="insp-slide">
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1037%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+              </figure>
+              <figure class="insp-slide">
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1054%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+              </figure>
+              <figure class="insp-slide">
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1077%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+              </figure>
+              <figure class="insp-slide">
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1089%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+              </figure>
+              <figure class="insp-slide">
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1098%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+              </figure>
+              <figure class="insp-slide">
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1109%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+              </figure>
+              <figure class="insp-slide">
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1114%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+              </figure>
+              <figure class="insp-slide">
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1117%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+              </figure>
+            </div>
+          </div>
+          <button class="insp-arrow next" type="button" aria-label="Siguiente foto">&#8250;</button>
+        </section>
+
+        <div class="insp-lightbox" id="inspLightbox" aria-hidden="true">
+          <button class="insp-lightbox-close" type="button" aria-label="Cerrar imagen">&times;</button>
+          <img id="inspLightboxImg" src="" alt="Foto ampliada" />
         </div>
       </div>
 
@@ -348,6 +495,125 @@
       </div>
     </section>
   </main>
+  <script>
+    (function () {
+      const track = document.getElementById('inspTrack');
+      if (!track) return;
+
+      const carousel = track.closest('.insp-carousel');
+      const prevBtn = carousel.querySelector('.insp-arrow.prev');
+      const nextBtn = carousel.querySelector('.insp-arrow.next');
+      const originalSlides = Array.from(track.children);
+      const total = originalSlides.length;
+      const cloneCount = Math.min(4, total);
+      const lightbox = document.getElementById('inspLightbox');
+      const lightboxImg = document.getElementById('inspLightboxImg');
+      const lightboxClose = lightbox.querySelector('.insp-lightbox-close');
+
+      for (let i = total - cloneCount; i < total; i += 1) {
+        track.insertBefore(originalSlides[i].cloneNode(true), track.firstChild);
+      }
+      for (let i = 0; i < cloneCount; i += 1) {
+        track.appendChild(originalSlides[i].cloneNode(true));
+      }
+
+      let index = cloneCount;
+      let autoplayId = null;
+
+      function getSlideWidth() {
+        const firstSlide = track.children[0];
+        return firstSlide ? firstSlide.getBoundingClientRect().width : 0;
+      }
+
+      function move(animate) {
+        track.style.transition = animate ? 'transform 0.62s ease' : 'none';
+        track.style.transform = `translateX(${-index * getSlideWidth()}px)`;
+      }
+
+      function next() {
+        index += 1;
+        move(true);
+      }
+
+      function prev() {
+        index -= 1;
+        move(true);
+      }
+
+      function startAutoplay() {
+        stopAutoplay();
+        autoplayId = setInterval(next, 2000);
+      }
+
+      function stopAutoplay() {
+        if (autoplayId) {
+          clearInterval(autoplayId);
+          autoplayId = null;
+        }
+      }
+
+      track.addEventListener('transitionend', function () {
+        if (index >= total + cloneCount) {
+          index = cloneCount;
+          move(false);
+        } else if (index < cloneCount) {
+          index = total + cloneCount - 1;
+          move(false);
+        }
+      });
+
+      nextBtn.addEventListener('click', function () {
+        next();
+        startAutoplay();
+      });
+
+      prevBtn.addEventListener('click', function () {
+        prev();
+        startAutoplay();
+      });
+
+      track.addEventListener('click', function (event) {
+        const target = event.target;
+        if (!(target instanceof HTMLImageElement)) return;
+        lightboxImg.src = target.src;
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        stopAutoplay();
+      });
+
+      lightboxClose.addEventListener('click', function () {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        startAutoplay();
+      });
+
+      lightbox.addEventListener('click', function (event) {
+        if (event.target !== lightbox) return;
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        startAutoplay();
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key !== 'Escape') return;
+        if (!lightbox.classList.contains('open')) return;
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        startAutoplay();
+      });
+
+      carousel.addEventListener('mouseenter', stopAutoplay);
+      carousel.addEventListener('mouseleave', startAutoplay);
+      carousel.addEventListener('focusin', stopAutoplay);
+      carousel.addEventListener('focusout', startAutoplay);
+      window.addEventListener('resize', function () {
+        move(false);
+      });
+
+      move(false);
+      startAutoplay();
+    })();
+  </script>
 </body>
 
 </html>
