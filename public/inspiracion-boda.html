@@ -10,7 +10,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&family=Sacramento&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Noto+Sans+SC:wght@400;700&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&family=Rouge+Script&family=Sacramento&display=swap"
     rel="stylesheet" />
 
   <style>
@@ -45,7 +45,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: url("img/portada_boda.jpg") center 40%/cover no-repeat;
+      background: url("img/portada_boda.jpg") center 75%/cover no-repeat;
       transform: scale(1.03);
     }
 
@@ -112,7 +112,7 @@
       margin: 0;
       line-height: 1.05;
       color: #fff;
-      text-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
+      text-shadow: none;
     }
 
     .insp-couple.names-alt {
@@ -120,12 +120,19 @@
       font-size: clamp(54px, 8vw, 94px);
       color: #fff;
       font-family: 'Bona Nova SC', serif;
+      transform: translateX(18px);
     }
 
     .insp-couple .first,
     .insp-couple .last {
       position: relative;
-      top: -34px;
+      top: -52px;
+    }
+
+    .insp-couple .amp-alt {
+      position: relative;
+      top: -52px;
+      font-family: 'Rouge Script', cursive;
     }
 
     .insp-couple .first {
@@ -141,8 +148,8 @@
     .insp-hero-date {
       text-align: right;
       color: #fff;
-      text-shadow: 0 6px 18px rgba(0, 0, 0, 0.6);
-      font-family: 'Playfair Display', serif;
+      text-shadow: none;
+      font-family: 'Bona Nova SC', serif;
       letter-spacing: .08em;
       text-transform: uppercase;
       padding-bottom: 8px;
@@ -151,7 +158,7 @@
 
     .insp-hero-date .day {
       display: block;
-      font-size: clamp(18px, 2.4vw, 28px);
+      font-size: clamp(22px, 2.8vw, 34px);
       font-weight: 700;
     }
 
@@ -169,6 +176,17 @@
       text-align: center;
     }
 
+    .insp-hero-date-float {
+      position: absolute;
+      left: 50%;
+      bottom: 84px;
+      transform: translateX(-50%);
+      z-index: 1;
+      text-align: center;
+      min-width: 0;
+      padding: 0;
+    }
+
     .insp-date-under-hero .insp-hero-date {
       min-width: 0;
       padding: 0;
@@ -178,6 +196,7 @@
     }
 
     .insp-date-under-hero .insp-hero-date .day {
+      font-family: 'Bona Nova SC', serif;
       font-size: clamp(28px, 3.8vw, 54px);
       font-weight: 700;
       letter-spacing: .06em;
@@ -266,7 +285,7 @@
     .insp-countdown-hero {
       position: relative;
       margin: 0 0 18px;
-      min-height: 300px;
+      min-height: 475px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -274,7 +293,7 @@
       text-align: center;
       overflow: hidden;
       color: #f6f3ef;
-      background: url("img/Carrusel/Preboda Karen & Sergio - Luis Houdin WEB (1150 de 175).jpg") center/cover no-repeat;
+      background: url("img/Carrusel/Preboda Karen & Sergio - Luis Houdin WEB (1150 de 175).jpg") center 64%/cover no-repeat;
     }
 
     .insp-countdown-hero::before {
@@ -313,7 +332,7 @@
 
     .insp-cd-value {
       display: block;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Bona Nova SC', serif;
       font-size: clamp(34px, 5.4vw, 60px);
       font-weight: 400;
       line-height: 1.02;
@@ -492,8 +511,8 @@
       }
 
       .insp-hero::before {
-        background-image: url("img/portada_boda.jpg");
-        background-position: center 44%;
+        background-image: url("img/portada_boda.jpeg");
+        background-position: 14% 44%;
       }
 
       .insp-nav {
@@ -516,11 +535,16 @@
 
       .insp-couple.names-alt {
         font-size: clamp(48px, 13vw, 74px);
+        transform: translateX(12px);
       }
 
       .insp-couple .first,
       .insp-couple .last {
-        top: -22px;
+        top: -30px;
+      }
+
+      .insp-couple .amp-alt {
+        top: -30px;
       }
 
       .insp-couple .first {
@@ -551,6 +575,10 @@
         padding: 10px 14px 14px;
       }
 
+      .insp-hero-date-float {
+        bottom: 32px;
+      }
+
       .insp-intro p {
         font-size: 13px;
       }
@@ -571,7 +599,7 @@
       }
 
       .insp-countdown-hero {
-        min-height: 270px;
+        min-height: 475px;
       }
 
       .insp-countdown-grid {
@@ -608,6 +636,7 @@
         column-gap: 10px;
         row-gap: 6px;
         align-items: center;
+        transform: translateX(8px);
       }
 
       .insp-couple .first,
@@ -633,10 +662,12 @@
       .insp-couple .amp-alt {
         grid-area: amp;
         justify-self: center;
+        position: relative;
+        top: -12px;
       }
 
       .insp-countdown-hero {
-        min-height: 250px;
+        min-height: 275px;
       }
 
       .insp-countdown-grid {
@@ -672,6 +703,7 @@
         margin-top: auto;
         justify-content: center;
         align-items: center;
+        transform: translateY(-70%);
       }
 
       .insp-copy {
@@ -711,12 +743,10 @@
             </h1>
           </div>
         </div>
-      </header>
-      <div class="insp-date-under-hero" aria-label="Fecha de la boda">
-        <div class="insp-hero-date">
-          <span class="day">SÁBADO 11 DE JULIO DE 2026</span>
+        <div class="insp-hero-date insp-hero-date-float" aria-label="Fecha de la boda">
+          <span class="day">11 DE JULIO DE 2026</span>
         </div>
-      </div>
+      </header>
 
       <div class="insp-body">
         <p class="insp-blessing countdown dancing-script">
