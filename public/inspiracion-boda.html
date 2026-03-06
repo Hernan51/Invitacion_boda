@@ -14,6 +14,16 @@
     rel="stylesheet" />
 
   <style>
+    body.insp-menu-open {
+      overflow: hidden;
+    }
+
+    body.insp-menu-open .insp-copy-row,
+    body.insp-menu-open .insp-hero-date-float {
+      opacity: 0;
+      pointer-events: none;
+    }
+
     .insp-page {
       min-height: 100vh;
       padding: 34px 14px 48px;
@@ -53,7 +63,7 @@
       content: "";
       position: absolute;
       inset: 0;
-      background: linear-gradient(100deg, rgba(22, 18, 14, 0.42) 8%, rgba(22, 18, 14, 0.15) 68%);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.78) 0%, rgba(0, 0, 0, 0.34) 18%, rgba(0, 0, 0, 0) 42%);
     }
 
     .insp-nav,
@@ -68,17 +78,39 @@
       justify-content: space-between;
       align-items: center;
       gap: 18px;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       font-family: 'Bona Nova SC', serif;
-      font-size: 12px;
+      font-size: 16px;
       letter-spacing: .16em;
       text-transform: uppercase;
     }
 
+    .insp-menu-toggle {
+      display: none;
+      border: 0;
+      background: transparent;
+      color: #fff;
+      width: 38px;
+      height: 38px;
+      padding: 0;
+      cursor: pointer;
+      border-radius: 8px;
+    }
+
+    .insp-menu-toggle span {
+      display: block;
+      width: 22px;
+      height: 2px;
+      margin: 5px auto;
+      background: currentColor;
+      transition: transform .2s ease, opacity .2s ease;
+    }
+
     .insp-brand {
-      font-size: 11px;
+      font-size: 13px;
       opacity: 0.95;
       white-space: nowrap;
+      flex-shrink: 0;
     }
 
     .insp-brand img {
@@ -90,9 +122,26 @@
 
     .insp-links {
       display: flex;
-      gap: 16px;
-      flex-wrap: wrap;
+      gap: 0;
+      flex-wrap: nowrap;
       justify-content: flex-end;
+      align-items: center;
+      white-space: nowrap;
+      min-width: 0;
+      font-size: 13px;
+      letter-spacing: .1em;
+    }
+
+    .insp-links a {
+      display: inline-flex;
+      align-items: center;
+      white-space: nowrap;
+    }
+
+    .insp-links a+a::before {
+      content: "|";
+      margin: 0 10px;
+      opacity: 0.78;
     }
 
     .insp-copy-row {
@@ -179,7 +228,7 @@
     .insp-hero-date-float {
       position: absolute;
       left: 50%;
-      bottom: 84px;
+      bottom: 52px;
       transform: translateX(-50%);
       z-index: 1;
       text-align: center;
@@ -309,12 +358,26 @@
       z-index: 1;
     }
 
+    #ceremonia .stack-bg img {
+      transform: translateY(var(--ceremonia-shift, 0px));
+      filter: brightness(var(--ceremonia-brightness, 1));
+      transition: transform 0.12s linear, filter 0.12s linear;
+      will-change: transform, filter;
+    }
+
+    #recepcion .stack-bg img {
+      transform: translateY(var(--recepcion-shift, 0px));
+      filter: brightness(var(--recepcion-brightness, 1));
+      transition: transform 0.12s linear, filter 0.12s linear;
+      will-change: transform, filter;
+    }
+
     .insp-countdown-title {
       margin: 0 0 22px;
       font-family: 'Playfair Display', serif;
       letter-spacing: .22em;
       text-transform: uppercase;
-      font-size: clamp(12px, 1.6vw, 17px);
+      font-size: clamp(17px, 1.6vw, 17px);
       font-weight: 400;
       color: rgba(246, 243, 239, 0.88);
     }
@@ -494,6 +557,121 @@
       border-radius: 0;
     }
 
+    @media (min-width: 861px) {
+      .insp-body #itinerario.itinerary-section {
+        margin-top: 28px;
+        padding-top: 26px;
+        padding-left: 0;
+        padding-right: 0;
+      }
+
+      .insp-body #itinerario .itinerary-rows {
+        --line-y: 100px;
+        position: relative;
+        max-width: none;
+        width: calc(100% + 20px);
+        margin: 0 -10px;
+        display: flex;
+        flex-wrap: nowrap;
+        align-items: flex-start;
+        justify-content: flex-start;
+        gap: 8px;
+        overflow-x: auto;
+        padding: 16px 2px 24px;
+        min-height: 240px;
+      }
+
+      .insp-body #itinerario .itinerary-rows::before {
+        content: "";
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: var(--line-y);
+        height: 2px;
+        background: rgba(0, 0, 0, .15);
+      }
+
+      .insp-body #itinerario .itinerary-row {
+        min-width: 132px;
+        width: 132px;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 6px;
+        padding-top: 0;
+      }
+
+      .insp-body #itinerario .itinerary-icon {
+        margin-top: 0;
+        margin-bottom: 30px;
+      }
+
+      .insp-body #itinerario .itinerary-row:nth-child(even) .itinerary-icon {
+        order: 3;
+        margin-top: 34px;
+        margin-bottom: 0;
+      }
+
+      .insp-body #itinerario .itinerary-icon img {
+        width: 68px !important;
+        height: auto !important;
+      }
+
+      .insp-body #itinerario .itinerary-line {
+        display: flex;
+        position: absolute;
+        left: 50%;
+        top: calc(var(--line-y) - 14px);
+        transform: translate(-50%, -50%);
+        width: 14px;
+        height: 14px;
+        align-items: center;
+        justify-content: center;
+        z-index: 3;
+      }
+
+      .insp-body #itinerario .itinerary-line::before {
+        content: none;
+      }
+
+      .insp-body #itinerario .itinerary-heart {
+        width: 22px;
+        height: 22px;
+        position: relative;
+        z-index: 2;
+      }
+
+      .insp-body #itinerario .itinerary-heart::before {
+        content: "";
+        position: absolute;
+        inset: -6px;
+        border-radius: 999px;
+        background: #efe8df;
+        z-index: -1;
+      }
+
+      .insp-body #itinerario .itinerary-heart .heart {
+        display: block;
+      }
+
+      .insp-body #itinerario .itinerary-text {
+        text-align: center;
+        margin-top: 4px;
+      }
+
+      .insp-body #itinerario .itinerary-row:nth-child(even) .itinerary-text {
+        order: 1;
+        margin-top: 0;
+        margin-bottom: 10px;
+      }
+
+      .insp-body #itinerario .it-time {
+        margin-top: 2px;
+      }
+    }
+
     @media (max-width: 860px) {
       .insp-page {
         padding: 0;
@@ -518,14 +696,66 @@
       .insp-nav {
         font-size: 11px;
         letter-spacing: .1em;
+        flex-wrap: wrap;
+        align-items: center;
+        row-gap: 8px;
       }
 
       .insp-brand {
-        font-size: 10px;
+        font-size: 12px;
       }
 
       .insp-links {
-        gap: 10px;
+        display: none;
+        position: fixed;
+        inset: 0;
+        z-index: 26;
+        gap: 20px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 100vw;
+        height: 100vh;
+        white-space: normal;
+        font-size: clamp(22px, 6vw, 34px);
+        letter-spacing: .08em;
+        text-align: center;
+        padding: 20px;
+        background: rgba(8, 8, 8, 0.86);
+        backdrop-filter: blur(4px);
+      }
+
+      .insp-links a+a::before {
+        content: "";
+        margin: 0;
+      }
+
+      .insp-links a {
+        font-size: inherit;
+        line-height: 1.1;
+      }
+
+      .insp-menu-toggle {
+        display: block;
+        margin-left: auto;
+        position: relative;
+        z-index: 35;
+      }
+
+      .insp-nav.is-open .insp-links {
+        display: flex;
+      }
+
+      .insp-nav.is-open .insp-menu-toggle span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+
+      .insp-nav.is-open .insp-menu-toggle span:nth-child(2) {
+        opacity: 0;
+      }
+
+      .insp-nav.is-open .insp-menu-toggle span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
       }
 
       .insp-copy-row {
@@ -576,7 +806,7 @@
       }
 
       .insp-hero-date-float {
-        bottom: 32px;
+        bottom: 14px;
       }
 
       .insp-intro p {
@@ -631,10 +861,9 @@
         display: grid;
         grid-template-columns: 1fr auto 1fr;
         grid-template-areas:
-          "first . last"
-          ". amp .";
+          "first amp last";
         column-gap: 10px;
-        row-gap: 6px;
+        row-gap: 0;
         align-items: center;
         transform: translateX(8px);
       }
@@ -643,6 +872,8 @@
       .insp-couple .last,
       .insp-couple .amp-alt {
         display: inline-block;
+        -webkit-text-stroke: 1px rgba(0, 0, 0, 0.58);
+        text-shadow: 0 0 2px rgba(0, 0, 0, 0.72), 0 2px 8px rgba(0, 0, 0, 0.45);
       }
 
       .insp-couple .first {
@@ -664,6 +895,11 @@
         justify-self: center;
         position: relative;
         top: -12px;
+      }
+
+      .insp-hero-date-float .day {
+        -webkit-text-stroke: 0.8px rgba(0, 0, 0, 0.65);
+        text-shadow: 0 0 2px rgba(0, 0, 0, 0.78), 0 2px 8px rgba(0, 0, 0, 0.5);
       }
 
       .insp-countdown-hero {
@@ -726,11 +962,20 @@
           <div class="insp-brand">
             Karen & Sergio
           </div>
-          <nav class="insp-links" aria-label="Menu principal">
-            <a href="#">Inicio</a>
-            <a href="#">Nuestra historia</a>
-            <a href="#">Galeria</a>
-            <a href="#">Contacto</a>
+          <button class="insp-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false"
+            aria-controls="inspLinks">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+          <nav class="insp-links" id="inspLinks" aria-label="Menu principal">
+            <a href="#">Ceremonia</a>
+            <a href="#">Detalles</a>
+            <a href="#">RSVP</a>
+            <a href="#">Recomendaciones</a>
+            <a href="#">S.O.S</a>
+            <a href="#">Galería</a>
+
           </nav>
         </div>
 
@@ -750,8 +995,8 @@
 
       <div class="insp-body">
         <p class="insp-blessing countdown dancing-script">
-          “Dios juntó nuestras manos y nos señaló el camino.<br>
-          Nosotros uniremos nuestras vidas y lo recorreremos con fé y amor.”
+          “Dios iluminó el camino para encontrarnos y hoy, bajo su gracia y la bendición de nuestras familias, iniciamos
+          la travesía más grande de nuestras vidas, unidos por un amor eterno.”
         </p>
 
         <section class="insp-countdown-hero" aria-label="Cuenta regresiva para la boda">
@@ -776,37 +1021,186 @@
           </div>
         </section>
 
+        <section class="stack-section" id="ceremonia">
+          <div class="stack-bg">
+            <picture>
+              <source media="(min-width: 768px)" srcset="img/iglesia_horizontal.JPEG">
+              <img src="img/templo.jpeg" alt="Templo de la ceremonia" />
+            </picture>
+          </div>
+
+          <div class="stack-content">
+            <div class="ceremonia-text">
+              <h2 class="sacramento">Ceremonia Religiosa</h2>
+              <p class="dancing-script" style="font-size: 20px;">Templo de San Antonio de Padua</p>
+              <p class="dancing-script" style="font-size: 28px;">6:00 PM</p>
+              <p class="dancing-script" style="font-size: 20px;">Ubicación: Calle Pedro Parga 252, Zona Centro, 20000 Aguascalientes, Ags.</p>
+              <div class="btn">
+                <a class="dancing-script" href="https://maps.app.goo.gl/SB4oKTq5nRLQiVsC9" target="_blank" rel="noopener">Ver mapa</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="stack-section" id="recepcion">
+          <div class="stack-bg">
+            <picture>
+              <source media="(min-width: 768px)" srcset="img/salon_horizontal.JPEG">
+              <img src="img/salon_vertical.JPEG" alt="Salón de recepción" />
+            </picture>
+          </div>
+
+          <div class="stack-content">
+            <div class="ceremonia-text">
+              <h2 class="sacramento">Recepción</h2>
+              <p class="dancing-script" style="font-size: 28px;">7:30 PM</p>
+              <p class="dancing-script" style="font-size: 20px;">Salón de eventos Casa de Piedra</p>
+              <p class="dancing-script" style="font-size: 20px;">
+                Después de la ceremonia, celebraremos con cena, música y mucho amor.
+              </p>
+              <p class="dancing-script" style="font-size: 20px;">Ubicación: Av. Guadalupe Gonzalez 1116, 20329 Pocitos, Ags.</p>
+              <div class="btn">
+                <a class="dancing-script" href="https://maps.app.goo.gl/Ygj4LrfqH4SjpTNBA" target="_blank" rel="noopener">Ver mapa</a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section id="itinerario" class="itinerary-section">
+          <h2 class="sacramento">Itinerario De Nuestra Boda</h2>
+
+          <div class="itinerary-rows">
+            <div class="itinerary-row first">
+              <div class="itinerary-icon"><img src="img/iglesia.png" alt="" style="width: 100px;height: auto;"></div>
+              <div class="itinerary-line">
+                <div class="itinerary-heart">
+                  <svg class="heart" viewBox="0 0 100 85" aria-hidden="true">
+                    <path d="M50,20 C20,0 10,50 50,80 C90,50 80,0 50,20 Z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="itinerary-text">
+                <div class="dancing-script">Ceremonia Religiosa</div>
+                <div class="it-time">18:00 hrs</div>
+              </div>
+            </div>
+
+            <div class="itinerary-row">
+              <div class="itinerary-icon"><img src="img/copa.png" alt="" style="width: 100px;height: auto;"></div>
+              <div class="itinerary-line">
+                <div class="itinerary-heart">
+                  <svg class="heart" viewBox="0 0 100 85" aria-hidden="true">
+                    <path d="M50,20 C20,0 10,50 50,80 C90,50 80,0 50,20 Z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="itinerary-text">
+                <div class="dancing-script">Recepción</div>
+                <div class="it-time">19:30 hrs</div>
+              </div>
+            </div>
+
+            <div class="itinerary-row">
+              <div class="itinerary-icon"><img src="img/cena.png" alt="" style="width: 100px;height: auto;"></div>
+              <div class="itinerary-line">
+                <div class="itinerary-heart">
+                  <svg class="heart" viewBox="0 0 100 85" aria-hidden="true">
+                    <path d="M50,20 C20,0 10,50 50,80 C90,50 80,0 50,20 Z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="itinerary-text">
+                <div class="dancing-script">Banquete</div>
+                <div class="it-time">20:00 hrs</div>
+              </div>
+            </div>
+
+            <div class="itinerary-row">
+              <div class="itinerary-icon"><img src="img/protocolov.png" alt="" style="width: 100px;height: auto;"></div>
+              <div class="itinerary-line">
+                <div class="itinerary-heart">
+                  <svg class="heart" viewBox="0 0 100 85" aria-hidden="true">
+                    <path d="M50,20 C20,0 10,50 50,80 C90,50 80,0 50,20 Z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="itinerary-text">
+                <div class="dancing-script">Protocolo</div>
+                <div class="it-time">19:00 hrs</div>
+              </div>
+            </div>
+
+            <div class="itinerary-row">
+              <div class="itinerary-icon"><img src="img/fies.png" alt="" style="width: 100px;height: auto;"></div>
+              <div class="itinerary-line">
+                <div class="itinerary-heart">
+                  <svg class="heart" viewBox="0 0 100 85" aria-hidden="true">
+                    <path d="M50,20 C20,0 10,50 50,80 C90,50 80,0 50,20 Z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="itinerary-text">
+                <div class="it-time">Disfruta la fiesta</div>
+              </div>
+            </div>
+
+            <div class="itinerary-row last">
+              <div class="itinerary-icon"><img src="img/carro_v2.png" alt="" style="width: 120px;height: auto;"></div>
+              <div class="itinerary-line">
+                <div class="itinerary-heart">
+                  <svg class="heart" viewBox="0 0 100 85" aria-hidden="true">
+                    <path d="M50,20 C20,0 10,50 50,80 C90,50 80,0 50,20 Z" />
+                  </svg>
+                </div>
+              </div>
+              <div class="itinerary-text">
+                <div class="dancing-script">FIN DEL EVENTO</div>
+                <div class="it-time">02:00 hrs</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
 
         <section class="insp-carousel" aria-label="Carrusel de fotos">
           <button class="insp-arrow prev" type="button" aria-label="Foto anterior">&#8249;</button>
           <div class="insp-viewport">
             <div class="insp-track" id="inspTrack">
               <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1013%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1013%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1037%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1037%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1054%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1054%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1077%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1077%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1089%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1089%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1098%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1098%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1109%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1109%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1114%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1114%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1117%20de%20175).jpg" alt="Sesion preboda de Karen y Sergio" />
+                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1117%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" />
               </figure>
             </div>
           </div>
@@ -834,6 +1228,8 @@
       const viewport = carousel.querySelector('.insp-viewport');
       const prevBtn = carousel.querySelector('.insp-arrow.prev');
       const nextBtn = carousel.querySelector('.insp-arrow.next');
+      const nav = document.querySelector('.insp-nav');
+      const menuToggle = nav ? nav.querySelector('.insp-menu-toggle') : null;
       const fallbackSlides = Array.from(track.children).map((slide) => {
         const img = slide.querySelector('img');
         return img ? img.getAttribute('src') : null;
@@ -843,6 +1239,8 @@
       const lightboxClose = lightbox.querySelector('.insp-lightbox-close');
       const countdown = document.getElementById('inspCountdown');
       const dateTarget = new Date('2026-07-11T00:00:00');
+      const ceremoniaSection = document.getElementById('ceremonia');
+      const recepcionSection = document.getElementById('recepcion');
       let total = 0;
       let cloneCount = 0;
       let isAnimating = false;
@@ -860,6 +1258,22 @@
         countdown.querySelector('[data-unit="hours"]').textContent = String(hours).padStart(2, '0');
         countdown.querySelector('[data-unit="minutes"]').textContent = String(minutes).padStart(2, '0');
         countdown.querySelector('[data-unit="seconds"]').textContent = String(seconds).padStart(2, '0');
+      }
+
+      function updateSectionVisual(sectionEl, varPrefix) {
+        if (!sectionEl) return;
+        const rect = sectionEl.getBoundingClientRect();
+        const vh = window.innerHeight || document.documentElement.clientHeight;
+        const progress = Math.min(Math.max((vh - rect.top) / (vh + rect.height), 0), 1);
+        const shift =  progress; // desplazamiento sutil
+        const brightness = 1 - (0.52 * progress); // oscurece un poco mas
+        sectionEl.style.setProperty(`--${varPrefix}-shift`, `${shift.toFixed(1)}px`);
+        sectionEl.style.setProperty(`--${varPrefix}-brightness`, brightness.toFixed(3));
+      }
+
+      function updateCeremoniaVisual() {
+        updateSectionVisual(ceremoniaSection, 'ceremonia');
+        updateSectionVisual(recepcionSection, 'recepcion');
       }
 
       let index = cloneCount;
@@ -1032,7 +1446,35 @@
       window.addEventListener('resize', function () {
         isAnimating = false;
         move(false);
+        updateCeremoniaVisual();
+        if (window.innerWidth > 860 && nav) {
+          nav.classList.remove('is-open');
+          document.body.classList.remove('insp-menu-open');
+          if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
+        }
       });
+      window.addEventListener('scroll', updateCeremoniaVisual, { passive: true });
+
+      if (menuToggle && nav) {
+        menuToggle.addEventListener('click', function () {
+          const isOpen = nav.classList.toggle('is-open');
+          menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+          document.body.classList.toggle('insp-menu-open', isOpen);
+        });
+      }
+
+      if (nav && menuToggle) {
+        const menuLinks = nav.querySelector('.insp-links');
+        if (menuLinks) {
+          menuLinks.addEventListener('click', function (event) {
+            if (event.target === menuLinks || event.target.closest('a')) {
+              nav.classList.remove('is-open');
+              menuToggle.setAttribute('aria-expanded', 'false');
+              document.body.classList.remove('insp-menu-open');
+            }
+          });
+        }
+      }
 
       buildSlides(fallbackSlides);
       discoverCarouselImages()
@@ -1046,6 +1488,7 @@
 
       updateCountdown();
       setInterval(updateCountdown, 1000);
+      updateCeremoniaVisual();
     })();
   </script>
 </body>
