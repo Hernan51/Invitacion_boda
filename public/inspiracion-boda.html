@@ -18,6 +18,11 @@
       overflow: hidden;
     }
 
+    body.insp-lightbox-open {
+      overflow: hidden;
+      touch-action: none;
+    }
+
     body.insp-menu-open .insp-copy-row,
     body.insp-menu-open .insp-hero-date-float {
       opacity: 0;
@@ -506,6 +511,8 @@
       justify-content: center;
       background: rgba(0, 0, 0, 0.82);
       padding: 20px;
+      touch-action: none;
+      overscroll-behavior: contain;
     }
 
     .insp-lightbox.open {
@@ -536,6 +543,20 @@
       display: grid;
       place-items: center;
       cursor: pointer;
+    }
+
+    .insp-lightbox-counter {
+      position: absolute;
+      top: 22px;
+      left: 50%;
+      transform: translateX(-50%);
+      color: #fff;
+      font-family: 'Bona Nova SC', serif;
+      font-size: 18px;
+      letter-spacing: .08em;
+      background: rgba(0, 0, 0, 0.28);
+      border-radius: 999px;
+      padding: 6px 12px;
     }
 
     .insp-footer {
@@ -1193,6 +1214,7 @@
         </section>
 
         <div class="insp-lightbox" id="inspLightbox" aria-hidden="true">
+          <div class="insp-lightbox-counter" id="inspLightboxCounter">1 / 5</div>
           <button class="insp-lightbox-close" type="button" aria-label="Cerrar imagen">&times;</button>
           <img id="inspLightboxImg" src="" alt="Foto ampliada" />
         </div>
@@ -1221,6 +1243,7 @@
       }).filter(Boolean);
       const lightbox = document.getElementById('inspLightbox');
       const lightboxImg = document.getElementById('inspLightboxImg');
+      const lightboxCounter = document.getElementById('inspLightboxCounter');
       const lightboxClose = lightbox.querySelector('.insp-lightbox-close');
       const countdown = document.getElementById('inspCountdown');
       const dateTarget = new Date('2026-07-11T00:00:00');
@@ -1228,6 +1251,11 @@
       const recepcionSection = document.getElementById('recepcion');
       let total = 0;
       let cloneCount = 0;
+      let galleryImages = [];
+      let lightboxIndex = 0;
+      let touchStartX = 0;
+      let touchStartY = 0;
+      const swipeThreshold = 38;
 
       function updateCountdown() {
         if (!countdown) return;
@@ -1271,10 +1299,12 @@
       function buildSlides(imageUrls) {
         if (!imageUrls || !imageUrls.length) return;
         const unique = [...new Set(imageUrls)];
-        if (!unique.length) return;
+        const limited = unique.slice(0, 5);
+        if (!limited.length) return;
+        galleryImages = limited;
 
         track.innerHTML = '';
-        unique.forEach(function (src) {
+        limited.forEach(function (src) {
           const figure = document.createElement('figure');
           figure.className = 'insp-slide';
           const img = document.createElement('img');
@@ -1381,34 +1411,83 @@
       bindHoldSpeed(nextBtn, 1);
       bindHoldSpeed(prevBtn, -1);
 
+      function updateLightboxCounter() {
+        if (!lightboxCounter) return;
+        const totalCount = galleryImages.length || 5;
+        lightboxCounter.textContent = `${lightboxIndex + 1} / ${totalCount}`;
+      }
+
+      function openLightboxAt(index) {
+        if (!galleryImages.length) return;
+        lightboxIndex = Math.max(0, Math.min(index, galleryImages.length - 1));
+        lightboxImg.src = galleryImages[lightboxIndex];
+        updateLightboxCounter();
+        lightbox.classList.add('open');
+        lightbox.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('insp-lightbox-open');
+        stopAutoplay();
+      }
+
+      function closeLightbox() {
+        lightbox.classList.remove('open');
+        lightbox.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('insp-lightbox-open');
+        startAutoplay();
+      }
+
       track.addEventListener('click', function (event) {
         const target = event.target;
         if (!(target instanceof HTMLImageElement)) return;
-        lightboxImg.src = target.src;
-        lightbox.classList.add('open');
-        lightbox.setAttribute('aria-hidden', 'false');
-        stopAutoplay();
+        const clickedSrc = new URL(target.getAttribute('src'), window.location.href).pathname;
+        const idx = galleryImages.findIndex(function (src) {
+          return new URL(src, window.location.href).pathname === clickedSrc;
+        });
+        openLightboxAt(idx >= 0 ? idx : 0);
       });
 
       lightboxClose.addEventListener('click', function () {
-        lightbox.classList.remove('open');
-        lightbox.setAttribute('aria-hidden', 'true');
-        startAutoplay();
+        closeLightbox();
       });
 
       lightbox.addEventListener('click', function (event) {
         if (event.target !== lightbox) return;
-        lightbox.classList.remove('open');
-        lightbox.setAttribute('aria-hidden', 'true');
-        startAutoplay();
+        closeLightbox();
       });
 
-      document.addEventListener('keydown', function (event) {
-        if (event.key !== 'Escape') return;
+      lightbox.addEventListener('touchstart', function (event) {
         if (!lightbox.classList.contains('open')) return;
-        lightbox.classList.remove('open');
-        lightbox.setAttribute('aria-hidden', 'true');
-        startAutoplay();
+        const t = event.touches[0];
+        touchStartX = t.clientX;
+        touchStartY = t.clientY;
+      }, { passive: true });
+
+      lightbox.addEventListener('touchmove', function (event) {
+        if (!lightbox.classList.contains('open')) return;
+        event.preventDefault(); // bloquea scroll vertical/horizontal de la pagina
+      }, { passive: false });
+
+      lightbox.addEventListener('touchend', function (event) {
+        if (!lightbox.classList.contains('open')) return;
+        const t = event.changedTouches[0];
+        const dx = t.clientX - touchStartX;
+        const dy = t.clientY - touchStartY;
+        if (Math.abs(dx) < swipeThreshold || Math.abs(dx) <= Math.abs(dy)) return;
+        if (dx < 0 && lightboxIndex < galleryImages.length - 1) {
+          openLightboxAt(lightboxIndex + 1);
+        } else if (dx > 0 && lightboxIndex > 0) {
+          openLightboxAt(lightboxIndex - 1);
+        }
+      }, { passive: true });
+
+      document.addEventListener('keydown', function (event) {
+        if (!lightbox.classList.contains('open')) return;
+        if (event.key === 'Escape') {
+          closeLightbox();
+        } else if (event.key === 'ArrowRight' && lightboxIndex < galleryImages.length - 1) {
+          openLightboxAt(lightboxIndex + 1);
+        } else if (event.key === 'ArrowLeft' && lightboxIndex > 0) {
+          openLightboxAt(lightboxIndex - 1);
+        }
       });
 
       window.addEventListener('resize', function () {
