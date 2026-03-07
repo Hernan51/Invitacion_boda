@@ -912,7 +912,7 @@
       }
 
       .insp-slide {
-        flex: 0 0 calc((100% - var(--insp-gap)) / 2);
+        flex: 0 0 56%;
       }
 
       .insp-arrow {
@@ -1167,39 +1167,24 @@
           <div class="insp-viewport">
             <div class="insp-track" id="inspTrack">
               <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1013%20de%20175).jpg"
+                <img src="img/Carrusel_v1/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1013%20de%20175).jpg"
                   alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1037%20de%20175).jpg"
+                <img src="img/Carrusel_v1/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1037%20de%20175).jpg"
                   alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1054%20de%20175).jpg"
+                <img src="img/Carrusel_v1/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1054%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" />
+              </figure>
+
+              <figure class="insp-slide">
+                <img src="img/Carrusel_v1/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1137%20de%20175)%20copy.jpg"
                   alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1077%20de%20175).jpg"
-                  alt="Sesion preboda de Karen y Sergio" />
-              </figure>
-              <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1089%20de%20175).jpg"
-                  alt="Sesion preboda de Karen y Sergio" />
-              </figure>
-              <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1098%20de%20175).jpg"
-                  alt="Sesion preboda de Karen y Sergio" />
-              </figure>
-              <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1109%20de%20175).jpg"
-                  alt="Sesion preboda de Karen y Sergio" />
-              </figure>
-              <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1114%20de%20175).jpg"
-                  alt="Sesion preboda de Karen y Sergio" />
-              </figure>
-              <figure class="insp-slide">
-                <img src="img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1117%20de%20175).jpg"
+                <img src="img/Carrusel_v1/Karen_Sergio.jpg"
                   alt="Sesion preboda de Karen y Sergio" />
               </figure>
             </div>
@@ -1243,7 +1228,6 @@
       const recepcionSection = document.getElementById('recepcion');
       let total = 0;
       let cloneCount = 0;
-      let isAnimating = false;
 
       function updateCountdown() {
         if (!countdown) return;
@@ -1265,7 +1249,7 @@
         const rect = sectionEl.getBoundingClientRect();
         const vh = window.innerHeight || document.documentElement.clientHeight;
         const progress = Math.min(Math.max((vh - rect.top) / (vh + rect.height), 0), 1);
-        const shift =  progress; // desplazamiento sutil
+        const shift = -24 * progress; // desplazamiento sutil
         const brightness = 1 - (0.52 * progress); // oscurece un poco mas
         sectionEl.style.setProperty(`--${varPrefix}-shift`, `${shift.toFixed(1)}px`);
         sectionEl.style.setProperty(`--${varPrefix}-brightness`, brightness.toFixed(3));
@@ -1276,8 +1260,13 @@
         updateSectionVisual(recepcionSection, 'recepcion');
       }
 
-      let index = cloneCount;
       let autoplayId = null;
+      let currentX = 0;
+      let lastTs = 0;
+      let isAutoplayRunning = false;
+      const speedPxPerSec = 46;
+      const holdBoostPxPerSec = 95;
+      let holdDirection = 0; // 1 = siguiente (izquierda), -1 = anterior (derecha)
 
       function buildSlides(imageUrls) {
         if (!imageUrls || !imageUrls.length) return;
@@ -1306,37 +1295,8 @@
         for (let i = 0; i < cloneCount; i += 1) {
           track.appendChild(originals[i].cloneNode(true));
         }
-        index = cloneCount;
-        move(false);
-      }
-
-      function imageExists(src) {
-        return new Promise(function (resolve) {
-          const img = new Image();
-          img.onload = function () { resolve(true); };
-          img.onerror = function () { resolve(false); };
-          img.src = src;
-        });
-      }
-
-      async function discoverCarouselImages() {
-        const found = [];
-        const start = 1000;
-        const end = 1300;
-        const probes = [];
-
-        for (let n = start; n <= end; n += 1) {
-          const src = `img/Carrusel/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(${n}%20de%20175).jpg`;
-          probes.push(
-            imageExists(src).then(function (ok) {
-              if (ok) found.push({ n: n, src: src });
-            })
-          );
-        }
-
-        await Promise.all(probes);
-        found.sort(function (a, b) { return a.n - b.n; });
-        return found.map(function (item) { return item.src; });
+        currentX = -(cloneCount * getSlideStep());
+        renderTrack();
       }
 
       function getSlideStep() {
@@ -1347,67 +1307,79 @@
         return firstSlide.getBoundingClientRect().width + gap;
       }
 
-      function move(animate) {
-        track.style.transition = animate ? 'transform 1.8s linear' : 'none';
-        track.style.transform = `translateX(${-index * getSlideStep()}px)`;
+      function renderTrack() {
+        track.style.transition = 'none';
+        track.style.transform = `translateX(${currentX}px)`;
       }
 
-      function next() {
-        if (!total || isAnimating) return;
-        if (index >= total + cloneCount - 1) {
-          index = cloneCount - 1;
-          move(false);
-        }
-        index += 1;
-        isAnimating = true;
-        move(true);
+      function normalizeLoop() {
+        const step = getSlideStep();
+        if (!step || !total) return;
+        const minX = -((cloneCount + total) * step);
+        const maxX = -(cloneCount * step);
+        const span = total * step;
+        if (currentX <= minX) currentX += span;
+        if (currentX > maxX) currentX -= span;
       }
 
-      function prev() {
-        if (!total || isAnimating) return;
-        if (index <= cloneCount) {
-          index = total + cloneCount;
-          move(false);
-        }
-        index -= 1;
-        isAnimating = true;
-        move(true);
+      function next(step = 1) {
+        if (!total) return;
+        currentX -= getSlideStep() * step;
+        normalizeLoop();
+        renderTrack();
+      }
+
+      function prev(step = 1) {
+        if (!total) return;
+        currentX += getSlideStep() * step;
+        normalizeLoop();
+        renderTrack();
+      }
+
+      function stepAutoplay(ts) {
+        if (!isAutoplayRunning) return;
+        if (!lastTs) lastTs = ts;
+        const dt = (ts - lastTs) / 1000;
+        lastTs = ts;
+        const dynamicSpeed = speedPxPerSec + (holdBoostPxPerSec * holdDirection);
+        currentX -= dynamicSpeed * dt;
+        normalizeLoop();
+        renderTrack();
+        autoplayId = requestAnimationFrame(stepAutoplay);
       }
 
       function startAutoplay() {
-        if (total <= 1) return;
-        stopAutoplay();
-        autoplayId = setInterval(next, 2300);
+        if (total <= 1 || isAutoplayRunning) return;
+        isAutoplayRunning = true;
+        lastTs = 0;
+        autoplayId = requestAnimationFrame(stepAutoplay);
       }
 
       function stopAutoplay() {
-        if (autoplayId) {
-          clearInterval(autoplayId);
-          autoplayId = null;
-        }
+        isAutoplayRunning = false;
+        if (autoplayId) cancelAnimationFrame(autoplayId);
+        autoplayId = null;
+        lastTs = 0;
       }
 
-      track.addEventListener('transitionend', function () {
-        isAnimating = false;
-        if (!total) return;
-        if (index >= total + cloneCount) {
-          index = cloneCount;
-          move(false);
-        } else if (index < cloneCount) {
-          index = total + cloneCount - 1;
-          move(false);
-        }
-      });
+      function clearHoldDirection() {
+        holdDirection = 0;
+      }
 
-      nextBtn.addEventListener('click', function () {
-        next();
-        startAutoplay();
-      });
+      function bindHoldSpeed(btn, direction) {
+        if (!btn) return;
+        btn.addEventListener('pointerdown', function (event) {
+          event.preventDefault();
+          holdDirection = direction;
+        });
+        btn.addEventListener('pointerup', clearHoldDirection);
+        btn.addEventListener('pointerleave', clearHoldDirection);
+        btn.addEventListener('pointercancel', clearHoldDirection);
+        btn.addEventListener('touchend', clearHoldDirection, { passive: true });
+      }
 
-      prevBtn.addEventListener('click', function () {
-        prev();
-        startAutoplay();
-      });
+      bindHoldSpeed(nextBtn, 1);
+      bindHoldSpeed(prevBtn, -1);
 
       track.addEventListener('click', function (event) {
         const target = event.target;
@@ -1439,13 +1411,9 @@
         startAutoplay();
       });
 
-      carousel.addEventListener('mouseenter', stopAutoplay);
-      carousel.addEventListener('mouseleave', startAutoplay);
-      carousel.addEventListener('focusin', stopAutoplay);
-      carousel.addEventListener('focusout', startAutoplay);
       window.addEventListener('resize', function () {
-        isAnimating = false;
-        move(false);
+        currentX = -(cloneCount * getSlideStep());
+        renderTrack();
         updateCeremoniaVisual();
         if (window.innerWidth > 860 && nav) {
           nav.classList.remove('is-open');
@@ -1477,14 +1445,7 @@
       }
 
       buildSlides(fallbackSlides);
-      discoverCarouselImages()
-        .then(function (images) {
-          if (images.length) buildSlides(images);
-        })
-        .catch(function () { })
-        .finally(function () {
-          startAutoplay();
-        });
+      startAutoplay();
 
       updateCountdown();
       setInterval(updateCountdown, 1000);
