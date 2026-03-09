@@ -1404,6 +1404,14 @@ footer {
   box-shadow: 0 12px 36px rgba(0, 0, 0, .12);
 }
 
+/* pink fill animation on hover */
+.btn-liverpool:hover::before {
+  transform: translateX(0);
+}
+.btn-liverpool:hover span {
+  color: #fff;
+}
+
 /* ===== Ajustes para móvil ===== */
 @media (max-width: 580px) {
   .wrap {
@@ -2007,14 +2015,14 @@ footer {
 
 .gift-title {
   font-family: 'Playfair Display', serif;
-  font-size: 18px;
+  font-size: 28px;
   letter-spacing: .18em;
   text-transform: uppercase;
   margin: 0 0 12px;
 }
 
 .gift-text {
-  font-size: 13px;
+  font-size: 33px;
   color: #666;
   margin: 0 0 18px;
 }
@@ -2039,7 +2047,7 @@ footer {
 }
 
 .gift-label {
-  font-size: 13px;
+  font-size: 28px; /* más grande como el resto */
   text-transform: uppercase;
   letter-spacing: .16em;
 }

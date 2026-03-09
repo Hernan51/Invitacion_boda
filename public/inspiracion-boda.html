@@ -375,6 +375,7 @@
       filter: brightness(var(--recepcion-brightness, 1));
       transition: transform 0.12s linear, filter 0.12s linear;
       will-change: transform, filter;
+      object-position: left center;
     }
 
     .insp-countdown-title {
@@ -586,7 +587,7 @@
     @media (min-width: 861px) {
       .insp-body #itinerario.itinerary-section {
         margin-top: 28px;
-        padding-top: 26px;
+        padding-top: 0px;
         padding-left: 0;
         padding-right: 0;
       }
@@ -641,7 +642,7 @@
       }
 
       .insp-body #itinerario .itinerary-icon img {
-        width: 68px !important;
+        width: 80px !important;
         height: auto !important;
       }
 
@@ -898,8 +899,6 @@
       .insp-couple .last,
       .insp-couple .amp-alt {
         display: inline-block;
-        -webkit-text-stroke: 1px rgba(0, 0, 0, 0.58);
-        text-shadow: 0 0 2px rgba(0, 0, 0, 0.72), 0 2px 8px rgba(0, 0, 0, 0.45);
       }
 
       .insp-couple .first {
@@ -924,8 +923,6 @@
       }
 
       .insp-hero-date-float .day {
-        -webkit-text-stroke: 0.8px rgba(0, 0, 0, 0.65);
-        text-shadow: 0 0 2px rgba(0, 0, 0, 0.78), 0 2px 8px rgba(0, 0, 0, 0.5);
       }
 
       .insp-countdown-hero {
@@ -954,6 +951,23 @@
       .insp-arrow.next {
         right: 10px;
       }
+
+      /* mobile tweaks for protocolo/dress code */
+      .protocol-section {
+        padding: 20px 16px;
+      }
+      .protocol-section h2 {
+        font-size: clamp(30px, 6vw, 40px);
+      }
+      .dress-code-section {
+        padding: 20px 16px;
+      }
+      .dress-code-section h2 {
+        font-size: clamp(28px, 5vw, 36px);
+      }
+      .dress-code-images img {
+        max-width: 110px;
+      }
     }
 
     @media (min-width: 861px) {
@@ -977,6 +991,156 @@
         display: none;
       }
     }
+
+    .protocol-section {
+      margin: 0 auto 44px;
+      text-align: center;
+      max-width: 700px;
+    }
+
+    .protocol-content {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .dress-code-section {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+    }
+
+    .dress-code-images {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 40px;
+      margin: 30px 0;
+    }
+
+    .dress-code-item {
+      flex: 0 0 auto;
+      text-align: center;
+      min-width: 90px;
+    }
+
+    .dress-code-images-center {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .dress-code-images-center figure {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin: 0;
+    }
+
+    .dress-code-images-center figure img {
+      display: block;
+    }
+
+    .dress-code-images-center figure figcaption {
+      margin-top: 8px;
+      font-size: 20px;
+      text-align: center;
+    }
+
+    .protocol-item {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      text-align: left;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .protocol-item img {
+      flex-shrink: 0;
+    }
+
+    .protocol-item h3 {
+      margin: 0 0 10px;
+      font-size: 24px;
+    }
+
+    .protocol-item p {
+      margin: 0;
+      line-height: 1.6;
+    }
+
+    @media (max-width: 560px) {
+      .dress-code-images {
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 20px;
+        justify-content: center;
+      }
+      /* on narrow screens move first text below the images */
+      .dress-code-images-center {
+        order: 1;
+      }
+      .dress-code-item {
+        order: 1;
+        flex: 1 1 auto;
+        min-width: 0;
+        text-align: center;
+      }
+
+      .dress-code-item {
+        min-width: auto;
+      }
+
+      .dress-code-images-center {
+        order: 0;
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      .protocol-item {
+        flex-direction: column;
+        text-align: center;
+        gap: 15px;
+      }
+
+      .protocol-content {
+        gap: 20px;
+      }
+
+      /* additional small-screen font scaling */
+      .protocol-section h2 {
+        font-size: clamp(26px, 7vw, 32px);
+      }
+      .protocol-item h3 {
+        font-size: clamp(18px, 5vw, 22px);
+      }
+      .dress-code-images img {
+        max-width: 90px;
+      }
+
+      /* groom/bride specific sizing */
+      .dress-code-images-center figure img {
+        width: auto;
+        height: auto;
+        max-width: 100px;
+      }
+      .dress-code-images-center figure:first-child img {
+        /* novia tends to be wider, make a bit smaller */
+        max-width: 85px;
+      }
+      .dress-code-images-center figure:last-child img {
+        /* novio image can be a touch larger */
+        max-width: 100px;
+      }
+    }
   </style>
 </head>
 
@@ -998,8 +1162,7 @@
             <a href="#">Ceremonia</a>
             <a href="#">Detalles</a>
             <a href="#">RSVP</a>
-            <a href="#">Recomendaciones</a>
-            <a href="#">S.O.S</a>
+            <a href="#">Guía de Viajero</a>
             <a href="#">Galería</a>
 
           </nav>
@@ -1152,7 +1315,7 @@
               </div>
               <div class="itinerary-text">
                 <div class="dancing-script">Protocolo</div>
-                <div class="it-time">19:00 hrs</div>
+                <div class="it-time">21:00 hrs</div>
               </div>
             </div>
 
@@ -1216,6 +1379,69 @@
             </div>
           </div>
           <button class="insp-arrow next" type="button" aria-label="Siguiente foto">&#8250;</button>
+        </section>
+
+        <section id="protocolo" class="protocol-section">
+          
+          <div class="protocol-content">
+            <div class="dress-code-section">
+              <h2 class="sacramento" style="font-size: 44px;">Código de Vestimenta</h3>
+              <p class="dancing-script" style="font-size: 30px; margin: 0 0 30px;">Formal de noche</p>
+              
+              <div class="dress-code-images">
+                <div class="dress-code-item">
+                  <p class="sacramento" style="font-size: 38px;">Damas con</p>
+                  <p class="sacramento" style="font-size: 38px;margin-top: -50px;">vestido largo</p>
+                </div>
+                <div class="dress-code-images-center">
+                  <figure>
+                    <img src="img/novia.png" alt="Ejemplo vestido para la novia" style="width: 120px; height: auto; object-fit: contain;">
+                  </figure>
+                  <figure>
+                    <img src="img/novio_1.png" alt="Ejemplo traje para el novio" style="width: 145px; height: auto; object-fit: contain;">
+                  </figure>
+                </div>
+                <div class="dress-code-item">
+                  <p class="sacramento" style="font-size: 38px;">Caballeros</p>
+                  <p class="sacramento" style="font-size: 38px; margin-top: -50px;">de traje</p>
+                </div>
+              </div>
+              
+              <p class="dancing-script" style="font-size: 24px; line-height: 1.6; margin-top: 30px;">Les invitamos a lucir espectaculares en nuestra celebración. Por favor, les pedimos evitar el color blanco o marfil, se reserva ese tono distintivo para la novia.</p>
+            </div>
+            
+            <div class="protocol-item">
+              <img src="img/protocolov.png" alt="Aviso importante" style="width: 250px; height: auto;">
+              <div>
+                <h3 class="dancing-script">Aviso Importante</h3>
+                <p class="dancing-script" style="font-size: 20px;">Nos encantaría que nos acompañen en esta noche de celebración diseñada especialmente para adultos. Agradecemos su comprensión.</p>
+              </div>
+            </div>
+
+            <!-- Mesa de regalos (adaptada de index.html) -->
+            <div class="itinerary-gift">
+              <h3 class="sacramento" style="font-size: 44px;">Sugerencia de regalo</h3>
+              <p class="dancing-script" style="font-size: 20px;">
+                Nuestro mejor regalo será disfrutar contigo de este día tan especial.<br>
+                Cualquier detalle de tu parte será bienvenido con mucho cariño. Nuestras sugerencias:
+              </p>
+              <div class="gift-options">
+                <div class="gift-option">
+                  <div class="gift-icon"><img src="img/sobre.jpeg" alt=""></div>
+                  <div class="dancing-script gift-label" style="font-size:18px;">Lluvia de sobres</div>
+                </div>
+
+                <div class="gift-option">
+                  <div class="gift-icon"><img src="img/mesa_regalos.png" alt=""></div>
+                  <div class="dancing-script gift-label" style="font-size:18px;">Mesa de regalos</div>
+                  <a id="btnLiverpool" class="btn btn-liverpool gift-btn"
+                    href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51755634" target="_blank" rel="noopener">
+                    <span>Liverpool</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
         </section>
 
         <div class="insp-lightbox" id="inspLightbox" aria-hidden="true">
