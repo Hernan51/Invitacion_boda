@@ -180,12 +180,12 @@
     .insp-couple .first,
     .insp-couple .last {
       position: relative;
-      top: -112px;
+      top: -90px;
     }
 
     .insp-couple .amp-alt {
       position: relative;
-      top: -112px;
+      top: -95px;
       font-family: 'Rouge Script', cursive;
     }
 
@@ -968,6 +968,12 @@
       .dress-code-images img {
         max-width: 110px;
       }
+      /* shrink & reposition flower on small screens */
+      .dress-code-flower {
+        left: -10px;
+        top: 70px;
+        width: 120px;
+      }
     }
 
     @media (min-width: 861px) {
@@ -1006,7 +1012,32 @@
     }
 
     .dress-code-section {
-      background: rgba(255, 255, 255, 0.1);
+      padding: 30px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      position: relative; /* allow flower inside */
+    }
+
+    /* flower positioned beside the "Formal de noche" line */
+    .dress-code-flower {
+      position: absolute;
+      /* move outside the padded area so the flower hugs the section edge */
+      left: -110px;
+      top: 56%; /* moved down to clear text */
+      width: 150px; /* slightly smaller so it stays out of the words */
+      height: auto;
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    /* flipped version on the right side */
+    .dress-code-flower-right {
+      right: -110px;
+      left: auto;
+      transform: scaleX(-1);
+    }
+
+    .dress-code-section {
       padding: 30px;
       border-radius: 10px;
       margin-bottom: 20px;
@@ -1243,11 +1274,13 @@
             <div class="ceremonia-text">
               <h2 class="sacramento">Recepción</h2>
               <p class="dancing-script" style="font-size: 28px;">7:30 PM</p>
-              <p class="dancing-script" style="font-size: 20px;">Salón de eventos Casa de Piedra</p>
+              <p class="dancing-script" style="font-size: 20px;"><b>Casa de Piedra</b></p>
+              <p class="dancing-script" style="font-size: 20px;">Salón de eventos</p>
               <p class="dancing-script" style="font-size: 20px;">
                 Después de la ceremonia, celebraremos con cena, música y mucho amor.
               </p>
-              <p class="dancing-script" style="font-size: 20px;">Ubicación: Av. Guadalupe Gonzalez 1116, 20329 Pocitos, Ags.</p>
+              <p class="dancing-script" style="font-size: 20px;"><b>Ubicación:</b></p>
+              <p class="dancing-script" style="font-size: 20px;">Av. Guadalupe Gonzalez 1116, 20329 Pocitos, Ags.</p>
               <div class="btn">
                 <a class="dancing-script" href="https://maps.app.goo.gl/Ygj4LrfqH4SjpTNBA" target="_blank" rel="noopener">Ver mapa</a>
               </div>
@@ -1385,6 +1418,8 @@
           
           <div class="protocol-content">
             <div class="dress-code-section">
+              <img src="img/flores_2.png" alt="Flores" class="dress-code-flower" />
+              <img src="img/flores_2.png" alt="Flores" class="dress-code-flower dress-code-flower-right" />
               <h2 class="sacramento" style="font-size: 44px;">Código de Vestimenta</h3>
               <p class="dancing-script" style="font-size: 30px; margin: 0 0 30px;">Formal de noche</p>
               
