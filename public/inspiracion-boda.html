@@ -968,10 +968,20 @@
       .dress-code-images img {
         max-width: 110px;
       }
-      /* shrink & reposition flower on small screens */
+      /* shrink & reposition flowers on small screens */
+      .dress-code-section {
+        overflow-x: hidden;
+      }
+
       .dress-code-flower {
         left: -10px;
         top: 70px;
+        width: 120px;
+      }
+
+      .dress-code-flower-right {
+        right: -10px;
+        left: auto;
         width: 120px;
       }
     }
@@ -1016,7 +1026,6 @@
       border-radius: 10px;
       margin-bottom: 20px;
       position: relative; /* allow flower inside */
-      overflow: hidden; /* prevent decorative flowers from creating horizontal scroll */
     }
 
     /* flower positioned beside the "Formal de noche" line */
@@ -1024,7 +1033,7 @@
       position: absolute;
       /* move outside the padded area so the flower hugs the section edge */
       left: -110px;
-      top: 50%; /* moved down to clear text */
+      top: 56%; /* moved down to clear text */
       width: 150px; /* slightly smaller so it stays out of the words */
       height: auto;
       opacity: 0.9;
@@ -1033,8 +1042,7 @@
 
     /* flipped version on the right side */
     .dress-code-flower-right {
-      /* keep inside after hiding overflow; reduce negative offset a bit */
-      right: -80px;
+      right: -110px;
       left: auto;
       transform: scaleX(-1);
     }
