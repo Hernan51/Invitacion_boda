@@ -366,14 +366,14 @@
     #ceremonia .stack-bg img {
       transform: translateY(var(--ceremonia-shift, 0px));
       filter: brightness(var(--ceremonia-brightness, 1));
-      transition: transform 0.12s linear, filter 0.12s linear;
+      transition: transform 0.35s ease-out, filter 0.35s ease-out;
       will-change: transform, filter;
     }
 
     #recepcion .stack-bg img {
       transform: translateY(var(--recepcion-shift, 0px));
       filter: brightness(var(--recepcion-brightness, 1));
-      transition: transform 0.12s linear, filter 0.12s linear;
+      transition: transform 0.35s ease-out, filter 0.35s ease-out;
       will-change: transform, filter;
       object-position: left center;
     }
@@ -1610,8 +1610,8 @@
         const progress = Math.min(Math.max((vh - rect.top) / (vh + rect.height), 0), 1);
         const shift = -24 * progress; // desplazamiento sutil
         const brightness = 1 - (0.52 * progress); // oscurece un poco mas
-        sectionEl.style.setProperty(`--${varPrefix}-shift`, `${shift.toFixed(1)}px`);
-        sectionEl.style.setProperty(`--${varPrefix}-brightness`, brightness.toFixed(3));
+        sectionEl.style.setProperty(`--${varPrefix}-shift`, shift + 'px');
+        sectionEl.style.setProperty(`--${varPrefix}-brightness`, brightness);
       }
 
       function updateCeremoniaVisual() {
