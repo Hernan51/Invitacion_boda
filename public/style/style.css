@@ -416,6 +416,7 @@
   opacity: 0;
   padding: 0 5px;
   transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
 }
 
 /* Panel de servicios abierto */
@@ -485,6 +486,11 @@
   align-items: center;
   gap: 12px;
   padding: 10px 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.25);
+}
+
+.service-row.open {
+  border-bottom: none;
 }
 
 .service-plus {
@@ -497,13 +503,15 @@
 
 /* Imagen representativa que aparece dentro del panel desplegable (oculta por defecto) */
 .service-category-header-img {
-  width: 100%;
-  max-height: 220px;
+  max-width: 257px;
+  max-height: 257px;
   object-fit: cover;
   border-radius: 6px;
   background: #f0ebe300;
   display: none;
   /* no ocupa espacio cuando el panel está cerrado */
+  margin-left: auto;
+  margin-right: auto;
   margin-bottom: 10px;
 }
 
@@ -511,11 +519,42 @@
   display: block;
 }
 
+.restaurant-photo {
+  display: block;
+  width: min(220px, 100%);
+  max-height: 150px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 10px;
+  margin: 0 auto 12px;
+}
+
+.restaurant-row {
+  text-align: left;
+}
+
+.restaurant-row .service-row-left {
+  flex: 1;
+  min-width: 0;
+  justify-content: flex-start;
+}
+
+.restaurant-row .service-row-left span {
+  display: block;
+  width: 100%;
+  text-align: left;
+}
+
 @media (max-width: 600px) {
   .service-category-header-img {
     max-height: 200px;
     max-width: 200px;
     margin: 0 auto;
+  }
+
+  .restaurant-photo {
+    width: min(190px, 100%);
+    max-height: 130px;
   }
 
 }
@@ -631,7 +670,7 @@
 }
 
 .hotel-desc.open {
-  max-height: 500px;
+  max-height: 600px;
   opacity: 1;
   padding-top: 10px;
 }
@@ -899,6 +938,8 @@
   --card: #ffffffcc;
   --shadow: 0 10px 30px rgba(0, 0, 0, .08);
   --liverpool: #e1007a;
+  --amazon: #111111;
+  --amazon-accent: #ff9900;
 }
 
 * {
@@ -1412,8 +1453,71 @@ footer {
   color: #fff;
 }
 
+.btn-amazon {
+  position: relative;
+  overflow: hidden;
+  background: #fff !important;
+  border: 2px solid var(--amazon);
+  color: var(--amazon);
+  padding: 12px 18px 20px;
+  transition: color .3s ease, box-shadow .15s ease, transform .15s ease, background .3s ease;
+}
+
+.btn-amazon span {
+  position: relative;
+  z-index: 1;
+}
+
+.btn-amazon::before {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 8px;
+  width: 10px;
+  height: 10px;
+  border-top: 3px solid var(--amazon-accent);
+  border-right: 3px solid var(--amazon-accent);
+  transform: translateX(21px) rotate(38deg) scale(.7);
+  transform-origin: center;
+  opacity: .88;
+  transition: transform .45s ease, opacity .3s ease;
+}
+
+.btn-amazon::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: 7px;
+  width: 58px;
+  height: 16px;
+  border-bottom: 4px solid var(--amazon-accent);
+  border-radius: 0 0 999px 999px;
+  transform: translateX(-50%) scaleX(.62) skewX(-8deg);
+  transform-origin: center;
+  opacity: .9;
+  transition: transform .45s ease, opacity .3s ease, width .3s ease;
+}
+
+.btn-amazon:hover::before {
+  transform: translateX(25px) rotate(38deg) scale(1);
+}
+
+.btn-amazon:hover::after {
+  transform: translateX(-50%) scaleX(1) skewX(-8deg);
+  width: 66px;
+}
+
+.btn-amazon:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .12);
+}
+
 /* ===== Ajustes para móvil ===== */
 @media (max-width: 580px) {
+  body {
+    font-size: 17px;
+  }
+
   .wrap {
     padding: 10px 14px 64px;
   }
@@ -1432,20 +1536,20 @@ footer {
   }
 
   .logo span {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   .names {
-    font-size: clamp(40px, 9vw, 72px);
+    font-size: clamp(46px, 10vw, 78px);
   }
 
   .date {
     letter-spacing: .16em;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .tagline {
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .countdown {
@@ -1458,11 +1562,11 @@ footer {
   }
 
   .cd-num {
-    font-size: 44px;
+    font-size: 48px;
   }
 
   .cd-lbl {
-    font-size: 11px;
+    font-size: 13px;
     letter-spacing: .1em;
   }
 
@@ -1471,25 +1575,25 @@ footer {
   }
 
   .card {
-    padding: 16px;
+    padding: 18px;
   }
 
   .section-title {
-    font-size: clamp(20px, 5.2vw, 26px);
+    font-size: clamp(24px, 6vw, 30px);
   }
 
   .btn {
     padding: 12px 16px;
-    font-size: 14px;
+    font-size: 16px;
   }
 
   .menu a {
-    font-size: 22px;
+    font-size: 24px;
     margin: 8px 0;
   }
 
   .menu a small {
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .fade-image,

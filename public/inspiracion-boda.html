@@ -12,6 +12,8 @@
   <link
     href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Noto+Sans+SC:wght@400;700&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&family=Rouge+Script&family=Sacramento&display=swap"
     rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&display=swap"
+    rel="stylesheet" />
 
   <style>
     body.insp-menu-open {
@@ -1183,6 +1185,43 @@
         max-width: 100px;
       }
     }
+
+    .protocol-section .hotel-board-wrapper,
+    .protocol-section .servicios {
+      min-height: auto;
+      padding: 20px 0 0;
+      display: block;
+      background: transparent;
+    }
+
+    .protocol-section .hotel-board {
+      max-width: min(760px, 100%);
+      width: 100%;
+      margin: 0 auto;
+      background: rgba(247, 241, 230, 0.78);
+      backdrop-filter: blur(3px);
+      box-sizing: border-box;
+    }
+
+    .protocol-section .hotel-carousel {
+      max-width: 520px;
+      margin: 14px auto;
+    }
+
+    .protocol-section .hotel-carousel .carousel-track img,
+    .protocol-section .hotel-carousel .carousel-track video {
+      width: 100%;
+      flex-shrink: 0;
+      object-fit: cover;
+      object-position: center center;
+    }
+
+    @media (max-width: 560px) {
+      .protocol-section .hotel-board {
+        padding-left: 22px;
+        padding-right: 22px;
+      }
+    }
   </style>
 </head>
 
@@ -1466,7 +1505,7 @@
 
             <!-- Mesa de regalos (adaptada de index.html) -->
             <div class="itinerary-gift">
-              <h3 class="sacramento" style="font-size: 44px;">Sugerencia de regalo</h3>
+              <h3 class="sacramento" style="font-size: 44px;">Sugerencia de Regalo</h3>
               <p class="dancing-script" style="font-size: 20px;">
                 Nuestro mejor regalo será disfrutar contigo de este día tan especial.<br>
                 Cualquier detalle de tu parte será bienvenido con mucho cariño. Nuestras sugerencias:
@@ -1484,9 +1523,154 @@
                     href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51755634" target="_blank" rel="noopener">
                     <span>Liverpool</span>
                   </a>
+                  <a id="btnAmazon" class="btn btn-amazon gift-btn"
+                    href="https://www.amazon.com.mx/wedding/share/karenysergio2026" target="_blank" rel="noopener">
+                    <span>Amazon</span>
+                  </a>
                 </div>
               </div>
             </div>
+
+            <section class="hotel-board-wrapper">
+              <div class="hotel-board">
+                <p class="sacramento">Recomendaciones</p>
+                <h2 class="dancing-script">HOTELES</h2>
+
+                <ul class="hotel-board-list">
+                  <li>
+                    <div class="hotel-row" data-hotel="las-trojes">
+                      <span>HOTEL LAS TROJES</span>
+                      <span class="hotel-plus">+</span>
+                    </div>
+                    <div class="hotel-desc">
+                      <div class="hotel-carousel">
+                        <button class="carousel-btn prev">‹</button>
+                        <div class="carousel-track">
+                          <img src="https://www.hotellastrojes.com.mx/images/home.jpg" alt="Hotel Las Trojes">
+                          <img src="https://www.hotellastrojes.com.mx/images/galerias/habitacion-sencilla-1533165647.jpg"
+                            alt="Hotel Las Trojes">
+                          <img src="https://www.hotellastrojes.com.mx/images/galerias/master-suite-1539624117.jpg"
+                            alt="Hotel Las Trojes">
+                          <img src="https://www.hotellastrojes.com.mx/images/galerias/habitacion-doble-1533160264.jpg"
+                            alt="Hotel Las Trojes">
+                          <img src="https://www.hotellastrojes.com.mx/images/galerias/alberca-1541007388s.jpg"
+                            alt="Hotel Las Trojes">
+                          <img src="https://www.hotellastrojes.com.mx/images/galerias/alberca-1541007367s.jpg"
+                            alt="Hotel Las Trojes">
+                        </div>
+                        <button class="carousel-btn next">›</button>
+                      </div>
+                      <p><strong>Dirección:</strong> Blvd. Luis Donaldo Colosio 792.</p>
+                      <p>Hotel con excelente ubicación, alberca, jardines y cerca de plazas comerciales.</p>
+                      <a class="hotel-map-btn"
+                        href="https://www.google.com/maps/search/?api=1&query=Hotel+Las+Trojes+Aguascalientes"
+                        target="_blank" rel="noopener">Ver en Google Maps</a>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="hotel-row" data-hotel="hilton">
+                      <span>HILTON GARDEN INN</span>
+                      <span class="hotel-plus">+</span>
+                    </div>
+                    <div class="hotel-desc">
+                      <div class="hotel-carousel">
+                        <button class="carousel-btn prev">‹</button>
+                        <div class="carousel-track">
+                          <img
+                            src="https://www.hilton.com/im/en/AGUGIGI/3808571/outdoor-pool-night.jpg?impolicy=crop&cw=4500&ch=2519&gravity=NorthWest&xposition=0&yposition=240&rw=768&rh=430"
+                            alt="Hotel Hilton Garden Inn">
+                          <img
+                            src="https://www.hilton.com/im/en/AGUGIGI/3808511/agugigi-exterior-day.jpg?impolicy=crop&cw=3914&ch=2191&gravity=NorthWest&xposition=0&yposition=404&rw=768&rh=430"
+                            alt="Hotel Hilton Garden Inn">
+                          <img
+                            src="https://www.hilton.com/im/en/AGUGIGI/3808398/1-king-bed-guestroom-k1.jpg?impolicy=crop&cw=4500&ch=2519&gravity=NorthWest&xposition=0&yposition=240&rw=768&rh=430"
+                            alt="Hotel Hilton Garden Inn">
+                          <img
+                            src="https://www.hilton.com/im/en/AGUGIGI/3808583/1-king-1-bedroom-suite-k1rrp1.jpg?impolicy=crop&cw=4500&ch=2519&gravity=NorthWest&xposition=0&yposition=240&rw=768&rh=430"
+                            alt="Hotel Hilton Garden Inn">
+                        </div>
+                        <button class="carousel-btn next">›</button>
+                      </div>
+                      <p><strong>Dirección:</strong> Blvd. Luis Donaldo Colosio 404.</p>
+                      <p>Moderno, cómodo y muy cercano a restaurantes y centros comerciales.</p>
+                      <a class="hotel-map-btn"
+                        href="https://www.google.com/maps/search/?api=1&query=Hilton+Garden+Inn+Aguascalientes"
+                        target="_blank" rel="noopener">Ver en Google Maps</a>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="hotel-row" data-hotel="marriott">
+                      <span>MARRIOTT AGUASCALIENTES</span>
+                      <span class="hotel-plus">+</span>
+                    </div>
+                    <div class="hotel-desc">
+                      <div class="hotel-carousel">
+                        <button class="carousel-btn prev">‹</button>
+                        <div class="carousel-track">
+                          <img
+                            src="https://cache.marriott.com/is/image/marriotts7prod/agumc-pool-3826:Pano-Hor?wid=1600&fit=constrain"
+                            alt="Hotel Marriott Aguascalientes">
+                          <img
+                            src="https://cache.marriott.com/content/dam/marriott-renditions/AGUMC/agumc-lobby-3813-hor-pano.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1600px:*"
+                            alt="Hotel Marriott Aguascalientes">
+                          <img
+                            src="https://cache.marriott.com/content/dam/marriott-renditions/AGUMC/agumc-junior-3779-hor-pano.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1600px:*"
+                            alt="Hotel Marriott Aguascalientes">
+                          <img
+                            src="https://cache.marriott.com/content/dam/marriott-renditions/AGUMC/agumc-guestroom-2805-hor-clsc.jpg?output-quality=70&interpolation=progressive-bilinear&downsize=1140px:*"
+                            alt="Hotel Marriott Aguascalientes">
+                        </div>
+                        <button class="carousel-btn next">›</button>
+                      </div>
+                      <p><strong>Dirección:</strong> Av. Colosio 333, Zona Norte.</p>
+                      <p>Hotel de lujo con excelentes amenidades, restaurantes y ubicación privilegiada.</p>
+                      <a class="hotel-map-btn" href="https://www.google.com/maps/search/?api=1&query=Marriott+Aguascalientes"
+                        target="_blank" rel="noopener">Ver en Google Maps</a>
+                    </div>
+                  </li>
+
+                  <li>
+                    <div class="hotel-row" data-hotel="vive-place">
+                      <span>VIVE PLACE</span>
+                      <span class="hotel-plus">+</span>
+                    </div>
+                    <div class="hotel-desc">
+                      <div class="hotel-carousel">
+                        <button class="carousel-btn prev">‹</button>
+                        <div class="carousel-track">
+                          <video src="videos/sencilla.mp4" autoplay muted loop playsinline></video>
+                          <video src="videos/doble.mp4" autoplay muted loop playsinline></video>
+                        </div>
+                        <button class="carousel-btn next">›</button>
+                      </div>
+                      <p><strong>Dirección:</strong> Avenida Independencia esquina Montes Himalaya Fraccionamiento Jardines
+                        De La Concepción ll, 20120 Aguascalientes, Ags.</p>
+                      <p>Nuestro hotel ofrece a sus huéspedes múltiples comodidades: una confortable recepción con ascensor,
+                        café y/o té de cortesía, recepción abierta las 24 horas.</p>
+                      <a class="hotel-map-btn" href="https://maps.app.goo.gl/tdzKgss4BrP3jr3B9?g_st=iw" target="_blank"
+                        rel="noopener">Ver en Google Maps</a>
+                    </div>
+                  </li>
+                </ul>
+              </div>
+            </section>
+
+            <section class="servicios">
+              <div class="hotel-board">
+                <p class="sacramento">SOS</p>
+                <h2 class="dancing-script">SERVICIOS</h2>
+                <ul class="hotel-board-list" id="servicesList"></ul>
+              </div>
+            </section>
+
+            <section class="servicios">
+              <div class="hotel-board">
+                <h2 class="dancing-script">RESTAURANTES</h2>
+                <ul class="hotel-board-list" id="restaurantsList"></ul>
+              </div>
+            </section>
           </div>
         </section>
 
@@ -1503,6 +1687,266 @@
       </div>
     </section>
   </main>
+  <script>
+    document.querySelectorAll('.hotel-row').forEach((row) => {
+      row.addEventListener('click', () => {
+        const desc = row.nextElementSibling;
+
+        document.querySelectorAll('.hotel-desc.open').forEach((openDesc) => {
+          if (openDesc !== desc) {
+            openDesc.classList.remove('open');
+            openDesc.previousElementSibling.classList.remove('open');
+          }
+        });
+
+        row.classList.toggle('open');
+        desc.classList.toggle('open');
+      });
+    });
+
+    document.querySelectorAll('.hotel-carousel').forEach((carousel) => {
+      const track = carousel.querySelector('.carousel-track');
+      const items = track.querySelectorAll('img, video');
+      const prev = carousel.querySelector('.prev');
+      const next = carousel.querySelector('.next');
+      let index = 0;
+
+      function updateCarousel() {
+        track.style.transform = `translateX(-${index * 100}%)`;
+        items.forEach((item) => {
+          if (item.tagName === 'VIDEO') item.pause();
+        });
+        const current = items[index];
+        if (current && current.tagName === 'VIDEO') {
+          current.play().catch(() => {});
+        }
+      }
+
+      prev.addEventListener('click', (event) => {
+        event.stopPropagation();
+        index = (index - 1 + items.length) % items.length;
+        updateCarousel();
+      });
+
+      next.addEventListener('click', (event) => {
+        event.stopPropagation();
+        index = (index + 1) % items.length;
+        updateCarousel();
+      });
+
+      updateCarousel();
+    });
+
+    const CSV_PATH = 'SOS_SERVICIOS_BODA_KYS.csv';
+    const RESTAURANTES_CSV_PATH = 'restaurantes.csv';
+
+    fetch(CSV_PATH)
+      .then((response) => response.text())
+      .then((text) => {
+        parseCSV(text);
+      })
+      .catch((err) => console.error('Error cargando CSV:', err));
+
+    fetch(RESTAURANTES_CSV_PATH)
+      .then((response) => response.text())
+      .then((text) => {
+        parseRestaurantsCSV(text);
+      })
+      .catch((err) => console.error('Error cargando CSV de restaurantes:', err));
+
+    function parseCSV(text) {
+      const lines = text
+        .split('\n')
+        .map((line) => line.trim())
+        .filter((line) => line && !line.match(/^,+$/));
+
+      const data = {};
+      let currentCategory = null;
+
+      lines.forEach((line) => {
+        const cols = splitCSV(line);
+
+        if (cols.length >= 2 && cols[1].toLowerCase() === 'instagram') {
+          currentCategory = cols[0].trim();
+          data[currentCategory] = [];
+          return;
+        }
+
+        if (currentCategory && cols[0] && (cols[2]?.includes('52') || cols[1])) {
+          data[currentCategory].push({
+            nombre: cols[0],
+            instagram: cols[1] || '',
+            whatsapp: cols[2] || '',
+            domicilio: cols[3] || '',
+            link: cols[4] || ''
+          });
+        }
+      });
+
+      renderServicios(data);
+    }
+
+    function splitCSV(line) {
+      const result = [];
+      let current = '';
+      let inQuotes = false;
+
+      for (let i = 0; i < line.length; i += 1) {
+        const char = line[i];
+
+        if (char === '"') {
+          inQuotes = !inQuotes;
+        } else if (char === ',' && !inQuotes) {
+          result.push(current.trim());
+          current = '';
+        } else {
+          current += char;
+        }
+      }
+
+      result.push(current.trim());
+      return result;
+    }
+
+    function renderServicios(data) {
+      const list = document.getElementById('servicesList');
+      if (!list) return;
+      list.innerHTML = '';
+
+      Object.entries(data).forEach(([categoria, servicios]) => {
+        if (!servicios.length) return;
+
+        const catKey = (categoria || '').trim().toLowerCase();
+        let imageTag = categoria;
+
+        if (catKey.includes('maquill') || catKey.includes('peinad')) {
+          imageTag = '<img src="img/belleza.png" alt="Maquillaje y peinado" class="service-category-header-img" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+        } else if (catKey.includes('barber') || catKey.includes('barber shop') || catKey.includes('barbería')) {
+          imageTag = '<img src="img/barberia.png" alt="Barbería" class="service-category-header-img" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+        } else if (catKey.includes('vestid') || catKey.includes('renta de vestidos')) {
+          imageTag = '<img src="img/vestidos.png" alt="Renta de vestidos" class="service-category-header-img" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+        } else if (catKey.includes('traje')) {
+          imageTag = '<img src="img/trajes.png" alt="Renta de trajes" class="service-category-header-img" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+        } else if (catKey.includes('centro') || catKey.includes('comercial')) {
+          imageTag = '<img src="img/centros.png" alt="Centros comerciales" class="service-category-header-img" onerror="this.onerror=null;this.src=\'img/servicio_placeholder.png\'" />';
+        }
+
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div class="service-row">
+            <div class="service-row-left">
+              <span>${categoria.toUpperCase()}</span>
+            </div>
+            <span class="service-plus">+</span>
+          </div>
+          <div class="service-desc">
+            ${imageTag}
+          </div>
+        `;
+
+        const desc = li.querySelector('.service-desc');
+
+        servicios.forEach((service, index) => {
+          desc.innerHTML += `
+            <div class="service-item">
+              <div class="service-item-info">
+                <p><strong>${service.nombre}</strong></p>
+                ${service.instagram ? `<p>Instagram: @${service.instagram}</p>` : ''}
+                ${service.whatsapp ? `<p>WhatsApp: <a class="whatsapp-link" href="https://wa.me/${formatWhatsAppLink(service.whatsapp)}" target="_blank" rel="noopener">${formatPhone(service.whatsapp)}</a></p>` : ''}
+                ${service.domicilio ? `<p>${service.domicilio}</p>` : ''}
+                ${service.link ? `<a class="hotel-map-btn" href="${service.link}" target="_blank" rel="noopener">Ver perfil</a>` : ''}
+              </div>
+            </div>
+            ${index < servicios.length - 1 ? '<hr>' : ''}
+          `;
+        });
+
+        list.appendChild(li);
+      });
+
+      activarServiciosAcordeon();
+    }
+
+    function activarServiciosAcordeon() {
+      document.querySelectorAll('.service-row').forEach((row) => {
+        row.onclick = () => {
+          const desc = row.nextElementSibling;
+
+          document.querySelectorAll('.service-desc.open').forEach((openDesc) => {
+            if (openDesc !== desc) {
+              openDesc.classList.remove('open');
+              openDesc.previousElementSibling.classList.remove('open');
+            }
+          });
+
+          row.classList.toggle('open');
+          desc.classList.toggle('open');
+        };
+      });
+    }
+
+    function formatPhone(phone) {
+      return phone.replace(/\s+/g, ' ').trim();
+    }
+
+    function formatWhatsAppLink(phone) {
+      return phone.replace(/\D/g, '');
+    }
+
+    function parseRestaurantsCSV(text) {
+      const lines = text
+        .split('\n')
+        .map((line) => line.trim())
+        .filter(Boolean);
+
+      const rows = lines.slice(1).map(splitCSV).filter((cols) => cols[0]);
+
+      renderRestaurants(rows.map((cols) => ({
+        nombre: cols[0] || '',
+        horario: cols[1] || '',
+        ubicacion: cols[2] || ''
+      })));
+    }
+
+    function renderRestaurants(restaurants) {
+      const list = document.getElementById('restaurantsList');
+      if (!list) return;
+      list.innerHTML = '';
+
+      restaurants.forEach((restaurant, index) => {
+        const li = document.createElement('li');
+        li.innerHTML = `
+          <div class="service-row restaurant-row">
+            <div class="service-row-left">
+              <span>${restaurant.nombre}</span>
+            </div>
+            <span class="service-plus">+</span>
+          </div>
+          <div class="service-desc restaurant-desc">
+            ${buildRestaurantImageHtml(index + 1, restaurant.nombre)}
+            ${restaurant.horario ? `<p><strong>Horario:</strong> ${restaurant.horario}</p>` : ''}
+            ${restaurant.ubicacion ? `<a class="hotel-map-btn" href="${restaurant.ubicacion}" target="_blank" rel="noopener">Ver ubicación</a>` : ''}
+          </div>
+        `;
+
+        list.appendChild(li);
+      });
+
+      activarServiciosAcordeon();
+    }
+
+    function buildRestaurantImageHtml(index, name) {
+      const base = `img/restaurantes/${index}`;
+      const fallback = [
+        `${base}.jpg`,
+        `${base}.jpeg`,
+        `${base}.png`,
+        `${base}.webp`
+      ];
+
+      return `<img class="restaurant-photo" src="${fallback[0]}" alt="${name}" onerror="if(this.dataset.fallbackIndex===undefined){this.dataset.fallbackIndex='1';this.src='${fallback[1]}';}else if(this.dataset.fallbackIndex==='1'){this.dataset.fallbackIndex='2';this.src='${fallback[2]}';}else if(this.dataset.fallbackIndex==='2'){this.dataset.fallbackIndex='3';this.src='${fallback[3]}';}else{this.style.display='none';}" />`;
+    }
+  </script>
   <script>
     (function () {
       const track = document.getElementById('inspTrack');
