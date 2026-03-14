@@ -521,8 +521,8 @@
 
 .restaurant-photo {
   display: block;
-  width: min(220px, 100%);
-  max-height: 150px;
+  width: min(340px, 100%);
+  max-height: 200px;
   object-fit: cover;
   object-position: center;
   border-radius: 10px;
@@ -3065,4 +3065,9 @@ p,
     max-width: 420px;
     padding: 18px 26px;
   }
+}
+
+.hoteles{
+  font-size: 16px;
+  font-family: 'Cinzel', serif;
 }

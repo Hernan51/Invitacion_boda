@@ -365,6 +365,15 @@
       z-index: 1;
     }
 
+    #ceremonia,
+    #itinerario,
+    #protocolo,
+    #regalos,
+    #guia-viajero,
+    #galeria {
+      scroll-margin-top: 36px;
+    }
+
     #ceremonia .stack-bg img {
       transform: translateY(var(--ceremonia-shift, 0px));
       filter: brightness(var(--ceremonia-brightness, 1));
@@ -883,6 +892,10 @@
         --insp-gap: 6px;
       }
 
+      .insp-quote {
+        font-size: 20px !important;
+      }
+
       .insp-copy-row {
         margin-top: 72px;
       }
@@ -1254,11 +1267,11 @@
             <span></span>
           </button>
           <nav class="insp-links" id="inspLinks" aria-label="Menu principal">
-            <a href="#">Ceremonia</a>
-            <a href="#">Detalles</a>
-            <a href="#">RSVP</a>
-            <a href="#">Guía de Viajero</a>
-            <a href="#">Galería</a>
+            <a href="#ceremonia">Ceremonia</a>
+            <a href="#itinerario">Detalles</a>
+            <a href="#regalos">RSVP</a>
+            <a href="#guia-viajero">Guía de Viajero</a>
+            <a href="#galeria">Galería</a>
 
           </nav>
         </div>
@@ -1278,7 +1291,7 @@
       </header>
 
       <div class="insp-body">
-        <p class=" countdown" style="font-family: 'Crimson Text', serif; font-size: 32px; margin-bottom: 10%;">
+        <p class="countdown insp-quote" style="font-family: 'Crimson Text', serif; font-size: 32px; margin-bottom: 10%;">
           “Dios iluminó el camino para encontrarnos y hoy, bajo su gracia y la bendición de nuestras familias, iniciamos
           la travesía más grande de nuestras vidas, unidos por un amor eterno.”
         </p>
@@ -1452,10 +1465,10 @@ altar</p>
         </section>
 
 
-        <section class="insp-carousel" aria-label="Carrusel de fotos">
+        <section class="insp-carousel" id="galeria" aria-label="Carrusel de fotos">
           <button class="insp-arrow prev" type="button" aria-label="Foto anterior">&#8249;</button>
           <div class="insp-viewport">
-            <div class="insp-track" id="inspTrack">
+            <div class="insp-track">
               <figure class="insp-slide">
                 <img
                   src="img/Carrusel_v1/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1013%20de%20175).jpg"
@@ -1530,7 +1543,7 @@ disfrutar. Por eso hemos planeado una celebración solo para adultos. <br><br>Ag
             </div>
 
             <!-- Mesa de regalos (adaptada de index.html) -->
-            <div class="itinerary-gift">
+            <div class="itinerary-gift" id="regalos">
               <h3 class="sacramento" style="font-size: 44px;">Sugerencia de Regalo</h3>
               <p class="dancing-script" style="font-size: 20px;">
                 Nuestro mejor regalo es compartir este día
@@ -1569,7 +1582,7 @@ con mucho cariño. <br> Nuestras sugerencias son:
               </div>
             </div>
 
-            <section class="hotel-board-wrapper">
+            <section class="hotel-board-wrapper" id="guia-viajero">
               <div class="hotel-board">
                 <p class="sacramento">Guía del Viajero</p>
                 <h2 class="dancing-script">HOTELES</h2>
@@ -1599,8 +1612,8 @@ con mucho cariño. <br> Nuestras sugerencias son:
                         </div>
                         <button class="carousel-btn next">›</button>
                       </div>
-                      <p><strong>Dirección:</strong> Blvd. Luis Donaldo Colosio 792.</p>
-                      <p>Hotel con excelente ubicación, alberca, jardines y cerca de plazas comerciales.</p>
+                      <p class="hoteles"><strong>Dirección:</strong> Blvd. Luis Donaldo Colosio 792.</p>
+                      <p class="hoteles">Hotel con excelente ubicación, alberca, jardines y cerca de plazas comerciales.</p>
                       <a class="hotel-map-btn"
                         href="https://www.google.com/maps/search/?api=1&query=Hotel+Las+Trojes+Aguascalientes"
                         target="_blank" rel="noopener">Ver en Google Maps</a>
@@ -1631,8 +1644,8 @@ con mucho cariño. <br> Nuestras sugerencias son:
                         </div>
                         <button class="carousel-btn next">›</button>
                       </div>
-                      <p><strong>Dirección:</strong> Blvd. Luis Donaldo Colosio 404.</p>
-                      <p>Moderno, cómodo y muy cercano a restaurantes y centros comerciales.</p>
+                      <p class="hoteles"><strong>Dirección:</strong> Blvd. Luis Donaldo Colosio 404.</p>
+                      <p class="hoteles">Moderno, cómodo y muy cercano a restaurantes y centros comerciales.</p>
                       <a class="hotel-map-btn"
                         href="https://www.google.com/maps/search/?api=1&query=Hilton+Garden+Inn+Aguascalientes"
                         target="_blank" rel="noopener">Ver en Google Maps</a>
@@ -1663,8 +1676,8 @@ con mucho cariño. <br> Nuestras sugerencias son:
                         </div>
                         <button class="carousel-btn next">›</button>
                       </div>
-                      <p><strong>Dirección:</strong> Av. Colosio 333, Zona Norte.</p>
-                      <p>Hotel de lujo con excelentes amenidades, restaurantes y ubicación privilegiada.</p>
+                      <p class="hoteles"><strong>Dirección:</strong> Av. Colosio 333, Zona Norte.</p>
+                      <p class="hoteles">Hotel de lujo con excelentes amenidades, restaurantes y ubicación privilegiada.</p>
                       <a class="hotel-map-btn"
                         href="https://www.google.com/maps/search/?api=1&query=Marriott+Aguascalientes" target="_blank"
                         rel="noopener">Ver en Google Maps</a>
@@ -1685,10 +1698,10 @@ con mucho cariño. <br> Nuestras sugerencias son:
                         </div>
                         <button class="carousel-btn next">›</button>
                       </div>
-                      <p><strong>Dirección:</strong> Avenida Independencia esquina Montes Himalaya Fraccionamiento
+                      <p class="hoteles"><strong>Dirección:</strong> Avenida Independencia esquina Montes Himalaya Fraccionamiento
                         Jardines
                         De La Concepción ll, 20120 Aguascalientes, Ags.</p>
-                      <p>Nuestro hotel ofrece a sus huéspedes múltiples comodidades: una confortable recepción con
+                      <p class="hoteles">Nuestro hotel ofrece a sus huéspedes múltiples comodidades: una confortable recepción con
                         ascensor,
                         café y/o té de cortesía, recepción abierta las 24 horas.</p>
                       <a class="hotel-map-btn" href="https://maps.app.goo.gl/tdzKgss4BrP3jr3B9?g_st=iw" target="_blank"
@@ -1714,6 +1727,44 @@ con mucho cariño. <br> Nuestras sugerencias son:
               </div>
             </section>
           </div>
+        </section>
+
+        <section class="insp-carousel" aria-label="Carrusel de fotos version 2">
+          <button class="insp-arrow prev" type="button" aria-label="Foto anterior">&#8249;</button>
+          <div class="insp-viewport">
+            <div class="insp-track">
+              <figure class="insp-slide">
+                <img
+                  src="img/carrusel_v2/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20HD%20(1078%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio"
+                  data-object-position="15% center" />
+              </figure>
+              <figure class="insp-slide">
+                <img
+                  src="img/carrusel_v2/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20HD%20(1118%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" 
+                  data-object-position="85% center"/>
+              </figure>
+              <figure class="insp-slide">
+                <img
+                  src="img/carrusel_v2/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20HD%20(1126%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" 
+                  data-object-position="85% center"/>
+              </figure>
+              <figure class="insp-slide">
+                <img
+                  src="img/carrusel_v2/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20HD%20(1133%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" />
+              </figure>
+              <figure class="insp-slide">
+                <img
+                  src="img/carrusel_v2/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20HD%20(1170%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" 
+                  data-object-position="85% center"/>
+              </figure>
+            </div>
+          </div>
+          <button class="insp-arrow next" type="button" aria-label="Siguiente foto">&#8250;</button>
         </section>
 
         <div class="insp-lightbox" id="inspLightbox" aria-hidden="true">
@@ -1935,6 +1986,23 @@ con mucho cariño. <br> Nuestras sugerencias son:
       return phone.replace(/\D/g, '');
     }
 
+    function formatRestaurantTime(value) {
+      const match = (value || '').trim().match(/^(\d{1,2}):(\d{2})$/);
+      if (!match) return value;
+
+      const hours24 = Number(match[1]);
+      const minutes = match[2];
+      const suffix = hours24 >= 12 ? 'pm' : 'am';
+      const hours12 = hours24 % 12 || 12;
+      return `${hours12}:${minutes} ${suffix}`;
+    }
+
+    function formatRestaurantSchedule(schedule) {
+      const parts = (schedule || '').split('-').map((part) => part.trim()).filter(Boolean);
+      if (parts.length !== 2) return schedule;
+      return `${formatRestaurantTime(parts[0])} - ${formatRestaurantTime(parts[1])}`;
+    }
+
     function parseRestaurantsCSV(text) {
       const lines = text
         .split('\n')
@@ -1966,7 +2034,7 @@ con mucho cariño. <br> Nuestras sugerencias son:
           </div>
           <div class="service-desc restaurant-desc">
             ${buildRestaurantImageHtml(index + 1, restaurant.nombre)}
-            ${restaurant.horario ? `<p><strong>Horario:</strong> ${restaurant.horario}</p>` : ''}
+            ${restaurant.horario ? `<p><strong>Horario:</strong> ${formatRestaurantSchedule(restaurant.horario)}</p>` : ''}
             ${restaurant.ubicacion ? `<a class="hotel-map-btn" href="${restaurant.ubicacion}" target="_blank" rel="noopener">Ver ubicación</a>` : ''}
           </div>
         `;
@@ -1991,19 +2059,11 @@ con mucho cariño. <br> Nuestras sugerencias son:
   </script>
   <script>
     (function () {
-      const track = document.getElementById('inspTrack');
-      if (!track) return;
+      const carousels = Array.from(document.querySelectorAll('.insp-carousel'));
+      if (!carousels.length) return;
 
-      const carousel = track.closest('.insp-carousel');
-      const viewport = carousel.querySelector('.insp-viewport');
-      const prevBtn = carousel.querySelector('.insp-arrow.prev');
-      const nextBtn = carousel.querySelector('.insp-arrow.next');
       const nav = document.querySelector('.insp-nav');
       const menuToggle = nav ? nav.querySelector('.insp-menu-toggle') : null;
-      const fallbackSlides = Array.from(track.children).map((slide) => {
-        const img = slide.querySelector('img');
-        return img ? img.getAttribute('src') : null;
-      }).filter(Boolean);
       const lightbox = document.getElementById('inspLightbox');
       const lightboxImg = document.getElementById('inspLightboxImg');
       const lightboxCounter = document.getElementById('inspLightboxCounter');
@@ -2012,10 +2072,9 @@ con mucho cariño. <br> Nuestras sugerencias son:
       const dateTarget = new Date('2026-07-11T00:00:00');
       const ceremoniaSection = document.getElementById('ceremonia');
       const recepcionSection = document.getElementById('recepcion');
-      let total = 0;
-      let cloneCount = 0;
       let galleryImages = [];
       let lightboxIndex = 0;
+      let activeCarouselApi = null;
       let touchStartX = 0;
       let touchStartY = 0;
       const swipeThreshold = 38;
@@ -2105,128 +2164,167 @@ con mucho cariño. <br> Nuestras sugerencias son:
         updateSectionVisual(recepcionSection, 'recepcion');
       }
 
-      let autoplayId = null;
-      let currentX = 0;
-      let lastTs = 0;
-      let isAutoplayRunning = false;
       const speedPxPerSec = 46;
       const holdBoostPxPerSec = 95;
-      let holdDirection = 0; // 1 = siguiente (izquierda), -1 = anterior (derecha)
+      const carouselApis = carousels.map(function (carousel) {
+        const track = carousel.querySelector('.insp-track');
+        const viewport = carousel.querySelector('.insp-viewport');
+        const prevBtn = carousel.querySelector('.insp-arrow.prev');
+        const nextBtn = carousel.querySelector('.insp-arrow.next');
+        const fallbackSlides = Array.from(track.children).map(function (slide) {
+          const img = slide.querySelector('img');
+          if (!img) return null;
+          return {
+            src: img.getAttribute('src'),
+            objectPosition: img.getAttribute('data-object-position')
+          };
+        }).filter(Boolean);
+        let total = 0;
+        let cloneCount = 0;
+        let currentX = 0;
+        let lastTs = 0;
+        let autoplayId = null;
+        let isAutoplayRunning = false;
+        let holdDirection = 0; // 1 = siguiente (izquierda), -1 = anterior (derecha)
+        let localImages = [];
 
-      function buildSlides(imageUrls) {
-        if (!imageUrls || !imageUrls.length) return;
-        const unique = [...new Set(imageUrls)];
-        const limited = unique.slice(0, 5);
-        if (!limited.length) return;
-        galleryImages = limited;
+        function getSlideStep() {
+          const firstSlide = track.children[0];
+          if (!firstSlide) return 0;
+          const style = window.getComputedStyle(track);
+          const gap = parseFloat(style.gap || style.columnGap || '0') || 0;
+          return firstSlide.getBoundingClientRect().width + gap;
+        }
 
-        track.innerHTML = '';
-        limited.forEach(function (src) {
-          const figure = document.createElement('figure');
-          figure.className = 'insp-slide';
-          const img = document.createElement('img');
-          img.src = src;
-          img.alt = 'Sesion preboda de Karen y Sergio';
-          figure.appendChild(img);
-          track.appendChild(figure);
+        function renderTrack() {
+          track.style.transition = 'none';
+          track.style.transform = `translateX(${currentX}px)`;
+        }
+
+        function normalizeLoop() {
+          const step = getSlideStep();
+          if (!step || !total) return;
+          const minX = -((cloneCount + total) * step);
+          const maxX = -(cloneCount * step);
+          const span = total * step;
+          if (currentX <= minX) currentX += span;
+          if (currentX > maxX) currentX -= span;
+        }
+
+        function stepAutoplay(ts) {
+          if (!isAutoplayRunning) return;
+          if (!lastTs) lastTs = ts;
+          const dt = (ts - lastTs) / 1000;
+          lastTs = ts;
+          const dynamicSpeed = speedPxPerSec + (holdBoostPxPerSec * holdDirection);
+          currentX -= dynamicSpeed * dt;
+          normalizeLoop();
+          renderTrack();
+          autoplayId = requestAnimationFrame(stepAutoplay);
+        }
+
+        function startAutoplay() {
+          if (total <= 1 || isAutoplayRunning) return;
+          isAutoplayRunning = true;
+          lastTs = 0;
+          autoplayId = requestAnimationFrame(stepAutoplay);
+        }
+
+        function stopAutoplay() {
+          isAutoplayRunning = false;
+          if (autoplayId) cancelAnimationFrame(autoplayId);
+          autoplayId = null;
+          lastTs = 0;
+        }
+
+        function clearHoldDirection() {
+          holdDirection = 0;
+        }
+
+        function bindHoldSpeed(btn, direction) {
+          if (!btn) return;
+          btn.addEventListener('pointerdown', function (event) {
+            event.preventDefault();
+            holdDirection = direction;
+          });
+          btn.addEventListener('pointerup', clearHoldDirection);
+          btn.addEventListener('pointerleave', clearHoldDirection);
+          btn.addEventListener('pointercancel', clearHoldDirection);
+          btn.addEventListener('touchend', clearHoldDirection, { passive: true });
+        }
+
+        function buildSlides(imageUrls) {
+          if (!imageUrls || !imageUrls.length) return;
+          const unique = imageUrls.filter(function (image, index, arr) {
+            return arr.findIndex(function (candidate) {
+              return candidate.src === image.src;
+            }) === index;
+          });
+          const limited = unique.slice(0, 5);
+          if (!limited.length) return;
+          localImages = limited.map(function (image) {
+            return image.src;
+          });
+
+          track.innerHTML = '';
+          limited.forEach(function (imageData) {
+            const figure = document.createElement('figure');
+            figure.className = 'insp-slide';
+            const img = document.createElement('img');
+            img.src = imageData.src;
+            img.alt = 'Sesion preboda de Karen y Sergio';
+            if (imageData.objectPosition) {
+              img.style.setProperty('object-position', imageData.objectPosition, 'important');
+            }
+            figure.appendChild(img);
+            track.appendChild(figure);
+          });
+
+          const originals = Array.from(track.children);
+          total = originals.length;
+          const step = getSlideStep() || 1;
+          const visibleCount = Math.max(1, Math.ceil((viewport ? viewport.clientWidth : 0) / step));
+          cloneCount = Math.min(total, Math.max(4, visibleCount + 2));
+          for (let i = total - cloneCount; i < total; i += 1) {
+            track.insertBefore(originals[i].cloneNode(true), track.firstChild);
+          }
+          for (let i = 0; i < cloneCount; i += 1) {
+            track.appendChild(originals[i].cloneNode(true));
+          }
+          currentX = -(cloneCount * getSlideStep());
+          renderTrack();
+        }
+
+        function resetPosition() {
+          currentX = -(cloneCount * getSlideStep());
+          renderTrack();
+        }
+
+        bindHoldSpeed(nextBtn, 1);
+        bindHoldSpeed(prevBtn, -1);
+        buildSlides(fallbackSlides);
+        startAutoplay();
+
+        track.addEventListener('click', function (event) {
+          const target = event.target;
+          if (!(target instanceof HTMLImageElement)) return;
+          const clickedSrc = new URL(target.getAttribute('src'), window.location.href).pathname;
+          const idx = localImages.findIndex(function (src) {
+            return new URL(src, window.location.href).pathname === clickedSrc;
+          });
+          galleryImages = localImages.slice();
+          activeCarouselApi = api;
+          openLightboxAt(idx >= 0 ? idx : 0);
         });
 
-        const originals = Array.from(track.children);
-        total = originals.length;
-        const step = getSlideStep() || 1;
-        const visibleCount = Math.max(1, Math.ceil((viewport ? viewport.clientWidth : 0) / step));
-        cloneCount = Math.min(total, Math.max(4, visibleCount + 2));
-        for (let i = total - cloneCount; i < total; i += 1) {
-          track.insertBefore(originals[i].cloneNode(true), track.firstChild);
-        }
-        for (let i = 0; i < cloneCount; i += 1) {
-          track.appendChild(originals[i].cloneNode(true));
-        }
-        currentX = -(cloneCount * getSlideStep());
-        renderTrack();
-      }
+        const api = {
+          resetPosition,
+          startAutoplay,
+          stopAutoplay
+        };
 
-      function getSlideStep() {
-        const firstSlide = track.children[0];
-        if (!firstSlide) return 0;
-        const style = window.getComputedStyle(track);
-        const gap = parseFloat(style.gap || style.columnGap || '0') || 0;
-        return firstSlide.getBoundingClientRect().width + gap;
-      }
-
-      function renderTrack() {
-        track.style.transition = 'none';
-        track.style.transform = `translateX(${currentX}px)`;
-      }
-
-      function normalizeLoop() {
-        const step = getSlideStep();
-        if (!step || !total) return;
-        const minX = -((cloneCount + total) * step);
-        const maxX = -(cloneCount * step);
-        const span = total * step;
-        if (currentX <= minX) currentX += span;
-        if (currentX > maxX) currentX -= span;
-      }
-
-      function next(step = 1) {
-        if (!total) return;
-        currentX -= getSlideStep() * step;
-        normalizeLoop();
-        renderTrack();
-      }
-
-      function prev(step = 1) {
-        if (!total) return;
-        currentX += getSlideStep() * step;
-        normalizeLoop();
-        renderTrack();
-      }
-
-      function stepAutoplay(ts) {
-        if (!isAutoplayRunning) return;
-        if (!lastTs) lastTs = ts;
-        const dt = (ts - lastTs) / 1000;
-        lastTs = ts;
-        const dynamicSpeed = speedPxPerSec + (holdBoostPxPerSec * holdDirection);
-        currentX -= dynamicSpeed * dt;
-        normalizeLoop();
-        renderTrack();
-        autoplayId = requestAnimationFrame(stepAutoplay);
-      }
-
-      function startAutoplay() {
-        if (total <= 1 || isAutoplayRunning) return;
-        isAutoplayRunning = true;
-        lastTs = 0;
-        autoplayId = requestAnimationFrame(stepAutoplay);
-      }
-
-      function stopAutoplay() {
-        isAutoplayRunning = false;
-        if (autoplayId) cancelAnimationFrame(autoplayId);
-        autoplayId = null;
-        lastTs = 0;
-      }
-
-      function clearHoldDirection() {
-        holdDirection = 0;
-      }
-
-      function bindHoldSpeed(btn, direction) {
-        if (!btn) return;
-        btn.addEventListener('pointerdown', function (event) {
-          event.preventDefault();
-          holdDirection = direction;
-        });
-        btn.addEventListener('pointerup', clearHoldDirection);
-        btn.addEventListener('pointerleave', clearHoldDirection);
-        btn.addEventListener('pointercancel', clearHoldDirection);
-        btn.addEventListener('touchend', clearHoldDirection, { passive: true });
-      }
-
-      bindHoldSpeed(nextBtn, 1);
-      bindHoldSpeed(prevBtn, -1);
+        return api;
+      });
 
       function updateLightboxCounter() {
         if (!lightboxCounter) return;
@@ -2240,7 +2338,7 @@ con mucho cariño. <br> Nuestras sugerencias son:
         lightbox.classList.add('open');
         lightbox.setAttribute('aria-hidden', 'false');
         document.body.classList.add('insp-lightbox-open');
-        stopAutoplay();
+        if (activeCarouselApi) activeCarouselApi.stopAutoplay();
       }
 
       function closeLightbox() {
@@ -2249,18 +2347,8 @@ con mucho cariño. <br> Nuestras sugerencias son:
         document.body.classList.remove('insp-lightbox-open');
         resetLightboxTransform();
         gestureMode = 'none';
-        startAutoplay();
+        if (activeCarouselApi) activeCarouselApi.startAutoplay();
       }
-
-      track.addEventListener('click', function (event) {
-        const target = event.target;
-        if (!(target instanceof HTMLImageElement)) return;
-        const clickedSrc = new URL(target.getAttribute('src'), window.location.href).pathname;
-        const idx = galleryImages.findIndex(function (src) {
-          return new URL(src, window.location.href).pathname === clickedSrc;
-        });
-        openLightboxAt(idx >= 0 ? idx : 0);
-      });
 
       lightboxClose.addEventListener('click', function () {
         closeLightbox();
@@ -2358,8 +2446,9 @@ con mucho cariño. <br> Nuestras sugerencias son:
       });
 
       window.addEventListener('resize', function () {
-        currentX = -(cloneCount * getSlideStep());
-        renderTrack();
+        carouselApis.forEach(function (api) {
+          api.resetPosition();
+        });
         updateCeremoniaVisual();
         if (window.innerWidth > 860 && nav) {
           nav.classList.remove('is-open');
@@ -2389,9 +2478,6 @@ con mucho cariño. <br> Nuestras sugerencias son:
           });
         }
       }
-
-      buildSlides(fallbackSlides);
-      startAutoplay();
 
       updateCountdown();
       setInterval(updateCountdown, 1000);
