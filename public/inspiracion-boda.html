@@ -377,7 +377,8 @@
       filter: brightness(var(--recepcion-brightness, 1));
       transition: transform 0.35s ease-out, filter 0.35s ease-out;
       will-change: transform, filter;
-      object-position: left center;
+      object-fit: cover;
+      object-position: 78% center;
     }
 
     .insp-countdown-title {
@@ -925,8 +926,7 @@
         top: -12px;
       }
 
-      .insp-hero-date-float .day {
-      }
+      .insp-hero-date-float .day {}
 
       .insp-countdown-hero {
         min-height: 275px;
@@ -959,18 +959,23 @@
       .protocol-section {
         padding: 20px 16px;
       }
+
       .protocol-section h2 {
         font-size: clamp(30px, 6vw, 40px);
       }
+
       .dress-code-section {
         padding: 20px 16px;
       }
+
       .dress-code-section h2 {
         font-size: clamp(28px, 5vw, 36px);
       }
+
       .dress-code-images img {
         max-width: 110px;
       }
+
       /* shrink & reposition flowers on small screens */
       .dress-code-section {
         overflow-x: hidden;
@@ -978,7 +983,7 @@
 
       .dress-code-flower {
         left: -10px;
-        top: 70px;
+        top: 10px;
         width: 120px;
       }
 
@@ -1028,7 +1033,8 @@
       padding: 30px;
       border-radius: 10px;
       margin-bottom: 20px;
-      position: relative; /* allow flower inside */
+      position: relative;
+      /* allow flower inside */
     }
 
     /* flower positioned beside the "Formal de noche" line */
@@ -1036,8 +1042,10 @@
       position: absolute;
       /* move outside the padded area so the flower hugs the section edge */
       left: -110px;
-      top: 52%; /* moved down to clear text */
-      width: 150px; /* slightly smaller so it stays out of the words */
+      top: 20%;
+      /* moved down to clear text */
+      width: 150px;
+      /* slightly smaller so it stays out of the words */
       height: auto;
       opacity: 0.9;
       pointer-events: none;
@@ -1126,10 +1134,12 @@
         gap: 20px;
         justify-content: center;
       }
+
       /* on narrow screens move first text below the images */
       .dress-code-images-center {
         order: 1;
       }
+
       .dress-code-item {
         order: 1;
         flex: 1 1 auto;
@@ -1163,9 +1173,11 @@
       .protocol-section h2 {
         font-size: clamp(26px, 7vw, 32px);
       }
+
       .protocol-item h3 {
         font-size: clamp(18px, 5vw, 22px);
       }
+
       .dress-code-images img {
         max-width: 90px;
       }
@@ -1176,10 +1188,12 @@
         height: auto;
         max-width: 100px;
       }
+
       .dress-code-images-center figure:first-child img {
         /* novia tends to be wider, make a bit smaller */
         max-width: 85px;
       }
+
       .dress-code-images-center figure:last-child img {
         /* novio image can be a touch larger */
         max-width: 100px;
@@ -1264,7 +1278,7 @@
       </header>
 
       <div class="insp-body">
-        <p class="insp-blessing countdown dancing-script">
+        <p class=" countdown" style="font-family: 'Crimson Text', serif; font-size: 32px; margin-bottom: 10%;">
           “Dios iluminó el camino para encontrarnos y hoy, bajo su gracia y la bendición de nuestras familias, iniciamos
           la travesía más grande de nuestras vidas, unidos por un amor eterno.”
         </p>
@@ -1302,11 +1316,15 @@
           <div class="stack-content">
             <div class="ceremonia-text">
               <h2 class="sacramento">Ceremonia Religiosa</h2>
-              <p class="dancing-script" style="font-size: 20px;">Templo de San Antonio de Padua</p>
               <p class="dancing-script" style="font-size: 28px;">6:00 PM</p>
-              <p class="dancing-script" style="font-size: 20px;">Ubicación: Calle Pedro Parga 252, Zona Centro, 20000 Aguascalientes, Ags.</p>
+              <p class="dancing-script" style="font-size: 20px;">Templo de San Antonio de Padua</p>
+              <p class="dancing-script" style="font-size: 20px;">Con gratitud en el corazón, bendecimos nuestra unión ante el
+altar</p>
+              <p class="dancing-script" style="font-size: 20px;"><b>Ubicación:</b><br> Calle Pedro Parga 252, Zona Centro, 20000
+                Aguascalientes, Ags.</p>
               <div class="btn">
-                <a class="dancing-script" href="https://maps.app.goo.gl/SB4oKTq5nRLQiVsC9" target="_blank" rel="noopener">Ver mapa</a>
+                <a class="dancing-script" href="https://maps.app.goo.gl/SB4oKTq5nRLQiVsC9" target="_blank"
+                  rel="noopener">Ver mapa</a>
               </div>
             </div>
           </div>
@@ -1315,7 +1333,7 @@
         <section class="stack-section" id="recepcion">
           <div class="stack-bg">
             <picture>
-              <source media="(min-width: 768px)" srcset="img/salon_horizontal.JPEG">
+              <source media="(min-width: 768px)" srcset="img/casa_de_piedra.jpeg">
               <img src="img/salon_vertical.JPEG" alt="Salón de recepción" />
             </picture>
           </div>
@@ -1324,15 +1342,15 @@
             <div class="ceremonia-text">
               <h2 class="sacramento">Recepción</h2>
               <p class="dancing-script" style="font-size: 28px;">7:30 PM</p>
-              <p class="dancing-script" style="font-size: 20px;"><b>Casa de Piedra</b></p>
-              <p class="dancing-script" style="font-size: 20px;">Salón de eventos</p>
+              <p class="dancing-script" style="font-size: 20px;"><b>Salón de eventos Casa de Piedra</b></p>
               <p class="dancing-script" style="font-size: 20px;">
                 Después de la ceremonia, celebraremos con cena, música y mucho amor.
               </p>
               <p class="dancing-script" style="font-size: 20px;"><b>Ubicación:</b></p>
               <p class="dancing-script" style="font-size: 20px;">Av. Guadalupe Gonzalez 1116, 20329 Pocitos, Ags.</p>
               <div class="btn">
-                <a class="dancing-script" href="https://maps.app.goo.gl/Ygj4LrfqH4SjpTNBA" target="_blank" rel="noopener">Ver mapa</a>
+                <a class="dancing-script" href="https://maps.app.goo.gl/Ygj4LrfqH4SjpTNBA" target="_blank"
+                  rel="noopener">Ver mapa</a>
               </div>
             </div>
           </div>
@@ -1412,7 +1430,7 @@
                 </div>
               </div>
               <div class="itinerary-text">
-                <div class="it-time">Disfruta la fiesta</div>
+                <div class="dancing-script" style="font-size: 16px;">Disfruta <br>la fiesta</div>
               </div>
             </div>
 
@@ -1439,25 +1457,28 @@
           <div class="insp-viewport">
             <div class="insp-track" id="inspTrack">
               <figure class="insp-slide">
-                <img src="img/Carrusel_v1/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1013%20de%20175).jpg"
+                <img
+                  src="img/Carrusel_v1/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1013%20de%20175).jpg"
                   alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel_v1/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1037%20de%20175).jpg"
+                <img
+                  src="img/Carrusel_v1/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1037%20de%20175).jpg"
                   alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel_v1/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1054%20de%20175).jpg"
+                <img
+                  src="img/Carrusel_v1/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1054%20de%20175).jpg"
                   alt="Sesion preboda de Karen y Sergio" />
               </figure>
 
               <figure class="insp-slide">
-                <img src="img/Carrusel_v1/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1137%20de%20175)%20copy.jpg"
+                <img
+                  src="img/Carrusel_v1/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20WEB%20(1137%20de%20175)%20copy.jpg"
                   alt="Sesion preboda de Karen y Sergio" />
               </figure>
               <figure class="insp-slide">
-                <img src="img/Carrusel_v1/Karen_Sergio.jpg"
-                  alt="Sesion preboda de Karen y Sergio" />
+                <img src="img/Carrusel_v1/Karen_Sergio.jpg" alt="Sesion preboda de Karen y Sergio" />
               </figure>
             </div>
           </div>
@@ -1465,41 +1486,46 @@
         </section>
 
         <section id="protocolo" class="protocol-section">
-          
+
           <div class="protocol-content">
             <div class="dress-code-section">
               <img src="img/flores_2.png" alt="Flores" class="dress-code-flower" />
               <img src="img/flores_2.png" alt="Flores" class="dress-code-flower dress-code-flower-right" />
               <h2 class="sacramento" style="font-size: 44px;">Código de Vestimenta</h3>
-              <p class="dancing-script" style="font-size: 30px; margin: 0 0 30px;">Formal de noche</p>
-              
-              <div class="dress-code-images">
-                <div class="dress-code-item">
-                  <p class="sacramento" style="font-size: 38px;">Damas con</p>
-                  <p class="sacramento" style="font-size: 38px;margin-top: -50px;">vestido largo</p>
+                <p class="dancing-script" style="font-size: 28px; margin: 0 0 30px;">Formal de noche</p>
+
+                <div class="dress-code-images">
+                  <div class="dress-code-item">
+                    <p class="sacramento" style="font-size: 38px;">Damas con</p>
+                    <p class="sacramento" style="font-size: 38px;margin-top: -50px;">vestido largo</p>
+                  </div>
+                  <div class="dress-code-images-center">
+                    <figure>
+                      <img src="img/novia.png" alt="Ejemplo vestido para la novia"
+                        style="width: 100px; height: auto; object-fit: contain;">
+                    </figure>
+                    <figure>
+                      <img src="img/novio_1.png" alt="Ejemplo traje para el novio"
+                        style="width: 123px; height: auto; object-fit: contain;">
+                    </figure>
+                  </div>
+                  <div class="dress-code-item">
+                    <p class="sacramento" style="font-size: 38px;">Caballeros</p>
+                    <p class="sacramento" style="font-size: 38px; margin-top: -50px;">de traje</p>
+                  </div>
                 </div>
-                <div class="dress-code-images-center">
-                  <figure>
-                    <img src="img/novia.png" alt="Ejemplo vestido para la novia" style="width: 120px; height: auto; object-fit: contain;">
-                  </figure>
-                  <figure>
-                    <img src="img/novio_1.png" alt="Ejemplo traje para el novio" style="width: 145px; height: auto; object-fit: contain;">
-                  </figure>
-                </div>
-                <div class="dress-code-item">
-                  <p class="sacramento" style="font-size: 38px;">Caballeros</p>
-                  <p class="sacramento" style="font-size: 38px; margin-top: -50px;">de traje</p>
-                </div>
-              </div>
-              
-              <p class="dancing-script" style="font-size: 20px; line-height: 1.6; margin-top: 30px;">Les invitamos a lucir espectaculares en nuestra celebración. Por favor, les pedimos evitar el color blanco o marfil, se reserva ese tono distintivo para la novia.</p>
+
+                <p class="dancing-script" style="font-size: 20px; line-height: 1.6; margin-top: 30px;">Los invitamos a
+                  lucir espectaculares en nuestra celebración. Por favor, les pedimos evitar el color blanco o marfil,
+                  se reserva para la novia.</p>
             </div>
-            
+
             <div class="protocol-item">
               <img src="img/protocolov.png" alt="Aviso importante" style="width: 250px; height: auto;">
               <div>
-                <h3 class="dancing-script">Aviso Importante</h3>
-                <p class="dancing-script" style="font-size: 20px;">Nos encantaría que nos acompañen en esta noche de celebración diseñada especialmente para adultos. Agradecemos su comprensión.</p>
+                <h3 class="sacramento" style="font-size: 45px;">Consideraciones</h3>
+                <p class="dancing-script" style="font-size: 20px;">Queremos que esta noche sea un momento especial para relajarse y
+disfrutar. Por eso hemos planeado una celebración solo para adultos. <br><br>Agradecemos su comprensión</p>
               </div>
             </div>
 
@@ -1507,25 +1533,37 @@
             <div class="itinerary-gift">
               <h3 class="sacramento" style="font-size: 44px;">Sugerencia de Regalo</h3>
               <p class="dancing-script" style="font-size: 20px;">
-                Nuestro mejor regalo será disfrutar contigo de este día tan especial.<br>
-                Cualquier detalle de tu parte será bienvenido con mucho cariño. Nuestras sugerencias:
+                Nuestro mejor regalo es compartir este día
+con ustedes. <br> Si desean tener un detalle con nosotros, cualquier gesto será recibido
+con mucho cariño. <br> Nuestras sugerencias son:
               </p>
               <div class="gift-options">
                 <div class="gift-option">
                   <div class="gift-icon"><img src="img/sobre.jpeg" alt=""></div>
-                  <div class="dancing-script gift-label" style="font-size:18px;">Lluvia de sobres</div>
+                  <div class="dancing-script gift-label" style="font-size:18px;margin-top: 11%;">Lluvia de sobres</div>
                 </div>
 
                 <div class="gift-option">
-                  <div class="gift-icon"><img src="img/mesa_regalos.png" alt=""></div>
-                  <div class="dancing-script gift-label" style="font-size:18px;">Mesa de regalos</div>
-                  <a id="btnLiverpool" class="btn btn-liverpool gift-btn"
-                    href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51755634" target="_blank" rel="noopener">
-                    <span>Liverpool</span>
+                  <a id="btnLiverpool" class="gift-logo-link"
+                    href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51755634" target="_blank"
+                    rel="noopener">
+                    <img src="img/liverpool.png" alt="Liverpool">
                   </a>
-                  <a id="btnAmazon" class="btn btn-amazon gift-btn"
+                  <a class="btn btn-liverpool gift-btn"
+                    href="https://mesaderegalos.liverpool.com.mx/milistaderegalos/51755634" target="_blank"
+                    rel="noopener">
+                    <span>Mesa Liverpool</span>
+                  </a>
+                </div>
+
+                <div class="gift-option">
+                  <a id="btnAmazon" class="gift-logo-link"
                     href="https://www.amazon.com.mx/wedding/share/karenysergio2026" target="_blank" rel="noopener">
-                    <span>Amazon</span>
+                    <img src="img/amazon.png" alt="Amazon">
+                  </a>
+                  <a class="btn btn-amazon gift-btn"
+                    href="https://www.amazon.com.mx/wedding/share/karenysergio2026" target="_blank" rel="noopener">
+                    <span>Mesa Amazon</span>
                   </a>
                 </div>
               </div>
@@ -1533,7 +1571,7 @@
 
             <section class="hotel-board-wrapper">
               <div class="hotel-board">
-                <p class="sacramento">Recomendaciones</p>
+                <p class="sacramento">Guía del Viajero</p>
                 <h2 class="dancing-script">HOTELES</h2>
 
                 <ul class="hotel-board-list">
@@ -1547,7 +1585,8 @@
                         <button class="carousel-btn prev">‹</button>
                         <div class="carousel-track">
                           <img src="https://www.hotellastrojes.com.mx/images/home.jpg" alt="Hotel Las Trojes">
-                          <img src="https://www.hotellastrojes.com.mx/images/galerias/habitacion-sencilla-1533165647.jpg"
+                          <img
+                            src="https://www.hotellastrojes.com.mx/images/galerias/habitacion-sencilla-1533165647.jpg"
                             alt="Hotel Las Trojes">
                           <img src="https://www.hotellastrojes.com.mx/images/galerias/master-suite-1539624117.jpg"
                             alt="Hotel Las Trojes">
@@ -1626,8 +1665,9 @@
                       </div>
                       <p><strong>Dirección:</strong> Av. Colosio 333, Zona Norte.</p>
                       <p>Hotel de lujo con excelentes amenidades, restaurantes y ubicación privilegiada.</p>
-                      <a class="hotel-map-btn" href="https://www.google.com/maps/search/?api=1&query=Marriott+Aguascalientes"
-                        target="_blank" rel="noopener">Ver en Google Maps</a>
+                      <a class="hotel-map-btn"
+                        href="https://www.google.com/maps/search/?api=1&query=Marriott+Aguascalientes" target="_blank"
+                        rel="noopener">Ver en Google Maps</a>
                     </div>
                   </li>
 
@@ -1645,9 +1685,11 @@
                         </div>
                         <button class="carousel-btn next">›</button>
                       </div>
-                      <p><strong>Dirección:</strong> Avenida Independencia esquina Montes Himalaya Fraccionamiento Jardines
+                      <p><strong>Dirección:</strong> Avenida Independencia esquina Montes Himalaya Fraccionamiento
+                        Jardines
                         De La Concepción ll, 20120 Aguascalientes, Ags.</p>
-                      <p>Nuestro hotel ofrece a sus huéspedes múltiples comodidades: una confortable recepción con ascensor,
+                      <p>Nuestro hotel ofrece a sus huéspedes múltiples comodidades: una confortable recepción con
+                        ascensor,
                         café y/o té de cortesía, recepción abierta las 24 horas.</p>
                       <a class="hotel-map-btn" href="https://maps.app.goo.gl/tdzKgss4BrP3jr3B9?g_st=iw" target="_blank"
                         rel="noopener">Ver en Google Maps</a>
@@ -1718,7 +1760,7 @@
         });
         const current = items[index];
         if (current && current.tagName === 'VIDEO') {
-          current.play().catch(() => {});
+          current.play().catch(() => { });
         }
       }
 
