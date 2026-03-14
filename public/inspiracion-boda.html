@@ -25,6 +25,10 @@
       touch-action: none;
     }
 
+    body.insp-rsvp-open {
+      overflow: hidden;
+    }
+
     body.insp-menu-open .insp-copy-row,
     body.insp-menu-open .insp-hero-date-float {
       opacity: 0;
@@ -336,6 +340,90 @@
       text-align: center;
       font-size: 30px;
       color: #7d7168;
+    }
+
+    .insp-rsvp-cta {
+      margin-top: 26px;
+      text-align: center;
+    }
+
+    .insp-rsvp-cta-copy {
+      margin: 0 0 14px;
+      color: #6b5f57;
+    }
+
+    .insp-rsvp-modal {
+      position: fixed;
+      inset: 0;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 18px;
+      background: rgba(23, 17, 12, 0.68);
+      z-index: 80;
+    }
+
+    .insp-rsvp-modal.open {
+      display: flex;
+    }
+
+    .insp-rsvp-dialog {
+      position: relative;
+      width: min(100%, 760px);
+      max-height: min(90vh, 920px);
+      overflow: auto;
+      background: #f7f0e8;
+      border-radius: 22px;
+      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
+      padding: 28px 20px 22px;
+    }
+
+    .insp-rsvp-close {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      width: 42px;
+      height: 42px;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(88, 70, 56, 0.12);
+      color: #4b3d34;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .insp-rsvp-title {
+      margin: 0;
+      text-align: center;
+      color: #4e433b;
+      font-size: clamp(34px, 6vw, 48px);
+    }
+
+    .insp-rsvp-copy {
+      margin: 10px auto 18px;
+      max-width: 560px;
+      text-align: center;
+      color: #6c6058;
+      line-height: 1.6;
+    }
+
+    .insp-rsvp-pass-mount .invite-card {
+      margin: 0 auto;
+    }
+
+    .insp-rsvp-actions {
+      display: flex;
+      justify-content: center;
+      margin-top: 18px;
+    }
+
+    .insp-rsvp-helper {
+      margin: 16px auto 0;
+      max-width: 520px;
+      text-align: center;
+      color: #7b6d64;
+      font-size: 14px;
+      line-height: 1.5;
     }
 
     .insp-countdown-hero {
@@ -950,6 +1038,10 @@
       .insp-countdown-grid {
         grid-template-columns: repeat(2, minmax(92px, 1fr));
         gap: 16px 24px;
+      }
+
+      .insp-rsvp-dialog {
+        padding: 24px 14px 18px;
       }
 
       .insp-slide {
@@ -1582,6 +1674,11 @@ con mucho cariño. <br> Nuestras sugerencias son:
                   </a>
                 </div>
               </div>
+
+              <div class="insp-rsvp-cta">
+                <p class="dancing-script insp-rsvp-cta-copy" style="font-size: 22px;">Confirma tu asistencia desde aquí</p>
+                <button class="btn" type="button" id="openRsvpModal" data-open-rsvp>Ver mis pases y confirmar</button>
+              </div>
             </div>
 
             <section class="hotel-board-wrapper" id="guia-viajero">
@@ -1769,6 +1866,19 @@ con mucho cariño. <br> Nuestras sugerencias son:
           <button class="insp-arrow next" type="button" aria-label="Siguiente foto">&#8250;</button>
         </section>
 
+        <div class="insp-rsvp-modal" id="inspRsvpModal" aria-hidden="true">
+          <div class="insp-rsvp-dialog" role="dialog" aria-modal="true" aria-labelledby="inspRsvpTitle">
+            <button class="insp-rsvp-close" type="button" aria-label="Cerrar confirmacion">&times;</button>
+            <h3 class="sacramento insp-rsvp-title" id="inspRsvpTitle">RSVP</h3>
+            <p class="dancing-script insp-rsvp-copy" id="inspRsvpLead"></p>
+            <div class="insp-rsvp-pass-mount" id="inspRsvpPassMount"></div>
+            <div class="insp-rsvp-actions">
+              <a class="btn" id="inspRsvpWhatsApp" href="#" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+            </div>
+            <p class="insp-rsvp-helper" id="inspRsvpHelper"></p>
+          </div>
+        </div>
+
         <div class="insp-lightbox" id="inspLightbox" aria-hidden="true">
           <div class="insp-lightbox-counter" id="inspLightboxCounter">1 / 5</div>
           <button class="insp-lightbox-close" type="button" aria-label="Cerrar imagen">&times;</button>
@@ -1831,6 +1941,97 @@ con mucho cariño. <br> Nuestras sugerencias son:
 
       updateCarousel();
     });
+
+    (function () {
+      const modal = document.getElementById('inspRsvpModal');
+      const openButton = document.getElementById('openRsvpModal');
+      const closeButton = modal ? modal.querySelector('.insp-rsvp-close') : null;
+      const lead = document.getElementById('inspRsvpLead');
+      const helper = document.getElementById('inspRsvpHelper');
+      const passMount = document.getElementById('inspRsvpPassMount');
+      const whatsappBtn = document.getElementById('inspRsvpWhatsApp');
+      if (!modal || !openButton || !closeButton || !lead || !helper || !passMount || !whatsappBtn) return;
+
+      const qs = new URLSearchParams(window.location.search);
+      const guestName = qs.get('n');
+      const passesRaw = qs.get('p');
+      const passes = parseInt(passesRaw, 10);
+      const hasPersonalizedPass = Boolean(guestName && passesRaw && !isNaN(passes));
+
+      function buildWhatsAppMessage() {
+        if (hasPersonalizedPass) {
+          return `Hola, confirmo mi asistencia a la boda de Karen y Sergio. Nombre: ${guestName}. Pases asignados: ${passes}.`;
+        }
+        return 'Hola, confirmo mi asistencia a la boda de Karen y Sergio.';
+      }
+
+      function buildPassCard() {
+        if (!hasPersonalizedPass) {
+          passMount.innerHTML = '';
+          lead.textContent = 'Usa este espacio para confirmar tu asistencia. Si abriste una liga personalizada, aquí también verás tus pases reservados.';
+          helper.textContent = 'Más adelante este mismo modal se puede conectar con base de datos sin cambiar el diseño.';
+          return;
+        }
+
+        const total = Math.max(5, passes);
+        const dotsMarkup = Array.from({ length: total }, function (_, index) {
+          return `<span class="dot${index < passes ? ' filled' : ''}"></span>`;
+        }).join('');
+
+        passMount.innerHTML = `
+          <div class="invite-card">
+            <div class="invite-head">
+              <img class="invite-photo" src="img/kys.jpeg" alt="Karen y Sergio" />
+              <div class="invite-names">
+                <div class="big">KAREN & SERGIO</div>
+                <div class="date">11 JULIO 2026</div>
+              </div>
+            </div>
+            <div class="invite-body">
+              <div class="envelope-box"><img src="img/sobre.jpeg" alt="Sobre"></div>
+              <div class="reserve">HEMOS RESERVADO PARA USTEDES</div>
+              <div class="dots">${dotsMarkup}</div>
+              <div class="who">${guestName}</div>
+            </div>
+          </div>
+        `;
+
+        lead.textContent = 'Tu invitación personalizada ya trae tus pases reservados. Revísalos aquí antes de confirmar tu asistencia.';
+        helper.textContent = 'Por ahora la confirmación sale por WhatsApp. Luego podemos conectar este mismo modal a base de datos.';
+      }
+
+      function openModal() {
+        modal.classList.add('open');
+        modal.setAttribute('aria-hidden', 'false');
+        document.body.classList.add('insp-rsvp-open');
+      }
+
+      function closeModal() {
+        modal.classList.remove('open');
+        modal.setAttribute('aria-hidden', 'true');
+        document.body.classList.remove('insp-rsvp-open');
+      }
+
+      buildPassCard();
+      whatsappBtn.href = `https://wa.me/?text=${encodeURIComponent(buildWhatsAppMessage())}`;
+
+      if (hasPersonalizedPass) {
+        openButton.textContent = 'Ver mis pases reservados';
+        window.requestAnimationFrame(openModal);
+      }
+
+      openButton.addEventListener('click', openModal);
+      closeButton.addEventListener('click', closeModal);
+      modal.addEventListener('click', function (event) {
+        if (event.target === modal) closeModal();
+      });
+
+      document.addEventListener('keydown', function (event) {
+        if (event.key === 'Escape' && modal.classList.contains('open')) {
+          closeModal();
+        }
+      });
+    })();
 
     const CSV_PATH = 'SOS_SERVICIOS_BODA_KYS.csv';
     const RESTAURANTES_CSV_PATH = 'restaurantes.csv';
