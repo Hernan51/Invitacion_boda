@@ -2045,7 +2045,7 @@ footer {
   top: -28px;
   bottom: -28px;
   width: 2px;
-  background: rgba(0, 0, 0, .15);
+  background: #002374;
 }
 
 .itinerary-row.first .itinerary-line::before {
@@ -2611,8 +2611,8 @@ p,
   width: 100%;
   height: 100%;
   display: block;
-  fill: #fff;
-  stroke: rgba(0, 0, 0, .35);
+  fill: #002374;
+  stroke: #002374;
   stroke-width: 6;
   /* ajustado al viewBox 100x85 */
   stroke-linejoin: round;
@@ -2629,7 +2629,7 @@ p,
 .stack-bg {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 102vh;
   z-index: 1;
   overflow: hidden;
 }
@@ -2672,7 +2672,7 @@ p,
 .stack-bg {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 102vh;
   z-index: 1;
 }
 
@@ -3070,4 +3070,9 @@ p,
 .hoteles{
   font-size: 16px;
   font-family: 'Cinzel', serif;
+}
+
+.stalemate-h2{
+  font-family: 'Stalemate', serif;
+  font-size: 54px;  
 }

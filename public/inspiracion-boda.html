@@ -11,9 +11,12 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link
-    href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Noto+Sans+SC:wght@400;700&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&family=Rouge+Script&family=Sacramento&display=swap"
+    href="https://fonts.googleapis.com/css2?family=Bona+Nova+SC:ital,wght@0,400;0,700;1,400&family=Figtree:wght@400;500;600;700&family=Noto+Sans+SC:wght@400;700&family=Playfair+Display:wght@400;600&family=Poppins:wght@300;400;500&family=Rouge+Script&family=Sacramento&family=Stalemate&display=swap"
     rel="stylesheet" />
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Great+Vibes&display=swap"
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600&family=Cormorant+SC:wght@400;500;600&family=Great+Vibes&display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant:wght@400;500;600;700&family=Cormorant+Infant:wght@400;500;600;700&family=Cormorant+Unicase:wght@400;500;600;700&display=swap"
     rel="stylesheet" />
 
   <style>
@@ -219,8 +222,9 @@
 
     .insp-hero-date .day {
       display: block;
-      font-size: clamp(22px, 2.8vw, 34px);
-      font-weight: 700;
+      font-family: 'Cormorant SC', serif;
+      font-size: clamp(22px, 3.8vw, 34px);
+      font-weight: 1000;
     }
 
     .insp-hero-date .year {
@@ -344,7 +348,7 @@
     }
 
     .insp-rsvp-cta {
-      margin-top: 26px;
+      margin-top: 80px;
       text-align: center;
     }
 
@@ -476,12 +480,12 @@
       transition: transform 0.35s ease-out, filter 0.35s ease-out;
       will-change: transform, filter;
       object-fit: cover;
-      object-position: 78% center;
+      object-position: 62% center;
     }
 
     .insp-countdown-title {
       margin: 0 0 22px;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Cormorant Unicase', serif;
       letter-spacing: .22em;
       text-transform: uppercase;
       font-size: clamp(17px, 1.6vw, 17px);
@@ -518,6 +522,48 @@
       letter-spacing: .2em;
       font-size: clamp(10px, 1.1vw, 14px);
       color: rgba(246, 243, 239, 0.92);
+    }
+
+    #ceremonia .btn a,
+    #recepcion .btn a,
+    .hotel-map-btn {
+      font-family: 'Figtree', sans-serif !important;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+
+    #ceremonia .ceremonia-text > p:not(:first-of-type),
+    #recepcion .ceremonia-text > p:not(:first-of-type) {
+      font-family: 'Cormorant SC', serif !important;
+    }
+
+    #itinerario .itinerary-text .dancing-script {
+      font-family: 'Cormorant', serif !important;
+      font-size: 19px;
+    }
+
+    #itinerario h2 {
+      font-family: 'Stalemate', cursive !important;
+    }
+
+    .protocol-item h3 {
+      font-family: 'Stalemate', cursive !important;
+    }
+
+    .protocol-item p {
+      font-family: 'Cormorant Infant', serif !important;
+      font-size: 24px;
+    }
+
+    .protocol-item .consideraciones-stalemate {
+      display: inline-block;
+      font-family: 'Stalemate', cursive !important;
+      font-size: 42px;
+      line-height: 1.1;
+    }
+
+    #regalos h3 {
+      font-family: 'Stalemate', cursive !important;
     }
 
     .insp-carousel {
@@ -569,6 +615,10 @@
       padding: 0 !important;
       border-radius: 0 !important;
       cursor: zoom-in;
+    }
+
+    .insp-carousel-final .insp-slide-bw img {
+      filter: grayscale(100%);
     }
 
     .insp-arrow {
@@ -686,6 +736,10 @@
     }
 
     @media (min-width: 861px) {
+      .insp-body #itinerario {
+        --itinerary-navy: #002374;
+      }
+
       .insp-body #itinerario.itinerary-section {
         margin-top: 28px;
         padding-top: 0px;
@@ -694,7 +748,7 @@
       }
 
       .insp-body #itinerario .itinerary-rows {
-        --line-y: 100px;
+        --line-y: 120px;
         position: relative;
         max-width: none;
         width: calc(100% + 20px);
@@ -705,8 +759,8 @@
         justify-content: flex-start;
         gap: 8px;
         overflow-x: auto;
-        padding: 16px 2px 24px;
-        min-height: 240px;
+        padding: 36px 2px 32px;
+        min-height: 320px;
       }
 
       .insp-body #itinerario .itinerary-rows::before {
@@ -716,7 +770,7 @@
         right: 0;
         top: var(--line-y);
         height: 2px;
-        background: rgba(0, 0, 0, .15);
+        background: var(--itinerary-navy);
       }
 
       .insp-body #itinerario .itinerary-row {
@@ -743,8 +797,12 @@
       }
 
       .insp-body #itinerario .itinerary-icon img {
-        width: 80px !important;
+        width: 130px !important;
         height: auto !important;
+      }
+
+      .insp-body #itinerario .itinerary-row:nth-child(odd) .itinerary-icon img {
+        transform: translateY(-50px);
       }
 
       .insp-body #itinerario .itinerary-line {
@@ -752,7 +810,7 @@
         position: absolute;
         left: 50%;
         top: calc(var(--line-y) - 14px);
-        transform: translate(-50%, -50%);
+        transform: translate(-50%, -190%);
         width: 14px;
         height: 14px;
         align-items: center;
@@ -784,9 +842,17 @@
         display: block;
       }
 
+      .insp-body #itinerario .itinerary-heart .heart path {
+        fill: #002374;
+        stroke: var(--itinerary-navy);
+        stroke-width: 7;
+        stroke-linejoin: round;
+        stroke-linecap: round;
+      }
+
       .insp-body #itinerario .itinerary-text {
         text-align: center;
-        margin-top: 4px;
+        margin-top: -55px;
       }
 
       .insp-body #itinerario .itinerary-row:nth-child(even) .itinerary-text {
@@ -1325,9 +1391,32 @@
       box-sizing: border-box;
     }
 
+    .protocol-section .hotel-board h2 {
+      font-family: 'Cormorant Unicase', serif !important;
+    }
+
+    .protocol-section .hotel-board-list,
+    .protocol-section .hotel-row,
+    .protocol-section .service-row,
+    .protocol-section .hotel-desc,
+    .protocol-section .service-desc,
+    .protocol-section .hotel-desc p,
+    .protocol-section .service-desc p,
+    .protocol-section .service-item-info,
+    .protocol-section .service-item-info p,
+    .protocol-section .restaurant-desc p,
+    .protocol-section .hoteles,
+    .protocol-section .whatsapp-link {
+      font-family: 'Cormorant Infant', serif !important;
+    }
+
     .protocol-section .hotel-carousel {
       max-width: 520px;
       margin: 14px auto;
+    }
+
+    .protocol-section .hotel-row[data-hotel="las-trojes"]+.hotel-desc .hotel-carousel {
+      max-width: 460px;
     }
 
     .protocol-section .hotel-carousel .carousel-track img,
@@ -1365,7 +1454,7 @@
             <a href="#ceremonia">Ceremonia</a>
             <a href="#itinerario">Detalles</a>
             <a href="#regalos">RSVP</a>
-            <a href="#guia-viajero">Guía de Viajero</a>
+            <a href="#guia-viajero">Guía del Viajero</a>
             <a href="#galeria">Galería</a>
 
           </nav>
@@ -1386,7 +1475,8 @@
       </header>
 
       <div class="insp-body">
-        <p class="countdown insp-quote" style="font-family: 'Crimson Text', serif; font-size: 32px; margin-bottom: 10%;">
+        <p class="countdown insp-quote"
+          style="font-family: 'Crimson Text', serif; font-size: 32px; margin-bottom: 10%;">
           “Dios iluminó el camino para encontrarnos y hoy, bajo su gracia y la bendición de nuestras familias, iniciamos
           la travesía más grande de nuestras vidas, unidos por un amor eterno.”
         </p>
@@ -1423,12 +1513,14 @@
 
           <div class="stack-content">
             <div class="ceremonia-text">
-              <h2 class="sacramento">Ceremonia Religiosa</h2>
+              <h2 class="stalemate-h2">Ceremonia Religiosa</h2>
               <p class="dancing-script" style="font-size: 28px;">6:00 PM</p>
               <p class="dancing-script" style="font-size: 20px;">Templo de San Antonio de Padua</p>
-              <p class="dancing-script" style="font-size: 20px;">Con gratitud en el corazón, bendecimos nuestra unión ante el
-altar</p>
-              <p class="dancing-script" style="font-size: 20px;"><b>Ubicación:</b><br> Calle Pedro Parga 252, Zona Centro, 20000
+              <p class="dancing-script" style="font-size: 20px;">Con gratitud en el corazón, bendecimos nuestra unión
+                ante el
+                altar</p>
+              <p class="dancing-script" style="font-size: 20px;"><b>Ubicación:</b><br> Calle Pedro Parga 252, Zona
+                Centro, 20000
                 Aguascalientes, Ags.</p>
               <div class="btn">
                 <a class="dancing-script" href="https://maps.app.goo.gl/SB4oKTq5nRLQiVsC9" target="_blank"
@@ -1442,15 +1534,15 @@ altar</p>
           <div class="stack-bg">
             <picture>
               <source media="(min-width: 768px)" srcset="img/casa_de_piedra.jpeg">
-              <img src="img/salon_vertical.JPEG" alt="Salón de recepción" />
+              <img src="img/salon_vertical..jpeg" alt="Salón de recepción" />
             </picture>
           </div>
 
           <div class="stack-content">
             <div class="ceremonia-text">
-              <h2 class="sacramento">Recepción</h2>
+              <h2 class="stalemate-h2">Recepción</h2>
               <p class="dancing-script" style="font-size: 28px;">7:30 PM</p>
-              <p class="dancing-script" style="font-size: 20px;"><b>Salón de eventos Casa de Piedra</b></p>
+              <p class="dancing-script" style="font-size: 20px;"><b>Casa de Piedra</b></p>
               <p class="dancing-script" style="font-size: 20px;">
                 Después de la ceremonia, celebraremos con cena, música y mucho amor.
               </p>
@@ -1465,7 +1557,7 @@ altar</p>
         </section>
 
         <section id="itinerario" class="itinerary-section">
-          <h2 class="sacramento">Itinerario De Nuestra Boda</h2>
+          <h2 class="stalemate-h2">Itinerario De Nuestra Boda</h2>
 
           <div class="itinerary-rows">
             <div class="itinerary-row first">
@@ -1538,7 +1630,7 @@ altar</p>
                 </div>
               </div>
               <div class="itinerary-text">
-                <div class="dancing-script" style="font-size: 16px;">Disfruta <br>la fiesta</div>
+                <div class="dancing-script" >Disfruta <br>la fiesta</div>
               </div>
             </div>
 
@@ -1551,8 +1643,8 @@ altar</p>
                   </svg>
                 </div>
               </div>
-              <div class="itinerary-text">
-                <div class="dancing-script">FIN DEL EVENTO</div>
+              <div class="itinerary-text" style="margin-top: -20px;">
+                <div class="dancing-script" >FIN DEL EVENTO</div>
                 <div class="it-time">02:00 hrs</div>
               </div>
             </div>
@@ -1599,8 +1691,8 @@ altar</p>
             <div class="dress-code-section">
               <img src="img/flores_2.png" alt="Flores" class="dress-code-flower" />
               <img src="img/flores_2.png" alt="Flores" class="dress-code-flower dress-code-flower-right" />
-              <h2 class="sacramento" style="font-size: 44px;">Código de Vestimenta</h3>
-                <p class="dancing-script" style="font-size: 28px; margin: 0 0 30px;">Formal de noche</p>
+              <h2 class="stalemate-h2" style="font-size: 64px;">Código de Vestimenta</h3>
+                <p class="dancing-script" style="font-size: 28px; margin: -30px 0 30px;">Formal de noche</p>
 
                 <div class="dress-code-images">
                   <div class="dress-code-item">
@@ -1623,7 +1715,7 @@ altar</p>
                   </div>
                 </div>
 
-                <p class="dancing-script" style="font-size: 20px; line-height: 1.6; margin-top: -55px;">Los invitamos a
+                <p class="dancing-script" style="font-size: 20px; line-height: 1.6; margin-top: -10px;">Los invitamos a
                   lucir espectaculares en nuestra celebración. Por favor, les pedimos evitar el color blanco o marfil,
                   se reserva para la novia.</p>
             </div>
@@ -1631,19 +1723,21 @@ altar</p>
             <div class="protocol-item">
               <img src="img/protocolov.png" alt="Aviso importante" style="width: 250px; height: auto;">
               <div>
-                <h3 class="sacramento" style="font-size: 45px;">Consideraciones</h3>
-                <p class="dancing-script" style="font-size: 20px;">Queremos que esta noche sea un momento especial para relajarse y
-disfrutar. Por eso hemos planeado una celebración solo para adultos. <br><br>Agradecemos su comprensión</p>
+                <h3 class="sacramento" style="font-size: 65px;">Consideraciones</h3>
+                <p class="dancing-script" style="font-size: 20px;">Queremos que esta noche sea un momento especial para
+                  relajarse y
+                  disfrutar. Por eso hemos planeado una celebración solo para adultos. <br><br><span
+                    class="consideraciones-stalemate">Agradecemos su comprensión</span></p>
               </div>
             </div>
 
             <!-- Mesa de regalos (adaptada de index.html) -->
             <div class="itinerary-gift" id="regalos">
-              <h3 class="sacramento" style="font-size: 44px;">Sugerencia de Regalo</h3>
+              <h3 class="sacramento" style="font-size: 64px;">Sugerencia de Regalo</h3>
               <p class="dancing-script" style="font-size: 20px;">
                 Nuestro mejor regalo es compartir este día
-con ustedes. <br> Si desean tener un detalle con nosotros, cualquier gesto será recibido
-con mucho cariño. <br> Nuestras sugerencias son:
+                con ustedes. <br> Si desean tener un detalle con nosotros, cualquier gesto será recibido
+                con mucho cariño. <br> Nuestras sugerencias son:
               </p>
               <div class="gift-options">
                 <div class="gift-option">
@@ -1669,22 +1763,23 @@ con mucho cariño. <br> Nuestras sugerencias son:
                     href="https://www.amazon.com.mx/wedding/share/karenysergio2026" target="_blank" rel="noopener">
                     <img src="img/amazon.png" alt="Amazon">
                   </a>
-                  <a class="btn btn-amazon gift-btn"
-                    href="https://www.amazon.com.mx/wedding/share/karenysergio2026" target="_blank" rel="noopener">
+                  <a class="btn btn-amazon gift-btn" href="https://www.amazon.com.mx/wedding/share/karenysergio2026"
+                    target="_blank" rel="noopener">
                     <span>Mesa Amazon</span>
                   </a>
                 </div>
               </div>
 
               <div class="insp-rsvp-cta">
-                <p class="dancing-script insp-rsvp-cta-copy" style="font-size: 22px;">Confirma tu asistencia desde aquí</p>
+                <p class="dancing-script insp-rsvp-cta-copy" style="font-size: 22px;">Confirma tu asistencia desde aquí
+                </p>
                 <button class="btn" type="button" id="openRsvpModal" data-open-rsvp>Ver mis pases y confirmar</button>
               </div>
             </div>
 
+            <p class="stalemate-h2" style="margin-bottom: -60px;font-size: 75px;">Guía del Viajero</p>
             <section class="hotel-board-wrapper" id="guia-viajero">
               <div class="hotel-board">
-                <p class="sacramento">Guía del Viajero</p>
                 <h2 class="dancing-script">HOTELES</h2>
 
                 <ul class="hotel-board-list">
@@ -1713,7 +1808,8 @@ con mucho cariño. <br> Nuestras sugerencias son:
                         <button class="carousel-btn next">›</button>
                       </div>
                       <p class="hoteles"><strong>Dirección:</strong> Blvd. Luis Donaldo Colosio 792.</p>
-                      <p class="hoteles">Hotel con excelente ubicación, alberca, jardines y cerca de plazas comerciales.</p>
+                      <p class="hoteles">Hotel con excelente ubicación, alberca, jardines y cerca de plazas comerciales.
+                      </p>
                       <a class="hotel-map-btn"
                         href="https://www.google.com/maps/search/?api=1&query=Hotel+Las+Trojes+Aguascalientes"
                         target="_blank" rel="noopener">Ver en Google Maps</a>
@@ -1777,7 +1873,8 @@ con mucho cariño. <br> Nuestras sugerencias son:
                         <button class="carousel-btn next">›</button>
                       </div>
                       <p class="hoteles"><strong>Dirección:</strong> Av. Colosio 333, Zona Norte.</p>
-                      <p class="hoteles">Hotel de lujo con excelentes amenidades, restaurantes y ubicación privilegiada.</p>
+                      <p class="hoteles">Hotel de lujo con excelentes amenidades, restaurantes y ubicación privilegiada.
+                      </p>
                       <a class="hotel-map-btn"
                         href="https://www.google.com/maps/search/?api=1&query=Marriott+Aguascalientes" target="_blank"
                         rel="noopener">Ver en Google Maps</a>
@@ -1798,10 +1895,12 @@ con mucho cariño. <br> Nuestras sugerencias son:
                         </div>
                         <button class="carousel-btn next">›</button>
                       </div>
-                      <p class="hoteles"><strong>Dirección:</strong> Avenida Independencia esquina Montes Himalaya Fraccionamiento
+                      <p class="hoteles"><strong>Dirección:</strong> Avenida Independencia esquina Montes Himalaya
+                        Fraccionamiento
                         Jardines
                         De La Concepción ll, 20120 Aguascalientes, Ags.</p>
-                      <p class="hoteles">Nuestro hotel ofrece a sus huéspedes múltiples comodidades: una confortable recepción con
+                      <p class="hoteles">Nuestro hotel ofrece a sus huéspedes múltiples comodidades: una confortable
+                        recepción con
                         ascensor,
                         café y/o té de cortesía, recepción abierta las 24 horas.</p>
                       <a class="hotel-map-btn" href="https://maps.app.goo.gl/tdzKgss4BrP3jr3B9?g_st=iw" target="_blank"
@@ -1814,7 +1913,6 @@ con mucho cariño. <br> Nuestras sugerencias son:
 
             <section class="servicios">
               <div class="hotel-board">
-                <p class="sacramento">SOS</p>
                 <h2 class="dancing-script">SERVICIOS</h2>
                 <ul class="hotel-board-list" id="servicesList"></ul>
               </div>
@@ -1829,38 +1927,34 @@ con mucho cariño. <br> Nuestras sugerencias son:
           </div>
         </section>
 
-        <section class="insp-carousel" aria-label="Carrusel de fotos version 2">
+        <section class="insp-carousel insp-carousel-final" aria-label="Carrusel de fotos version 2">
           <button class="insp-arrow prev" type="button" aria-label="Foto anterior">&#8249;</button>
           <div class="insp-viewport">
             <div class="insp-track">
               <figure class="insp-slide">
                 <img
                   src="img/carrusel_v2/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20HD%20(1078%20de%20175).jpg"
-                  alt="Sesion preboda de Karen y Sergio"
-                  data-object-position="15% center" />
+                  alt="Sesion preboda de Karen y Sergio" data-object-position="15% center" />
               </figure>
-              <figure class="insp-slide">
+              <figure class="insp-slide insp-slide-bw">
                 <img
                   src="img/carrusel_v2/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20HD%20(1118%20de%20175).jpg"
-                  alt="Sesion preboda de Karen y Sergio" 
-                  data-object-position="85% center"/>
+                  alt="Sesion preboda de Karen y Sergio" data-object-position="85% center" />
               </figure>
               <figure class="insp-slide">
+                <img
+                  src="img/carrusel_v2/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20HD%20(1125%20de%20175).jpg"
+                  alt="Sesion preboda de Karen y Sergio" data-object-position="85% center" />
+              </figure>
+              <figure class="insp-slide insp-slide-bw">
                 <img
                   src="img/carrusel_v2/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20HD%20(1126%20de%20175).jpg"
-                  alt="Sesion preboda de Karen y Sergio" 
-                  data-object-position="85% center"/>
-              </figure>
-              <figure class="insp-slide">
-                <img
-                  src="img/carrusel_v2/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20HD%20(1133%20de%20175).jpg"
-                  alt="Sesion preboda de Karen y Sergio" />
+                  alt="Sesion preboda de Karen y Sergio" data-object-position="92% center" />
               </figure>
               <figure class="insp-slide">
                 <img
                   src="img/carrusel_v2/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20HD%20(1170%20de%20175).jpg"
-                  alt="Sesion preboda de Karen y Sergio" 
-                  data-object-position="85% center"/>
+                  alt="Sesion preboda de Karen y Sergio" data-object-position="85% center" />
               </figure>
             </div>
           </div>
