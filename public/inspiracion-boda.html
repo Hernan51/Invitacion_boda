@@ -474,13 +474,26 @@
       will-change: transform, filter;
     }
 
+    #recepcion .stack-bg picture {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+    }
+
     #recepcion .stack-bg img {
       transform: translateY(var(--recepcion-shift, 0px));
       filter: brightness(var(--recepcion-brightness, 1));
       transition: transform 0.35s ease-out, filter 0.35s ease-out;
       will-change: transform, filter;
-      object-fit: cover;
-      object-position: 62% center;
+      width: 100%;
+      height: auto;
+      min-height: 100%;
+      max-width: none;
+      object-fit: unset;
+      object-position: unset;
     }
 
     .insp-countdown-title {
@@ -527,7 +540,7 @@
     #ceremonia .btn a,
     #recepcion .btn a,
     .hotel-map-btn {
-      font-family: 'Figtree', sans-serif !important;
+      font-family: 'Gabarito', sans-serif !important;
       font-weight: 600;
       letter-spacing: 0.02em;
     }
