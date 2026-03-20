@@ -162,7 +162,7 @@
     }
 
     .insp-copy-row {
-      margin-top: 110px;
+      margin-top: 82px;
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
@@ -246,7 +246,7 @@
     .insp-hero-date-float {
       position: absolute;
       left: 50%;
-      bottom: 52px;
+      bottom: 76px;
       transform: translateX(-50%);
       z-index: 1;
       text-align: center;
@@ -487,7 +487,7 @@
       height: auto;
       min-height: 100%;
       max-width: none;
-      object-fit: unset;
+      object-fit: cover;
       object-position: unset;
     }
 
@@ -511,6 +511,12 @@
       max-width: none;
       object-fit: unset;
       object-position: unset;
+    }
+
+    @media (min-width: 768px) {
+      #recepcion .stack-bg img {
+        width: 120%;
+      }
     }
 
     .insp-countdown-title {
@@ -574,11 +580,6 @@
 
     #itinerario h2 {
       font-family: 'Stalemate', cursive !important;
-    }
-
-    .itinerary-icon-car {
-      width: 180px;
-      height: auto;
     }
 
     .protocol-item h3 {
@@ -836,6 +837,10 @@
         height: auto !important;
       }
 
+      .insp-body #itinerario .itinerary-icon img.itinerary-icon-car {
+        width: 150px !important;
+      }
+
       .insp-body #itinerario .itinerary-row:nth-child(odd) .itinerary-icon img {
         transform: translateY(-50px);
       }
@@ -913,7 +918,7 @@
       }
 
       .insp-hero {
-        min-height: 600px;
+        min-height: 850px;
         padding: 20px 18px 28px;
       }
 
@@ -988,7 +993,7 @@
       }
 
       .insp-copy-row {
-        margin-top: 86px;
+        margin-top: 52px;
         gap: 16px;
       }
 
@@ -999,11 +1004,11 @@
 
       .insp-couple .first,
       .insp-couple .last {
-        top: -30px;
+        top: -104px;
       }
 
       .insp-couple .amp-alt {
-        top: -30px;
+        top: -104px;
       }
 
       .insp-couple .first {
@@ -1035,7 +1040,7 @@
       }
 
       .insp-hero-date-float {
-        bottom: 14px;
+        bottom: 56px;
       }
 
       .insp-intro p {
@@ -1089,7 +1094,7 @@
       }
 
       .insp-copy-row {
-        margin-top: 72px;
+        margin-top: 10px;
       }
 
       .insp-couple.names-alt {
@@ -1113,14 +1118,14 @@
       .insp-couple .first {
         grid-area: first;
         justify-self: end;
-        top: -12px;
+        top: -82px;
         transform: none;
       }
 
       .insp-couple .last {
         grid-area: last;
         justify-self: start;
-        top: -12px;
+        top: -82px;
         transform: none;
       }
 
@@ -1128,10 +1133,12 @@
         grid-area: amp;
         justify-self: center;
         position: relative;
-        top: -12px;
+        top: -82px;
       }
 
-      .insp-hero-date-float .day {}
+      .insp-hero-date-float {
+        bottom: 40px;
+      }
 
       .insp-countdown-hero {
         min-height: 275px;
@@ -1206,6 +1213,11 @@
     @media (min-width: 861px) {
       .insp-hero {
         min-height: 100vh;
+      }
+
+      .itinerary-icon-car {
+        width: 180px;
+        height: auto;
       }
 
       .insp-copy-row {
