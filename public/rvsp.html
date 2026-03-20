@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>RSVP – Karen & Sergio</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=Montserrat:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      min-height: 100vh;
+      background: #2c2a24;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .rsvp-modal {
+      background: #faf7f2;
+      border: 1px solid #c9b99a;
+      border-radius: 2px;
+      width: 100%;
+      max-width: 480px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .rsvp-header {
+      background: #1a1814;
+      padding: 32px 32px 24px;
+      text-align: center;
+      position: relative;
+    }
+
+    .ornament {
+      color: #c9b99a;
+      font-size: 13px;
+      letter-spacing: 4px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+    }
+
+    .rsvp-names {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 38px;
+      font-weight: 300;
+      font-style: italic;
+      color: #f0e8d8;
+      margin: 6px 0;
+      line-height: 1.1;
+    }
+
+    .rsvp-date {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      color: #c9b99a;
+      font-weight: 400;
+      margin-top: 8px;
+    }
+
+    .divider-ornament {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      justify-content: center;
+      margin: 12px 0 0;
+    }
+
+    .divider-line {
+      width: 50px;
+      height: 0.5px;
+      background: #c9b99a;
+      opacity: 0.6;
+    }
+
+    .rsvp-body {
+      padding: 28px 32px 32px;
+    }
+
+    .rsvp-intro {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 16px;
+      color: #5a5040;
+      text-align: center;
+      margin-bottom: 24px;
+      font-style: italic;
+      line-height: 1.6;
+    }
+
+    .step-indicator {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .step-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #d8cfc2;
+    }
+
+    .step-dot.active {
+      background: #8a7355;
+      width: 22px;
+      border-radius: 4px;
+    }
+
+    .field-group {
+      margin-bottom: 18px;
+    }
+
+    .field-label {
+      font-size: 9px;
+      letter-spacing: 2.5px;
+      color: #8a7355;
+      font-weight: 500;
+      text-transform: uppercase;
+      display: block;
+      margin-bottom: 7px;
+    }
+
+    .field-input {
+      width: 100%;
+      padding: 10px 14px;
+      border: 0.5px solid #c9b99a;
+      border-radius: 2px;
+      background: #fff;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 13px;
+      color: #3a3226;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+
+    .field-input:focus { border-color: #8a7355; }
+    .field-input::placeholder { color: #b8ad9e; font-size: 12px; }
+
+    .attendance-options {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .attend-btn {
+      padding: 12px;
+      border: 0.5px solid #c9b99a;
+      border-radius: 2px;
+      background: #fff;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    .attend-btn:hover { border-color: #8a7355; background: #f5f0e8; }
+    .attend-btn.selected { border-color: #8a7355; background: #8a7355; }
+
+    .attend-btn .btn-icon { font-size: 20px; display: block; margin-bottom: 4px; }
+
+    .attend-btn .btn-label {
+      font-size: 10px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #5a5040;
+      font-weight: 500;
+    }
+
+    .attend-btn.selected .btn-label { color: #f0e8d8; }
+
+    .guests-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .qty-btn {
+      width: 32px;
+      height: 32px;
+      border: 0.5px solid #c9b99a;
+      border-radius: 2px;
+      background: #fff;
+      font-size: 18px;
+      color: #8a7355;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+      flex-shrink: 0;
+    }
+
+    .qty-btn:hover { background: #f5f0e8; }
+
+    .qty-number {
+      font-size: 20px;
+      font-family: 'Cormorant Garamond', serif;
+      color: #3a3226;
+      min-width: 24px;
+      text-align: center;
+    }
+
+    .qty-label { font-size: 12px; color: #8a7355; }
+
+    .confirm-btn {
+      width: 100%;
+      padding: 14px;
+      background: #1a1814;
+      border: none;
+      border-radius: 2px;
+      color: #f0e8d8;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 10px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 24px;
+      transition: background 0.2s;
+      font-weight: 400;
+    }
+
+    .confirm-btn:hover { background: #2e2a22; }
+
+    .whatsapp-alt {
+      text-align: center;
+      margin-top: 14px;
+      font-size: 11px;
+      color: #b8ad9e;
+    }
+
+    .whatsapp-alt a { color: #8a7355; text-decoration: none; letter-spacing: 0.5px; }
+
+    .close-btn {
+      position: absolute;
+      top: 14px;
+      right: 16px;
+      color: #6a5e4a;
+      font-size: 18px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      line-height: 1;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 300;
+    }
+
+    .pase-tag {
+      display: inline-block;
+      background: #f0e8d8;
+      border: 0.5px solid #c9b99a;
+      border-radius: 2px;
+      font-size: 10px;
+      letter-spacing: 2px;
+      color: #8a7355;
+      padding: 4px 12px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="rsvp-modal">
+    <button class="close-btn">✕</button>
+
+    <div class="rsvp-header">
+      <div class="ornament">✦ &nbsp; RSVP &nbsp; ✦</div>
+      <div class="rsvp-names">Karen & Sergio</div>
+      <div class="rsvp-date">11 DE JULIO DE 2026</div>
+      <div class="divider-ornament">
+        <div class="divider-line"></div>
+        <span style="color:#c9b99a; font-size:14px;">♡</span>
+        <div class="divider-line"></div>
+      </div>
+    </div>
+
+    <div class="rsvp-body">
+
+      <div class="step-indicator">
+        <div class="step-dot active"></div>
+        <div class="step-dot"></div>
+        <div class="step-dot"></div>
+      </div>
+
+      <p class="rsvp-intro">Nos encantaría tenerte con nosotros.<br>Confirma tu asistencia.</p>
+
+      <div style="text-align:center; margin-bottom: 20px;">
+        <div class="pase-tag">Pase para 2 personas</div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Nombre completo</label>
+        <input class="field-input" type="text" placeholder="Tu nombre" />
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">¿Asistirás?</label>
+        <div class="attendance-options">
+          <div class="attend-btn selected" onclick="selectAttend(this)">
+            <span class="btn-icon">🥂</span>
+            <span class="btn-label">Sí asistiré</span>
+          </div>
+          <div class="attend-btn" onclick="selectAttend(this)">
+            <span class="btn-icon">💌</span>
+            <span class="btn-label">No podré ir</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Número de acompañantes</label>
+        <div class="guests-row">
+          <button class="qty-btn" onclick="changeQty(-1)">−</button>
+          <span class="qty-number" id="qty">1</span>
+          <button class="qty-btn" onclick="changeQty(1)">+</button>
+          <span class="qty-label">de 2 pases disponibles</span>
+        </div>
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">¿Alguna restricción alimentaria?</label>
+        <input class="field-input" type="text" placeholder="Ej. vegetariano, alérgico a..." />
+      </div>
+
+      <div class="field-group">
+        <label class="field-label">Mensaje para los novios (opcional)</label>
+        <textarea class="field-input" rows="2" placeholder="Un deseo, un abrazo..." style="resize: none; line-height: 1.6;"></textarea>
+      </div>
+
+      <button class="confirm-btn">Confirmar asistencia</button>
+
+      <div class="whatsapp-alt">
+        También puedes confirmar por <a href="#">WhatsApp</a>
+      </div>
+
+    </div>
+  </div>
+
+  <script>
+    function selectAttend(el) {
+      document.querySelectorAll('.attend-btn').forEach(b => b.classList.remove('selected'));
+      el.classList.add('selected');
+    }
+
+    let qty = 1;
+    function changeQty(d) {
+      qty = Math.max(1, Math.min(2, qty + d));
+      document.getElementById('qty').textContent = qty;
+    }
+  </script>
+
+</body>
+</html>
