@@ -924,7 +924,7 @@
 
       .insp-hero::before {
         background-image: url("img/portada_boda.jpeg");
-        background-position: 14% 44%;
+        background-position: 41% 44%;
       }
 
       .insp-nav {
@@ -995,28 +995,37 @@
       .insp-copy-row {
         margin-top: 52px;
         gap: 16px;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .insp-copy {
+        width: 100%;
+        max-width: none;
+        text-align: center;
       }
 
       .insp-couple.names-alt {
         font-size: clamp(48px, 13vw, 74px);
-        transform: translateX(12px);
+        transform: none;
+        line-height: .98;
       }
 
       .insp-couple .first,
       .insp-couple .last {
-        top: -104px;
+        top: 0;
       }
 
       .insp-couple .amp-alt {
-        top: -104px;
+        top: 0;
       }
 
       .insp-couple .first {
-        transform: translateX(-42px);
+        transform: none;
       }
 
       .insp-couple .last {
-        transform: translateX(42px);
+        transform: none;
       }
 
       .insp-hero-date {
@@ -1107,6 +1116,8 @@
         align-items: center;
         justify-items: center;
         transform: none;
+        padding: 0 8px;
+        box-sizing: border-box;
       }
 
       .insp-couple .first,
@@ -1118,14 +1129,14 @@
       .insp-couple .first {
         grid-area: first;
         justify-self: end;
-        top: -82px;
+        top: 0;
         transform: none;
       }
 
       .insp-couple .last {
         grid-area: last;
         justify-self: start;
-        top: -82px;
+        top: 0;
         transform: none;
       }
 
@@ -1133,7 +1144,7 @@
         grid-area: amp;
         justify-self: center;
         position: relative;
-        top: -82px;
+        top: 0;
       }
 
       .insp-hero-date-float {
