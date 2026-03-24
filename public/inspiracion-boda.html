@@ -44,9 +44,18 @@
     .insp-page {
       min-height: 100vh;
       padding: 34px 14px 48px;
+      position: relative;
+      isolation: isolate;
+    }
+
+    .insp-page::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: -1;
       background:
         linear-gradient(rgba(255, 249, 242, 0.82), rgba(255, 249, 242, 0.82)),
-        url("img/kys.jpeg") center/cover no-repeat fixed;
+        url("img/kys.jpeg") center/cover no-repeat;
     }
 
     .insp-shell {
@@ -359,6 +368,7 @@
       color: #6b5f57;
     }
 
+    /* ===== MODAL RSVP ===== */
     .insp-rsvp-modal {
       position: fixed;
       inset: 0;
@@ -366,71 +376,363 @@
       align-items: center;
       justify-content: center;
       padding: 18px;
-      background: rgba(23, 17, 12, 0.68);
+      background: rgba(23, 17, 12, 0.72);
       z-index: 80;
     }
-
-    .insp-rsvp-modal.open {
-      display: flex;
-    }
+    .insp-rsvp-modal.open { display: flex; }
 
     .insp-rsvp-dialog {
       position: relative;
-      width: min(100%, 760px);
-      max-height: min(90vh, 920px);
-      overflow: auto;
-      background: #f7f0e8;
-      border-radius: 22px;
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.24);
-      padding: 28px 20px 22px;
+      width: min(100%, 860px);
+      max-height: 94vh;
+      overflow-y: auto;
+      background: #fff;
+      border-radius: 18px;
+      box-shadow: 0 24px 70px rgba(0,0,0,0.28);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: auto 1fr;
+    }
+
+    /* Header oscuro — ocupa columna izquierda completa en desktop */
+    .rsvp-header {
+      background: #1a1612;
+      color: #fff;
+      padding: 36px 28px 32px;
+      text-align: center;
+      border-radius: 18px 0 0 18px;
+      grid-column: 1;
+      grid-row: 1 / 3;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .rsvp-header-label {
+      font-family: 'Bona Nova SC', serif;
+      font-size: 11px;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      opacity: .7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 14px;
+    }
+    .rsvp-header-label::before,
+    .rsvp-header-label::after {
+      content: '✦';
+      font-size: 8px;
+      opacity: .5;
+    }
+    .rsvp-header h3 {
+      font-family: 'Rouge Script', cursive;
+      font-size: clamp(42px, 5vw, 58px);
+      font-weight: 400;
+      margin: 0 0 8px;
+      line-height: 1;
+      color: #fff;
+    }
+    .rsvp-header-date {
+      font-family: 'Bona Nova SC', serif;
+      font-size: 11px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      opacity: .65;
+    }
+    .rsvp-header-heart {
+      margin-top: 14px;
+      opacity: .4;
+      font-size: 16px;
+    }
+
+    /* Indicadores de paso — columna derecha, fila 1 */
+    .rsvp-steps {
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      padding: 18px 24px 0;
+      background: #fff;
+      grid-column: 2;
+      grid-row: 1;
+      border-radius: 0 18px 0 0;
+    }
+    .rsvp-step-dot {
+      width: 28px;
+      height: 5px;
+      border-radius: 3px;
+      background: #e0d8d0;
+      transition: background .3s;
+    }
+    .rsvp-step-dot.active { background: #8B7355; }
+
+    /* Cuerpo del formulario — columna derecha, fila 2 */
+    .rsvp-body {
+      padding: 14px 26px 24px;
+      grid-column: 2;
+      grid-row: 2;
+      overflow-y: auto;
+    }
+    .rsvp-lead {
+      text-align: center;
+      font-size: 13px;
+      color: #6b5f57;
+      line-height: 1.6;
+      margin: 0 0 12px;
+      font-style: italic;
+    }
+    .rsvp-pass-badge {
+      border: 1.5px solid #8B7355;
+      color: #8B7355;
+      font-family: 'Bona Nova SC', serif;
+      font-size: 10px;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      padding: 4px 14px;
+      border-radius: 2px;
+      margin: 0 auto 16px;
+      display: block;
+      text-align: center;
+      width: fit-content;
+    }
+
+    /* Campos */
+    .rsvp-field { margin-bottom: 12px; }
+    .rsvp-label {
+      display: block;
+      font-family: 'Bona Nova SC', serif;
+      font-size: 10px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: #7b6d64;
+      margin-bottom: 5px;
+    }
+    .rsvp-input {
+      width: 100%;
+      padding: 10px 13px;
+      border: 1px solid #d8d0c8;
+      border-radius: 8px;
+      font-size: 13px;
+      color: #333;
+      background: #faf8f5;
+      box-sizing: border-box;
+      outline: none;
+      transition: border-color .2s;
+      font-family: inherit;
+    }
+    .rsvp-input:focus { border-color: #8B7355; background: #fff; }
+    textarea.rsvp-input { resize: none; height: 68px; }
+
+    /* Botones Sí / No */
+    .rsvp-asistira-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .rsvp-asistira-btn {
+      padding: 12px 10px;
+      border: 1.5px solid #d8d0c8;
+      border-radius: 10px;
+      background: #faf8f5;
+      cursor: pointer;
+      text-align: center;
+      transition: all .2s;
+      font-family: 'Bona Nova SC', serif;
+      letter-spacing: .1em;
+    }
+    .rsvp-asistira-btn .rsvp-btn-emoji { font-size: 20px; display: block; margin-bottom: 4px; }
+    .rsvp-asistira-btn .rsvp-btn-label { font-size: 10px; text-transform: uppercase; color: #7b6d64; }
+    .rsvp-asistira-btn.active { border-color: #8B7355; background: #8B7355; }
+    .rsvp-asistira-btn.active .rsvp-btn-label { color: #fff; }
+
+    /* Contador acompañantes */
+    .rsvp-counter-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .rsvp-counter-btn {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      border: 1.5px solid #d8d0c8;
+      background: #faf8f5;
+      font-size: 20px;
+      cursor: pointer;
+      display: grid;
+      place-items: center;
+      color: #8B7355;
+      font-weight: 600;
+      line-height: 1;
+      flex-shrink: 0;
+    }
+    .rsvp-counter-btn:disabled { opacity: .35; cursor: default; }
+    .rsvp-counter-num {
+      width: 36px;
+      text-align: center;
+      font-size: 17px;
+      font-weight: 600;
+      color: #333;
+      border: none;
+      background: transparent;
+      pointer-events: none;
+    }
+    .rsvp-counter-desc { font-size: 12px; color: #7b6d64; }
+
+    /* Botón confirmar */
+    .rsvp-confirm-btn {
+      width: 100%;
+      padding: 13px;
+      background: #1a1612;
+      color: #fff;
+      border: none;
+      border-radius: 10px;
+      font-family: 'Bona Nova SC', serif;
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      margin-top: 4px;
+      transition: background .2s, opacity .2s;
+    }
+    .rsvp-confirm-btn:hover { background: #2e2620; }
+    .rsvp-confirm-btn:disabled { opacity: .5; cursor: default; }
+
+    /* WhatsApp link */
+    .rsvp-wa-row {
+      text-align: center;
+      margin-top: 10px;
+      font-size: 12px;
+      color: #7b6d64;
+    }
+    .rsvp-wa-row a { color: #4a7c59; font-weight: 600; text-decoration: none; }
+
+    /* Pantalla de éxito */
+    .rsvp-success {
+      text-align: center;
+      padding: 40px 24px;
+      display: none;
+      grid-column: 2;
+      grid-row: 2;
+    }
+    .rsvp-success.show { display: flex; flex-direction: column; align-items: center; justify-content: center; }
+    .rsvp-success-icon { font-size: 48px; margin-bottom: 14px; }
+    .rsvp-success h4 {
+      font-family: 'Rouge Script', cursive;
+      font-size: 36px;
+      color: #4e433b;
+      margin: 0 0 8px;
+      font-weight: 400;
+    }
+    .rsvp-success p { font-size: 13px; color: #7b6d64; line-height: 1.6; }
+
+    /* Carga / error */
+    .rsvp-loading {
+      text-align: center;
+      padding: 40px 24px;
+      color: #7b6d64;
+      font-size: 14px;
+      grid-column: 2;
+      grid-row: 1 / 3;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .rsvp-error-msg {
+      background: #fdf0f0;
+      border: 1px solid #f5c6cb;
+      border-radius: 8px;
+      padding: 9px 13px;
+      font-size: 12px;
+      color: #721c24;
+      margin-bottom: 12px;
+      display: none;
     }
 
     .insp-rsvp-close {
       position: absolute;
-      top: 12px;
-      right: 12px;
-      width: 42px;
-      height: 42px;
+      top: 10px;
+      right: 10px;
+      width: 34px;
+      height: 34px;
       border: 0;
       border-radius: 999px;
-      background: rgba(88, 70, 56, 0.12);
-      color: #4b3d34;
-      font-size: 28px;
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      font-size: 20px;
       cursor: pointer;
+      z-index: 2;
+      display: grid;
+      place-items: center;
+      line-height: 1;
     }
+    .insp-rsvp-close:hover { background: rgba(255,255,255,0.25); }
 
-    .insp-rsvp-title {
-      margin: 0;
-      text-align: center;
-      color: #4e433b;
-      font-size: clamp(34px, 6vw, 48px);
-    }
+    /* ===== MÓVIL: layout en columna, sin scroll ===== */
+    @media (max-width: 640px) {
+      .insp-rsvp-modal { padding: 0; align-items: flex-end; }
 
-    .insp-rsvp-copy {
-      margin: 10px auto 18px;
-      max-width: 560px;
-      text-align: center;
-      color: #6c6058;
-      line-height: 1.6;
-    }
+      .insp-rsvp-dialog {
+        width: 100%;
+        max-height: 96vh;
+        border-radius: 20px 20px 0 0;
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+        overflow-y: auto;
+      }
 
-    .insp-rsvp-pass-mount .invite-card {
-      margin: 0 auto;
-    }
+      /* Header compacto arriba */
+      .rsvp-header {
+        grid-column: 1;
+        grid-row: 1;
+        border-radius: 20px 20px 0 0;
+        padding: 20px 24px 16px;
+        flex-direction: row;
+        gap: 12px;
+        justify-content: center;
+        align-items: center;
+        text-align: left;
+      }
+      .rsvp-header h3 { font-size: 36px; margin: 0; }
+      .rsvp-header-label { margin-bottom: 0; flex-direction: column; gap: 2px; align-items: flex-start; }
+      .rsvp-header-label::before,
+      .rsvp-header-label::after { display: none; }
+      .rsvp-header-date { font-size: 10px; }
+      .rsvp-header-heart { display: none; }
 
-    .insp-rsvp-actions {
-      display: flex;
-      justify-content: center;
-      margin-top: 18px;
-    }
+      .rsvp-steps {
+        grid-column: 1;
+        grid-row: 2;
+        border-radius: 0;
+        padding: 10px 24px 0;
+      }
 
-    .insp-rsvp-helper {
-      margin: 16px auto 0;
-      max-width: 520px;
-      text-align: center;
-      color: #7b6d64;
-      font-size: 14px;
-      line-height: 1.5;
+      .rsvp-body {
+        grid-column: 1;
+        grid-row: 3;
+        padding: 12px 18px 20px;
+        overflow-y: visible;
+      }
+
+      .rsvp-success {
+        grid-column: 1;
+        grid-row: 3;
+      }
+
+      .rsvp-loading {
+        grid-column: 1;
+        grid-row: 1 / 4;
+      }
+
+      .rsvp-lead { font-size: 12px; margin-bottom: 10px; }
+      .rsvp-pass-badge { font-size: 9px; margin-bottom: 12px; }
+      .rsvp-field { margin-bottom: 10px; }
+      textarea.rsvp-input { height: 56px; }
+      .rsvp-confirm-btn { padding: 12px; }
+      .rsvp-wa-row { margin-top: 8px; }
     }
 
     .insp-countdown-hero {
@@ -2023,14 +2325,93 @@
 
         <div class="insp-rsvp-modal" id="inspRsvpModal" aria-hidden="true">
           <div class="insp-rsvp-dialog" role="dialog" aria-modal="true" aria-labelledby="inspRsvpTitle">
-            <button class="insp-rsvp-close" type="button" aria-label="Cerrar confirmacion">&times;</button>
-            <h3 class="sacramento insp-rsvp-title" id="inspRsvpTitle">RSVP</h3>
-            <p class="dancing-script insp-rsvp-copy" id="inspRsvpLead"></p>
-            <div class="insp-rsvp-pass-mount" id="inspRsvpPassMount"></div>
-            <div class="insp-rsvp-actions">
-              <a class="btn" id="inspRsvpWhatsApp" href="#" target="_blank" rel="noopener">Confirmar por WhatsApp</a>
+
+            <!-- Header oscuro -->
+            <div class="rsvp-header">
+              <button class="insp-rsvp-close" type="button" aria-label="Cerrar confirmación">&times;</button>
+              <div class="rsvp-header-label">RSVP</div>
+              <h3 id="inspRsvpTitle">Karen &amp; Sergio</h3>
+              <div class="rsvp-header-date">11 DE JULIO DE 2026</div>
+              <div class="rsvp-header-heart">♡</div>
             </div>
-            <p class="insp-rsvp-helper" id="inspRsvpHelper"></p>
+
+            <!-- Indicadores de paso -->
+            <div class="rsvp-steps">
+              <div class="rsvp-step-dot active" id="rsvpDot1"></div>
+              <div class="rsvp-step-dot" id="rsvpDot2"></div>
+              <div class="rsvp-step-dot" id="rsvpDot3"></div>
+            </div>
+
+            <!-- Cuerpo cargando -->
+            <div class="rsvp-loading" id="rsvpLoading">Cargando tu invitación…</div>
+
+            <!-- Cuerpo del formulario -->
+            <div class="rsvp-body" id="rsvpBody" style="display:none">
+              <p class="rsvp-lead">Nos encantaría tenerte con nosotros.<br>Confirma tu asistencia.</p>
+              <div class="rsvp-pass-badge" id="rsvpPassBadge">PASE PARA 1 PERSONA</div>
+
+              <div class="rsvp-error-msg" id="rsvpError"></div>
+
+              <!-- Nombre -->
+              <div class="rsvp-field">
+                <label class="rsvp-label" for="rsvpNombre">Nombre completo</label>
+                <input class="rsvp-input" id="rsvpNombre" type="text" placeholder="Cargando…" autocomplete="name" readonly style="background:#f0ede8;color:#4e433b;cursor:default;opacity:0.85;">
+              </div>
+
+              <!-- ¿Asistirás? -->
+              <div class="rsvp-field">
+                <label class="rsvp-label">¿Asistirás?</label>
+                <div class="rsvp-asistira-row">
+                  <button class="rsvp-asistira-btn active" id="rsvpBtnSi" type="button">
+                    <span class="rsvp-btn-emoji">🥂</span>
+                    <span class="rsvp-btn-label">Sí asistiré</span>
+                  </button>
+                  <button class="rsvp-asistira-btn" id="rsvpBtnNo" type="button">
+                    <span class="rsvp-btn-emoji">💌</span>
+                    <span class="rsvp-btn-label">No podré ir</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Número de acompañantes -->
+              <div class="rsvp-field" id="rsvpAcompField">
+                <label class="rsvp-label">Número de acompañantes</label>
+                <div class="rsvp-counter-row">
+                  <button class="rsvp-counter-btn" id="rsvpMenos" type="button">−</button>
+                  <span class="rsvp-counter-num" id="rsvpAcompNum">1</span>
+                  <button class="rsvp-counter-btn" id="rsvpMas" type="button">+</button>
+                  <span class="rsvp-counter-desc" id="rsvpAcompDesc">de 2 pases disponibles</span>
+                </div>
+              </div>
+
+              <!-- Restricción alimentaria -->
+              <div class="rsvp-field" id="rsvpRestricField">
+                <label class="rsvp-label" for="rsvpRestric">¿Alguna restricción alimentaria?</label>
+                <input class="rsvp-input" id="rsvpRestric" type="text" placeholder="Ej. vegetariano, alérgico a…">
+              </div>
+
+              <!-- Mensaje -->
+              <div class="rsvp-field" id="rsvpMensajeField">
+                <label class="rsvp-label" for="rsvpMensaje">Mensaje para los novios (opcional)</label>
+                <textarea class="rsvp-input" id="rsvpMensaje" placeholder="Un deseo, un abrazo…"></textarea>
+              </div>
+
+              <!-- Confirmar -->
+              <button class="rsvp-confirm-btn" id="rsvpConfirmar" type="button">Confirmar asistencia</button>
+
+              <!-- WhatsApp fallback -->
+              <div class="rsvp-wa-row">
+                También puedes confirmar por <a id="rsvpWA" href="#" target="_blank" rel="noopener">WhatsApp</a>
+              </div>
+            </div>
+
+            <!-- Pantalla de éxito -->
+            <div class="rsvp-success" id="rsvpSuccess">
+              <div class="rsvp-success-icon" id="rsvpSuccessIcon">🥂</div>
+              <h4 id="rsvpSuccessTitle">¡Gracias!</h4>
+              <p id="rsvpSuccessMsg">Tu confirmación fue registrada. ¡Nos vemos pronto!</p>
+            </div>
+
           </div>
         </div>
 
@@ -2097,95 +2478,237 @@
       updateCarousel();
     });
 
+    // ================================================================
+    //  RSVP · conectado a rsvp.php via token
+    // ================================================================
     (function () {
-      const modal = document.getElementById('inspRsvpModal');
+      const RSVP_API  = './rsvp.php';
+      const WA_NUMBER = '523312345678'; // ← cambia al número de WhatsApp real
+
+      // — DOM —
+      const modal      = document.getElementById('inspRsvpModal');
       const openButton = document.getElementById('openRsvpModal');
-      const closeButton = modal ? modal.querySelector('.insp-rsvp-close') : null;
-      const lead = document.getElementById('inspRsvpLead');
-      const helper = document.getElementById('inspRsvpHelper');
-      const passMount = document.getElementById('inspRsvpPassMount');
-      const whatsappBtn = document.getElementById('inspRsvpWhatsApp');
-      if (!modal || !openButton || !closeButton || !lead || !helper || !passMount || !whatsappBtn) return;
+      const closeBtn   = modal.querySelector('.insp-rsvp-close');
+      const loading    = document.getElementById('rsvpLoading');
+      const body       = document.getElementById('rsvpBody');
+      const successDiv = document.getElementById('rsvpSuccess');
+      const errorDiv   = document.getElementById('rsvpError');
 
-      const qs = new URLSearchParams(window.location.search);
-      const guestName = qs.get('n');
-      const passesRaw = qs.get('p');
-      const passes = parseInt(passesRaw, 10);
-      const hasPersonalizedPass = Boolean(guestName && passesRaw && !isNaN(passes));
+      const dot1 = document.getElementById('rsvpDot1');
+      const dot2 = document.getElementById('rsvpDot2');
+      const dot3 = document.getElementById('rsvpDot3');
 
-      function buildWhatsAppMessage() {
-        if (hasPersonalizedPass) {
-          return `Hola, confirmo mi asistencia a la boda de Karen y Sergio. Nombre: ${guestName}. Pases asignados: ${passes}.`;
-        }
-        return 'Hola, confirmo mi asistencia a la boda de Karen y Sergio.';
+      const passBadge   = document.getElementById('rsvpPassBadge');
+      const nombreInput = document.getElementById('rsvpNombre');
+      const btnSi       = document.getElementById('rsvpBtnSi');
+      const btnNo       = document.getElementById('rsvpBtnNo');
+      const acompField  = document.getElementById('rsvpAcompField');
+      const restricField= document.getElementById('rsvpRestricField');
+      const mensajeField= document.getElementById('rsvpMensajeField');
+      const menosBtn    = document.getElementById('rsvpMenos');
+      const masBtn      = document.getElementById('rsvpMas');
+      const acompNum    = document.getElementById('rsvpAcompNum');
+      const acompDesc   = document.getElementById('rsvpAcompDesc');
+      const restricInput= document.getElementById('rsvpRestric');
+      const mensajeInput= document.getElementById('rsvpMensaje');
+      const confirmarBtn= document.getElementById('rsvpConfirmar');
+      const waLink      = document.getElementById('rsvpWA');
+
+      // — Estado —
+      const token = new URLSearchParams(window.location.search).get('t') || '';
+      let maxPases  = 1;
+      let acomp     = 0;
+      let asistira  = true;
+      let invData   = null;
+
+      // — Pasos visuales —
+      function setStep(n) {
+        [dot1, dot2, dot3].forEach((d, i) => d.classList.toggle('active', i < n));
       }
 
-      function buildPassCard() {
-        if (!hasPersonalizedPass) {
-          passMount.innerHTML = '';
-          lead.textContent = 'Usa este espacio para confirmar tu asistencia. Si abriste una liga personalizada, aquí también verás tus pases reservados.';
-          helper.textContent = 'Más adelante este mismo modal se puede conectar con base de datos sin cambiar el diseño.';
-          return;
-        }
-
-        const total = Math.max(5, passes);
-        const dotsMarkup = Array.from({ length: total }, function (_, index) {
-          return `<span class="dot${index < passes ? ' filled' : ''}"></span>`;
-        }).join('');
-
-        passMount.innerHTML = `
-          <div class="invite-card">
-            <div class="invite-head">
-              <img class="invite-photo" src="img/kys.jpeg" alt="Karen y Sergio" />
-              <div class="invite-names">
-                <div class="big">KAREN & SERGIO</div>
-                <div class="date">11 JULIO 2026</div>
-              </div>
-            </div>
-            <div class="invite-body">
-              <div class="envelope-box"><img src="img/sobre.jpeg" alt="Sobre"></div>
-              <div class="reserve">HEMOS RESERVADO PARA USTEDES</div>
-              <div class="dots">${dotsMarkup}</div>
-              <div class="who">${guestName}</div>
-            </div>
-          </div>
-        `;
-
-        lead.textContent = 'Tu invitación personalizada ya trae tus pases reservados. Revísalos aquí antes de confirmar tu asistencia.';
-        helper.textContent = 'Por ahora la confirmación sale por WhatsApp. Luego podemos conectar este mismo modal a base de datos.';
-      }
-
-      function openModal() {
+      // — Abrir / cerrar modal —
+      function openModal()  {
         modal.classList.add('open');
         modal.setAttribute('aria-hidden', 'false');
         document.body.classList.add('insp-rsvp-open');
       }
-
       function closeModal() {
         modal.classList.remove('open');
         modal.setAttribute('aria-hidden', 'true');
         document.body.classList.remove('insp-rsvp-open');
       }
 
-      buildPassCard();
-      whatsappBtn.href = `https://wa.me/?text=${encodeURIComponent(buildWhatsAppMessage())}`;
+      closeBtn.addEventListener('click', closeModal);
+      modal.addEventListener('click', e => { if (e.target === modal) closeModal(); });
+      document.addEventListener('keydown', e => {
+        if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
+      });
+      openButton.addEventListener('click', () => { openModal(); if (!invData && token) cargarInvitacion(); });
 
-      if (hasPersonalizedPass) {
-        openButton.textContent = 'Ver mis pases reservados';
-        window.requestAnimationFrame(openModal);
+      // — Cargar datos del token —
+      async function cargarInvitacion() {
+        setStep(1);
+        loading.style.display = 'block';
+        body.style.display    = 'none';
+        successDiv.classList.remove('show');
+        showError('');
+
+        if (!token) {
+          loading.style.display = 'none';
+          body.style.display    = 'block';
+          passBadge.textContent = 'INVITACIÓN GENERAL';
+          acompDesc.textContent = 'de 1 pase disponible';
+          buildWA();
+          setStep(2);
+          return;
+        }
+
+        try {
+          const res  = await fetch(`${RSVP_API}?t=${encodeURIComponent(token)}`);
+          const data = await res.json();
+
+          loading.style.display = 'none';
+
+          if (!data.ok) {
+            body.style.display = 'block';
+            showError(data.error || 'Invitación no encontrada.');
+            confirmarBtn.disabled = true;
+            return;
+          }
+
+          invData  = data;
+          maxPases = data.pases;
+          acomp    = maxPases; // empieza en el máximo de pases asignados
+
+          passBadge.textContent = `PASE PARA ${maxPases} PERSONA${maxPases > 1 ? 'S' : ''}`;
+          acompDesc.textContent = `de ${maxPases} pases disponibles`;
+
+          // Prellenar nombre y bloquearlo
+          nombreInput.value = data.para;
+          nombreInput.readOnly = true;
+
+          updateCounter();
+
+          if (data.respondido) {
+            confirmarBtn.disabled = true;
+            confirmarBtn.textContent = 'Ya confirmaste tu asistencia';
+          }
+
+          buildWA();
+          body.style.display = 'block';
+          setStep(2);
+
+          // Abrir automáticamente si viene con token
+          if (token) openModal();
+
+        } catch (err) {
+          loading.style.display = 'none';
+          body.style.display    = 'block';
+          showError('No se pudo cargar la invitación. Intenta de nuevo.');
+        }
       }
 
-      openButton.addEventListener('click', openModal);
-      closeButton.addEventListener('click', closeModal);
-      modal.addEventListener('click', function (event) {
-        if (event.target === modal) closeModal();
-      });
+      // — Contador —
+      // — Contador — (mínimo 1 = el propio invitado, máximo = pases asignados)
+      function updateCounter() {
+        acompNum.textContent = acomp;
+        menosBtn.disabled    = acomp <= 1;
+        masBtn.disabled      = acomp >= maxPases;
+      }
+      menosBtn.addEventListener('click', () => { if (acomp > 1)        { acomp--; updateCounter(); } });
+      masBtn.addEventListener('click',   () => { if (acomp < maxPases) { acomp++; updateCounter(); } });
 
-      document.addEventListener('keydown', function (event) {
-        if (event.key === 'Escape' && modal.classList.contains('open')) {
-          closeModal();
+      // — ¿Asistirá? —
+      function setAsistira(val) {
+        asistira = val;
+        btnSi.classList.toggle('active',  val);
+        btnNo.classList.toggle('active', !val);
+        acompField.style.display   = val ? '' : 'none';
+        restricField.style.display = val ? '' : 'none';
+        mensajeField.style.display = '';
+      }
+      setAsistira(true);
+      btnSi.addEventListener('click', () => setAsistira(true));
+      btnNo.addEventListener('click', () => setAsistira(false));
+
+      // — WhatsApp fallback —
+      function buildWA() {
+        const nombre = nombreInput.value.trim() || (invData ? invData.para : '');
+        const msg = invData
+          ? `Hola, quiero confirmar mi asistencia a la boda de Karen y Sergio. Nombre: ${nombre}. Pases: ${maxPases}.`
+          : 'Hola, quiero confirmar mi asistencia a la boda de Karen y Sergio.';
+        waLink.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+      }
+      nombreInput.addEventListener('input', buildWA);
+
+      // — Error —
+      function showError(msg) {
+        errorDiv.textContent    = msg;
+        errorDiv.style.display  = msg ? 'block' : 'none';
+      }
+
+      // — Confirmar —
+      confirmarBtn.addEventListener('click', async () => {
+        const nombre = nombreInput.value.trim();
+        if (!nombre) { showError('No se pudo cargar el nombre. Recarga la página.'); return; }
+        if (!token)  { buildWA(); waLink.click(); return; }
+
+        showError('');
+        confirmarBtn.disabled = true;
+        confirmarBtn.textContent = 'Enviando…';
+        setStep(3);
+
+        try {
+          const res  = await fetch(RSVP_API, {
+            method : 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body   : JSON.stringify({
+              token,
+              nombre       : nombreInput.value.trim(),
+              asistira,
+              acompanantes : asistira ? acomp - 1 : 0,  // el invitado ya ocupa 1 pase
+              restriccion  : restricInput.value.trim(),
+              mensaje      : mensajeInput.value.trim(),
+            }),
+          });
+          const data = await res.json();
+
+          if (data.ok) {
+            body.style.display = 'none';
+            const si = document.getElementById('rsvpSuccessIcon');
+            const ti = document.getElementById('rsvpSuccessTitle');
+            const ms = document.getElementById('rsvpSuccessMsg');
+            if (asistira) {
+              si.textContent = '🥂';
+              ti.textContent = '¡Nos vemos pronto!';
+              ms.textContent = 'Tu asistencia fue confirmada. ¡Estamos muy felices de que vengas!';
+            } else {
+              si.textContent = '💌';
+              ti.textContent = '¡Gracias por avisarnos!';
+              ms.textContent = 'Lamentamos que no puedas venir. Te queremos mucho.';
+            }
+            successDiv.classList.add('show');
+          } else {
+            confirmarBtn.disabled = false;
+            confirmarBtn.textContent = 'Confirmar asistencia';
+            showError(data.error || 'Ocurrió un error. Intenta de nuevo.');
+            setStep(2);
+          }
+        } catch (err) {
+          confirmarBtn.disabled = false;
+          confirmarBtn.textContent = 'Confirmar asistencia';
+          showError('Sin conexión. Puedes confirmar por WhatsApp.');
+          setStep(2);
         }
       });
+
+      // — Inicializar —
+      if (token) {
+        // Cargar datos en background y abrir modal automáticamente
+        cargarInvitacion();
+        openButton.textContent = 'Ver mis pases y confirmar';
+      }
+
     })();
 
     const CSV_PATH = 'SOS_SERVICIOS_BODA_KYS.csv';
