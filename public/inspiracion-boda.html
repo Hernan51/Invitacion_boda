@@ -1805,7 +1805,7 @@
 
     /* ===== CONFIRMACIÓN DE ASISTENCIA ===== */
     .confirmacion-asistencia {
-      display: block;
+      display: none;
       position: relative;
       text-align: center;
       padding: 58px 34px 46px;
@@ -2692,6 +2692,7 @@
       // — DOM —
       const modal      = document.getElementById('inspRsvpModal');
       const openButton = document.getElementById('openRsvpModal');
+      const confSection = document.getElementById('confirmacionAsistencia');
       const closeBtn   = modal.querySelector('.insp-rsvp-close');
       const loading    = document.getElementById('rsvpLoading');
       const body       = document.getElementById('rsvpBody');
@@ -2737,6 +2738,11 @@
         [dot1, dot2, dot3].forEach((d, i) => d.classList.toggle('active', i < n));
       }
 
+      function setConfirmationVisibility(visible) {
+        if (!confSection) return;
+        confSection.style.display = visible ? 'block' : 'none';
+      }
+
       // — Abrir / cerrar modal —
       function openModal()  {
         modal.classList.add('open');
@@ -2772,6 +2778,7 @@
         showError('');
 
         if (!token) {
+          setConfirmationVisibility(false);
           loading.style.display = 'none';
           body.style.display    = 'block';
           passBadge.textContent = 'INVITACIÓN GENERAL';
@@ -2788,6 +2795,7 @@
           loading.style.display = 'none';
 
           if (!data.ok) {
+            setConfirmationVisibility(false);
             body.style.display = 'block';
             showError(data.error || 'Invitación no encontrada.');
             confirmarBtn.disabled = true;
@@ -2813,6 +2821,7 @@
           }
 
           buildWA();
+          setConfirmationVisibility(true);
           body.style.display = 'block';
           setStep(2);
 
@@ -2820,6 +2829,7 @@
           if (token) openModal();
 
         } catch (err) {
+          setConfirmationVisibility(false);
           loading.style.display = 'none';
           body.style.display    = 'block';
           showError('No se pudo cargar la invitación. Intenta de nuevo.');
@@ -2935,9 +2945,8 @@
         // Cargar datos en background y abrir modal automáticamente
         cargarInvitacion();
         openButton.textContent = 'Confirmar asistencia';
-        // Mostrar sección de confirmación de asistencia solo con token
-        const confSection = document.getElementById('confirmacionAsistencia');
-        if (confSection) confSection.style.display = 'block';
+      } else {
+        setConfirmationVisibility(false);
       }
 
     })();
