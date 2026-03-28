@@ -35,6 +35,10 @@
       overflow: hidden;
     }
 
+    :root {
+      --insp-viewport-height: 100vh;
+    }
+
     body.insp-menu-open .insp-copy-row,
     body.insp-menu-open .insp-hero-date-float {
       opacity: 0;
@@ -302,7 +306,7 @@
       font-size: clamp(27px, 3.1vw, 38px);
       letter-spacing: 0.06em;
       text-transform: uppercase;
-      font-family: 'Playfair Display', serif;
+      font-family: 'Bona Nova SC', serif;
       font-weight: 600;
     }
 
@@ -358,16 +362,6 @@
       color: #7d7168;
     }
 
-    .insp-rsvp-cta {
-      margin-top: 80px;
-      text-align: center;
-    }
-
-    .insp-rsvp-cta-copy {
-      margin: 0 0 14px;
-      color: #6b5f57;
-    }
-
     /* ===== MODAL RSVP ===== */
     .insp-rsvp-modal {
       position: fixed;
@@ -384,7 +378,10 @@
     .insp-rsvp-dialog {
       position: relative;
       width: min(100%, 860px);
-      max-height: 94vh;
+      max-height: min(
+        94vh,
+        calc(var(--insp-viewport-height, 100vh) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 36px)
+      );
       overflow-y: auto;
       background: #fff;
       border-radius: 18px;
@@ -658,26 +655,36 @@
       right: 10px;
       width: 34px;
       height: 34px;
-      border: 0;
+      border: 1px solid rgba(255,255,255,0.28);
       border-radius: 999px;
-      background: rgba(255,255,255,0.15);
+      background: rgba(18,16,14,0.52);
       color: #fff;
       font-size: 20px;
+      font-weight: 700;
+      text-shadow: 0 1px 2px rgba(0,0,0,0.35);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.2);
+      backdrop-filter: blur(6px);
       cursor: pointer;
       z-index: 2;
       display: grid;
       place-items: center;
       line-height: 1;
     }
-    .insp-rsvp-close:hover { background: rgba(255,255,255,0.25); }
+    .insp-rsvp-close:hover { background: rgba(18,16,14,0.68); }
 
     /* ===== MÓVIL: layout en columna, sin scroll ===== */
     @media (max-width: 640px) {
-      .insp-rsvp-modal { padding: 0; align-items: flex-end; }
+      .insp-rsvp-modal {
+        padding:
+          max(8px, env(safe-area-inset-top, 0px))
+          0
+          max(8px, env(safe-area-inset-bottom, 0px));
+        align-items: flex-end;
+      }
 
       .insp-rsvp-dialog {
         width: 100%;
-        max-height: 96vh;
+        max-height: calc(var(--insp-viewport-height, 100vh) - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px) - 16px);
         border-radius: 20px 20px 0 0;
         grid-template-columns: 1fr;
         grid-template-rows: auto auto 1fr;
@@ -1795,6 +1802,177 @@
         padding-right: 22px;
       }
     }
+
+    /* ===== CONFIRMACIÓN DE ASISTENCIA ===== */
+    .confirmacion-asistencia {
+      display: block;
+      position: relative;
+      text-align: center;
+      padding: 58px 34px 46px;
+      margin: 56px auto 0;
+      max-width: 760px;
+      overflow: hidden;
+      border-radius: 28px;
+      border: 1px solid rgba(170, 161, 147, 0.34);
+      background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(251, 248, 242, 0.93)),
+        radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.8), transparent 46%),
+        radial-gradient(circle at 84% 12%, rgba(229, 225, 214, 0.44), transparent 32%),
+        repeating-linear-gradient(25deg, rgba(170, 161, 147, 0.04) 0 7px, rgba(255, 255, 255, 0.06) 7px 15px);
+      box-shadow: 0 18px 40px rgba(110, 98, 83, 0.12);
+    }
+
+    .confirmacion-asistencia::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(circle at 12% 30%, rgba(194, 185, 171, 0.13), transparent 30%),
+        radial-gradient(circle at 78% 72%, rgba(194, 185, 171, 0.1), transparent 28%);
+      pointer-events: none;
+    }
+
+    .confirmacion-header {
+      position: relative;
+      z-index: 1;
+      margin-bottom: 30px;
+    }
+
+    .confirmacion-titulo-caps {
+      font-family: 'Sacramento', cursive;
+      font-size: clamp(30px, 4.2vw, 52px);
+      letter-spacing: .28em;
+      font-weight: 400;
+      color: #2f2c29;
+      margin: 0;
+      text-transform: uppercase;
+      line-height: 1;
+      text-indent: 0.28em;
+    }
+
+    .confirmacion-titulo-script {
+      font-family: 'Sacramento', cursive;
+      font-size: clamp(50px, 6.8vw, 82px);
+      color: #38342f;
+      margin: -10px 0 0;
+      line-height: 0.9;
+    }
+
+    .confirmacion-sobre {
+      position: relative;
+      z-index: 1;
+      margin: 0 auto 32px;
+      width: clamp(170px, 28vw, 245px);
+    }
+
+    .confirmacion-sobre svg {
+      width: 100%;
+      height: auto;
+    }
+
+    .confirmacion-texto {
+      position: relative;
+      z-index: 1;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(17px, 1.85vw, 22px);
+      letter-spacing: .09em;
+      color: #3f3a34;
+      line-height: 1.75;
+      max-width: 620px;
+      margin: 0 auto 34px;
+    }
+
+    .confirmacion-fecha {
+      position: relative;
+      z-index: 1;
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(16px, 1.7vw, 21px);
+      letter-spacing: .08em;
+      color: #3f3a34;
+      line-height: 1.6;
+      max-width: 620px;
+      margin: 0 auto 34px;
+    }
+
+    .confirmacion-fecha strong {
+      font-weight: 700;
+      color: #1f1b17;
+      letter-spacing: .12em;
+      font-size: 20px;
+    }
+
+    .confirmacion-btn {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 390px);
+      min-height: 58px;
+      border: none;
+      border-radius: 0;
+      background: #002374;
+      color: #f7f3e9;
+      font-family: 'Bona Nova SC', serif;
+      font-size: clamp(15px, 1.4vw, 19px);
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      box-shadow: 0 14px 28px rgba(0, 35, 116, 0.18);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    .confirmacion-btn:hover {
+      transform: translateY(-2px);
+      background: #001c5d;
+      box-shadow: 0 18px 32px rgba(0, 35, 116, 0.24);
+    }
+
+    @media (max-width: 560px) {
+      .confirmacion-asistencia {
+        padding: 38px 20px 32px;
+        margin-top: 40px;
+        border-radius: 22px;
+      }
+
+      .confirmacion-header {
+        margin-bottom: 20px;
+      }
+
+      .confirmacion-titulo-caps {
+        font-size: clamp(24px, 9vw, 40px);
+        letter-spacing: .22em;
+      }
+
+      .confirmacion-titulo-script {
+        margin-top: -4px;
+        font-size: clamp(46px, 16vw, 72px);
+      }
+
+      .confirmacion-sobre {
+        width: min(190px, 58vw);
+        margin-bottom: 24px;
+      }
+
+      .confirmacion-texto {
+        font-size: 16px;
+        letter-spacing: .05em;
+        line-height: 1.65;
+        margin-bottom: 24px;
+      }
+
+      .confirmacion-fecha {
+        font-size: 16px;
+        letter-spacing: .04em;
+        margin-bottom: 24px;
+      }
+
+      .confirmacion-fecha strong {
+        letter-spacing: .08em;
+      }
+
+      .confirmacion-btn {
+        min-height: 58px;
+        font-size: 15px;
+        letter-spacing: .09em;
+      }
+    }
   </style>
 </head>
 
@@ -2104,7 +2282,7 @@
               <div class="gift-options">
                 <div class="gift-option">
                   <div class="gift-icon"><img src="img/sobre.jpeg" alt=""></div>
-                  <div class="gift-label" style="font-size:18px;margin-top: 11%;">Lluvia de sobres</div>
+                  <div class="gift-label" style="font-size:18px;">Lluvia de sobres</div>
                 </div>
 
                 <div class="gift-option">
@@ -2132,10 +2310,39 @@
                 </div>
               </div>
 
-              <div class="insp-rsvp-cta">
-                <p class="dancing-script insp-rsvp-cta-copy" style="font-size: 22px;">Confirma tu asistencia desde aquí
+              <!-- Confirmación de Asistencia -->
+              <div class="confirmacion-asistencia" id="confirmacionAsistencia">
+                <div class="confirmacion-header">
+                  <h3 class="confirmacion-titulo-caps">CONFIRMACIÓN</h3>
+                  <p class="confirmacion-titulo-script">de Asistencia</p>
+                </div>
+                <div class="confirmacion-sobre">
+                  <svg viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M28 48 L80 10 L132 48" stroke="#002374" stroke-width="2.2" stroke-linejoin="round"/>
+                    <path d="M28 48 H132 V118 H28 Z" stroke="#002374" stroke-width="2.2" stroke-linejoin="round"/>
+                    <path d="M28 48 L80 88 L132 48" stroke="#002374" stroke-width="2.2" stroke-linejoin="round"/>
+                    <path d="M28 118 L63 85" stroke="#002374" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M132 118 L97 85" stroke="#002374" stroke-width="2.2" stroke-linecap="round"/>
+                    <path d="M49 28 L80 4 L111 28" stroke="#002374" stroke-width="2" stroke-linejoin="round"/>
+                    <path d="M49 28 H111 V74 L80 96 L49 74 Z" fill="#fbf9f3" stroke="#002374" stroke-width="2"/>
+                    <path d="M59 40 H101" stroke="#002374" stroke-width="1.8" stroke-linecap="round" opacity="0.75"/>
+                    <path d="M57 48 H103" stroke="#002374" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
+                    <path d="M60 56 H100" stroke="#002374" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+                    <path d="M62 64 H98" stroke="#002374" stroke-width="1.8" stroke-linecap="round" opacity="0.42"/>
+                    <path d="M49 93 C39 83 20 88 27 100 C34 111 52 95 67 95 C75 95 78 104 80 110 C82 104 85 95 93 95 C108 95 126 111 133 100 C140 88 121 83 111 93" stroke="#002374" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+                    <path d="M80 111 C73 122 66 131 60 136" stroke="#002374" stroke-width="2.6" stroke-linecap="round"/>
+                    <path d="M80 111 C87 122 94 131 100 136" stroke="#002374" stroke-width="2.6" stroke-linecap="round"/>
+                    <circle cx="80" cy="98" r="4.5" fill="#fbf9f3" stroke="#002374" stroke-width="2"/>
+                  </svg>
+                </div>
+                <p class="confirmacion-texto">
+                  Celebrar nuestro amor es un sueño hecho realidad, y para que sea perfecto, nos encantaría contar contigo en nuestra lista de invitados.
                 </p>
-                <button class="btn" type="button" id="openRsvpModal" data-open-rsvp>Ver mis pases y confirmar</button>
+                <p class="confirmacion-fecha">
+                  Confírmanos tu asistencia hasta el<br>
+                  <strong>11 DE JULIO DE 2026.</strong>
+                </p>
+                <button class="btn confirmacion-btn" type="button" id="openRsvpModal" data-open-rsvp>Confirmar asistencia</button>
               </div>
             </div>
 
@@ -2354,7 +2561,7 @@
 
               <!-- Nombre -->
               <div class="rsvp-field">
-                <label class="rsvp-label" for="rsvpNombre">Nombre completo</label>
+                <label class="rsvp-label" for="rsvpNombre">Para: </label>
                 <input class="rsvp-input" id="rsvpNombre" type="text" placeholder="Cargando…" autocomplete="name" readonly style="background:#f0ede8;color:#4e433b;cursor:default;opacity:0.85;">
               </div>
 
@@ -2399,10 +2606,7 @@
               <!-- Confirmar -->
               <button class="rsvp-confirm-btn" id="rsvpConfirmar" type="button">Confirmar asistencia</button>
 
-              <!-- WhatsApp fallback -->
-              <div class="rsvp-wa-row">
-                También puedes confirmar por <a id="rsvpWA" href="#" target="_blank" rel="noopener">WhatsApp</a>
-              </div>
+              
             </div>
 
             <!-- Pantalla de éxito -->
@@ -2521,6 +2725,13 @@
       let asistira  = true;
       let invData   = null;
 
+      function syncViewportHeight() {
+        const visibleHeight = window.visualViewport
+          ? window.visualViewport.height
+          : window.innerHeight;
+        document.documentElement.style.setProperty('--insp-viewport-height', `${visibleHeight}px`);
+      }
+
       // — Pasos visuales —
       function setStep(n) {
         [dot1, dot2, dot3].forEach((d, i) => d.classList.toggle('active', i < n));
@@ -2544,6 +2755,13 @@
         if (e.key === 'Escape' && modal.classList.contains('open')) closeModal();
       });
       openButton.addEventListener('click', () => { openModal(); if (!invData && token) cargarInvitacion(); });
+      syncViewportHeight();
+      window.addEventListener('resize', syncViewportHeight);
+      window.addEventListener('orientationchange', syncViewportHeight);
+      if (window.visualViewport) {
+        window.visualViewport.addEventListener('resize', syncViewportHeight);
+        window.visualViewport.addEventListener('scroll', syncViewportHeight);
+      }
 
       // — Cargar datos del token —
       async function cargarInvitacion() {
@@ -2633,11 +2851,13 @@
 
       // — WhatsApp fallback —
       function buildWA() {
+        if (!waLink) return null;
         const nombre = nombreInput.value.trim() || (invData ? invData.para : '');
         const msg = invData
           ? `Hola, quiero confirmar mi asistencia a la boda de Karen y Sergio. Nombre: ${nombre}. Pases: ${maxPases}.`
           : 'Hola, quiero confirmar mi asistencia a la boda de Karen y Sergio.';
         waLink.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+        return waLink.href;
       }
       nombreInput.addEventListener('input', buildWA);
 
@@ -2651,7 +2871,15 @@
       confirmarBtn.addEventListener('click', async () => {
         const nombre = nombreInput.value.trim();
         if (!nombre) { showError('No se pudo cargar el nombre. Recarga la página.'); return; }
-        if (!token)  { buildWA(); waLink.click(); return; }
+        if (!token)  {
+          const waHref = buildWA();
+          if (waHref) {
+            window.open(waHref, '_blank', 'noopener');
+          } else {
+            showError('No se encontró el enlace de WhatsApp para confirmar.');
+          }
+          return;
+        }
 
         showError('');
         confirmarBtn.disabled = true;
@@ -2706,7 +2934,10 @@
       if (token) {
         // Cargar datos en background y abrir modal automáticamente
         cargarInvitacion();
-        openButton.textContent = 'Ver mis pases y confirmar';
+        openButton.textContent = 'Confirmar asistencia';
+        // Mostrar sección de confirmación de asistencia solo con token
+        const confSection = document.getElementById('confirmacionAsistencia');
+        if (confSection) confSection.style.display = 'block';
       }
 
     })();

@@ -2449,7 +2449,7 @@ footer {
 .gift-options {
   display: flex;
   justify-content: center;
-  gap: 80px;
+  gap: 40px;
   /* separacion horizontal */
 }
 
@@ -2470,6 +2470,43 @@ body.mode-pass .wrap {
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.8s ease;
+}
+
+@media (max-width: 600px) {
+  #regalos .gift-options {
+    gap: 16px;
+    margin-top: 18px;
+  }
+
+  #regalos .gift-option {
+    max-width: 156px;
+    gap: 8px;
+  }
+
+  #regalos .gift-icon {
+    margin-bottom: 0;
+  }
+
+  #regalos .gift-icon img {
+    height: 110px;
+  }
+
+  #regalos .gift-label {
+    margin-top: 0 !important;
+    font-size: 12px;
+    line-height: 1.25;
+  }
+
+  #regalos .gift-logo-link {
+    height: 92px;
+    padding: 8px 10px;
+  }
+
+  #regalos .gift-btn {
+    min-height: 48px;
+    margin-top: 8px;
+    padding: 10px 12px;
+  }
 }
 
 /* Cuando el usuario ya deslizó, mostramos todo */
