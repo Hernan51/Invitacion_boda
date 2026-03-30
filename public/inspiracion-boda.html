@@ -1093,34 +1093,38 @@
       }
 
       .insp-body #itinerario .itinerary-rows {
+        --item-width: 132px;
+        --item-gap: 8px;
         --line-y: 120px;
         position: relative;
-        max-width: none;
-        width: calc(100% + 20px);
-        margin: 0 -10px;
+        width: fit-content;
+        max-width: 100%;
+        margin: 0 auto;
         display: flex;
         flex-wrap: nowrap;
         align-items: flex-start;
-        justify-content: flex-start;
-        gap: 8px;
-        overflow-x: auto;
-        padding: 36px 2px 32px;
+        justify-content: center;
+        gap: var(--item-gap);
+        overflow: visible;
+        padding: 36px 0 32px;
         min-height: 320px;
       }
 
       .insp-body #itinerario .itinerary-rows::before {
         content: "";
         position: absolute;
-        left: 0;
-        right: 0;
+        left: calc(var(--item-width) / 2);
+        /* right: 0; */
+        right: calc(var(--item-width) / 2);
         top: var(--line-y);
         height: 2px;
         background: var(--itinerary-navy);
       }
 
       .insp-body #itinerario .itinerary-row {
-        min-width: 132px;
-        width: 132px;
+        min-width: var(--item-width);
+        width: var(--item-width);
+        flex: 0 0 var(--item-width);
         position: relative;
         display: flex;
         flex-direction: column;
@@ -1200,6 +1204,7 @@
       }
 
       .insp-body #itinerario .itinerary-text {
+        width: 100%;
         text-align: center;
         margin-top: -55px;
       }
@@ -2174,7 +2179,7 @@
               </div>
             </div>
 
-            <div class="itinerary-row last">
+            <!-- <div class="itinerary-row last">
               <div class="itinerary-icon"><img class="itinerary-icon-car" src="img/carro_v2.png" alt=""></div>
               <div class="itinerary-line">
                 <div class="itinerary-heart">
@@ -2187,7 +2192,7 @@
                 <div class="dancing-script" >FIN DEL EVENTO</div>
                 <div class="it-time">02:00 hrs</div>
               </div>
-            </div>
+            </div> -->
           </div>
         </section>
 
