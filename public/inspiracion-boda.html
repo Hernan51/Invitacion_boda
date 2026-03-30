@@ -1820,10 +1820,7 @@
       border-radius: 28px;
       border: 1px solid rgba(170, 161, 147, 0.34);
       background:
-        linear-gradient(180deg, rgba(255, 255, 255, 0.86), rgba(251, 248, 242, 0.93)),
-        radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.8), transparent 46%),
-        radial-gradient(circle at 84% 12%, rgba(229, 225, 214, 0.44), transparent 32%),
-        repeating-linear-gradient(25deg, rgba(170, 161, 147, 0.04) 0 7px, rgba(255, 255, 255, 0.06) 7px 15px);
+        rgba(255, 255, 255, 0.1);
       box-shadow: 0 18px 40px rgba(110, 98, 83, 0.12);
     }
 
@@ -1845,22 +1842,12 @@
 
     .confirmacion-titulo-caps {
       font-family: 'Sacramento', cursive;
-      font-size: clamp(30px, 4.2vw, 52px);
-      letter-spacing: .28em;
+      font-size: 64px;
+      letter-spacing: 0;
       font-weight: 400;
       color: #2f2c29;
       margin: 0;
-      text-transform: uppercase;
       line-height: 1;
-      text-indent: 0.28em;
-    }
-
-    .confirmacion-titulo-script {
-      font-family: 'Sacramento', cursive;
-      font-size: clamp(50px, 6.8vw, 82px);
-      color: #38342f;
-      margin: -10px 0 0;
-      line-height: 0.9;
     }
 
     .confirmacion-sobre {
@@ -1878,11 +1865,11 @@
     .confirmacion-texto {
       position: relative;
       z-index: 1;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(17px, 1.85vw, 22px);
-      letter-spacing: .09em;
+      font-family: 'Bona Nova SC', serif;
+      font-size: 20px;
+      letter-spacing: 0;
       color: #3f3a34;
-      line-height: 1.75;
+      line-height: 1.5;
       max-width: 620px;
       margin: 0 auto 34px;
     }
@@ -1890,11 +1877,11 @@
     .confirmacion-fecha {
       position: relative;
       z-index: 1;
-      font-family: 'Playfair Display', serif;
-      font-size: clamp(16px, 1.7vw, 21px);
-      letter-spacing: .08em;
+      font-family: 'Bona Nova SC', serif;
+      font-size: 20px;
+      letter-spacing: 0;
       color: #3f3a34;
-      line-height: 1.6;
+      line-height: 1.5;
       max-width: 620px;
       margin: 0 auto 34px;
     }
@@ -1941,13 +1928,7 @@
       }
 
       .confirmacion-titulo-caps {
-        font-size: clamp(24px, 9vw, 40px);
-        letter-spacing: .22em;
-      }
-
-      .confirmacion-titulo-script {
-        margin-top: -4px;
-        font-size: clamp(46px, 16vw, 72px);
+        font-size: 64px;
       }
 
       .confirmacion-sobre {
@@ -1956,15 +1937,15 @@
       }
 
       .confirmacion-texto {
-        font-size: 16px;
-        letter-spacing: .05em;
-        line-height: 1.65;
+        font-size: 20px;
+        letter-spacing: 0;
+        line-height: 1.5;
         margin-bottom: 24px;
       }
 
       .confirmacion-fecha {
-        font-size: 16px;
-        letter-spacing: .04em;
+        font-size: 20px;
+        letter-spacing: 0;
         margin-bottom: 24px;
       }
 
@@ -2318,8 +2299,7 @@
               <!-- Confirmación de Asistencia -->
               <div class="confirmacion-asistencia" id="confirmacionAsistencia">
                 <div class="confirmacion-header">
-                  <h3 class="confirmacion-titulo-caps">CONFIRMACIÓN</h3>
-                  <p class="confirmacion-titulo-script">de Asistencia</p>
+                  <h3 class="confirmacion-titulo-caps">Confirmación de Asistencia</h3>
                 </div>
                 <div class="confirmacion-sobre">
                   <svg viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
@@ -2345,7 +2325,7 @@
                 </p>
                 <p class="confirmacion-fecha">
                   Confírmanos tu asistencia hasta el<br>
-                  <strong>11 DE JULIO DE 2026.</strong>
+                  <strong>12 DE JULIO DE 2026.</strong>
                 </p>
                 <button class="btn confirmacion-btn" type="button" id="openRsvpModal" data-open-rsvp>Confirmar asistencia</button>
               </div>
@@ -2830,9 +2810,6 @@
           body.style.display = 'block';
           setStep(2);
 
-          // Abrir automáticamente si viene con token
-          if (token) openModal();
-
         } catch (err) {
           setConfirmationVisibility(false);
           loading.style.display = 'none';
@@ -2947,7 +2924,7 @@
 
       // — Inicializar —
       if (token) {
-        // Cargar datos en background y abrir modal automáticamente
+        // Cargar datos en background sin abrir el modal automáticamente
         cargarInvitacion();
         openButton.textContent = 'Confirmar asistencia';
       } else {
