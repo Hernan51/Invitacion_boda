@@ -39,24 +39,7 @@
 </head>
 <body>
 
-  <!-- LOGIN -->
-  <div id="login" class="lock">
-    <div class="panel">
-      <h2>Acceso restringido</h2>
-      <p class="muted">Ingresa tus credenciales.</p>
-      <div class="row-2">
-        <div><label>Usuario</label><input id="u" autocomplete="username"></div>
-        <div><label>Contraseña</label><input id="p" type="password" autocomplete="current-password"></div>
-      </div>
-      <button class="btn" id="go">Entrar</button>
-      <p class="muted">Consejo: usa también .htpasswd en producción para doble protección.</p>
-    </div>
-  </div>
-
-  <!-- APP -->
-  <div id="app" class="hidden">
-    <div class="top-actions"><a href="?logout=1">Cerrar sesión</a></div>
-
+  <div id="app">
     <!-- Generar invitación -->
     <div class="card">
       <h1>Generar invitación</h1>
@@ -125,55 +108,13 @@
   </div>
 
   <script>
-    /* ===================================================
-       Credenciales de login (frontend-only, para ocultar el panel)
-       La seguridad real la da la ADMIN_KEY en admin_api.php
-    =================================================== */
-    const CREDENTIALS = {
-      "karen": "3747fff9cc06c56d6c35c0cc95e6d5d37c52e22a198b47527614d8ea82f15390",
-      "sergio": "6051fc84a7a0d74c225fb18a496b09952da5642e60723ecae543298edd7d82d6"
-    };
-
-    // ← Pon aquí la misma clave que pusiste en admin_api.php
     const ADMIN_KEY = 'KarenSergio2026_boda_clave_XkQ9mPz7wR3nBv';
 
-    const BASE_URL = location.origin + location.pathname.replace(/admin\.html$/, '');
-    const API      = BASE_URL + 'admin_api.php';
-
-    async function sha256Hex(s) {
-      const e = new TextEncoder().encode(s);
-      const b = await crypto.subtle.digest('SHA-256', e);
-      return [...new Uint8Array(b)].map(x => x.toString(16).padStart(2, '0')).join('');
-    }
+    const ADMIN_BASE_URL = location.origin + location.pathname.replace(/admin\.html$/, '');
+    const SITE_BASE_URL = location.origin + location.pathname.replace(/\/admin\/admin\.html$/, '/');
+    const API      = ADMIN_BASE_URL + 'admin_api.php';
 
     const $ = id => document.getElementById(id);
-
-    /* === Session / Login === */
-    if (new URLSearchParams(location.search).get('logout') === '1') {
-      sessionStorage.removeItem('admin_auth');
-      history.replaceState(null, '', location.pathname);
-    }
-
-    function showApp()   { $('login').classList.add('hidden');    $('app').classList.remove('hidden'); }
-    function showLogin() { $('app').classList.add('hidden');      $('login').classList.remove('hidden'); }
-
-    try {
-      const s = JSON.parse(sessionStorage.getItem('admin_auth') || 'null');
-      if (s && s.user && s.exp && Date.now() < s.exp) showApp(); else showLogin();
-    } catch { showLogin(); }
-
-    $('go').onclick = async () => {
-      const u = $('u').value.trim().toLowerCase();
-      const p = $('p').value;
-      if (!u || !p) return alert('Escribe usuario y contraseña.');
-      const h = CREDENTIALS[u];
-      if (!h || await sha256Hex(p) !== h) return alert('Usuario o contraseña incorrectos.');
-      sessionStorage.setItem('admin_auth', JSON.stringify({ user: u, exp: Date.now() + 12 * 3600 * 1000 }));
-      $('p').value = '';
-      showApp();
-      loadRows();
-    };
-    ['u', 'p'].forEach(id => $(id).addEventListener('keydown', e => { if (e.key === 'Enter') $('go').click(); }));
 
     /* === Helpers API === */
     function adminFetch(url, opts = {}) {
@@ -188,8 +129,7 @@
     }
 
     function currentUser() {
-      try { return JSON.parse(sessionStorage.getItem('admin_auth') || '{}').user || ''; }
-      catch { return ''; }
+      return 'admin';
     }
 
     /* === Tabla === */
@@ -205,7 +145,7 @@
       rows.forEach(r => {
         const tr = document.createElement('tr');
         const fecha = r.creado_en ? new Date(r.creado_en).toLocaleString('es-MX') : '';
-        const invLink = BASE_URL + 'index.html?t=' + r.token;
+        const invLink = SITE_BASE_URL + 'index.html?t=' + r.token;
 
         let estadoBadge = '';
         if (!r.respondido) {
@@ -218,9 +158,12 @@
 
         let conf = '';
         if (r.respondido) {
+          const pasesConfirmados = r.conf_asistira == '1'
+            ? (parseInt(r.conf_acompanantes || 0, 10) + 1)
+            : 0;
           conf = `<small>
             <b>${r.conf_nombre || ''}</b><br>
-            ${r.conf_acompanantes ? '+' + r.conf_acompanantes + ' acomp.' : 'Solo'}<br>
+            ${pasesConfirmados} pase${pasesConfirmados === 1 ? '' : 's'}<br>
             ${r.conf_restriccion ? '🥗 ' + r.conf_restriccion : ''}
           </small>`;
         }
@@ -274,7 +217,7 @@
         const j = await r.json();
         if (!j.ok) throw new Error(j.error);
 
-        const url = BASE_URL + 'index.html?t=' + j.token;
+        const url = SITE_BASE_URL + 'index.html?t=' + j.token;
         $('link').textContent = url;
         $('out').hidden = false;
 
@@ -314,10 +257,7 @@
 
     $('reload').onclick = loadRows;
 
-    window.addEventListener('DOMContentLoaded', () => {
-      const s = JSON.parse(sessionStorage.getItem('admin_auth') || 'null');
-      if (s && s.exp && Date.now() < s.exp) loadRows();
-    });
+    window.addEventListener('DOMContentLoaded', loadRows);
   </script>
 </body>
 </html>

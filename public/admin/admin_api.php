@@ -12,7 +12,7 @@
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
 
-require_once __DIR__ . '/db.php';
+require_once __DIR__ . '/../db.php';
 
 // ── Clave de API para el admin (cámbiala, larga y aleatoria) ─
 define('ADMIN_KEY', 'KarenSergio2026_boda_clave_XkQ9mPz7wR3nBv');

@@ -4,8 +4,8 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Inspiracion Boda | Karen & Sergio</title>
-  <link rel="icon" type="image/jpeg" href="img/logo.jpg" />
+  <title>Boda | Karen & Sergio</title>
+  <link rel="icon"  href="img/footer.png" />
 
   <link rel="stylesheet" href="style/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -433,7 +433,7 @@
     }
     .rsvp-header-date {
       font-family: 'Bona Nova SC', serif;
-      font-size: 11px;
+      font-size: 13px;
       letter-spacing: .18em;
       text-transform: uppercase;
       opacity: .65;
@@ -470,6 +470,7 @@
       grid-column: 2;
       grid-row: 2;
       overflow-y: auto;
+      font-family: 'Bona Nova SC', serif;
     }
     .rsvp-lead {
       text-align: center;
@@ -480,13 +481,13 @@
       font-style: italic;
     }
     .rsvp-pass-badge {
-      border: 1.5px solid #8B7355;
-      color: #8B7355;
+      border: 1.5px solid #002374;
+      color: #002374;
       font-family: 'Bona Nova SC', serif;
-      font-size: 10px;
+      font-size: 12px;
       letter-spacing: .16em;
       text-transform: uppercase;
-      padding: 4px 14px;
+      padding: 6px 16px;
       border-radius: 2px;
       margin: 0 auto 16px;
       display: block;
@@ -499,10 +500,10 @@
     .rsvp-label {
       display: block;
       font-family: 'Bona Nova SC', serif;
-      font-size: 10px;
+      font-size: 11px;
       letter-spacing: .18em;
       text-transform: uppercase;
-      color: #7b6d64;
+      color: #002374;
       margin-bottom: 5px;
     }
     .rsvp-input {
@@ -530,7 +531,7 @@
     }
     .rsvp-asistira-btn {
       padding: 12px 10px;
-      border: 1.5px solid #d8d0c8;
+      border: 1.5px solid rgba(0, 35, 116, 0.22);
       border-radius: 10px;
       background: #faf8f5;
       cursor: pointer;
@@ -540,8 +541,8 @@
       letter-spacing: .1em;
     }
     .rsvp-asistira-btn .rsvp-btn-emoji { font-size: 20px; display: block; margin-bottom: 4px; }
-    .rsvp-asistira-btn .rsvp-btn-label { font-size: 10px; text-transform: uppercase; color: #7b6d64; }
-    .rsvp-asistira-btn.active { border-color: #8B7355; background: #8B7355; }
+    .rsvp-asistira-btn .rsvp-btn-label { font-size: 10px; text-transform: uppercase; color: #002374; }
+    .rsvp-asistira-btn.active { border-color: #002374; background: #002374; }
     .rsvp-asistira-btn.active .rsvp-btn-label { color: #fff; }
 
     /* Contador acompañantes */
@@ -555,13 +556,13 @@
       width: 34px;
       height: 34px;
       border-radius: 8px;
-      border: 1.5px solid #d8d0c8;
+      border: 1.5px solid rgba(0, 35, 116, 0.22);
       background: #faf8f5;
       font-size: 20px;
       cursor: pointer;
       display: grid;
       place-items: center;
-      color: #8B7355;
+      color: #002374;
       font-weight: 600;
       line-height: 1;
       flex-shrink: 0;
@@ -570,33 +571,51 @@
     .rsvp-counter-num {
       width: 36px;
       text-align: center;
-      font-size: 17px;
+      font-size: 19px;
       font-weight: 600;
-      color: #333;
+      color: #002374;
       border: none;
       background: transparent;
       pointer-events: none;
     }
-    .rsvp-counter-desc { font-size: 12px; color: #7b6d64; }
+    .rsvp-counter-desc { font-size: 14px; color: #002374; }
 
     /* Botón confirmar */
     .rsvp-confirm-btn {
       width: 100%;
       padding: 13px;
-      background: #1a1612;
+      background: #002374;
       color: #fff;
       border: none;
       border-radius: 10px;
       font-family: 'Bona Nova SC', serif;
-      font-size: 12px;
+      font-size: 13px;
       letter-spacing: .18em;
       text-transform: uppercase;
       cursor: pointer;
       margin-top: 4px;
       transition: background .2s, opacity .2s;
     }
-    .rsvp-confirm-btn:hover { background: #2e2620; }
+    .rsvp-confirm-btn:hover { background: #001c5d; }
     .rsvp-confirm-btn:disabled { opacity: .5; cursor: default; }
+
+    .rsvp-question-btn {
+      width: 100%;
+      margin-top: 10px;
+      padding: 12px;
+      border: 1px solid #d8d0c8;
+      border-radius: 10px;
+      background: #faf8f5;
+      color: #4e433b;
+      font-family: 'Bona Nova SC', serif;
+      font-size: 11px;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      cursor: pointer;
+      display: none;
+    }
+    .rsvp-question-btn.show { display: block; }
+    .rsvp-question-btn:hover { background: #f2ece5; }
 
     /* WhatsApp link */
     .rsvp-wa-row {
@@ -707,7 +726,7 @@
       .rsvp-header-label { margin-bottom: 0; flex-direction: column; gap: 2px; align-items: flex-start; }
       .rsvp-header-label::before,
       .rsvp-header-label::after { display: none; }
-      .rsvp-header-date { font-size: 10px; }
+      .rsvp-header-date { font-size: 15px; }
       .rsvp-header-heart { display: none; }
 
       .rsvp-steps {
@@ -734,11 +753,16 @@
         grid-row: 1 / 4;
       }
 
-      .rsvp-lead { font-size: 12px; margin-bottom: 10px; }
-      .rsvp-pass-badge { font-size: 9px; margin-bottom: 12px; }
+      .rsvp-lead { font-size: 16px; margin-bottom: 12px; }
+      .rsvp-pass-badge { font-size: 15px; margin-bottom: 14px; }
       .rsvp-field { margin-bottom: 10px; }
-      textarea.rsvp-input { height: 56px; }
-      .rsvp-confirm-btn { padding: 12px; }
+      .rsvp-label { font-size: 12px; }
+      .rsvp-input { font-size: 16px; }
+      textarea.rsvp-input { height: 64px; }
+      .rsvp-asistira-btn .rsvp-btn-label { font-size: 12px; }
+      .rsvp-counter-desc { font-size: 14px; }
+      .rsvp-confirm-btn,
+      .rsvp-question-btn { font-size: 13px; padding: 14px 12px; }
       .rsvp-wa-row { margin-top: 8px; }
     }
 
@@ -1075,7 +1099,7 @@
     }
 
     .insp-bottom-logo img {
-      width: 126px;
+      width: 160px;
       height: auto;
       border-radius: 0;
     }
@@ -1857,7 +1881,8 @@
       width: clamp(170px, 28vw, 245px);
     }
 
-    .confirmacion-sobre svg {
+    .confirmacion-sobre svg,
+    .confirmacion-sobre img {
       width: 100%;
       height: auto;
     }
@@ -2260,7 +2285,7 @@
             <!-- Mesa de regalos (adaptada de index.html) -->
             <div class="itinerary-gift" id="regalos">
               <h3 class="sacramento" style="font-size: 64px;">Sugerencia de Regalo</h3>
-              <p class="dancing-script" style="font-size: 20px;">
+              <p class="dancing-script" style="font-size: 20px;margin-top:-50px;">
                 Nuestro mejor regalo es compartir este día
                 con ustedes. <br> Si desean tener un detalle con nosotros, cualquier gesto será recibido
                 con mucho cariño. <br> Nuestras sugerencias son:
@@ -2302,30 +2327,14 @@
                   <h3 class="confirmacion-titulo-caps">Confirmación de Asistencia</h3>
                 </div>
                 <div class="confirmacion-sobre">
-                  <svg viewBox="0 0 160 140" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-                    <path d="M28 48 L80 10 L132 48" stroke="#002374" stroke-width="2.2" stroke-linejoin="round"/>
-                    <path d="M28 48 H132 V118 H28 Z" stroke="#002374" stroke-width="2.2" stroke-linejoin="round"/>
-                    <path d="M28 48 L80 88 L132 48" stroke="#002374" stroke-width="2.2" stroke-linejoin="round"/>
-                    <path d="M28 118 L63 85" stroke="#002374" stroke-width="2.2" stroke-linecap="round"/>
-                    <path d="M132 118 L97 85" stroke="#002374" stroke-width="2.2" stroke-linecap="round"/>
-                    <path d="M49 28 L80 4 L111 28" stroke="#002374" stroke-width="2" stroke-linejoin="round"/>
-                    <path d="M49 28 H111 V74 L80 96 L49 74 Z" fill="#fbf9f3" stroke="#002374" stroke-width="2"/>
-                    <path d="M59 40 H101" stroke="#002374" stroke-width="1.8" stroke-linecap="round" opacity="0.75"/>
-                    <path d="M57 48 H103" stroke="#002374" stroke-width="1.8" stroke-linecap="round" opacity="0.6"/>
-                    <path d="M60 56 H100" stroke="#002374" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
-                    <path d="M62 64 H98" stroke="#002374" stroke-width="1.8" stroke-linecap="round" opacity="0.42"/>
-                    <path d="M49 93 C39 83 20 88 27 100 C34 111 52 95 67 95 C75 95 78 104 80 110 C82 104 85 95 93 95 C108 95 126 111 133 100 C140 88 121 83 111 93" stroke="#002374" stroke-width="2.8" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-                    <path d="M80 111 C73 122 66 131 60 136" stroke="#002374" stroke-width="2.6" stroke-linecap="round"/>
-                    <path d="M80 111 C87 122 94 131 100 136" stroke="#002374" stroke-width="2.6" stroke-linecap="round"/>
-                    <circle cx="80" cy="98" r="4.5" fill="#fbf9f3" stroke="#002374" stroke-width="2"/>
-                  </svg>
+                  <img src="img/sobre_confirmacion.png" alt="Sobre de confirmación">
                 </div>
                 <p class="confirmacion-texto">
                   Celebrar nuestro amor es un sueño hecho realidad, y para que sea perfecto, nos encantaría contar contigo en nuestra lista de invitados.
                 </p>
                 <p class="confirmacion-fecha">
-                  Confírmanos tu asistencia hasta el<br>
-                  <strong>12 DE JULIO DE 2026.</strong>
+                  Confírmanos tu asistencia antes del<br>
+                  <strong>12 DE JUNIO DE 2026.</strong>
                 </p>
                 <button class="btn confirmacion-btn" type="button" id="openRsvpModal" data-open-rsvp>Confirmar asistencia</button>
               </div>
@@ -2576,20 +2585,9 @@
                 </div>
               </div>
 
-              <!-- Restricción alimentaria -->
-              <div class="rsvp-field" id="rsvpRestricField">
-                <label class="rsvp-label" for="rsvpRestric">¿Alguna restricción alimentaria?</label>
-                <input class="rsvp-input" id="rsvpRestric" type="text" placeholder="Ej. vegetariano, alérgico a…">
-              </div>
-
-              <!-- Mensaje -->
-              <div class="rsvp-field" id="rsvpMensajeField">
-                <label class="rsvp-label" for="rsvpMensaje">Mensaje para los novios (opcional)</label>
-                <textarea class="rsvp-input" id="rsvpMensaje" placeholder="Un deseo, un abrazo…"></textarea>
-              </div>
-
               <!-- Confirmar -->
               <button class="rsvp-confirm-btn" id="rsvpConfirmar" type="button">Confirmar asistencia</button>
+              <button class="rsvp-question-btn" id="rsvpQuestionBtn" type="button">¿Tienes alguna pregunta?</button>
 
               
             </div>
@@ -2613,7 +2611,7 @@
 
       <div class="insp-footer"></div>
       <div class="insp-bottom-logo">
-        <img src="img/logo.png" alt="Logo Karen y Sergio" />
+        <img src="img/footer.png" alt="Logo Karen y Sergio" />
       </div>
     </section>
   </main>
@@ -2672,7 +2670,7 @@
     // ================================================================
     (function () {
       const RSVP_API  = './rsvp.php';
-      const WA_NUMBER = '523312345678'; // ← cambia al número de WhatsApp real
+      const WA_NUMBER = '524491144274';
 
       // — DOM —
       const modal      = document.getElementById('inspRsvpModal');
@@ -2693,16 +2691,12 @@
       const btnSi       = document.getElementById('rsvpBtnSi');
       const btnNo       = document.getElementById('rsvpBtnNo');
       const acompField  = document.getElementById('rsvpAcompField');
-      const restricField= document.getElementById('rsvpRestricField');
-      const mensajeField= document.getElementById('rsvpMensajeField');
       const menosBtn    = document.getElementById('rsvpMenos');
       const masBtn      = document.getElementById('rsvpMas');
       const acompNum    = document.getElementById('rsvpAcompNum');
       const acompDesc   = document.getElementById('rsvpAcompDesc');
-      const restricInput= document.getElementById('rsvpRestric');
-      const mensajeInput= document.getElementById('rsvpMensaje');
       const confirmarBtn= document.getElementById('rsvpConfirmar');
-      const waLink      = document.getElementById('rsvpWA');
+      const questionBtn = document.getElementById('rsvpQuestionBtn');
 
       // — Estado —
       const token = new URLSearchParams(window.location.search).get('t') || '';
@@ -2799,10 +2793,12 @@
           nombreInput.readOnly = true;
 
           updateCounter();
+          questionBtn.classList.remove('show');
 
           if (data.respondido) {
             confirmarBtn.disabled = true;
             confirmarBtn.textContent = 'Ya confirmaste tu asistencia';
+            questionBtn.classList.add('show');
           }
 
           buildWA();
@@ -2834,8 +2830,6 @@
         btnSi.classList.toggle('active',  val);
         btnNo.classList.toggle('active', !val);
         acompField.style.display   = val ? '' : 'none';
-        restricField.style.display = val ? '' : 'none';
-        mensajeField.style.display = '';
       }
       setAsistira(true);
       btnSi.addEventListener('click', () => setAsistira(true));
@@ -2843,15 +2837,20 @@
 
       // — WhatsApp fallback —
       function buildWA() {
-        if (!waLink) return null;
         const nombre = nombreInput.value.trim() || (invData ? invData.para : '');
-        const msg = invData
-          ? `Hola, quiero confirmar mi asistencia a la boda de Karen y Sergio. Nombre: ${nombre}. Pases: ${maxPases}.`
-          : 'Hola, quiero confirmar mi asistencia a la boda de Karen y Sergio.';
-        waLink.href = `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
-        return waLink.href;
+        const baseMsg = asistira
+          ? 'Hola, buen dia. Confirmo mi asistencia a la boda de Karen y Sergio.'
+          : 'Hola, buen dia. Quiero avisar que no podre asistir a la boda de Karen y Sergio.';
+        const msg = nombre ? `${baseMsg} De: ${nombre}.` : baseMsg;
+        return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
+      }
+      function buildQuestionWA() {
+        return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Buen día, tengo una pregunta')}`;
       }
       nombreInput.addEventListener('input', buildWA);
+      questionBtn.addEventListener('click', () => {
+        window.open(buildQuestionWA(), '_blank', 'noopener');
+      });
 
       // — Error —
       function showError(msg) {
@@ -2863,11 +2862,11 @@
       confirmarBtn.addEventListener('click', async () => {
         const nombre = nombreInput.value.trim();
         if (!nombre) { showError('No se pudo cargar el nombre. Recarga la página.'); return; }
+        const waHref = buildWA();
         if (!token)  {
-          const waHref = buildWA();
-          if (waHref) {
+          if (asistira && waHref) {
             window.open(waHref, '_blank', 'noopener');
-          } else {
+          } else if (!waHref) {
             showError('No se encontró el enlace de WhatsApp para confirmar.');
           }
           return;
@@ -2877,6 +2876,9 @@
         confirmarBtn.disabled = true;
         confirmarBtn.textContent = 'Enviando…';
         setStep(3);
+        if (asistira && waHref) {
+          window.open(waHref, '_blank', 'noopener');
+        }
 
         try {
           const res  = await fetch(RSVP_API, {
@@ -2887,27 +2889,14 @@
               nombre       : nombreInput.value.trim(),
               asistira,
               acompanantes : asistira ? acomp - 1 : 0,  // el invitado ya ocupa 1 pase
-              restriccion  : restricInput.value.trim(),
-              mensaje      : mensajeInput.value.trim(),
+              restriccion  : '',
+              mensaje      : '',
             }),
           });
           const data = await res.json();
 
           if (data.ok) {
-            body.style.display = 'none';
-            const si = document.getElementById('rsvpSuccessIcon');
-            const ti = document.getElementById('rsvpSuccessTitle');
-            const ms = document.getElementById('rsvpSuccessMsg');
-            if (asistira) {
-              si.textContent = '🥂';
-              ti.textContent = '¡Nos vemos pronto!';
-              ms.textContent = 'Tu asistencia fue confirmada. ¡Estamos muy felices de que vengas!';
-            } else {
-              si.textContent = '💌';
-              ti.textContent = '¡Gracias por avisarnos!';
-              ms.textContent = 'Lamentamos que no puedas venir. Te queremos mucho.';
-            }
-            successDiv.classList.add('show');
+            closeModal();
           } else {
             confirmarBtn.disabled = false;
             confirmarBtn.textContent = 'Confirmar asistencia';
