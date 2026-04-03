@@ -1595,6 +1595,10 @@ footer {
   .watermark {
     border-radius: 14px;
   }
+
+  .hotel-row {
+    font-size: 17px;
+  }
 }
 
 /* ===== Tarjeta de pases (“invite-card”) opcional por querystring ===== */

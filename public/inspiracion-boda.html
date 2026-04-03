@@ -5,7 +5,17 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Boda | Karen & Sergio</title>
-  <link rel="icon"  href="img/footer.png" />
+  <meta property="og:title" content="Boda | Karen & Sergio" />
+  <meta property="og:description" content="11 de julio de 2026" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://sergioykaren.com/inspiracion-boda" />
+  <meta property="og:image" content="https://sergioykaren.com/img/portada_boda.jpg" />
+  <meta property="og:image:alt" content="Portada de la boda de Karen y Sergio" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Boda | Karen & Sergio" />
+  <meta name="twitter:description" content="11 de julio de 2026" />
+  <meta name="twitter:image" content="https://sergioykaren.com/img/portada_boda.jpg" />
+  <link rel="icon"  href="img/icon.png" style="background-color: black;"/>
 
   <link rel="stylesheet" href="style/style.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -393,7 +403,7 @@
 
     /* Header oscuro — ocupa columna izquierda completa en desktop */
     .rsvp-header {
-      background: #1a1612;
+      background: #002374;
       color: #fff;
       padding: 36px 28px 32px;
       text-align: center;
@@ -1680,7 +1690,7 @@
       background: rgba(255, 255, 255, 0.1);
       padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
     }
 
     .protocol-item img {
@@ -1807,6 +1817,12 @@
     .protocol-section .whatsapp-link {
       font-family: 'Cormorant Infant', serif !important;
     }
+
+    .protocol-section .hotel-row > span:first-child {
+      font-family: 'Cinzel', serif !important;
+      letter-spacing: 1px;
+    }
+
 
     .protocol-section .hotel-carousel {
       max-width: 520px;
@@ -2004,7 +2020,7 @@
           <nav class="insp-links" id="inspLinks" aria-label="Menu principal">
             <a href="#ceremonia">Ceremonia</a>
             <a href="#itinerario">Detalles</a>
-            <a href="#regalos">RSVP</a>
+            <a href="#confirmacionAsistencia">RSVP</a>
             <a href="#guia-viajero">Guía del Viajero</a>
             <a href="#galeria">Galería</a>
 
@@ -2277,7 +2293,7 @@
                 <h3 class="sacramento" style="font-size: 65px;">Consideraciones</h3>
                 <p class="dancing-script" style="font-size: 20px;">Queremos que esta noche sea un momento especial para
                   relajarse y
-                  disfrutar. Por eso hemos planeado una celebración solo para adultos. <br><br><span
+                  disfrutar. Por eso hemos planeado una celebración <b>solo para adultos</b>. <br><br><span
                     class="consideraciones-stalemate">Agradecemos su comprensión</span></p>
               </div>
             </div>
@@ -2340,8 +2356,8 @@
               </div>
             </div>
 
-            <p class="stalemate-h2" style="margin-bottom: -60px;font-size: 75px;">Guía del Viajero</p>
-            <section class="hotel-board-wrapper" id="guia-viajero">
+            <p id="guia-viajero" class="stalemate-h2" style="margin-bottom: -60px;font-size: 75px;">Guía del Viajero</p>
+            <section class="hotel-board-wrapper">
               <div class="hotel-board">
                 <h2 class="dancing-script">HOTELES</h2>
 
@@ -2536,12 +2552,7 @@
               <div class="rsvp-header-heart">♡</div>
             </div>
 
-            <!-- Indicadores de paso -->
-            <div class="rsvp-steps">
-              <div class="rsvp-step-dot active" id="rsvpDot1"></div>
-              <div class="rsvp-step-dot" id="rsvpDot2"></div>
-              <div class="rsvp-step-dot" id="rsvpDot3"></div>
-            </div>
+            
 
             <!-- Cuerpo cargando -->
             <div class="rsvp-loading" id="rsvpLoading">Cargando tu invitación…</div>
@@ -2670,7 +2681,7 @@
     // ================================================================
     (function () {
       const RSVP_API  = './rsvp.php';
-      const WA_NUMBER = '524491144274';
+      const WA_NUMBER = '524494932729'; // Número de WhatsApp para contacto directo
 
       // — DOM —
       const modal      = document.getElementById('inspRsvpModal');
@@ -2714,7 +2725,9 @@
 
       // — Pasos visuales —
       function setStep(n) {
-        [dot1, dot2, dot3].forEach((d, i) => d.classList.toggle('active', i < n));
+        [dot1, dot2, dot3].forEach((d, i) => {
+          if (d) d.classList.toggle('active', i < n);
+        });
       }
 
       function setConfirmationVisibility(visible) {
@@ -3234,7 +3247,7 @@
         const hours = Math.floor((safeDiff / (1000 * 60 * 60)) % 24);
         const minutes = Math.floor((safeDiff / (1000 * 60)) % 60);
         const seconds = Math.floor((safeDiff / 1000) % 60);
-        countdown.querySelector('[data-unit="days"]').textContent = String(days).padStart(3, '0');
+        countdown.querySelector('[data-unit="days"]').textContent = String(days);
         countdown.querySelector('[data-unit="hours"]').textContent = String(hours).padStart(2, '0');
         countdown.querySelector('[data-unit="minutes"]').textContent = String(minutes).padStart(2, '0');
         countdown.querySelector('[data-unit="seconds"]').textContent = String(seconds).padStart(2, '0');
