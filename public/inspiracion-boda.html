@@ -2107,7 +2107,7 @@
 
           <div class="stack-content">
             <div class="ceremonia-text">
-              <h2 class="stalemate-h2">Recepción</h2>
+              <h2 class="stalemate-h2" style="margin-top:-10px">Recepción</h2>
               <p class="dancing-script" style="font-size: 28px;">7:30 PM</p>
               <p class="dancing-script" style="font-size: 20px;"><b>Casa de Piedra</b></p>
               <p class="dancing-script" style="font-size: 20px;">
@@ -2535,6 +2535,14 @@
                   src="img/carrusel_v2/Preboda%20Karen%20%26%20Sergio%20-%20Luis%20Houdin%20HD%20(1170%20de%20175).jpg"
                   alt="Sesion preboda de Karen y Sergio" data-object-position="85% center" />
               </figure>
+
+              <figure class="insp-slide">
+                <img
+                  src="img/Carrusel_v1/Karen_Sergio.jpg"
+                  alt="Sesion preboda de Karen y Sergio" data-object-position="85% center" />
+
+                  
+              </figure>
             </div>
           </div>
           <button class="insp-arrow next" type="button" aria-label="Siguiente foto">&#8250;</button>
@@ -2559,7 +2567,7 @@
 
             <!-- Cuerpo del formulario -->
             <div class="rsvp-body" id="rsvpBody" style="display:none">
-              <p class="rsvp-lead">Nos encantaría tenerte con nosotros.<br>Confirma tu asistencia.</p>
+              <p class="rsvp-lead">Nos encantaría tenerte con nosotros.<br>Por favor, confirma tu asistencia.</p>
               <div class="rsvp-pass-badge" id="rsvpPassBadge">PASE PARA 1 PERSONA</div>
 
               <div class="rsvp-error-msg" id="rsvpError"></div>
@@ -2852,13 +2860,17 @@
       function buildWA() {
         const nombre = nombreInput.value.trim() || (invData ? invData.para : '');
         const baseMsg = asistira
-          ? 'Hola, buen dia. Confirmo mi asistencia a la boda de Karen y Sergio.'
+          ? '¡Hola! Paso a confirmar mi asistencia a la boda de Karen y Sergio. ¡Me hace mucha ilusión acompañarlos! ¡Gracias!'
           : 'Hola, buen dia. Quiero avisar que no podre asistir a la boda de Karen y Sergio.';
-        const msg = nombre ? `${baseMsg} De: ${nombre}.` : baseMsg;
+        const msg = nombre ? `¡Hola! Soy ${nombre}. Paso a confirmar mi asistencia a la boda de Karen y Sergio💌. ¡Me hace mucha ilusión acompañarlos! ¡Gracias!` : baseMsg;
         return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
       }
       function buildQuestionWA() {
-        return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent('Buen día, tengo una pregunta')}`;
+        const nombre = nombreInput.value.trim() || (invData ? invData.para : '');
+        const msg = nombre
+          ? `¡Hola! Soy ${nombre}. Me gustaría consultar un detalle sobre la boda de Karen y Sergio. ¿Me pueden ayudar? ¡Gracias!`
+          : '¡Hola! Me gustaría consultar un detalle sobre la boda de Karen y Sergio. ¿Me pueden ayudar? ¡Gracias!';
+        return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
       }
       nombreInput.addEventListener('input', buildWA);
       questionBtn.addEventListener('click', () => {
@@ -3365,7 +3377,7 @@
               return candidate.src === image.src;
             }) === index;
           });
-          const limited = unique.slice(0, 5);
+          const limited = unique.slice(0, 6);
           if (!limited.length) return;
           localImages = limited.map(function (image) {
             return image.src;
@@ -3433,7 +3445,7 @@
 
       function updateLightboxCounter() {
         if (!lightboxCounter) return;
-        const totalCount = galleryImages.length || 5;
+        const totalCount = galleryImages.length || 6;
         lightboxCounter.textContent = `${lightboxIndex + 1} / ${totalCount}`;
       }
 
