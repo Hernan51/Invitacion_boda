@@ -184,64 +184,6 @@
       opacity: 0.78;
     }
 
-    .insp-nav-actions {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      flex-shrink: 0;
-      margin-left: 16px;
-    }
-
-    .insp-lang-toggle {
-      display: inline-flex;
-      align-items: center;
-      gap: 4px;
-      padding: 4px;
-      border-radius: 999px;
-      border: 1px solid rgba(255, 255, 255, 0.34);
-      background: rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(6px);
-    }
-
-    .insp-lang-toggle--mobile-menu {
-      display: none;
-    }
-
-    .insp-lang-option {
-      border: 0;
-      background: transparent;
-      color: rgba(255, 255, 255, 0.78);
-      min-width: 52px;
-      height: 32px;
-      padding: 0 12px;
-      border-radius: 999px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      font-family: 'Bona Nova SC', serif;
-      font-size: 11px;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      cursor: pointer;
-      transition: background .2s ease, color .2s ease, transform .2s ease;
-    }
-
-    .insp-lang-option:hover {
-      color: #fff;
-      transform: translateY(-1px);
-    }
-
-    .insp-lang-option.is-active {
-      background: rgba(255, 255, 255, 0.92);
-      color: #1d1b1a;
-    }
-
-    .insp-lang-flag {
-      font-size: 13px;
-      line-height: 1;
-    }
-
     .insp-copy-row {
       margin-top: 82px;
       display: flex;
@@ -1354,17 +1296,6 @@
         font-size: 12px;
       }
 
-      .insp-nav-actions {
-        margin-left: auto;
-        gap: 10px;
-      }
-
-      .insp-lang-option {
-        min-width: 48px;
-        height: 30px;
-        padding: 0 10px;
-      }
-
       .insp-links {
         display: none;
         position: fixed;
@@ -1397,19 +1328,9 @@
 
       .insp-menu-toggle {
         display: block;
+        margin-left: auto;
         position: relative;
         z-index: 35;
-      }
-
-      .insp-nav-actions .insp-lang-toggle {
-        display: none;
-      }
-
-      .insp-links .insp-lang-toggle--mobile-menu {
-        display: inline-flex;
-        width: auto;
-        justify-content: center;
-        margin: 24px auto 0;
       }
 
       .insp-nav.is-open .insp-links {
@@ -2099,34 +2020,20 @@
           <div class="insp-brand">
             Karen & Sergio
           </div>
+          <button class="insp-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false"
+            aria-controls="inspLinks">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
           <nav class="insp-links" id="inspLinks" aria-label="Menu principal">
-            <div class="insp-lang-toggle insp-lang-toggle--mobile-menu" role="group" aria-label="Selector de idioma">
-              <button class="insp-lang-option is-active" type="button" data-lang="es">ESP</button>
-              <button class="insp-lang-option" type="button" data-lang="en">
-                <span>EN</span>
-              </button>
-            </div>
             <a href="#ceremonia">Ceremonia</a>
             <a href="#itinerario">Detalles</a>
             <a href="#confirmacionAsistencia">RSVP</a>
             <a href="#guia-viajero">Guía del Viajero</a>
             <a href="#galeria">Galería</a>
-            
+
           </nav>
-          <div class="insp-nav-actions">
-            <div class="insp-lang-toggle" id="inspLangToggle" role="group" aria-label="Selector de idioma">
-              <button class="insp-lang-option is-active" type="button" data-lang="es">ESP</button>
-              <button class="insp-lang-option" type="button" data-lang="en">
-                <span>EN</span>
-              </button>
-            </div>
-            <button class="insp-menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false"
-              aria-controls="inspLinks">
-              <span></span>
-              <span></span>
-              <span></span>
-            </button>
-          </div>
         </div>
 
         <div class="insp-copy-row">
@@ -2395,7 +2302,7 @@
                 <h3 class="sacramento" style="font-size: 65px;">Consideraciones</h3>
                 <p class="dancing-script" style="font-size: 20px;">Queremos que esta noche sea un momento especial para
                   relajarse y
-                  disfrutar. Por eso hemos planeado una celebración <b>sólo para adultos</b>. <br><br><span
+                  disfrutar. Por eso hemos planeado una celebración <b>solo para adultos</b>. <br><br><span
                     class="consideraciones-stalemate">Agradecemos su comprensión</span></p>
               </div>
             </div>
@@ -2580,7 +2487,7 @@
                         Fraccionamiento
                         Jardines
                         De La Concepción ll, 20120 Aguascalientes, Ags.</p>
-                      <p class="hoteles">Nuestro hotel ofrece a sus huéspedes múltiples comodidades: una confortable
+                      <p class="hoteles">El hotel ofrece a sus huéspedes múltiples comodidades: una confortable
                         recepción con
                         ascensor,
                         café y/o té de cortesía, recepción abierta las 24 horas.</p>
@@ -2737,366 +2644,6 @@
     </section>
   </main>
   <script>
-    const translations = {
-      es: {
-        pageTitle: 'Boda | Karen & Sergio',
-        pageDescription: '11 de julio de 2026',
-        pageImageAlt: 'Portada de la boda de Karen y Sergio',
-        menuLabel: 'Menu principal',
-        openMenu: 'Abrir menu',
-        closeMenu: 'Cerrar menu',
-        languageSelector: 'Selector de idioma',
-        weddingDateAria: 'Fecha de la boda',
-        countdownAria: 'Cuenta regresiva para la boda',
-        galleryAria: 'Carrusel de fotos',
-        galleryAria2: 'Carrusel de fotos version 2',
-        previousPhoto: 'Foto anterior',
-        nextPhoto: 'Siguiente foto',
-        closeImage: 'Cerrar imagen',
-        closeRsvp: 'Cerrar confirmación',
-        navCeremony: 'Ceremonia',
-        navDetails: 'Detalles',
-        navTraveler: 'Guía del Viajero',
-        navGallery: 'Galería',
-        weddingDate: '11 DE JULIO DE 2026',
-        quote: '“Dios iluminó el camino para encontrarnos y hoy, bajo su gracia y la bendición de nuestras familias, iniciamos la travesía más grande de nuestras vidas, unidos por un amor eterno.”',
-        countdownTitle: 'Cuenta regresiva',
-        days: 'Dias',
-        hours: 'Horas',
-        minutes: 'Minutos',
-        seconds: 'Segundos',
-        ceremonyTitle: 'Ceremonia Religiosa',
-        ceremonyVenue: 'Templo de San Antonio de Padua',
-        ceremonyCopy: 'Con gratitud en el corazón, bendecimos nuestra unión ante el altar',
-        locationLabel: 'Ubicación:',
-        viewMap: 'Ver mapa',
-        receptionTitle: 'Recepción',
-        receptionCopy: 'Después de la ceremonia, celebraremos con cena, música y mucho amor.',
-        itineraryTitle: 'Itinerario De Nuestra Boda',
-        itinerary1: 'Ceremonia Religiosa',
-        itinerary2: 'Recepción',
-        itinerary3: 'Banquete',
-        itinerary4: 'Protocolo',
-        itinerary5: 'Disfruta <br>la fiesta',
-        dressCodeTitle: 'Código de Vestimenta',
-        dressCodeSubtitle: 'Formal de noche',
-        dressLadies1: 'Damas con',
-        dressLadies2: 'vestido largo',
-        dressGentlemen1: 'Caballeros',
-        dressGentlemen2: 'de traje',
-        dressCodeCopy: 'Los invitamos a lucir espectaculares en nuestra celebración. Por favor, les pedimos evitar el color blanco o marfil, se reserva para la novia.',
-        considerationsTitle: 'Consideraciones',
-        considerationsCopy: 'Queremos que esta noche sea un momento especial para relajarse y disfrutar. Por eso hemos planeado una celebración <b>solo para adultos</b>. <br><br><span class="consideraciones-stalemate">Agradecemos su comprensión</span>',
-        giftTitle: 'Sugerencia de Regalo',
-        giftCopy: 'Nuestro mejor regalo es compartir este día con ustedes. <br> Si desean tener un detalle con nosotros, cualquier gesto será recibido con mucho cariño. <br> Nuestras sugerencias son:',
-        giftRain: 'Lluvia de sobres',
-        giftLiverpool: 'Mesa Liverpool',
-        giftAmazon: 'Mesa Amazon',
-        confirmationTitle: 'Confirmación de Asistencia',
-        confirmationCopy: 'Celebrar nuestro amor es un sueño hecho realidad, y para que sea perfecto, nos encantaría contar contigo en nuestra lista de invitados.',
-        confirmationDatePrefix: 'Confírmanos tu asistencia antes del<br><strong>12 DE JUNIO DE 2026.</strong>',
-        confirmAttendance: 'Confirmar asistencia',
-        travelerGuide: 'Guía del Viajero',
-        hotels: 'HOTELES',
-        services: 'SERVICIOS',
-        restaurants: 'RESTAURANTES',
-        hotelAddress: 'Dirección:',
-        hotelDesc1: 'Hotel con excelente ubicación, alberca, jardines y cerca de plazas comerciales.',
-        hotelDesc2: 'Moderno, cómodo y muy cercano a restaurantes y centros comerciales.',
-        hotelDesc3: 'Hotel de lujo con excelentes amenidades, restaurantes y ubicación privilegiada.',
-        hotelDesc4: 'Nuestro hotel ofrece a sus huéspedes múltiples comodidades: una confortable recepción con ascensor, café y/o té de cortesía, recepción abierta las 24 horas.',
-        viewGoogleMaps: 'Ver en Google Maps',
-        rsvpLoading: 'Cargando tu invitación…',
-        rsvpLead: 'Nos encantaría tenerte con nosotros.<br>Por favor, confirma tu asistencia.',
-        rsvpTo: 'Para:',
-        rsvpPlaceholder: 'Cargando…',
-        rsvpWillAttend: '¿Asistirás?',
-        rsvpYes: 'Sí asistiré',
-        rsvpNo: 'No podré ir',
-        rsvpCompanions: 'Número de acompañantes',
-        rsvpQuestion: '¿Tienes alguna pregunta?',
-        rsvpThanks: '¡Gracias!',
-        rsvpSuccess: 'Tu confirmación fue registrada. ¡Nos vemos pronto!',
-        rsvpGeneralInvite: 'INVITACIÓN GENERAL',
-        rsvpPasses: (count) => `PASE PARA ${count} PERSONA${count > 1 ? 'S' : ''}`,
-        rsvpPassesAvailable: (count) => `de ${count} pase${count > 1 ? 's' : ''} disponible${count > 1 ? 's' : ''}`,
-        rsvpAlreadyConfirmed: 'Ya confirmaste tu asistencia',
-        rsvpInvitationNotFound: 'Invitación no encontrada.',
-        rsvpUnableToLoad: 'No se pudo cargar la invitación. Intenta de nuevo.',
-        rsvpNameError: 'No se pudo cargar el nombre. Recarga la página.',
-        rsvpNoWhatsapp: 'No se encontró el enlace de WhatsApp para confirmar.',
-        rsvpSending: 'Enviando…',
-        rsvpGenericError: 'Ocurrió un error. Intenta de nuevo.',
-        rsvpOffline: 'Sin conexión. Puedes confirmar por WhatsApp.',
-        serviceProfile: 'Ver perfil',
-        restaurantSchedule: 'Horario:',
-        restaurantLocation: 'Ver ubicación',
-        serviceInstagram: 'Instagram:',
-        serviceWhatsapp: 'WhatsApp:',
-        serviceMakeup: 'Maquillaje y peinado',
-        serviceBarber: 'BARBER SHOP',
-        serviceShoppingCenters: 'Centros comerciales',    
-        serviceDressRentals: 'Renta de Vestidos',
-        serviceSuitRentals: 'Renta de trajes',
-        waAttendBase: '¡Hola! Paso a confirmar mi asistencia a la boda de Karen y Sergio. ¡Me hace mucha ilusión acompañarlos! ¡Gracias!',
-        waDeclineBase: 'Hola, buen dia. Quiero avisar que no podre asistir a la boda de Karen y Sergio.',
-        waAttendNamed: (name) => `¡Hola! Soy ${name}. Paso a confirmar mi asistencia a la boda de Karen y Sergio. ¡Me hace mucha ilusión acompañarlos! ¡Gracias!`,
-        waDeclineNamed: (name) => `Hola, soy ${name}. Quiero avisar que no podre asistir a la boda de Karen y Sergio.`,
-        waQuestionNamed: (name) => `¡Hola! Soy ${name}. Me gustaría consultar un detalle sobre la boda de Karen y Sergio. ¿Me pueden ayudar? ¡Gracias!`,
-        waQuestionBase: '¡Hola! Me gustaría consultar un detalle sobre la boda de Karen y Sergio. ¿Me pueden ayudar? ¡Gracias!'
-      },
-      en: {
-        pageTitle: 'Wedding | Karen & Sergio',
-        pageDescription: 'July 11, 2026',
-        pageImageAlt: 'Wedding cover for Karen and Sergio',
-        menuLabel: 'Main menu',
-        openMenu: 'Open menu',
-        closeMenu: 'Close menu',
-        languageSelector: 'Language selector',
-        weddingDateAria: 'Wedding date',
-        countdownAria: 'Wedding countdown',
-        galleryAria: 'Photo carousel',
-        galleryAria2: 'Photo carousel version 2',
-        previousPhoto: 'Previous photo',
-        nextPhoto: 'Next photo',
-        closeImage: 'Close image',
-        closeRsvp: 'Close RSVP',
-        navCeremony: 'Ceremony',
-        navDetails: 'Details',
-        navTraveler: 'Travel Guide',
-        navGallery: 'Gallery',
-        weddingDate: 'JULY 11, 2026',
-        quote: '"God lit the path that brought us together and today, under His grace and the blessing of our families, we begin the greatest journey of our lives, united by an everlasting love."',
-        countdownTitle: 'Countdown',
-        days: 'Days',
-        hours: 'Hours',
-        minutes: 'Minutes',
-        seconds: 'Seconds',
-        ceremonyTitle: 'Religious Ceremony',
-        ceremonyVenue: 'Temple of San Antonio de Padua',
-        ceremonyCopy: 'With grateful hearts, we bless our union before the altar.',
-        locationLabel: 'Location:',
-        viewMap: 'View map',
-        receptionTitle: 'Reception',
-        receptionCopy: 'After the ceremony, we will celebrate with dinner, music, and lots of love.',
-        itineraryTitle: 'Our Wedding Timeline',
-        itinerary1: 'Religious Ceremony',
-        itinerary2: 'Reception',
-        itinerary3: 'Dinner',
-        itinerary4: 'Protocol',
-        itinerary5: 'Enjoy <br>the party',
-        dressCodeTitle: 'Dress Code',
-        dressCodeSubtitle: 'Formal evening attire',
-        dressLadies1: 'Ladies in',
-        dressLadies2: 'floor-length gowns',
-        dressGentlemen1: 'Gentlemen',
-        dressGentlemen2: 'in suits',
-        dressCodeCopy: 'We would love for everyone to look spectacular at our celebration. Please avoid white or ivory, as those colors are reserved for the bride.',
-        considerationsTitle: 'Notes',
-        considerationsCopy: 'We want this evening to be a special moment to relax and enjoy. That is why we have planned an <b>adults-only</b> celebration. <br><br><span class="consideraciones-stalemate">Thank you for your understanding</span>',
-        giftTitle: 'Gift Suggestion',
-        giftCopy: 'Our greatest gift is sharing this day with you. <br> If you would like to give us a little something, any gesture will be received with lots of love. <br> Here are our suggestions:',
-        giftRain: 'Cash gift',
-        giftLiverpool: 'Liverpool Registry',
-        giftAmazon: 'Amazon Registry',
-        confirmationTitle: 'RSVP',
-        confirmationCopy: 'Celebrating our love is a dream come true, and to make it perfect, we would love to have you on our guest list.',
-        confirmationDatePrefix: 'Please confirm your attendance by<br><strong>JUNE 12, 2026.</strong>',
-        confirmAttendance: 'Confirm attendance',
-        travelerGuide: 'Travel Guide',
-        hotels: 'HOTELS',
-        services: 'SERVICES',
-        restaurants: 'RESTAURANTS',
-        hotelAddress: 'Address:',
-        hotelDesc1: 'Hotel with an excellent location, pool, gardens, and close to shopping centers.',
-        hotelDesc2: 'Modern, comfortable, and very close to restaurants and shopping centers.',
-        hotelDesc3: 'Luxury hotel with excellent amenities, restaurants, and a prime location.',
-        hotelDesc4: 'Our hotel offers guests multiple conveniences: a comfortable front desk with elevator, complimentary coffee and tea, and a 24-hour reception.',
-        viewGoogleMaps: 'View on Google Maps',
-        rsvpLoading: 'Loading your invitation…',
-        rsvpLead: 'We would love to celebrate with you.<br>Please confirm your attendance.',
-        rsvpTo: 'For:',
-        rsvpPlaceholder: 'Loading…',
-        rsvpWillAttend: 'Will you attend?',
-        rsvpYes: 'Yes, I will attend',
-        rsvpNo: 'I will not be able to attend',
-        rsvpCompanions: 'Number of guests',
-        rsvpQuestion: 'Do you have a question?',
-        rsvpThanks: 'Thank you!',
-        rsvpSuccess: 'Your RSVP has been recorded. See you soon!',
-        rsvpGeneralInvite: 'GENERAL INVITATION',
-        rsvpPasses: (count) => `${count} GUEST PASS${count > 1 ? 'ES' : ''}`,
-        rsvpPassesAvailable: (count) => `${count} pass${count > 1 ? 'es' : ''} available`,
-        rsvpAlreadyConfirmed: 'You already confirmed your attendance',
-        rsvpInvitationNotFound: 'Invitation not found.',
-        rsvpUnableToLoad: 'Your invitation could not be loaded. Please try again.',
-        rsvpNameError: 'The guest name could not be loaded. Please refresh the page.',
-        rsvpNoWhatsapp: 'The WhatsApp confirmation link could not be found.',
-        rsvpSending: 'Sending…',
-        rsvpGenericError: 'Something went wrong. Please try again.',
-        rsvpOffline: 'No connection. You can confirm via WhatsApp.',
-        serviceProfile: 'View profile',
-        restaurantSchedule: 'Hours:',
-        restaurantLocation: 'View location',
-        waAttendBase: 'Hello! I am reaching out to confirm my attendance at Karen and Sergio’s wedding. I am so excited to celebrate with you both. Thank you!',
-        waDeclineBase: 'Hello, good day. I wanted to let you know that I will not be able to attend Karen and Sergio’s wedding.',
-        waAttendNamed: (name) => `Hello! This is ${name}. I am reaching out to confirm my attendance at Karen and Sergio’s wedding. I am so excited to celebrate with you both. Thank you!`,
-        waDeclineNamed: (name) => `Hello, this is ${name}. I wanted to let you know that I will not be able to attend Karen and Sergio’s wedding.`,
-        waQuestionNamed: (name) => `Hello! This is ${name}. I would like to ask about a detail regarding Karen and Sergio’s wedding. Could you please help me? Thank you!`,
-        waQuestionBase: 'Hello! I would like to ask about a detail regarding Karen and Sergio’s wedding. Could you please help me? Thank you!'
-      }
-    };
-
-    let currentLang = localStorage.getItem('inspLang') || 'es';
-
-    function t(key, ...args) {
-      const value = translations[currentLang][key];
-      return typeof value === 'function' ? value(...args) : value;
-    }
-
-    function setNodeText(selector, value) {
-      const node = document.querySelector(selector);
-      if (node) node.textContent = value;
-    }
-
-    function setNodeHtml(selector, value) {
-      const node = document.querySelector(selector);
-      if (node) node.innerHTML = value;
-    }
-
-    function setNodeAttr(selector, attr, value) {
-      const node = document.querySelector(selector);
-      if (node) node.setAttribute(attr, value);
-    }
-
-    function updateHotelTranslations() {
-      document.querySelectorAll('.hotel-desc').forEach((desc, index) => {
-        const paragraphs = desc.querySelectorAll('p.hoteles');
-        const mapLink = desc.querySelector('.hotel-map-btn');
-        if (paragraphs[0]) {
-          const strong = paragraphs[0].querySelector('strong');
-          if (strong) strong.textContent = t('hotelAddress');
-        }
-        if (paragraphs[1]) paragraphs[1].textContent = t(`hotelDesc${index + 1}`) || paragraphs[1].textContent;
-        if (mapLink) mapLink.textContent = t('viewGoogleMaps');
-      });
-    }
-
-    function applyLanguage(lang) {
-      currentLang = lang === 'en' ? 'en' : 'es';
-      localStorage.setItem('inspLang', currentLang);
-      document.documentElement.lang = currentLang;
-      document.title = t('pageTitle');
-
-      document.querySelector('meta[property="og:title"]')?.setAttribute('content', t('pageTitle'));
-      document.querySelector('meta[name="twitter:title"]')?.setAttribute('content', t('pageTitle'));
-      document.querySelector('meta[property="og:description"]')?.setAttribute('content', t('pageDescription'));
-      document.querySelector('meta[name="twitter:description"]')?.setAttribute('content', t('pageDescription'));
-      document.querySelector('meta[property="og:image:alt"]')?.setAttribute('content', t('pageImageAlt'));
-
-      document.querySelectorAll('.insp-lang-option').forEach((button) => {
-        button.classList.toggle('is-active', button.dataset.lang === currentLang);
-      });
-
-      setNodeAttr('#inspLangToggle', 'aria-label', t('languageSelector'));
-      setNodeAttr('.insp-menu-toggle', 'aria-label', document.querySelector('.insp-nav')?.classList.contains('is-open') ? t('closeMenu') : t('openMenu'));
-      setNodeAttr('#inspLinks', 'aria-label', t('menuLabel'));
-      setNodeText('.insp-links a:nth-of-type(1)', t('navCeremony'));
-      setNodeText('.insp-links a:nth-of-type(2)', t('navDetails'));
-      setNodeText('.insp-links a:nth-of-type(3)', 'RSVP');
-      setNodeText('.insp-links a:nth-of-type(4)', t('navTraveler'));
-      setNodeText('.insp-links a:nth-of-type(5)', t('navGallery'));
-      setNodeAttr('.insp-hero-date.insp-hero-date-float', 'aria-label', t('weddingDateAria'));
-      setNodeText('.insp-hero-date .day', t('weddingDate'));
-      setNodeText('.countdown.insp-quote', t('quote'));
-      setNodeAttr('.insp-countdown-hero', 'aria-label', t('countdownAria'));
-      setNodeText('.insp-countdown-title', t('countdownTitle'));
-      setNodeText('.insp-cd-item:nth-child(1) .insp-cd-label', t('days'));
-      setNodeText('.insp-cd-item:nth-child(2) .insp-cd-label', t('hours'));
-      setNodeText('.insp-cd-item:nth-child(3) .insp-cd-label', t('minutes'));
-      setNodeText('.insp-cd-item:nth-child(4) .insp-cd-label', t('seconds'));
-      setNodeText('#ceremonia .ceremonia-text .stalemate-h2', t('ceremonyTitle'));
-      setNodeText('#ceremonia .ceremonia-text .dancing-script:nth-of-type(2)', t('ceremonyVenue'));
-      setNodeText('#ceremonia .ceremonia-text .dancing-script:nth-of-type(3)', t('ceremonyCopy'));
-      setNodeHtml('#ceremonia .ceremonia-text .dancing-script:nth-of-type(4)', `<b>${t('locationLabel')}</b><br> Calle Pedro Parga 252, Zona Centro, 20000 Aguascalientes, Ags.`);
-      setNodeText('#ceremonia .btn a', t('viewMap'));
-      setNodeText('#recepcion .ceremonia-text .stalemate-h2', t('receptionTitle'));
-      setNodeText('#recepcion .ceremonia-text .dancing-script:nth-of-type(3)', t('receptionCopy'));
-      setNodeHtml('#recepcion .ceremonia-text .dancing-script:nth-of-type(4)', `<b>${t('locationLabel')}</b>`);
-      setNodeText('#recepcion .btn a', t('viewMap'));
-      setNodeText('#itinerario > .stalemate-h2', t('itineraryTitle'));
-      setNodeText('#itinerario .itinerary-row:nth-child(1) .dancing-script', t('itinerary1'));
-      setNodeText('#itinerario .itinerary-row:nth-child(2) .dancing-script', t('itinerary2'));
-      setNodeText('#itinerario .itinerary-row:nth-child(3) .dancing-script', t('itinerary3'));
-      setNodeText('#itinerario .itinerary-row:nth-child(4) .dancing-script', t('itinerary4'));
-      setNodeHtml('#itinerario .itinerary-row:nth-child(5) .dancing-script', t('itinerary5'));
-      setNodeAttr('.insp-carousel#galeria', 'aria-label', t('galleryAria'));
-      setNodeAttr('.insp-carousel#galeria .insp-arrow.prev', 'aria-label', t('previousPhoto'));
-      setNodeAttr('.insp-carousel#galeria .insp-arrow.next', 'aria-label', t('nextPhoto'));
-      setNodeText('#protocolo .dress-code-section .stalemate-h2', t('dressCodeTitle'));
-      setNodeText('#protocolo .dress-code-section > .dancing-script', t('dressCodeSubtitle'));
-      setNodeText('#protocolo .dress-code-item:first-child p:nth-child(1)', t('dressLadies1'));
-      setNodeText('#protocolo .dress-code-item:first-child p:nth-child(2)', t('dressLadies2'));
-      setNodeText('#protocolo .dress-code-item:last-child p:nth-child(1)', t('dressGentlemen1'));
-      setNodeText('#protocolo .dress-code-item:last-child p:nth-child(2)', t('dressGentlemen2'));
-      setNodeText('#protocolo .dress-code-section > p:last-child', t('dressCodeCopy'));
-      setNodeText('.protocol-item .sacramento', t('considerationsTitle'));
-      setNodeHtml('.protocol-item .dancing-script', t('considerationsCopy'));
-      setNodeText('#regalos .sacramento', t('giftTitle'));
-      setNodeHtml('#regalos > .dancing-script', t('giftCopy'));
-      setNodeText('.gift-label', t('giftRain'));
-      setNodeText('.gift-option:nth-child(2) .gift-btn span', t('giftLiverpool'));
-      setNodeText('.gift-option:nth-child(3) .gift-btn span', t('giftAmazon'));
-      setNodeText('.confirmacion-titulo-caps', t('confirmationTitle'));
-      setNodeText('.confirmacion-texto', t('confirmationCopy'));
-      setNodeHtml('.confirmacion-fecha', t('confirmationDatePrefix'));
-      setNodeText('#openRsvpModal', t('confirmAttendance'));
-      setNodeText('#guia-viajero', t('travelerGuide'));
-      setNodeText('.hotel-board-wrapper .hotel-board h2', t('hotels'));
-      const infoSections = document.querySelectorAll('.servicios .hotel-board h2');
-      if (infoSections[0]) infoSections[0].textContent = t('services');
-      if (infoSections[1]) infoSections[1].textContent = t('restaurants');
-      setNodeAttr('.insp-rsvp-close', 'aria-label', t('closeRsvp'));
-      setNodeText('.rsvp-header-date', t('weddingDate'));
-      setNodeText('#rsvpLoading', t('rsvpLoading'));
-      setNodeHtml('.rsvp-lead', t('rsvpLead'));
-      setNodeText('label[for="rsvpNombre"]', t('rsvpTo'));
-      setNodeAttr('#rsvpNombre', 'placeholder', t('rsvpPlaceholder'));
-      setNodeText('.rsvp-field:nth-of-type(2) .rsvp-label', t('rsvpWillAttend'));
-      setNodeText('#rsvpBtnSi .rsvp-btn-label', t('rsvpYes'));
-      setNodeText('#rsvpBtnNo .rsvp-btn-label', t('rsvpNo'));
-      setNodeText('#rsvpAcompField .rsvp-label', t('rsvpCompanions'));
-      setNodeText('#rsvpConfirmar', t('confirmAttendance'));
-      setNodeText('#rsvpQuestionBtn', t('rsvpQuestion'));
-      setNodeText('#rsvpSuccessTitle', t('rsvpThanks'));
-      setNodeText('#rsvpSuccessMsg', t('rsvpSuccess'));
-      setNodeAttr('.insp-carousel.insp-carousel-final', 'aria-label', t('galleryAria2'));
-      setNodeAttr('.insp-carousel.insp-carousel-final .insp-arrow.prev', 'aria-label', t('previousPhoto'));
-      setNodeAttr('.insp-carousel.insp-carousel-final .insp-arrow.next', 'aria-label', t('nextPhoto'));
-      setNodeAttr('.insp-lightbox-close', 'aria-label', t('closeImage'));
-      setNodeAttr('#inspLightboxImg', 'alt', currentLang === 'en' ? 'Expanded photo' : 'Foto ampliada');
-
-      updateHotelTranslations();
-      document.querySelectorAll('#servicesList .hotel-map-btn').forEach((link) => {
-        link.textContent = t('serviceProfile');
-      });
-      document.querySelectorAll('#restaurantsList .hotel-map-btn').forEach((link) => {
-        link.textContent = t('restaurantLocation');
-      });
-      document.querySelectorAll('#restaurantsList .service-desc p strong').forEach((label) => {
-        label.textContent = t('restaurantSchedule');
-      });
-      if (typeof window.__applyRsvpLanguage === 'function') {
-        window.__applyRsvpLanguage();
-      }
-    }
-
-    document.querySelectorAll('.insp-lang-option').forEach((button) => {
-      button.addEventListener('click', () => applyLanguage(button.dataset.lang));
-    });
-
-    applyLanguage(currentLang);
-
     document.querySelectorAll('.hotel-row').forEach((row) => {
       row.addEventListener('click', () => {
         const desc = row.nextElementSibling;
@@ -3243,8 +2790,8 @@
           setConfirmationVisibility(false);
           loading.style.display = 'none';
           body.style.display    = 'block';
-          passBadge.textContent = t('rsvpGeneralInvite');
-          acompDesc.textContent = t('rsvpPassesAvailable', 1);
+          passBadge.textContent = 'INVITACIÓN GENERAL';
+          acompDesc.textContent = 'de 1 pase disponible';
           buildWA();
           setStep(2);
           return;
@@ -3259,7 +2806,7 @@
           if (!data.ok) {
             setConfirmationVisibility(false);
             body.style.display = 'block';
-            showError(data.error || t('rsvpInvitationNotFound'));
+            showError(data.error || 'Invitación no encontrada.');
             confirmarBtn.disabled = true;
             return;
           }
@@ -3268,8 +2815,8 @@
           maxPases = data.pases;
           acomp    = maxPases; // empieza en el máximo de pases asignados
 
-          passBadge.textContent = t('rsvpPasses', maxPases);
-          acompDesc.textContent = t('rsvpPassesAvailable', maxPases);
+          passBadge.textContent = `PASE PARA ${maxPases} PERSONA${maxPases > 1 ? 'S' : ''}`;
+          acompDesc.textContent = `de ${maxPases} pases disponibles`;
 
           // Prellenar nombre y bloquearlo
           nombreInput.value = data.para;
@@ -3280,7 +2827,7 @@
 
           if (data.respondido) {
             confirmarBtn.disabled = true;
-            confirmarBtn.textContent = t('rsvpAlreadyConfirmed');
+            confirmarBtn.textContent = 'Ya confirmaste tu asistencia';
             questionBtn.classList.add('show');
           }
 
@@ -3293,7 +2840,7 @@
           setConfirmationVisibility(false);
           loading.style.display = 'none';
           body.style.display    = 'block';
-          showError(t('rsvpUnableToLoad'));
+          showError('No se pudo cargar la invitación. Intenta de nuevo.');
         }
       }
 
@@ -3322,18 +2869,16 @@
       function buildWA() {
         const nombre = nombreInput.value.trim() || (invData ? invData.para : '');
         const baseMsg = asistira
-          ? t('waAttendBase')
-          : t('waDeclineBase');
-        const msg = nombre
-          ? (asistira ? t('waAttendNamed', nombre) : t('waDeclineNamed', nombre))
-          : baseMsg;
+          ? '¡Hola! Paso a confirmar mi asistencia a la boda de Karen y Sergio. ¡Me hace mucha ilusión acompañarlos! ¡Gracias!'
+          : 'Hola, buen dia. Quiero avisar que no podre asistir a la boda de Karen y Sergio.';
+        const msg = nombre ? `¡Hola! Soy ${nombre}. Paso a confirmar mi asistencia a la boda de Karen y Sergio. ¡Me hace mucha ilusión acompañarlos! ¡Gracias!` : baseMsg;
         return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
       }
       function buildQuestionWA() {
         const nombre = nombreInput.value.trim() || (invData ? invData.para : '');
         const msg = nombre
-          ? t('waQuestionNamed', nombre)
-          : t('waQuestionBase');
+          ? `¡Hola! Soy ${nombre}. Me gustaría consultar un detalle sobre la boda de Karen y Sergio. ¿Me pueden ayudar? ¡Gracias!`
+          : '¡Hola! Me gustaría consultar un detalle sobre la boda de Karen y Sergio. ¿Me pueden ayudar? ¡Gracias!';
         return `https://wa.me/${WA_NUMBER}?text=${encodeURIComponent(msg)}`;
       }
       nombreInput.addEventListener('input', buildWA);
@@ -3347,41 +2892,23 @@
         errorDiv.style.display  = msg ? 'block' : 'none';
       }
 
-      function refreshRsvpLanguage() {
-        if (!token) {
-          passBadge.textContent = t('rsvpGeneralInvite');
-          acompDesc.textContent = t('rsvpPassesAvailable', 1);
-        } else if (invData) {
-          passBadge.textContent = t('rsvpPasses', maxPases);
-          acompDesc.textContent = t('rsvpPassesAvailable', maxPases);
-        }
-
-        if (invData && invData.respondido) {
-          confirmarBtn.textContent = t('rsvpAlreadyConfirmed');
-        } else if (!(confirmarBtn.disabled && confirmarBtn.textContent === t('rsvpSending'))) {
-          confirmarBtn.textContent = t('confirmAttendance');
-        }
-      }
-
-      window.__applyRsvpLanguage = refreshRsvpLanguage;
-
       // — Confirmar —
       confirmarBtn.addEventListener('click', async () => {
         const nombre = nombreInput.value.trim();
-        if (!nombre) { showError(t('rsvpNameError')); return; }
+        if (!nombre) { showError('No se pudo cargar el nombre. Recarga la página.'); return; }
         const waHref = buildWA();
         if (!token)  {
           if (asistira && waHref) {
             window.open(waHref, '_blank', 'noopener');
           } else if (!waHref) {
-            showError(t('rsvpNoWhatsapp'));
+            showError('No se encontró el enlace de WhatsApp para confirmar.');
           }
           return;
         }
 
         showError('');
         confirmarBtn.disabled = true;
-        confirmarBtn.textContent = t('rsvpSending');
+        confirmarBtn.textContent = 'Enviando…';
         setStep(3);
         if (asistira && waHref) {
           window.open(waHref, '_blank', 'noopener');
@@ -3406,14 +2933,14 @@
             closeModal();
           } else {
             confirmarBtn.disabled = false;
-            confirmarBtn.textContent = t('confirmAttendance');
-            showError(data.error || t('rsvpGenericError'));
+            confirmarBtn.textContent = 'Confirmar asistencia';
+            showError(data.error || 'Ocurrió un error. Intenta de nuevo.');
             setStep(2);
           }
         } catch (err) {
           confirmarBtn.disabled = false;
-          confirmarBtn.textContent = t('confirmAttendance');
-          showError(t('rsvpOffline'));
+          confirmarBtn.textContent = 'Confirmar asistencia';
+          showError('Sin conexión. Puedes confirmar por WhatsApp.');
           setStep(2);
         }
       });
@@ -3422,10 +2949,9 @@
       if (token) {
         // Cargar datos en background sin abrir el modal automáticamente
         cargarInvitacion();
-        openButton.textContent = t('confirmAttendance');
+        openButton.textContent = 'Confirmar asistencia';
       } else {
         setConfirmationVisibility(false);
-        refreshRsvpLanguage();
       }
 
     })();
@@ -3547,7 +3073,7 @@
                 ${service.instagram ? `<p>Instagram: @${service.instagram}</p>` : ''}
                 ${service.whatsapp ? `<p>WhatsApp: <a class="whatsapp-link" href="https://wa.me/${formatWhatsAppLink(service.whatsapp)}" target="_blank" rel="noopener">${formatPhone(service.whatsapp)}</a></p>` : ''}
                 ${service.domicilio ? `<p>${service.domicilio}</p>` : ''}
-                ${service.link ? `<a class="hotel-map-btn" href="${service.link}" target="_blank" rel="noopener">${t('serviceProfile')}</a>` : ''}
+                ${service.link ? `<a class="hotel-map-btn" href="${service.link}" target="_blank" rel="noopener">Ver perfil</a>` : ''}
               </div>
             </div>
             ${index < servicios.length - 1 ? '<hr>' : ''}
@@ -3634,8 +3160,8 @@
           </div>
           <div class="service-desc restaurant-desc">
             ${buildRestaurantImageHtml(index + 1, restaurant.nombre)}
-            ${restaurant.horario ? `<p><strong>${t('restaurantSchedule')}</strong> ${formatRestaurantSchedule(restaurant.horario)}</p>` : ''}
-            ${restaurant.ubicacion ? `<a class="hotel-map-btn" href="${restaurant.ubicacion}" target="_blank" rel="noopener">${t('restaurantLocation')}</a>` : ''}
+            ${restaurant.horario ? `<p><strong>Horario:</strong> ${formatRestaurantSchedule(restaurant.horario)}</p>` : ''}
+            ${restaurant.ubicacion ? `<a class="hotel-map-btn" href="${restaurant.ubicacion}" target="_blank" rel="noopener">Ver ubicación</a>` : ''}
           </div>
         `;
 
@@ -4053,10 +3579,7 @@
         if (window.innerWidth > 860 && nav) {
           nav.classList.remove('is-open');
           document.body.classList.remove('insp-menu-open');
-          if (menuToggle) {
-            menuToggle.setAttribute('aria-expanded', 'false');
-            menuToggle.setAttribute('aria-label', t('openMenu'));
-          }
+          if (menuToggle) menuToggle.setAttribute('aria-expanded', 'false');
         }
       });
       window.addEventListener('scroll', updateCeremoniaVisual, { passive: true });
@@ -4065,7 +3588,6 @@
         menuToggle.addEventListener('click', function () {
           const isOpen = nav.classList.toggle('is-open');
           menuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
-          menuToggle.setAttribute('aria-label', isOpen ? t('closeMenu') : t('openMenu'));
           document.body.classList.toggle('insp-menu-open', isOpen);
         });
       }
@@ -4077,7 +3599,6 @@
             if (event.target === menuLinks || event.target.closest('a')) {
               nav.classList.remove('is-open');
               menuToggle.setAttribute('aria-expanded', 'false');
-              menuToggle.setAttribute('aria-label', t('openMenu'));
               document.body.classList.remove('insp-menu-open');
             }
           });
