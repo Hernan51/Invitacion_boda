@@ -2810,9 +2810,16 @@
         serviceProfile: 'Ver perfil',
         restaurantSchedule: 'Horario:',
         restaurantLocation: 'Ver ubicación',
+        serviceInstagram: 'Instagram:',
+        serviceWhatsapp: 'WhatsApp:',
+        serviceMakeup: 'Maquillaje y peinado',
+        serviceBarber: 'BARBER SHOP',
+        serviceShoppingCenters: 'Centros comerciales',
+        serviceDressRentals: 'Renta de Vestidos',
+        serviceSuitRentals: 'Renta de trajes',
         waAttendBase: '¡Hola! Paso a confirmar mi asistencia a la boda de Karen y Sergio. ¡Me hace mucha ilusión acompañarlos! ¡Gracias!',
         waDeclineBase: 'Hola, buen dia. Quiero avisar que no podre asistir a la boda de Karen y Sergio.',
-        waAttendNamed: (name) => `¡Hola! Soy ${name}. Paso a confirmar mi asistencia a la boda de Karen y Sergio💌. ¡Me hace mucha ilusión acompañarlos! ¡Gracias!`,
+        waAttendNamed: (name) => `¡Hola! Soy ${name}. Paso a confirmar mi asistencia a la boda de Karen y Sergio. ¡Me hace mucha ilusión acompañarlos! ¡Gracias!`,
         waDeclineNamed: (name) => `Hola, soy ${name}. Quiero avisar que no podre asistir a la boda de Karen y Sergio.`,
         waQuestionNamed: (name) => `¡Hola! Soy ${name}. Me gustaría consultar un detalle sobre la boda de Karen y Sergio. ¿Me pueden ayudar? ¡Gracias!`,
         waQuestionBase: '¡Hola! Me gustaría consultar un detalle sobre la boda de Karen y Sergio. ¿Me pueden ayudar? ¡Gracias!'
@@ -2909,8 +2916,15 @@
         rsvpOffline: 'No connection. You can confirm via WhatsApp.',
         serviceProfile: 'View profile',
         restaurantSchedule: 'Hours:',
-        restaurantLocation: 'View location',
-        waAttendBase: 'Hello! I am reaching out to confirm my attendance at Karen and Sergio’s wedding. I am so excited to celebrate with you both. Thank you!',
+        restaurantLocation: ‘View location’,
+        serviceInstagram: ‘Instagram:’,
+        serviceWhatsapp: ‘WhatsApp:’,
+        serviceMakeup: ‘Makeup and Hair’,
+        serviceBarber: ‘BARBER SHOP’,
+        serviceShoppingCenters: ‘Shopping Centers’,
+        serviceDressRentals: ‘Dress Rentals’,
+        serviceSuitRentals: ‘Suit Rentals’,
+        waAttendBase: ‘Hello! I am reaching out to confirm my attendance at Karen and Sergio’s wedding. I am so excited to celebrate with you both. Thank you!’,
         waDeclineBase: 'Hello, good day. I wanted to let you know that I will not be able to attend Karen and Sergio’s wedding.',
         waAttendNamed: (name) => `Hello! This is ${name}. I am reaching out to confirm my attendance at Karen and Sergio’s wedding. I am so excited to celebrate with you both. Thank you!`,
         waDeclineNamed: (name) => `Hello, this is ${name}. I wanted to let you know that I will not be able to attend Karen and Sergio’s wedding.`,
@@ -2924,6 +2938,22 @@
     function t(key, ...args) {
       const value = translations[currentLang][key];
       return typeof value === 'function' ? value(...args) : value;
+    }
+
+    function translateServiceCategory(category) {
+      const catKey = (category || '').trim().toLowerCase();
+      if (catKey.includes('maquill') || catKey.includes('peinad')) {
+        return t('serviceMakeup');
+      } else if (catKey.includes('barber') || catKey.includes('barber shop') || catKey.includes('barbería')) {
+        return t('serviceBarber');
+      } else if (catKey.includes('vestid') || catKey.includes('renta de vestidos')) {
+        return t('serviceDressRentals');
+      } else if (catKey.includes('traje')) {
+        return t('serviceSuitRentals');
+      } else if (catKey.includes('centro') || catKey.includes('comercial')) {
+        return t('serviceShoppingCenters');
+      }
+      return category;
     }
 
     function setNodeText(selector, value) {
@@ -3500,7 +3530,7 @@
         li.innerHTML = `
           <div class="service-row">
             <div class="service-row-left">
-              <span>${categoria.toUpperCase()}</span>
+              <span>${translateServiceCategory(categoria).toUpperCase()}</span>
             </div>
             <span class="service-plus">+</span>
           </div>
@@ -3516,8 +3546,8 @@
             <div class="service-item">
               <div class="service-item-info">
                 <p><strong>${service.nombre}</strong></p>
-                ${service.instagram ? `<p>Instagram: @${service.instagram}</p>` : ''}
-                ${service.whatsapp ? `<p>WhatsApp: <a class="whatsapp-link" href="https://wa.me/${formatWhatsAppLink(service.whatsapp)}" target="_blank" rel="noopener">${formatPhone(service.whatsapp)}</a></p>` : ''}
+                ${service.instagram ? `<p>${t('serviceInstagram')} @${service.instagram}</p>` : ''}
+                ${service.whatsapp ? `<p>${t('serviceWhatsapp')} <a class="whatsapp-link" href="https://wa.me/${formatWhatsAppLink(service.whatsapp)}" target="_blank" rel="noopener">${formatPhone(service.whatsapp)}</a></p>` : ''}
                 ${service.domicilio ? `<p>${service.domicilio}</p>` : ''}
                 ${service.link ? `<a class="hotel-map-btn" href="${service.link}" target="_blank" rel="noopener">${t('serviceProfile')}</a>` : ''}
               </div>
